@@ -20,7 +20,7 @@ const NavbarComponent = () => {
             </li>
             <li className="text-lg hover:underline ">
               <Link
-                to="/about"
+                to="/about-us"
                 className="text-[#FBDF07] font-medium px-6 py-2 rounded-lg"
               >
                 About
