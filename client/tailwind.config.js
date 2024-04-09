@@ -23,6 +23,8 @@ export default {
       "navbar-footer-bg": "#1D24CA",
       "navbar-text": "#FBDF07",
       white: "#FFFFFF",
+      black: "#000000",
+      red: "#FF0000",
     },
   },
   plugins: [],

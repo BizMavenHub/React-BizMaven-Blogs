@@ -1,10 +1,8 @@
 import React from "react";
-import { NavbarComponent, FooterComponent } from "../../components/index";
 
 function About_us_Container() {
   return (
     <>
-      <NavbarComponent />
       <div className="about_us_container desktop:w-[1000px] m-auto">
         <h1 className="text-6xl text-center font-semibold my-12 text-[#FBDF07]">
           About Us
@@ -91,7 +89,6 @@ function About_us_Container() {
           </section>
         </div>
       </div>
-      <FooterComponent />
     </>
   );
 }

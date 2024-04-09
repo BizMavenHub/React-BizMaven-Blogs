@@ -25,7 +25,7 @@ export default async function registerWithEmail(req, res) {
 
   try {
     await newUser.save();
-    res.send("User created successfully");
+    res.send({ message: "User created successfully" });
   } catch (error) {
     res.send({ message: error.message });
   }
