@@ -78,7 +78,8 @@ const HomepageContainer = () => {
               </h1>
               <div className="flex justify-center mt-12 mobile:mt-8">
                 <Link
-                  to={"/sign-up"}
+                  to="/sign-up"
+                  relative="path"
                   className="text-2xl text-center bg-navbar-text text-navbar-bg font-semibold font-overpass rounded-lg py-4 px-12 mobile:px-6 "
                 >
                   Getting Started Now | Free
