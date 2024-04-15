@@ -5,8 +5,8 @@ import women from "../../assets/business-woman-working-on-laptop-in-her-office.j
 const HomepageContainer = () => {
   return (
     <div>
-      <div className="homepage-container m-auto min-h-[100vh] desktop:w-[1300px] tablet:px-4 mobile:px-4">
-        <div className="pt-20 min-h-[100vh] mobile:pt-8 tablet:pt-12">
+      <div className="homepage-container m-auto min-h-[100vh] desktop:w-[1300px] w-[98%]  tablet:px-4 mobile:px-4">
+        <div className="pt-20 mobile:pt-8 tablet:pt-12">
           <h1 className="desktop:text-8xl tablet:text-6xl mobile:text-3xl text-[#ffff] font-semibold tracking-normal font-roboto">
             Welcome to <span className="text-navbar-text">BizMaven Blogs!</span>{" "}
             Explore the World of fascinating topics.
@@ -29,7 +29,7 @@ const HomepageContainer = () => {
             </p>
           </section>
         </div>
-        <section className="mt-12">
+        <section className="mt-12 mobile:mt-8">
           <div>
             <h1 className="text-8xl text-center font-poppins font-semibold text-white mobile:text-4xl tablet:text-7xl">
               What we care <span className=" text-navbar-text">about</span>
