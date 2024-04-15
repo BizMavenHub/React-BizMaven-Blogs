@@ -3,12 +3,23 @@ import google_icon from "../../assets/google-icon.png";
 import github_icon from "../../assets/github-icon.png";
 import facebook_icon from "../../assets/facebook-icon.png";
 
+import { useHistory } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+} from "../../redux/user/userSlice";
+
 import { useState } from "react";
 
 function Login_page() {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
+
   const [dataForm, setDataForm] = useState({});
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setDataForm({
@@ -21,12 +32,11 @@ function Login_page() {
     e.preventDefault();
 
     if (!dataForm.email || !dataForm.password) {
-      return setErrorMessage("All fields are required");
+      return dispatch(loginFailure("All fields are required"));
     }
 
     try {
-      setLoading(true);
-      setErrorMessage(null);
+      dispatch(loginStart());
 
       const res = await fetch("/api/auth/login-with-email", {
         method: "POST",
@@ -40,21 +50,20 @@ function Login_page() {
       console.log(data);
 
       if (data.success === false) {
-        return setErrorMessage(data.message);
+        return dispatch(loginFailure(data.message));
       }
 
       if (data.message == "User not found") {
-        return setErrorMessage(data.message);
+        return dispatch(loginFailure(data.message));
       }
 
-      setDataForm({});
-
-      setLoading(false);
-
-      console.log("login success");
+      if (res.ok) {
+        dispatch(loginSuccess(data));
+        history.push("/");
+        console.log("login success");
+      }
     } catch (err) {
-      setErrorMessage(err.message);
-      setLoading(false);
+      dispatch(loginFailure(err.message));
     }
   };
 
