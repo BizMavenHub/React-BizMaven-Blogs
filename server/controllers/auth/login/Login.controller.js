@@ -1,5 +1,8 @@
 import jwt from "jsonwebtoken";
 import dotnev from "dotenv";
+import bcryptjs from "bcryptjs";
+import { errorHandler } from "../../../utils/error.js";
+import User from "../../../models/user.model.js";
 
 dotnev.config();
 
@@ -27,9 +30,8 @@ export default async function loginWithEmail(req, res, next) {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    console.log(process.env.JWT_SECRET);
     res
-      .send(200)
+      .status(200)
       .cookie("access_token", token, {
         httpOnly: true,
       })
