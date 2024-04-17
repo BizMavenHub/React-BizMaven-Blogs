@@ -7,6 +7,7 @@ import {
   SignUp_page,
   Login_page,
   About_us_page,
+  Feedback_page,
 } from "./pages/index";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/sign-up" component={SignUp_page} />
           <Route path="/login" component={Login_page} />
           <Route path="/about-us" component={About_us_page} />
+          <Route path="/feedback" component={Feedback_page} />
           <Route path="*" component={Homepage} />
         </Switch>
         <FooterComponent />
