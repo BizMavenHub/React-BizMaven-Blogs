@@ -8,6 +8,7 @@ import {
   Login_page,
   About_us_page,
   Feedback_page,
+  Contact_page,
 } from "./pages/index";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" component={Login_page} />
           <Route path="/about-us" component={About_us_page} />
           <Route path="/feedback" component={Feedback_page} />
+          <Route path="/contact" component={Contact_page} />
           <Route path="*" component={Homepage} />
         </Switch>
         <FooterComponent />
