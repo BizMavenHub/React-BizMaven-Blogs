@@ -35,7 +35,7 @@ export default async function loginWithEmail(req, res, next) {
       .cookie("access_token", token, {
         httpOnly: true,
       })
-      .json({ message: "User logged in successfully" });
+      .json(user);
   } catch (error) {
     next(error);
   }
