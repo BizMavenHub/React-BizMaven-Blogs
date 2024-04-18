@@ -72,14 +72,29 @@ function SignUp_page() {
     }
   };
 
-  console.log(dataForm);
+  const [showPass, setShowPass] = useState(false);
+
+  const showPassword = () => {
+    const password = document.getElementById("password");
+    const confirmedPassword = document.getElementById("confirmed_password");
+
+    if (password.type === "password" || confirmedPassword.type === "password") {
+      password.type = "text";
+      confirmedPassword.type = "text";
+      setShowPass(true);
+    } else {
+      password.type = "password";
+      confirmedPassword.type = "password";
+      setShowPass(false);
+    }
+  };
 
   return (
-    <div className="min-h-screen mb-4">
-      <h1 className="text-7xl text-white font-poppins font-semibold text-center tablet:pt-20 pt-28 pb-20 mobile:pt-12 mobile:pb-12 mobile:text-4xl">
+    <div className="min-h-[100vh] mt-20">
+      <h1 className="text-7xl text-white font-poppins font-semibold text-center tablet:pt-20 pt-12 pb-20 mobile:pt-12 mobile:pb-12 mobile:text-4xl">
         Hello, Welcome!
       </h1>
-      <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%]">
+      <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%] mb-16">
         <h1 className="text-4xl text-center font-bold mb-8">Register</h1>
         <form action="post" onSubmit={handleSubmit}>
           <div className="my-5">
@@ -102,7 +117,7 @@ function SignUp_page() {
               onChange={handleChange}
             />
           </div>
-          <div className="my-5">
+          <div className="my-5 flex">
             <input
               type="password"
               name="password"
@@ -111,9 +126,21 @@ function SignUp_page() {
               placeholder="Password"
               onChange={handleChange}
             />
-            <p className="text-gray mt-2 ml-2 text-sm">
-              Password must be at least 6 characters long
-            </p>
+            {showPass ? (
+              <button
+                className="w-[80px] px-2 text-content-bg font-medium"
+                onClick={showPassword}
+              >
+                Hide
+              </button>
+            ) : (
+              <button
+                className="w-[80px] px-2 text-content-bg font-medium"
+                onClick={showPassword}
+              >
+                Show
+              </button>
+            )}
           </div>
           <div className="my-5">
             <input
@@ -124,6 +151,23 @@ function SignUp_page() {
               placeholder="Password again"
               onChange={handleChange}
             />
+          </div>
+
+          <div className="password-requirement">
+            <h1 className="text-xl mt-4 mb-2 ml-4 font-semibold text-navbar-footer-bg">
+              Please use at least:
+            </h1>
+            <ul className=" list-disc ml-12 grid grid-cols-2">
+              <li>
+                <p className="text-gray mb-2 text-lg">6 characters long</p>
+              </li>
+              <li>
+                <p className="text-gray mb-2 text-lg">1 number</p>
+              </li>
+              <li>
+                <p className="text-gray mb-2 text-lg">1 special character</p>
+              </li>
+            </ul>
           </div>
 
           {errorMessage && (
@@ -151,6 +195,7 @@ function SignUp_page() {
             )}
           </div>
         </form>
+
         <hr className="my-6" />
         <div className="other_options flex justify-around w-full m-auto items-center mt-4">
           <div className="">
