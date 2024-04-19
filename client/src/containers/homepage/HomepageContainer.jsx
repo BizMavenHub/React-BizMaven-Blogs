@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import women from "../../assets/business-woman-working-on-laptop-in-her-office.jpg";
+import { woman } from "../../assets";
 
 const HomepageContainer = () => {
   return (
@@ -14,7 +14,7 @@ const HomepageContainer = () => {
           <section className="mt-12 p-4 pt-8 mobile:mt-6 mobile:p-0 tablet:p-4">
             <div>
               <img
-                src={women}
+                src={woman}
                 alt=""
                 className="w-full h-[750px] object-cover rounded-xl mobile:h-[300px] tablet:h-[500px]"
               />

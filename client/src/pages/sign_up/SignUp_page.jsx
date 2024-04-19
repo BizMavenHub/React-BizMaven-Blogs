@@ -1,10 +1,6 @@
 import React from "react";
 import { useState } from "react";
 
-import google_icon from "../../assets/google-icon.png";
-import github_icon from "../../assets/github-icon.png";
-import facebook_icon from "../../assets/facebook-icon.png";
-
 function SignUp_page() {
   const [dataForm, setDataForm] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
@@ -153,21 +149,9 @@ function SignUp_page() {
         </form>
         <hr className="my-6" />
         <div className="other_options flex justify-around w-full m-auto items-center mt-4">
-          <div className="">
-            <button className=" flex justify-center items-center bg-[#f2f2f2] text-white font-semibold w-full py-3 px-12 rounded-lg mobile:px-6 ">
-              <img src={google_icon} alt="" className="w-[30px]" />
-            </button>
-          </div>
-          <div className="">
-            <button className=" flex justify-center items-center bg-[#f2f2f2] text-white font-semibold w-full py-2.5 px-12 rounded-lg mobile:px-6 ">
-              <img src={github_icon} alt="" className="w-[32px]" />
-            </button>
-          </div>
-          <div className="">
-            <button className=" flex justify-center items-center bg-[#f2f2f2] text-white font-semibold w-full py-3 px-12 rounded-lg mobile:px-6 ">
-              <img src={facebook_icon} alt="" className="w-[30px]" />
-            </button>
-          </div>
+          <div className="oauth-google-btn-container"></div>
+          <div className="oauth-facebook-btn-container"></div>
+          <div className="oauth-github-btn-container"></div>
         </div>
         <div className="already_have_account mt-4">
           <p className=" text-center text-lg">
