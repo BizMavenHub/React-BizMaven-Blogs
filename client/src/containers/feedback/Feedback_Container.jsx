@@ -14,7 +14,7 @@ const Feedback_Container = () => {
   };
 
   return (
-    <div className="w-[85%] text-lg m-auto font-montserrats">
+    <div className="w-[70%] text-lg m-auto font-montserrats tablet:w-[90%] mobile:w-[90%]">
       <h1 className="text-center text-6xl font-semibold text-navbar-text my-12">
         Feedback
       </h1>
@@ -99,7 +99,7 @@ const Feedback_Container = () => {
             placeholder="Message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            className="w-[80%] p-4 border-[1.5px] rounded-md border-solid tablet:w-[70%] mobile:w-[90%]"
+            className="w-[80%] p-4 border-[1.5px] rounded-md border-solid tablet:w-[70%] mobile:w-[90%] mobile:h-[200px]"
           ></textarea>
           <button
             onClick={handleSubmit}
