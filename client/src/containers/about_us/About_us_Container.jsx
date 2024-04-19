@@ -7,8 +7,8 @@ function About_us_Container() {
         <h1 className="text-6xl text-center font-semibold my-12 text-[#FBDF07]">
           About Us
         </h1>
-        <div className="paragraph_container text-white">
-          <section className="text-xl mb-4 tracking-wide">
+        <div className="paragraph_container text-white text-2xl tracking-wide mobile:text-lg">
+          <section className="mb-4 tracking-wide">
             In the boundless expanse of the digital landscape, our blog stands
             as a beacon of exploration, a sanctuary for the curious soul. Here,
             amidst the infinite possibilities of the internet, we invite you to
@@ -19,7 +19,7 @@ function About_us_Container() {
             oasis of thought where ideas flow freely and imaginations take
             flight.
           </section>
-          <section className="text-xl mb-4 tracking-wide">
+          <section className="mb-4 tracking-wide">
             At the heart of our blog lies a deep reverence for the pursuit of
             understanding in all its forms. From the intricate complexities of
             quantum mechanics to the timeless beauty of classical literature, we
@@ -28,7 +28,7 @@ function About_us_Container() {
             odyssey, offering insights, analyses, and perspectives that
             illuminate the world around us.
           </section>
-          <section className="text-xl mb-4 tracking-wide">
+          <section className="mb-4 tracking-wide">
             But our blog is more than just a repository of information; it is a
             community—a gathering place for minds eager to engage in meaningful
             discourse. Through comments, discussions, and shared experiences, we
@@ -36,7 +36,7 @@ function About_us_Container() {
             cultural divides. Here, diversity is celebrated, and every voice has
             the power to shape the conversation.
           </section>
-          <section className="text-xl mb-4 tracking-wide">
+          <section className="mb-4 tracking-wide">
             So, whether you're a seasoned scholar or a curious newcomer, we
             extend a warm invitation to join us on this journey of discovery.
             Together, let us explore the depths of human knowledge, revel in the
@@ -44,7 +44,7 @@ function About_us_Container() {
             filled with wonder and possibility. Welcome to our blog—where the
             adventure begins.
           </section>
-          <section className="text-xl mb-4 tracking-wide">
+          <section className="mb-4 tracking-wide">
             Step into our digital realm and immerse yourself in a kaleidoscope
             of topics that span the spectrum of human experience. Dive into the
             latest scientific breakthroughs that redefine our understanding of
@@ -57,7 +57,7 @@ function About_us_Container() {
             our blog offers a smorgasbord of content designed to both inform and
             inspire.
           </section>
-          <section className="text-xl mb-4 tracking-wide">
+          <section className="mb-4 tracking-wide">
             But beyond the mere dissemination of information, our blog is a
             platform for voices to be heard, stories to be shared, and
             perspectives to be explored. We believe in the power of storytelling
@@ -66,7 +66,7 @@ function About_us_Container() {
             universal truths that connect us all, transcending barriers of
             culture, language, and ideology.
           </section>
-          <section className="text-xl mb-4 tracking-wide">
+          <section className="mb-4 tracking-wide">
             So, whether you're seeking enlightenment, entertainment, or simply a
             moment of respite from the chaos of everyday life, we invite you to
             make yourself at home in our digital sanctuary. Join us as we embark
@@ -76,7 +76,7 @@ function About_us_Container() {
             all. Welcome to our blog—where the journey never ends, and every
             discovery is a cause for celebration.
           </section>
-          <section className="text-xl mb-16 tracking-wide">
+          <section className="mb-16 tracking-wide">
             In conclusion, our blog is more than just a collection of
             articles—it's a living, breathing ecosystem of ideas, stories, and
             connections. It's a testament to the power of human curiosity and

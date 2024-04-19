@@ -14,11 +14,11 @@ const Feedback_Container = () => {
   };
 
   return (
-    <div className="w-[70%] text-lg m-auto font-montserrats tablet:w-[90%] mobile:w-[90%]">
+    <div className="desktop:w-[1300px] text-lg m-auto font-montserrats tablet:w-[90%] mobile:w-[90%]">
       <h1 className="text-center text-6xl font-semibold text-navbar-text my-12">
         Feedback
       </h1>
-      <div className="text-container text-white font-medium">
+      <div className="text-container text-white text-2xl tracking-wide mobile:text-lg">
         <section>
           <p>
             Feedback—it's a simple word with profound implications. In the realm
