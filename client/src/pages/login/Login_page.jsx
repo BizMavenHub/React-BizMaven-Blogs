@@ -72,7 +72,8 @@ function Login_page() {
 
   const [showPass, setShowPass] = useState(false);
 
-  const showPassword = () => {
+  const showPassword = (e) => {
+    e.preventDefault();
     const password = document.getElementById("password");
     if (password.type === "password") {
       password.type = "text";

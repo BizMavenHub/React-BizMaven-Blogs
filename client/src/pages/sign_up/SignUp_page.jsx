@@ -75,7 +75,8 @@ function SignUp_page() {
 
   const [showPass, setShowPass] = useState(false);
 
-  const showPassword = () => {
+  const showPassword = (e) => {
+    e.preventDefault();
     const password = document.getElementById("password");
     const confirmedPassword = document.getElementById("confirmed_password");
 
