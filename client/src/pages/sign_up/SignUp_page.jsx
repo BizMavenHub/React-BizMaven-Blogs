@@ -1,5 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import {
+  Google_OAuth_btn,
+  Github_OAuth_btn,
+  Facebook_OAuth_btn,
+} from "../../components/oauth";
 
 function SignUp_page() {
   const [dataForm, setDataForm] = useState({});
@@ -67,8 +72,6 @@ function SignUp_page() {
       setLoading(false);
     }
   };
-
-  console.log(dataForm);
 
   return (
     <div className="min-h-screen mb-4">
@@ -149,9 +152,15 @@ function SignUp_page() {
         </form>
         <hr className="my-6" />
         <div className="other_options flex justify-around w-full m-auto items-center mt-4">
-          <div className="oauth-google-btn-container"></div>
-          <div className="oauth-facebook-btn-container"></div>
-          <div className="oauth-github-btn-container"></div>
+          <div className="oauth-google-btn-container">
+            <Google_OAuth_btn />
+          </div>
+          <div className="oauth-facebook-btn-container">
+            <Facebook_OAuth_btn />
+          </div>
+          <div className="oauth-github-btn-container">
+            <Github_OAuth_btn />
+          </div>
         </div>
         <div className="already_have_account mt-4">
           <p className=" text-center text-lg">
