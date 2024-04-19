@@ -50,7 +50,6 @@ function Login_page() {
       });
 
       const data = await res.json();
-      console.log(data);
 
       if (data.success === false) {
         return dispatch(loginFailure(data.message));

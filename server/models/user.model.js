@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  pictureProfile: {
+    type: String,
+    default: "../assets/default_profile.png",
+  },
 });
 
 const User = mongoose.model("User", userSchema);

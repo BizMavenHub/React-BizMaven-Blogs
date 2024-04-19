@@ -9,7 +9,9 @@ export default defineConfig({
     proxy: {
       "/api": {
         target: "http://localhost:8000",
+        changeOrigin: true,
         secure: false,
+        ws: true,
       },
     },
   },
@@ -17,5 +19,8 @@ export default defineConfig({
     postcss: {
       plugins: [tailwindcss()],
     },
+  },
+  build: {
+    outDir: "build",
   },
 });
