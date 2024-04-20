@@ -7,6 +7,8 @@ import { loginSuccess } from "../../redux/user/userSlice.js";
 import { useHistory } from "react-router-dom";
 
 function Google_OAuth_btn() {
+  const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -17,7 +19,7 @@ function Google_OAuth_btn() {
     });
     try {
       const result = await signInWithPopup(auth, provider);
-      const res = await fetch("/api/auth/login-with-google", {
+      const res = await fetch(API_URL_BASE + "/api/auth/login-with-google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,8 +30,6 @@ function Google_OAuth_btn() {
           google_photo_url: result.user.photoURL,
         }),
       });
-
-      console.log(res);
 
       const data = await res.json();
 
@@ -45,13 +45,16 @@ function Google_OAuth_btn() {
 
   return (
     <div>
-      <button className=" flex justify-center items-center bg-[#f2f2f2] text-white font-semibold w-full py-3 px-12 rounded-lg mobile:px-6">
-        <img
-          src={google_icon}
-          alt=""
-          className="w-[30px]"
-          onClick={handleGoogleLogin}
-        />
+      <button className=" relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800">
+        <span className="flex items-center relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 text-[#6c40aa] hover:text-white text-base">
+          <img
+            src={google_icon}
+            alt=""
+            className="w-[30px] mr-2"
+            onClick={handleGoogleLogin}
+          />
+          Sign in with Google
+        </span>
       </button>
     </div>
   );

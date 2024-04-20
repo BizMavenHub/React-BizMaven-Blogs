@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-  Google_OAuth_btn,
-  Github_OAuth_btn,
-  Facebook_OAuth_btn,
-} from "../../components/oauth";
+import { Google_OAuth_btn } from "../../components/oauth";
 
 import { useHistory } from "react-router-dom";
 
@@ -18,6 +14,8 @@ import {
 import { useState } from "react";
 
 function Login_page() {
+  const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
+
   const history = useHistory();
   const dispatch = useDispatch();
   const { loading, error: errorMessage } = useSelector((state) => state.user);
@@ -41,7 +39,7 @@ function Login_page() {
     try {
       dispatch(loginStart());
 
-      const res = await fetch("/api/auth/login-with-email", {
+      const res = await fetch(API_URL_BASE + "/api/auth/login-with-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -136,7 +134,7 @@ function Login_page() {
           <div className="mt-4 mobile:mt-4 ">
             {loading ? (
               <button
-                className="w-full border p-4 rounded-lg bg-gradient-to-r from-[#F72798] to-[#EBF400] text-xl text-white font-semibold mobile:p-2"
+                className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-8 text-center mobile:p-2"
                 onSubmit={handleSubmit}
                 disabled={loading}
               >
@@ -144,7 +142,7 @@ function Login_page() {
               </button>
             ) : (
               <button
-                className="w-full border p-4 rounded-lg bg-gradient-to-r from-[#F72798] to-[#EBF400] text-xl text-white font-semibold mobile:p-2"
+                className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center mobile:p-2"
                 onSubmit={handleSubmit}
               >
                 Login
@@ -156,12 +154,6 @@ function Login_page() {
         <div className="other_options flex justify-around w-full m-auto items-center mt-4">
           <div className="oauth-google-btn-container">
             <Google_OAuth_btn />
-          </div>
-          <div className="oauth-facebook-btn-container">
-            <Facebook_OAuth_btn />
-          </div>
-          <div className="oauth-github-btn-container">
-            <Github_OAuth_btn />
           </div>
         </div>
         <div className="already_have_account mt-4">

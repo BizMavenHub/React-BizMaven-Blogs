@@ -1,12 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import {
-  Google_OAuth_btn,
-  Github_OAuth_btn,
-  Facebook_OAuth_btn,
-} from "../../components/oauth";
+import { Google_OAuth_btn } from "../../components/oauth";
 
 function SignUp_page() {
+  const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
+
   const [dataForm, setDataForm] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -45,7 +43,7 @@ function SignUp_page() {
       setLoading(true);
       setErrorMessage(null);
 
-      const res = await fetch("/api/auth/register-with-email", {
+      const res = await fetch(API_URL_BASE + "/api/auth/register-with-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -181,7 +179,7 @@ function SignUp_page() {
           <div className="mt-4 ">
             {loading ? (
               <button
-                className="w-full border p-4 rounded-lg bg-gradient-to-r from-[#F72798] to-[#EBF400] text-xl text-white font-semibold mobile:p-2"
+                className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-8 text-center mobile:p-2"
                 onSubmit={handleSubmit}
                 disabled={loading}
               >
@@ -189,7 +187,7 @@ function SignUp_page() {
               </button>
             ) : (
               <button
-                className="w-full border p-4 rounded-lg bg-gradient-to-r from-[#F72798] to-[#EBF400] text-xl text-white font-semibold mobile:p-2"
+                className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center mobile:p-2"
                 onSubmit={handleSubmit}
               >
                 Register Now
@@ -198,18 +196,12 @@ function SignUp_page() {
           </div>
         </form>
 
-        <hr className="my-6" />
-        <div className="other_options flex justify-around w-full m-auto items-center mt-4">
+        <div className="other_options flex justify-around w-full m-auto items-center mt-4 ">
           <div className="oauth-google-btn-container">
             <Google_OAuth_btn />
           </div>
-          <div className="oauth-facebook-btn-container">
-            <Facebook_OAuth_btn />
-          </div>
-          <div className="oauth-github-btn-container">
-            <Github_OAuth_btn />
-          </div>
         </div>
+        <hr className="my-4" />
         <div className="already_have_account mt-4">
           <p className=" text-center text-lg">
             Already have an account?{" "}
