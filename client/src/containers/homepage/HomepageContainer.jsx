@@ -5,7 +5,7 @@ import { woman } from "../../assets";
 const HomepageContainer = () => {
   return (
     <div>
-      <div className="homepage-container m-auto min-h-[100vh] desktop:w-[1300px] w-[98%]  tablet:px-4 mobile:px-4">
+      <div className="homepage-container m-auto min-h-[100vh] w-[95%] tablet:px-4 mobile:px-4">
         <div className="pt-20 mobile:pt-8 tablet:pt-12">
           <h1 className="desktop:text-8xl tablet:text-6xl mobile:text-3xl text-[#ffff] font-semibold tracking-normal font-roboto">
             Welcome to <span className="text-navbar-text">BizMaven Blogs!</span>{" "}

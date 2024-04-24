@@ -17,15 +17,6 @@ export default {
       lato: ["Lato", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
     },
-    colors: {
-      "navbar-bg": "#0C359E",
-      "content-bg": "#279EFF",
-      "navbar-footer-bg": "#1D24CA",
-      "navbar-text": "#FBDF07",
-      white: "#FFFFFF",
-      black: "#000000",
-      red: "#FF0000",
-    },
   },
   plugins: [],
 };

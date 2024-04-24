@@ -113,4 +113,8 @@ export async function loginWithGoogle(req, res, next) {
   }
 }
 
-export default { registerWithEmail, loginWithEmail, loginWithGoogle };
+export default {
+  registerWithEmail,
+  loginWithEmail,
+  loginWithGoogle,
+};
