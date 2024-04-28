@@ -4,6 +4,7 @@ import Login_page from "./login/Login_page";
 import About_us_page from "./about_us/About_us_page";
 import Feedback_page from "./feedback/Feedback_page";
 import Contact_page from "./contact/Contact_page";
+import NotFound_page from "./404/NotFound_page";
 
 export {
   Homepage,
@@ -12,4 +13,5 @@ export {
   About_us_page,
   Feedback_page,
   Contact_page,
+  NotFound_page,
 };

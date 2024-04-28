@@ -11,7 +11,7 @@ export default {
       // => @media (min-width: 640px and max-width: 1279px) { ... }
 
       desktop: { min: "1280px" },
-      // => @media (min-width: 1280px ) { ... }
+      // => @media (min-width: 1280px and max-width: 1919px ) { ... }
     },
     fontFamily: {
       lato: ["Lato", "sans-serif"],

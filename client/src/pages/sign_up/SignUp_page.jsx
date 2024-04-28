@@ -90,11 +90,11 @@ function SignUp_page() {
   };
 
   return (
-    <div className="min-h-[100vh] mt-20">
-      <h1 className="text-7xl text-white font-poppins font-semibold text-center tablet:pt-20 pt-12 pb-20 mobile:pt-12 mobile:pb-12 mobile:text-4xl">
-        Hello, Welcome!
+    <div className="min-h-[100vh] mt-12 mb-12">
+      <h1 className="text-indigo-500 font-bold text-[64pt] text-center mb-8 tablet:pt-20 mobile:pt-12 mobile:pb-12 mobile:text-4xl">
+        Welcome!
       </h1>
-      <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%] mb-16">
+      <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%]">
         <h1 className="text-4xl text-center font-bold mb-8">Register</h1>
         <form action="post" onSubmit={handleSubmit}>
           <div className="my-5">
@@ -154,7 +154,7 @@ function SignUp_page() {
           </div>
 
           <div className="password-requirement">
-            <h1 className="text-xl mt-4 mb-2 ml-4 font-semibold text-navbar-footer-bg">
+            <h1 className="text-xl mt-4 mb-2 ml-4 font-semibold text-blue-500">
               Please use at least:
             </h1>
             <ul className=" list-disc ml-12 grid grid-cols-2">
@@ -172,7 +172,9 @@ function SignUp_page() {
 
           {errorMessage && (
             <div className="error-container mt-4">
-              <h1 className="text-red text-center text-lg">{errorMessage}</h1>
+              <h1 className="text-red-500 text-center text-lg">
+                {errorMessage}
+              </h1>
             </div>
           )}
 
@@ -196,6 +198,12 @@ function SignUp_page() {
           </div>
         </form>
 
+        <div className="flex md:justify-between justify-center items-center mt-8">
+          <div className="bg-gray-300 md:block w-full h-[1px]"></div>
+          <p className="md:mx-2 text-xl font-light text-gray-400"> Or </p>
+          <div className="bg-gray-300 md:block w-full h-[1px]"></div>
+        </div>
+
         <div className="other_options flex justify-around w-full m-auto items-center mt-4 ">
           <div className="oauth-google-btn-container">
             <Google_OAuth_btn />
@@ -205,7 +213,10 @@ function SignUp_page() {
         <div className="already_have_account mt-4">
           <p className=" text-center text-lg">
             Already have an account?{" "}
-            <a href="/login" className=" text-content-bg">
+            <a
+              href="/login"
+              className=" text-content-bg hover:underline hover:underline-offset-2 text-blue-600"
+            >
               Login
             </a>
           </p>

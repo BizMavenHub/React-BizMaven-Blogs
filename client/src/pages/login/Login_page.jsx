@@ -82,12 +82,14 @@ function Login_page() {
   };
 
   return (
-    <div className="min-h-[100vh] mt-20">
-      <h1 className="text-7xl text-white font-poppins font-semibold text-center pt-16 pb-20 mobile:pt-16 mobile:pb-16 mobile:text-4xl">
-        Hello, Welcome Back!
+    <div className="h-[100vh] mt-8 shadow-md">
+      <h1 className="text-indigo-500 font-bold text-[64pt] text-center pt-16 pb-20 mobile:pt-16 mobile:pb-16 mobile:text-4xl">
+        Welcome Back!
       </h1>
       <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%]">
-        <h1 className="text-4xl text-center font-bold mb-8">Login</h1>
+        <h1 className="text-5xl text-center font-bold mb-8 text-gray-800">
+          Login
+        </h1>
         <form action="post" onSubmit={handleSubmit}>
           <div className="my-5">
             <input
@@ -157,9 +159,12 @@ function Login_page() {
           </div>
         </div>
         <div className="already_have_account mt-4">
-          <p className=" text-center text-lg">
+          <p className=" text-center text-lg ">
             Don't have an account?{" "}
-            <a href="/sign-up" className=" text-content-bg">
+            <a
+              href="/sign-up"
+              className=" text-content-bg hover:underline hover:underline-offset-2 text-blue-600"
+            >
               Get Started
             </a>
           </p>
