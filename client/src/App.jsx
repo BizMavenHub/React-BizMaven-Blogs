@@ -1,6 +1,10 @@
-import { NavbarComponent, FooterComponent } from "./components/index";
+import {
+  NavbarComponent,
+  FooterComponent,
+  PrivateRoute,
+} from "./components/index";
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import {
   Homepage,
@@ -11,6 +15,7 @@ import {
   Contact_page,
   NotFound_page,
   Blogs_page,
+  Dashboard_page,
 } from "./pages/index";
 
 function App() {
@@ -18,16 +23,19 @@ function App() {
     <BrowserRouter>
       <div className=" min-h-[100vh]">
         <NavbarComponent />
-        <Switch>
-          <Route path="/" exact component={Homepage} />
-          <Route path="/sign-up" component={SignUp_page} />
-          <Route path="/login" component={Login_page} />
-          <Route path="/about-us" component={About_us_page} />
-          <Route path="/feedback" component={Feedback_page} />
-          <Route path="/contact-us" component={Contact_page} />
-          <Route path="/blogs" component={Blogs_page} />
-          <Route path="*" component={NotFound_page} />
-        </Switch>
+        <Routes>
+          <Route path="/" exact element={<Homepage />} />
+          <Route path="/sign-up" element={<SignUp_page />} />
+          <Route path="/login" element={<Login_page />} />
+          <Route path="/about-us" element={<About_us_page />} />
+          <Route path="/feedback" element={<Feedback_page />} />
+          <Route path="/contact-us" element={<Contact_page />} />
+          <Route path="/blogs" element={<Blogs_page />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard_page />} />
+          </Route>
+          <Route path="*" element={<NotFound_page />} />
+        </Routes>
         <FooterComponent />
       </div>
     </BrowserRouter>

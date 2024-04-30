@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Google_OAuth_btn } from "../../components/oauth";
+import { Google_OAuth_btn } from "../../components/index";
 
-import { useHistory } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -16,7 +16,6 @@ import { useState } from "react";
 function Login_page() {
   const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const { loading, error: errorMessage } = useSelector((state) => state.user);
 
@@ -59,7 +58,7 @@ function Login_page() {
 
       if (res.ok) {
         dispatch(loginSuccess(data));
-        history.push("/");
+        <Navigate to="/" />;
         console.log("login success");
       }
     } catch (err) {

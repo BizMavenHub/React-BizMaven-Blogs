@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Google_OAuth_btn } from "../../components/oauth";
+import { Google_OAuth_btn } from "../../components/index";
 
 function SignUp_page() {
   const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;

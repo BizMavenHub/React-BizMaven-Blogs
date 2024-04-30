@@ -4,12 +4,11 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../utilities/firebase.js";
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../../redux/user/userSlice.js";
-import { useHistory } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Google_OAuth_btn() {
   const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
 
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const handleGoogleLogin = async () => {
@@ -36,7 +35,7 @@ function Google_OAuth_btn() {
       // if successful redirect to home
       if (res.ok) {
         dispatch(loginSuccess(data));
-        history.push("/");
+        <Navigate to="/" />;
       }
     } catch (error) {
       console.log(error);

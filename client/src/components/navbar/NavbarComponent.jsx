@@ -82,28 +82,28 @@ const NavbarComponent = () => {
                   </div>
                   <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        to="/dashboard?=tab=profile"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
                         Dashboard
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        to="#"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
                         Settings
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="#"
+                      <Link
+                        to="#"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
                         Sign out
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -111,7 +111,7 @@ const NavbarComponent = () => {
             </div>
 
             <div
-              className=" items-center justify-end w-full md:flex md:w-auto md:order-1 mr-4"
+              className=" items-center justify-end w-full md:flex md:w-auto md:order-1 mr-8"
               id="navbar-cta"
             >
               <ul className="flex font-medium p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
@@ -148,7 +148,10 @@ const NavbarComponent = () => {
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
           <div className="max-w-screen flex items-center justify-between px-8 py-2">
             {/* Logo */}
-            <Link to="/" className="flex justify-start items-center w-[428px]">
+            <Link
+              to="/"
+              className="flex justify-start items-center w-[428px] space-x-3"
+            >
               <img
                 src="https://flowbite.com/docs/images/logo.svg"
                 className="h-8"
@@ -190,7 +193,7 @@ const NavbarComponent = () => {
               className=" items-center justify-end flex w-auto"
               id="navbar-cta"
             >
-              <ul className="flex font-medium p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
+              <ul className="flex font-medium mr-8 p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
                   <Link
                     to="/"
