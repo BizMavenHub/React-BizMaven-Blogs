@@ -15,7 +15,7 @@ const Feedback_Container = () => {
 
   return (
     <div>
-      <div className="flex justify-center mt-24 w-screen h-screen bg-white">
+      <div className="flex justify-center mt-24 h-screen bg-white">
         <div className="container mx-auto px-4 lg:px-20">
           <div className="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
             <div className="mb-8">

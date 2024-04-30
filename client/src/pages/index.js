@@ -5,6 +5,7 @@ import About_us_page from "./about_us/About_us_page";
 import Feedback_page from "./feedback/Feedback_page";
 import Contact_page from "./contact/Contact_page";
 import NotFound_page from "./404/NotFound_page";
+import Blogs_page from "./blogs/Blogs_page";
 
 export {
   Homepage,
@@ -14,4 +15,5 @@ export {
   Feedback_page,
   Contact_page,
   NotFound_page,
+  Blogs_page,
 };

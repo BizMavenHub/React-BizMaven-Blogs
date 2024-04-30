@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NotFound_page = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white py-48">
+    <div className="flex items-center justify-center h-screen bg-white py-48">
       <div className="flex flex-col">
         <div className="flex flex-col items-center">
           <div className="text-indigo-500 font-bold text-[64pt]">404</div>
@@ -67,7 +67,7 @@ const NotFound_page = () => {
 
               <div className="grow flex flex-col pl-5 pt-2">
                 <div className="font-bold text-sm md:text-lg lg:text-xl group-hover:underline">
-                  <Link to="/blog">Blog</Link>
+                  <Link to="/blogs">Blog</Link>
                 </div>
 
                 <div
@@ -99,7 +99,7 @@ const NotFound_page = () => {
 
               <div className="grow flex flex-col pl-5 pt-2">
                 <div className="font-bold text-sm md:text-lg lg:text-xl group-hover:underline">
-                  <Link to="/contact">Contact</Link>
+                  <Link to="/contact-us">Contact</Link>
                 </div>
 
                 <div

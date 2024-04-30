@@ -5,7 +5,7 @@ import { BlogCard } from "../../components/index.js";
 
 const HomepageContainer = () => {
   let element = [];
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 8; i++) {
     element.push(
       <BlogCard
         img="https://beebom.com/wp-content/uploads/2024/04/cillian-murphy-peaky-blinders.jpg?resize=300%2C180&quality=75&strip=all"
@@ -39,11 +39,11 @@ const HomepageContainer = () => {
             <hr />
 
             {/* Block 1 - Intro */}
-            <div className=" w-[85%] m-auto py-12">
+            <div className=" w-[60%] m-auto py-12">
               <h1 class=" text-[18pt] font-bold leading-none tracking-tight md:text-5xl lg:text-6xl">
                 Trending Topics
               </h1>
-              <div className="card-container grid grid-cols-3 gap-6 mt-6">
+              <div className="card-container grid grid-cols-2 gap-6 mt-6">
                 {element}
               </div>
             </div>

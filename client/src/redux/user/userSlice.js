@@ -32,3 +32,4 @@ export const { loginStart, loginSuccess, loginFailure, logout } =
   userSlice.actions;
 
 export default userSlice.reducer;
+export const currentUser = (state) => current(state.user.currentUser);

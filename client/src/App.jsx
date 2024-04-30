@@ -10,6 +10,7 @@ import {
   Feedback_page,
   Contact_page,
   NotFound_page,
+  Blogs_page,
 } from "./pages/index";
 
 function App() {
@@ -21,9 +22,10 @@ function App() {
           <Route path="/" exact component={Homepage} />
           <Route path="/sign-up" component={SignUp_page} />
           <Route path="/login" component={Login_page} />
-          <Route path="/about-bizmaven-blog" component={About_us_page} />
+          <Route path="/about-us" component={About_us_page} />
           <Route path="/feedback" component={Feedback_page} />
           <Route path="/contact-us" component={Contact_page} />
+          <Route path="/blogs" component={Blogs_page} />
           <Route path="*" component={NotFound_page} />
         </Switch>
         <FooterComponent />

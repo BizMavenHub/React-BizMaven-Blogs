@@ -6,7 +6,7 @@ const BlogCard = (props) => {
     <div className="card w-full">
       <Link
         to="/blog"
-        class="flex items-center bg-white border border-gray-200 rounded-l-lg shadow md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+        class="flex items-center bg-white border border-gray-200 rounded-lg shadow md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
         <img
           class="object-cover rounded-l-lg h-40 md:h-auto md:w-48 md:rounded-l-lg"
