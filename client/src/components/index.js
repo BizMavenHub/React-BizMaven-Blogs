@@ -4,6 +4,7 @@ import FooterComponent from "./footer/FooterComponent";
 import NavbarComponent from "./navbar/NavbarComponent";
 
 import Google_OAuth_btn from "./oauth/Google_OAuth_btn";
+import SideBar from "./sidebar/SideBar";
 
 import PrivateRoute from "./private_route/PrivateRoute";
 
@@ -17,4 +18,5 @@ export {
   BlogCard_1,
   PrivateRoute,
   Google_OAuth_btn,
+  SideBar,
 };
