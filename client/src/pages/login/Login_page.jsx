@@ -36,6 +36,10 @@ function Login_page() {
       return dispatch(loginFailure("All fields are required"));
     }
 
+    if (dataForm.email && dataForm.password) {
+      dispatch(loginFailure(false));
+    }
+
     try {
       dispatch(loginStart());
 
@@ -98,6 +102,7 @@ function Login_page() {
               id="email"
               className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
               placeholder="Email"
+              value={dataForm.email}
               onChange={handleChange}
             />
           </div>
@@ -108,6 +113,7 @@ function Login_page() {
               id="password"
               className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
               placeholder="Password"
+              value={dataForm.password}
               onChange={handleChange}
             />
             {showPass ? (
