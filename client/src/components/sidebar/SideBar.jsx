@@ -14,7 +14,7 @@ const SideBar = () => {
           <ul className="space-y-2 font-medium">
             <li>
               <Link
-                to="/dashboard"
+                to="/dashboard?tab=overview"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
@@ -30,7 +30,7 @@ const SideBar = () => {
                   <path d="M11 6.025a1 1 0 0 0-1.065-.998 8.5 8.5 0 1 0 9.038 9.039A1 1 0 0 0 17.975 13H11V6.025Z" />
                 </svg>
 
-                <span className="ms-3">Dashboard</span>
+                <span className="ms-3">Overview</span>
               </Link>
             </li>
             <li>
@@ -54,6 +54,52 @@ const SideBar = () => {
                   />
                 </svg>
                 <span className="ms-3">Profile</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard?tab=users"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span className="ms-3">Users</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/dashboard?tab=comments"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                <svg
+                  class="w-6 h-6 text-gray-800 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                <span className="ms-3">Comments</span>
               </Link>
             </li>
           </ul>

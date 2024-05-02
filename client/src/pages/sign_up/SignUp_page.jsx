@@ -2,7 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { Google_OAuth_btn } from "../../components/index";
 
+import { useNavigate } from "react-router-dom";
+
 function SignUp_page() {
+  const navigate = useNavigate();
+
   const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
 
   const [dataForm, setDataForm] = useState({});
@@ -65,6 +69,8 @@ function SignUp_page() {
       setDataForm({});
 
       setLoading(false);
+
+      navigate("/login");
     } catch (error) {
       setErrorMessage(error.message);
       setLoading(false);

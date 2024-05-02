@@ -2,7 +2,7 @@ import React from "react";
 
 import { Google_OAuth_btn } from "../../components/index";
 
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,6 +17,7 @@ function Login_page() {
   const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading, error: errorMessage } = useSelector((state) => state.user);
 
   const [dataForm, setDataForm] = useState({});
@@ -58,7 +59,7 @@ function Login_page() {
 
       if (res.ok) {
         dispatch(loginSuccess(data));
-        <Navigate to="/" />;
+        navigate("/");
         console.log("login success");
       }
     } catch (err) {
