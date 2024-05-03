@@ -65,6 +65,8 @@ const DashProfileContainer = () => {
           "Couldn't upload image file (File must be less than 2 MB)"
         );
         setImageFileUploadProgress(null);
+        setImageFile(null);
+        setImageFileUrl(null);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -80,7 +82,12 @@ const DashProfileContainer = () => {
         <h1 className="text-center text-4xl tracking-wide text-indigo-500 font-montserrat font-semibold">
           Profile
         </h1>
-        <div className="flex justify-center my-4">
+        <div
+          className="flex justify-center my-4"
+          onClick={() => {
+            filePickerRef.current.click();
+          }}
+        >
           <input
             type="file"
             accept="image/*"
@@ -92,10 +99,11 @@ const DashProfileContainer = () => {
           <img
             src={imageFileUrl || currentUser.pictureProfile}
             alt=""
-            className={`rounded-full h-32 w-32 p-1 ring-2 ring-gray-400 cursor-pointer`}
-            onClick={() => {
-              filePickerRef.current.click();
-            }}
+            className={`rounded-full h-32 w-32 p-1 ring-2 ring-gray-400 cursor-pointer ${
+              imageFileUploadProgress &&
+              imageFileUploadProgress < 100 &&
+              "opacity-100"
+            }`}
           />
           {imageFileUploadProgress && (
             <CircularProgressbar
@@ -111,9 +119,19 @@ const DashProfileContainer = () => {
                 },
                 path: { stroke: "blue" },
               }}
+              className={`${imageFileUploadProgress >= 100 && "opacity-0"}`}
             />
           )}
         </div>
+
+        {/* Check for errors */}
+        {imageFileUploadError && (
+          <p className="text-red-500 text-center">{imageFileUploadError}</p>
+        )}
+        {imageFileUploadProgress && imageFileUploadProgress >= 100 && (
+          <p className="text-green-500 text-center">Image uploaded</p>
+        )}
+
         <h1 className="text-center text-3xl mb-2 font-lato">
           {currentUser.username}
         </h1>

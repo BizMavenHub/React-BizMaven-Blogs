@@ -65,7 +65,7 @@ export async function registerWithEmail(req, res, next) {
 
   try {
     await newUser.save();
-    res.send({ message: "User created successfully" });
+    res.send({ message: "User created successfully", newUser });
   } catch (error) {
     next(error);
   }
