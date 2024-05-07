@@ -3,14 +3,14 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotnev from "dotenv";
 import { errorHandler } from "../../utils/error.js";
+import { LocalStorage } from "node-localstorage";
 
 dotnev.config();
 
+const localStorage = new LocalStorage("./scratch");
+
 export async function loginWithEmail(req, res, next) {
   const { email, password } = req.body;
-
-  console.log(email);
-  console.log(password);
 
   if (!email || !password || email === "" || password === "") {
     next(errorHandler("All fields are required", 400));
@@ -30,12 +30,11 @@ export async function loginWithEmail(req, res, next) {
     }
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-    res
-      .status(200)
-      .cookie("access_token", token, {
-        httpOnly: true,
-      })
-      .json(user);
+    const { password: pass, ...rest } = user._doc;
+
+    localStorage.setItem("token", token);
+
+    res.status(200).json({ message: "Login successfully", user: rest });
   } catch (error) {
     next(error);
   }
@@ -84,7 +83,7 @@ export async function loginWithGoogle(req, res, next) {
         .cookie("access_token", token, {
           httpOnly: true,
         })
-        .json(rest);
+        .json({ message: "Login successfully", user: rest, token });
     } else {
       const generatePassword =
         Math.random().toString(36).slice(-8) +
@@ -106,7 +105,7 @@ export async function loginWithGoogle(req, res, next) {
         .cookie("access_token", token, {
           httpOnly: true,
         })
-        .json(rest);
+        .json({ message: "Login successfully", user: rest, token });
     }
   } catch (error) {
     next(error);

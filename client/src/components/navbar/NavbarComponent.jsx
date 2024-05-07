@@ -23,6 +23,8 @@ const NavbarComponent = () => {
     query: "(min-width: 1536px) and (max-width: 5000px)",
   });
 
+  console.log(currentUser);
+
   const handleShowNavLinks = () => {
     if (showNavLinks) {
       setShowNavLinks(false);
@@ -61,7 +63,10 @@ const NavbarComponent = () => {
               >
                 <img
                   class="w-11 h-10 rounded-full"
-                  src={currentUser.pictureProfile}
+                  src={
+                    currentUser.user.pictureProfile ||
+                    "/src/assets/default_profile_picture.png"
+                  }
                   alt="user photo"
                 />
               </button>
@@ -74,10 +79,10 @@ const NavbarComponent = () => {
                 >
                   <div class="px-4 py-3">
                     <span class="block text-sm text-gray-900 dark:text-white">
-                      {currentUser.username}
+                      {currentUser.user.username}
                     </span>
                     <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                      {currentUser.email}
+                      {currentUser.user.email}
                     </span>
                   </div>
                   <ul class="py-2" aria-labelledby="user-menu-button">

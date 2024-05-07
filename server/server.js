@@ -12,13 +12,13 @@ dotenv.config();
 
 const app = express();
 
-app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
+app.use(express.json());
 
 // Router
-app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/user", userRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

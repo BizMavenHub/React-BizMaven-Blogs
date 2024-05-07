@@ -64,7 +64,6 @@ function Login_page() {
       if (res.ok) {
         dispatch(loginSuccess(data));
         navigate("/");
-        console.log("login success");
       }
     } catch (err) {
       dispatch(loginFailure(err.message));
@@ -94,7 +93,7 @@ function Login_page() {
         <h1 className="text-5xl text-center font-bold mb-8 text-gray-800">
           Login
         </h1>
-        <form action="post" onSubmit={handleSubmit}>
+        <form action="POST" onSubmit={handleSubmit}>
           <div className="my-5">
             <input
               type="email"

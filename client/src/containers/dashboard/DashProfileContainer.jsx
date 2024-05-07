@@ -13,24 +13,24 @@ import {
 } from "firebase/storage";
 import app from "../../utilities/firebase";
 
-const DashProfileContainer = () => {
-  const { currentUser } = useSelector((state) => state.user);
+import {
+  updateStart,
+  updateSuccess,
+  updateFailure,
+} from "../../redux/user/userSlice";
+import { useDispatch } from "react-redux";
 
-  const handleUpdateProfile = () => {};
+const DashProfileContainer = () => {
+  const dispatch = useDispatch();
+
+  const { currentUser } = useSelector((state) => state.user);
 
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [dataForm, setDataForm] = useState({});
   const filePickerRef = useRef();
-  console.log(imageFileUploadProgress, imageFileUploadError);
-  const handleChangeImage = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setImageFile(file);
-      setImageFileUrl(URL.createObjectURL(file));
-    }
-  };
 
   useEffect(() => {
     if (imageFile) {
@@ -71,9 +71,59 @@ const DashProfileContainer = () => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageFileUrl(downloadURL);
+          setDataForm({ ...dataForm, pictureProfile: downloadURL });
         });
       }
     );
+  };
+
+  const handleChangeImage = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      setImageFileUrl(URL.createObjectURL(file));
+    }
+  };
+
+  const handleChange = (e) => {
+    setDataForm({
+      ...dataForm,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (Object.keys(dataForm).length === 0) {
+      return;
+    }
+    try {
+      dispatch(updateStart());
+      const res = await fetch(
+        import.meta.env.VITE_API_BASE_URL +
+          "/api/user/update-profile/" +
+          currentUser.user._id,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataForm),
+        }
+      );
+
+      const data = await res.json();
+
+      console.log(data);
+
+      if (!res.ok) {
+        return dispatch(updateFailure(data.message));
+      } else {
+        dispatch(updateSuccess(data));
+      }
+    } catch (error) {
+      dispatch(updateFailure(error.message));
+    }
   };
 
   return (
@@ -97,7 +147,7 @@ const DashProfileContainer = () => {
           />
 
           <img
-            src={imageFileUrl || currentUser.pictureProfile}
+            src={`${imageFileUrl || currentUser.user.pictureProfile}`}
             alt=""
             className={`rounded-full h-32 w-32 p-1 ring-2 ring-gray-400 cursor-pointer ${
               imageFileUploadProgress &&
@@ -133,15 +183,15 @@ const DashProfileContainer = () => {
         )}
 
         <h1 className="text-center text-3xl mb-2 font-lato">
-          {currentUser.username}
+          {currentUser.user.username}
         </h1>
-        <h2 className="text-center text-lg">{currentUser.email}</h2>
+        <h2 className="text-center text-lg">{currentUser.user.email}</h2>
       </div>
       <div className="mt-20">
         <h1 className="text-center text-2xl tracking-wide text-indigo-500 font-montserrat font-semibold">
           Update Profile
         </h1>
-        <div className="w-[40%] m-auto mt-2">
+        <form onSubmit={handleSubmit} className="w-[40%] m-auto mt-2">
           <div class="mb-3">
             <label
               for="default-input"
@@ -150,7 +200,9 @@ const DashProfileContainer = () => {
               Username
             </label>
             <input
-              placeholder={currentUser.username}
+              name="username"
+              placeholder={currentUser.user.username}
+              onChange={handleChange}
               type="text"
               id="default-input"
               class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -164,7 +216,9 @@ const DashProfileContainer = () => {
               Email
             </label>
             <input
-              placeholder={currentUser.email}
+              name="email"
+              placeholder={currentUser.user.email}
+              onChange={handleChange}
               type="text"
               id="default-input"
               class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
@@ -195,7 +249,7 @@ const DashProfileContainer = () => {
               Update
             </button>
           </div>
-        </div>
+        </form>
       </div>
       <div>
         <h1 className="text-center text-xl tracking-wide text-indigo-500 font-montserrat font-semibold mt-16">
