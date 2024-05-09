@@ -29,6 +29,9 @@ const DashProfileContainer = () => {
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [imageFileUploading, setImageFileUploading] = useState(false);
+  const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
+  const [updateUserError, setUpdateUserError] = useState(null);
   const [dataForm, setDataForm] = useState({});
   const filePickerRef = useRef();
 
@@ -49,6 +52,8 @@ const DashProfileContainer = () => {
     //     }
     //   }
     // }
+    setImageFileUploading(true);
+    setImageFileUploadError(null);
     const storage = getStorage(app);
     const fileName = new Date().getTime() + imageFile.name;
     const storageRef = ref(storage, fileName);
@@ -67,11 +72,13 @@ const DashProfileContainer = () => {
         setImageFileUploadProgress(null);
         setImageFile(null);
         setImageFileUrl(null);
+        setImageFileUploading(false);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageFileUrl(downloadURL);
           setDataForm({ ...dataForm, pictureProfile: downloadURL });
+          setImageFileUploading(false);
         });
       }
     );
@@ -94,15 +101,26 @@ const DashProfileContainer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setUpdateUserSuccess(null);
+    setImageFileUploadError(null);
+
     if (Object.keys(dataForm).length === 0) {
+      setUpdateUserError("No changes were made");
       return;
     }
+
+    if (imageFileUploading) {
+      setUpdateUserError("Please wait while image is being uploaded");
+      return;
+    }
+
     try {
       dispatch(updateStart());
       const res = await fetch(
         import.meta.env.VITE_API_BASE_URL +
           "/api/user/update-profile/" +
-          currentUser.user._id,
+          currentUser._id,
         {
           method: "PUT",
           headers: {
@@ -114,15 +132,16 @@ const DashProfileContainer = () => {
 
       const data = await res.json();
 
-      console.log(data);
-
       if (!res.ok) {
         return dispatch(updateFailure(data.message));
+        setUpdateUserError(data.message);
       } else {
         dispatch(updateSuccess(data));
+        setUpdateUserSuccess("User's profile updated successfully");
       }
     } catch (error) {
       dispatch(updateFailure(error.message));
+      setUpdateUserError(error.message);
     }
   };
 
@@ -147,9 +166,9 @@ const DashProfileContainer = () => {
           />
 
           <img
-            src={`${imageFileUrl || currentUser.user.pictureProfile}`}
+            src={imageFileUrl || currentUser.pictureProfile}
             alt=""
-            className={`rounded-full h-32 w-32 p-1 ring-2 ring-gray-400 cursor-pointer ${
+            className={`rounded-full h-32 w-32 p-1 ring-2 ring-gray-400 cursor-pointer object-contain ${
               imageFileUploadProgress &&
               imageFileUploadProgress < 100 &&
               "opacity-100"
@@ -183,9 +202,9 @@ const DashProfileContainer = () => {
         )}
 
         <h1 className="text-center text-3xl mb-2 font-lato">
-          {currentUser.user.username}
+          {currentUser.username}
         </h1>
-        <h2 className="text-center text-lg">{currentUser.user.email}</h2>
+        <h2 className="text-center text-lg">{currentUser.email}</h2>
       </div>
       <div className="mt-20">
         <h1 className="text-center text-2xl tracking-wide text-indigo-500 font-montserrat font-semibold">
@@ -201,7 +220,7 @@ const DashProfileContainer = () => {
             </label>
             <input
               name="username"
-              placeholder={currentUser.user.username}
+              placeholder={currentUser.username}
               onChange={handleChange}
               type="text"
               id="default-input"
@@ -217,7 +236,7 @@ const DashProfileContainer = () => {
             </label>
             <input
               name="email"
-              placeholder={currentUser.user.email}
+              placeholder={currentUser.email}
               onChange={handleChange}
               type="text"
               id="default-input"
@@ -250,6 +269,22 @@ const DashProfileContainer = () => {
             </button>
           </div>
         </form>
+
+        {updateUserSuccess && (
+          <div className="display-success bg-green-200 w-[40%] m-auto p-4 rounded-lg mt-4">
+            <p className="text-green-500 text-center font-medium">
+              {updateUserSuccess}
+            </p>
+          </div>
+        )}
+
+        {updateUserError && (
+          <div className="display-success bg-red-200 w-[40%] m-auto p-4 rounded-lg mt-4">
+            <p className="text-red-500 text-center font-medium">
+              {updateUserError}
+            </p>
+          </div>
+        )}
       </div>
       <div>
         <h1 className="text-center text-xl tracking-wide text-indigo-500 font-montserrat font-semibold mt-16">

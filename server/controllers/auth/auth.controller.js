@@ -34,7 +34,10 @@ export async function loginWithEmail(req, res, next) {
 
     localStorage.setItem("token", token);
 
-    res.status(200).json({ message: "Login successfully", user: rest });
+    res
+      .status(200)
+      .cookie("token", token)
+      .json({ message: "Login successfully", ...rest });
   } catch (error) {
     next(error);
   }
@@ -78,12 +81,13 @@ export async function loginWithGoogle(req, res, next) {
     if (user) {
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
       const { password, ...rest } = user._doc;
+
+      localStorage.setItem("token", token);
+
       res
         .status(200)
-        .cookie("access_token", token, {
-          httpOnly: true,
-        })
-        .json({ message: "Login successfully", user: rest, token });
+        .cookie("token", token)
+        .json({ message: "Login successfully", ...rest });
     } else {
       const generatePassword =
         Math.random().toString(36).slice(-8) +
@@ -100,12 +104,13 @@ export async function loginWithGoogle(req, res, next) {
       await newUser.save();
       const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
       const { password, ...rest } = newUser._doc;
+
+      localStorage.setItem("token", token);
+
       res
         .status(200)
-        .cookie("access_token", token, {
-          httpOnly: true,
-        })
-        .json({ message: "Login successfully", user: rest, token });
+        .cookie("token", token)
+        .json({ message: "Login successfully", ...rest });
     }
   } catch (error) {
     next(error);
