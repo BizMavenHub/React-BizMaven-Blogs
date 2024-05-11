@@ -138,6 +138,7 @@ const DashProfileContainer = () => {
       } else {
         dispatch(updateSuccess(data));
         setUpdateUserSuccess("User's profile updated successfully");
+        document.getElementById("default-input").value = "";
       }
     } catch (error) {
       dispatch(updateFailure(error.message));
