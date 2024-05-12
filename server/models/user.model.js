@@ -21,6 +21,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "/src/assets/default_profile_picture.png",
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const User = mongoose.model("User", userSchema);

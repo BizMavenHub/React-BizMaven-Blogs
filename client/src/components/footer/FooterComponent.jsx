@@ -17,11 +17,11 @@ const FooterComponent = () => {
   });
 
   return (
-    <footer class="bg-gray-100 dark:bg-gray-900 ">
-      <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8 ">
-        <div class="flex justify-center text-teal-600">
+    <footer className="bg-gray-100 dark:bg-gray-900 ">
+      <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8 ">
+        <div className="flex justify-center text-teal-600">
           <svg
-            class="h-8"
+            className="h-8"
             viewBox="0 0 118 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -69,10 +69,10 @@ const FooterComponent = () => {
           </svg>
         </div>
 
-        <ul class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12 ">
+        <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12 ">
           <li>
             <a
-              class="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
+              className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
               href="#"
             >
               {" "}
@@ -82,7 +82,7 @@ const FooterComponent = () => {
 
           <li>
             <a
-              class="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
+              className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
               href="#"
             >
               {" "}
@@ -92,7 +92,7 @@ const FooterComponent = () => {
 
           <li>
             <a
-              class="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
+              className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
               href="#"
             >
               {" "}
@@ -102,7 +102,7 @@ const FooterComponent = () => {
 
           <li>
             <a
-              class="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
+              className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
               href="#"
             >
               {" "}
@@ -112,7 +112,7 @@ const FooterComponent = () => {
 
           <li>
             <a
-              class="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
+              className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
               href="#"
             >
               {" "}
@@ -122,7 +122,7 @@ const FooterComponent = () => {
 
           <li>
             <a
-              class="text-gray-700 transition dark:text-white dark:hover:text-gray-300 dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
+              className="text-gray-700 transition dark:text-white dark:hover:text-gray-300  hover:text-gray-700/75"
               href="#"
             >
               {" "}
@@ -131,17 +131,17 @@ const FooterComponent = () => {
           </li>
         </ul>
 
-        <ul class="mt-12 flex justify-center gap-6 md:gap-8">
+        <ul className="mt-12 flex justify-center gap-6 md:gap-8">
           <li>
             <a
               href="#"
               rel="noreferrer"
               target="_blank"
-              class="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-gray-300"
+              className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-gray-300"
             >
-              <span class="sr-only">Facebook</span>
+              <span className="sr-only">Facebook</span>
               <svg
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -160,11 +160,11 @@ const FooterComponent = () => {
               href="#"
               rel="noreferrer"
               target="_blank"
-              class="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-gray-300"
+              className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-gray-300"
             >
-              <span class="sr-only">Instagram</span>
+              <span className="sr-only">Instagram</span>
               <svg
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -183,11 +183,11 @@ const FooterComponent = () => {
               href="#"
               rel="noreferrer"
               target="_blank"
-              class="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-gray-300"
+              className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-gray-300"
             >
-              <span class="sr-only">Twitter</span>
+              <span className="sr-only">Twitter</span>
               <svg
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -202,11 +202,11 @@ const FooterComponent = () => {
               href="#"
               rel="noreferrer"
               target="_blank"
-              class="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-gray-300"
+              className="text-gray-700 transition hover:text-gray-700/75 dark:text-white dark:hover:text-gray-300"
             >
-              <span class="sr-only">GitHub</span>
+              <span className="sr-only">GitHub</span>
               <svg
-                class="h-6 w-6"
+                className="h-6 w-6"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -220,7 +220,7 @@ const FooterComponent = () => {
             </a>
           </li>
         </ul>
-        <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 dark:text-white">
+        <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 dark:text-white">
           © 2023 BizMaven. All rights reserved.
         </p>
       </div>
