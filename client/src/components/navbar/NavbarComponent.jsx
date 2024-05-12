@@ -73,10 +73,10 @@ const NavbarComponent = () => {
                 Flowbite
               </span>
             </Link>
-            <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <div className="flex items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
               <button
                 type="button"
-                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 mr-8"
                 id="user-menu-button"
                 aria-expanded="false"
                 data-dropdown-toggle="user-dropdown"
@@ -84,7 +84,7 @@ const NavbarComponent = () => {
                 onClick={handleShowNavLinks}
               >
                 <img
-                  className="w-11 h-10 rounded-full object-contain"
+                  className="w-12 h-10 rounded-full object-cover"
                   src={
                     currentUser.pictureProfile
                       ? currentUser.pictureProfile
@@ -93,6 +93,15 @@ const NavbarComponent = () => {
                   alt="user photo"
                 />
               </button>
+
+              {currentUser.isAdmin && (
+                <button
+                  onClick={() => navigate("/create-post")}
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm h-[40px] w-[120px] dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                >
+                  Create Post
+                </button>
+              )}
 
               {/* <!-- Dropdown menu --> */}
               {showNavLinks && (
