@@ -2,6 +2,7 @@ import {
   NavbarComponent,
   FooterComponent,
   PrivateRoute,
+  OnlyIsAdminPrivateRoute,
 } from "./components/index";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -16,6 +17,7 @@ import {
   NotFound_page,
   Blogs_page,
   Dashboard_page,
+  CreatePost_page,
 } from "./pages/index";
 
 function App() {
@@ -31,9 +33,15 @@ function App() {
           <Route path="/feedback" element={<Feedback_page />} />
           <Route path="/contact-us" element={<Contact_page />} />
           <Route path="/blogs" element={<Blogs_page />} />
+
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard_page />} />
           </Route>
+
+          <Route element={<OnlyIsAdminPrivateRoute />}>
+            <Route path="/create-post" element={<CreatePost_page />} />
+          </Route>
+
           <Route path="*" element={<NotFound_page />} />
         </Routes>
         <FooterComponent />

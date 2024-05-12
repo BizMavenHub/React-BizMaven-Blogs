@@ -7,6 +7,7 @@ import Google_OAuth_btn from "./oauth/Google_OAuth_btn";
 import SideBar from "./sidebar/SideBar";
 
 import PrivateRoute from "./private_route/PrivateRoute";
+import OnlyIsAdminPrivateRoute from "./private_route/OnlyIsAdminPrivateRoute";
 
 import BlogCard from "./cards/BlogCard";
 import BlogCard_1 from "./cards/BlogCard_1";
@@ -19,4 +20,5 @@ export {
   PrivateRoute,
   Google_OAuth_btn,
   SideBar,
+  OnlyIsAdminPrivateRoute,
 };

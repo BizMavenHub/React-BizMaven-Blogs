@@ -11,6 +11,7 @@ const HomepageContainer = () => {
         img="https://beebom.com/wp-content/uploads/2024/04/cillian-murphy-peaky-blinders.jpg?resize=300%2C180&quality=75&strip=all"
         title="Noteworthy technology acquisitions 2021"
         desc="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
+        index={i}
       />
     );
   }
@@ -23,9 +24,9 @@ const HomepageContainer = () => {
           <div className="h-2/4 bg-gray-200 dark:bg-white">
             {/* Block 1 - Intro */}
             <div className=" w-[60%] m-auto py-16">
-              <h1 class=" text-[58pt] font-bold leading-none tracking-tight md:text-5xl lg:text-6xl">
+              <h1 className=" text-[58pt] font-bold leading-none tracking-tight md:text-5xl lg:text-6xl">
                 Welcome to{" "}
-                <span class=" text-blue-600 dark:text-blue-500">
+                <span className=" text-blue-600 dark:text-blue-500">
                   BizMaven Blog
                 </span>{" "}
                 Explore the world of fascinating topics.
@@ -40,7 +41,7 @@ const HomepageContainer = () => {
 
             {/* Block 1 - Intro */}
             <div className=" w-[60%] m-auto py-12">
-              <h1 class=" text-[18pt] font-bold leading-none tracking-tight md:text-5xl lg:text-6xl">
+              <h1 className=" text-[18pt] font-bold leading-none tracking-tight md:text-5xl lg:text-6xl">
                 Trending Topics
               </h1>
               <div className="card-container grid grid-cols-2 gap-6 mt-6">

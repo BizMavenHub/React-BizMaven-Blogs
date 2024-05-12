@@ -1,6 +1,9 @@
 import { errorHandler } from "../utils/error.js";
 import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
+import { LocalStorage } from "node-localstorage";
+
+const localStorage = new LocalStorage("./scratch");
 
 export const getAllUser = async (req, res) => {
   const users = await User.find();
@@ -57,4 +60,26 @@ export const updateUserProfile = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+export const deleteUser = async (req, res, next) => {
+  if (req.user.id !== req.params.userId) {
+    return next(
+      errorHandler("You are not allowed to delete this account", 403)
+    );
+  }
+  try {
+    await User.findByIdAndDelete(req.params.userId);
+    res.status(200).json("User has been deleted");
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const logout = (req, res, next) => {
+  localStorage.removeItem("token");
+  res
+    .status(200)
+    .clearCookie("token", "", { expires: new Date(Date.now()), httpOnly: true })
+    .json("Logged out successfully");
 };

@@ -1,12 +1,17 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { logoutSuccess } from "../../redux/user/userSlice";
 
 const NavbarComponent = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [showNavLinks, setShowNavLinks] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
@@ -31,28 +36,47 @@ const NavbarComponent = () => {
     }
   };
 
+  const handleLogout = async () => {
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_API_BASE_URL + "/api/user/logout",
+        {
+          method: "POST",
+        }
+      );
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(logoutSuccess());
+        navigate("/login");
+      }
+    } catch (error) {}
+  };
+
   return (
     <>
       {currentUser ? (
-        <nav class="bg-white border-gray-200 dark:bg-gray-900">
-          <div class="max-w-screen flex items-center justify-between mx-auto p-2">
+        <nav className="bg-white border-gray-200 dark:bg-gray-900">
+          <div className="max-w-screen flex items-center justify-between mx-auto p-2">
             <Link
               to="https://flowbite.com/"
               class="flex items-center space-x-3 rtl:space-x-reverse"
             >
               <img
                 src="https://flowbite.com/docs/images/logo.svg"
-                class="h-8"
+                className="h-8"
                 alt="Flowbite Logo"
               />
-              <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 Flowbite
               </span>
             </Link>
-            <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <div className="flex items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
               <button
                 type="button"
-                class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 mr-8"
                 id="user-menu-button"
                 aria-expanded="false"
                 data-dropdown-toggle="user-dropdown"
@@ -60,7 +84,7 @@ const NavbarComponent = () => {
                 onClick={handleShowNavLinks}
               >
                 <img
-                  class="w-11 h-10 rounded-full object-contain"
+                  className="w-12 h-10 rounded-full object-cover"
                   src={
                     currentUser.pictureProfile
                       ? currentUser.pictureProfile
@@ -70,41 +94,50 @@ const NavbarComponent = () => {
                 />
               </button>
 
+              {currentUser.isAdmin && (
+                <button
+                  onClick={() => navigate("/create-post")}
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm h-[40px] w-[120px] dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                >
+                  Create Post
+                </button>
+              )}
+
               {/* <!-- Dropdown menu --> */}
               {showNavLinks && (
                 <div
-                  class="absolute top-12 right-0 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                  className="absolute top-12 right-0 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                   id="user-dropdown"
                 >
-                  <div class="px-4 py-3">
-                    <span class="block text-sm text-gray-900 dark:text-white">
+                  <div className="px-4 py-3">
+                    <span className="block text-sm text-gray-900 dark:text-white">
                       {currentUser.username}
                     </span>
-                    <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">
+                    <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
                       {currentUser.email}
                     </span>
                   </div>
-                  <ul class="py-2" aria-labelledby="user-menu-button">
+                  <ul className="py-2" aria-labelledby="user-menu-button">
                     <li>
                       <Link
                         to="/dashboard?tab=overview"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
                         Dashboard
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                        to="/dashboard?tab=profile"
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
-                        Settings
+                        Profile
                       </Link>
                     </li>
                     <li>
                       <Link
-                        to="#"
-                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                        onClick={handleLogout}
+                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
                         Sign out
                       </Link>
