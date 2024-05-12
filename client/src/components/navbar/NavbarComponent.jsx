@@ -1,12 +1,17 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { logoutSuccess } from "../../redux/user/userSlice";
 
 const NavbarComponent = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [showNavLinks, setShowNavLinks] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
@@ -29,6 +34,25 @@ const NavbarComponent = () => {
     } else {
       setShowNavLinks(true);
     }
+  };
+
+  const handleLogout = async () => {
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_API_BASE_URL + "/api/user/logout",
+        {
+          method: "POST",
+        }
+      );
+      const data = await res.json();
+
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(logoutSuccess());
+        navigate("/login");
+      }
+    } catch (error) {}
   };
 
   return (
@@ -103,7 +127,7 @@ const NavbarComponent = () => {
                     </li>
                     <li>
                       <Link
-                        to="#"
+                        onClick={handleLogout}
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
                         Sign out
