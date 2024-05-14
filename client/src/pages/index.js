@@ -8,6 +8,7 @@ import NotFound_page from "./404/NotFound_page";
 import Blogs_page from "./blogs/Blogs_page";
 import Dashboard_page from "./dashboard/Dashboard_page";
 import CreatePost_page from "./create-post/CreatePost_page";
+import Post_page from "./post/Post_page";
 
 export {
   Homepage,
@@ -20,4 +21,5 @@ export {
   Blogs_page,
   CreatePost_page,
   Dashboard_page,
+  Post_page,
 };

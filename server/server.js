@@ -39,7 +39,7 @@ app.get("/", (req, res) => {
 
 ConnectDB();
 
-app.listen(process.env.PORT, (err) => {
+app.listen(process.env.PORT, "0.0.0.0", (err) => {
   if (err) {
     return err;
   }

@@ -5,6 +5,7 @@ import Contact_Container_ from "./contact/Contact_Container_";
 import DefaultBlogsContainer from "./blogs/DefaultBlogsContainer";
 import DashProfileContainer from "./dashboard/DashProfileContainer";
 import CreatePostContainer from "./create-post/CreatePostContainer";
+import PostContainer from "./post/PostContainer";
 
 export {
   HomepageContainer,
@@ -12,6 +13,7 @@ export {
   Feedback_Container,
   Contact_Container_,
   DefaultBlogsContainer,
+  PostContainer,
   DashProfileContainer,
   CreatePostContainer,
 };
