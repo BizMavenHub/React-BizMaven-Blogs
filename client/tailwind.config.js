@@ -1,8 +1,51 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+
   theme: {
-    extend: {},
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            h1: {
+              fontSize: "48px",
+              fontWeight: "nomal",
+              margin: "0",
+            },
+            h2: {
+              fontSize: "36px",
+              fontWeight: "nomal",
+              margin: "0",
+            },
+            h3: {
+              fontSize: "24px",
+              fontWeight: "nomal",
+              margin: "0",
+            },
+            h4: {
+              fontSize: "18px",
+              fontWeight: "nomal",
+              margin: "0",
+            },
+            h5: {
+              fontSize: "16px",
+              fontWeight: "nomal",
+              margin: "0",
+            },
+            h6: {
+              fontSize: "14px",
+              fontWeight: "nomal",
+              margin: "0",
+            },
+            p: {
+              fontSize: "16px",
+              fontWeight: "nomal",
+              margin: "0",
+            },
+          },
+        },
+      },
+    },
     screens: {
       mobile: { min: "320px", max: "767px" },
       // => @media (min-width: 320px and max-width: 639px) { ... }
@@ -17,6 +60,16 @@ export default {
       lato: ["Lato", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
     },
+    fontSize: {
+      h1: "48px",
+      h2: "36px",
+      h3: "24px",
+      h4: "18px",
+      h5: "16px",
+      h6: "14px",
+      p: "16px",
+    },
   },
-  plugins: [],
+
+  plugins: [require("@tailwindcss/typography")],
 };
