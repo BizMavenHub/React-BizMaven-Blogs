@@ -2,7 +2,13 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-import { DashProfileContainer } from "../../containers/index";
+import {
+  DashProfileContainer,
+  DashPostContainer,
+  DashCommentContainer,
+  DashUsersContainer,
+  DashOverviewContainer,
+} from "../../containers/index";
 
 import { SideBar } from "../../components";
 
@@ -24,6 +30,10 @@ const Dashboard_page = () => {
       <SideBar />
       <div className="w-full">
         {tab === "profile" && <DashProfileContainer />}
+        {tab === "post" && <DashPostContainer />}
+        {tab === "overview" && <DashOverviewContainer />}
+        {tab === "users" && <DashUsersContainer />}
+        {tab === "comments" && <DashCommentContainer />}
       </div>
     </div>
   );

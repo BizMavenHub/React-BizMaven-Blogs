@@ -21,18 +21,6 @@ const CreatePostContainer = () => {
   const [dataForm, setDataForm] = useState({});
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
-  const [content, setContent] = useState(null);
-  const [showPreview, setShowPreview] = useState(false);
-
-  const handleShowPreview = (e) => {
-    e.preventDefault();
-
-    if (showPreview) {
-      setShowPreview(false);
-    } else {
-      setShowPreview(true);
-    }
-  };
 
   const handleUploadImage = async () => {
     try {
@@ -70,8 +58,6 @@ const CreatePostContainer = () => {
     }
   };
 
-  console.log(dataForm);
-
   return (
     <div className="w-[1000px] h-auto p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 m-auto">
       <h1 className="text-6xl font-bold text-center my-12">Create Post</h1>
@@ -79,9 +65,15 @@ const CreatePostContainer = () => {
         <input
           type="text"
           placeholder="Title"
+          onChange={(e) => setDataForm({ ...dataForm, title: e.target.value })}
           className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
-        <select className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <select
+          onChange={(e) =>
+            setDataForm({ ...dataForm, category: e.target.value })
+          }
+          className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
           <option value="Category">Select a categories</option>
           <option value="Art">Art</option>
           <option value="Books">Books</option>
@@ -148,74 +140,58 @@ const CreatePostContainer = () => {
 
       <form>
         <div className="my-12">
-          <div className="flex justify-end">
-            <button
-              onClick={handleShowPreview}
-              className=" bg-blue-500 w-[100px] h-[40px] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mb-4"
-            >
-              Preview
-            </button>
-          </div>
-          {!showPreview ? (
-            <ReactQuill
-              className="h-[500px]"
-              theme="snow"
-              placeholder="Write something..."
-              value={content}
-              onChange={(value) => setContent(value)}
-              modules={{
-                toolbar: {
-                  container: [
-                    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+          <ReactQuill
+            className="h-[500px]"
+            theme="snow"
+            placeholder="Write something..."
+            onChange={(value) => setDataForm({ ...dataForm, content: value })}
+            modules={{
+              toolbar: {
+                container: [
+                  [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-                    ["bold", "italic", "underline", "strike", "blockquote"],
-                    [
-                      { list: "ordered" },
-                      { list: "bullet" },
-                      { indent: "-1" },
-                      { indent: "+1" },
-                    ],
-                    ["link", "image", "video"],
-
-                    ["code-block"],
-                    ["clean"],
-                    [{ color: [] }, { background: [] }],
-                    [{ align: [] }],
+                  ["bold", "italic", "underline", "strike", "blockquote"],
+                  [
+                    { list: "ordered" },
+                    { list: "bullet" },
+                    { indent: "-1" },
+                    { indent: "+1" },
                   ],
-                },
-                clipboard: {
-                  matchVisual: false,
-                },
-              }}
-              formats={[
-                "header",
-                "font",
-                "size",
-                "bold",
-                "italic",
-                "underline",
-                "strike",
-                "blockquote",
-                "list",
-                "bullet",
-                "indent",
-                "link",
-                "image",
-                "video",
-                "code-block",
-                "color",
-                "background",
-                "align",
-                "clean",
-                "code",
-              ]}
-            />
-          ) : (
-            <div
-              className="preview-container prose max-w-none h-[700px] border border-gray-700 p-4 whitespace-wrap overflow-scroll overflow-scroll-y overflow-x-hidden"
-              dangerouslySetInnerHTML={{ __html: content }}
-            ></div>
-          )}
+                  ["link", "image", "video"],
+
+                  ["code-block"],
+                  ["clean"],
+                  [{ color: [] }, { background: [] }],
+                  [{ align: [] }],
+                ],
+              },
+              clipboard: {
+                matchVisual: false,
+              },
+            }}
+            formats={[
+              "header",
+              "font",
+              "size",
+              "bold",
+              "italic",
+              "underline",
+              "strike",
+              "blockquote",
+              "list",
+              "bullet",
+              "indent",
+              "link",
+              "image",
+              "video",
+              "code-block",
+              "color",
+              "background",
+              "align",
+              "clean",
+              "code",
+            ]}
+          />
         </div>
 
         <div className="flex justify-center *:">

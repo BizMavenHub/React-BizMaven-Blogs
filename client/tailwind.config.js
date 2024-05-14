@@ -3,49 +3,7 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
 
   theme: {
-    extend: {
-      typography: {
-        DEFAULT: {
-          css: {
-            h1: {
-              fontSize: "48px",
-              fontWeight: "nomal",
-              margin: "0",
-            },
-            h2: {
-              fontSize: "36px",
-              fontWeight: "nomal",
-              margin: "0",
-            },
-            h3: {
-              fontSize: "24px",
-              fontWeight: "nomal",
-              margin: "0",
-            },
-            h4: {
-              fontSize: "18px",
-              fontWeight: "nomal",
-              margin: "0",
-            },
-            h5: {
-              fontSize: "16px",
-              fontWeight: "nomal",
-              margin: "0",
-            },
-            h6: {
-              fontSize: "14px",
-              fontWeight: "nomal",
-              margin: "0",
-            },
-            p: {
-              fontSize: "16px",
-              fontWeight: "nomal",
-              margin: "0",
-            },
-          },
-        },
-      },
-    },
+    extend: {},
     screens: {
       mobile: { min: "320px", max: "767px" },
       // => @media (min-width: 320px and max-width: 639px) { ... }
@@ -71,5 +29,5 @@ export default {
     },
   },
 
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [],
 };
