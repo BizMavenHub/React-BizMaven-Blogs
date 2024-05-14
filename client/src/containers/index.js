@@ -4,6 +4,7 @@ import Feedback_Container from "./feedback/Feedback_Container";
 import Contact_Container_ from "./contact/Contact_Container_";
 import CreatePostContainer from "./create-post/CreatePostContainer";
 import DefaultBlogsContainer from "./blogs/DefaultBlogsContainer";
+import PostContainer from "./post/PostContainer";
 
 import DashProfileContainer from "./dashboard/DashProfileContainer";
 import DashPostContainer from "./dashboard/DashPostContainer";
@@ -18,6 +19,7 @@ export {
   Contact_Container_,
   DefaultBlogsContainer,
   CreatePostContainer,
+  PostContainer,
   DashProfileContainer,
   DashPostContainer,
   DashCommentContainer,

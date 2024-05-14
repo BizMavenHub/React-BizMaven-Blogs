@@ -17,6 +17,7 @@ import {
   NotFound_page,
   Blogs_page,
   Dashboard_page,
+  Post_page,
   CreatePost_page,
 } from "./pages/index";
 
@@ -41,6 +42,8 @@ function App() {
           <Route element={<OnlyIsAdminPrivateRoute />}>
             <Route path="/create-post" element={<CreatePost_page />} />
           </Route>
+
+          <Route path="/post/:slug" element={<Post_page />} />
 
           <Route path="*" element={<NotFound_page />} />
         </Routes>

@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import ReactQuill, { Quill } from "react-quill";
 
+import { useNavigate } from "react-router-dom";
+
 import {
   getStorage,
   ref,
@@ -17,10 +19,14 @@ import "react-circular-progressbar/dist/styles.css";
 import "./style.css";
 
 const CreatePostContainer = () => {
+  const navigate = useNavigate();
+
   const [file, setFile] = useState(null);
   const [dataForm, setDataForm] = useState({});
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
+
+  const [publishError, setPublishError] = useState(null);
 
   const handleUploadImage = async () => {
     try {
@@ -58,21 +64,63 @@ const CreatePostContainer = () => {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      if (Object.keys(dataForm).length === 0) {
+        return setPublishError("No changes were made");
+      }
+
+      if (imageUploadProgress) {
+        return setPublishError("Please wait while image is being uploaded");
+      }
+
+      const res = await fetch(
+        import.meta.env.VITE_API_BASE_URL + "/api/post/create-post",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataForm),
+        }
+      );
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        return setPublishError(data.message);
+      }
+
+      if (data.success === false) {
+        return setPublishError(data.message);
+      }
+
+      if (res.ok) {
+        setPublishError(null);
+        navigate(`/post/${data.slug}`);
+      }
+    } catch (error) {
+      setPublishError(error.message);
+    }
+  };
+
   return (
     <div className="w-[1000px] h-auto p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 m-auto">
       <h1 className="text-6xl font-bold text-center my-12">Create Post</h1>
       <div className="flex my-8 gap-3">
         <input
+          onChange={(e) => setDataForm({ ...dataForm, title: e.target.value })}
           type="text"
           placeholder="Title"
-          onChange={(e) => setDataForm({ ...dataForm, title: e.target.value })}
           className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
         <select
           onChange={(e) =>
             setDataForm({ ...dataForm, category: e.target.value })
           }
-          className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="w-[30%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option value="Category">Select a categories</option>
           <option value="Art">Art</option>
@@ -138,12 +186,13 @@ const CreatePostContainer = () => {
         </div>
       )}
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="my-12">
           <ReactQuill
             className="h-[500px]"
             theme="snow"
             placeholder="Write something..."
+            value={dataForm.content}
             onChange={(value) => setDataForm({ ...dataForm, content: value })}
             modules={{
               toolbar: {
@@ -195,10 +244,7 @@ const CreatePostContainer = () => {
         </div>
 
         <div className="flex justify-center *:">
-          <button
-            type="submit"
-            className="my-8 w-4/12 px-5 py-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800"
-          >
+          <button className="my-8 w-4/12 px-5 py-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
             Publish post
           </button>
         </div>
