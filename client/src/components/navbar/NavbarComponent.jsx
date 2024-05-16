@@ -106,7 +106,7 @@ const NavbarComponent = () => {
               {/* <!-- Dropdown menu --> */}
               {showNavLinks && (
                 <div
-                  className="absolute top-12 right-0 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                  className="absolute z-10 top-12 right-0 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                   id="user-dropdown"
                 >
                   <div className="px-4 py-3">
