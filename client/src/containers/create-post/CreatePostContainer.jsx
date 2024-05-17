@@ -248,6 +248,14 @@ const CreatePostContainer = () => {
             Publish post
           </button>
         </div>
+
+        {publishError ? (
+          <div className="publish-error-container my-4 rounded-xl">
+            <p className="publish-error-message p-4 bg-red-300 text-sm text-red-700 font-semibold">
+              {publishError}
+            </p>
+          </div>
+        ) : null}
       </form>
     </div>
   );

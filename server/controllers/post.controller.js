@@ -36,34 +36,6 @@ export const getPost = async (req, res, next) => {
     const limit = parseInt(req.query.limit) || 9;
     const sortDirection = req.query.order === "asc" ? 1 : -1;
 
-    const queryFilters = [];
-
-    if (req.query.userId) {
-      queryFilters.push({ userId: req.query.userId });
-    }
-    if (req.query.category) {
-      queryFilters.push({ category: req.query.category });
-    }
-    if (req.query.slug) {
-      queryFilters.push({ slug: req.query.slug });
-    }
-    if (req.query.postId) {
-      queryFilters.push({ _id: req.query.postId });
-    }
-
-    if (req.query.searchTerm) {
-      queryFilters.push({
-        $or: [
-          {
-            title: { $regex: req.query.searchTerm, $options: "i" },
-          },
-          {
-            content: { $regex: req.query.searchTerm, $options: "i" },
-          },
-        ],
-      });
-    }
-
     const posts = await Post.find({
       ...(req.query.userId && { userId: req.query.userId }),
       ...(req.query.category && { category: req.query.category }),
@@ -99,6 +71,23 @@ export const getPost = async (req, res, next) => {
     });
 
     res.status(200).json({ posts, totalPosts, lastMonthPosts });
+  } catch (error) {
+    next(errorHandler(error));
+  }
+};
+
+export const deletePost = async (req, res, next) => {
+  const postId = req.params.postId;
+
+  console.log(postId);
+
+  if (!req.user.isAdmin) {
+    return next(errorHandler("You are not allowed to delete a post", 403));
+  }
+
+  try {
+    await Post.findByIdAndDelete(postId);
+    res.status(200).json("Post has been deleted");
   } catch (error) {
     next(errorHandler(error));
   }
