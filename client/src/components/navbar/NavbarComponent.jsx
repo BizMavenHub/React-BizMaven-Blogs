@@ -61,7 +61,7 @@ const NavbarComponent = () => {
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
           <div className="max-w-screen flex items-center justify-between mx-auto p-2">
             <Link
-              to="https://flowbite.com/"
+              to="/"
               class="flex items-center space-x-3 rtl:space-x-reverse"
             >
               <img
@@ -70,7 +70,7 @@ const NavbarComponent = () => {
                 alt="Flowbite Logo"
               />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                Flowbite
+                Btye Tech Community
               </span>
             </Link>
             <div className="flex items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
