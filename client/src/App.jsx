@@ -18,6 +18,7 @@ import {
   Blogs_page,
   Dashboard_page,
   Post_page,
+  UpdatePost_page,
   CreatePost_page,
 } from "./pages/index";
 
@@ -41,6 +42,7 @@ function App() {
 
           <Route element={<OnlyIsAdminPrivateRoute />}>
             <Route path="/create-post" element={<CreatePost_page />} />
+            <Route path="/update-post/:postId" element={<UpdatePost_page />} />
           </Route>
 
           <Route path="/post/:slug" element={<Post_page />} />

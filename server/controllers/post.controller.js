@@ -32,6 +32,15 @@ export const createPost = async (req, res, next) => {
 
 export const getPost = async (req, res, next) => {
   try {
+    const post = await Post.findById(req.params.postId);
+    res.status(200).json(post);
+  } catch (error) {
+    next(errorHandler(error));
+  }
+};
+
+export const getPosts = async (req, res, next) => {
+  try {
     const startIndex = parseInt(req.query.startIndex) || 0;
     const limit = parseInt(req.query.limit) || 9;
     const sortDirection = req.query.order === "asc" ? 1 : -1;
@@ -88,6 +97,31 @@ export const deletePost = async (req, res, next) => {
   try {
     await Post.findByIdAndDelete(postId);
     res.status(200).json("Post has been deleted");
+  } catch (error) {
+    next(errorHandler(error));
+  }
+};
+
+export const updatePost = async (req, res, next) => {
+  if (!req.user.isAdmin && req.user.id !== req.params.id) {
+    return next(errorHandler("You are not allowed to update a post", 403));
+  }
+
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(
+      req.params.postId,
+      {
+        $set: {
+          title: req.body.title,
+          content: req.body.content,
+          image: req.body.image,
+          category: req.body.category,
+          slug: req.body.slug,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedPost);
   } catch (error) {
     next(errorHandler(error));
   }

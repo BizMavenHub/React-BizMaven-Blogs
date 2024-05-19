@@ -140,7 +140,10 @@ const DashPostContainer = () => {
                     </td>
                     <td className="px-6 py-4">{post.category}</td>
                     <td className=" items-center px-6 py-4">
-                      <Link className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                      <Link
+                        to={`/update-post/${post._id}`}
+                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >
                         Edit
                       </Link>
                       <button

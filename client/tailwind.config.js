@@ -3,7 +3,59 @@ export default {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
 
   theme: {
-    extend: {},
+    extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            color: theme("colors.gray.800"),
+            h1: {
+              fontSize: theme("2.5rem"),
+              maginTop: theme("1rem"),
+              maginBottom: theme("1rem"),
+            },
+            h2: {
+              fontSize: theme("2rem"),
+              maginTop: theme("1rem"),
+              maginBottom: theme("1rem"),
+            },
+            h3: {
+              fontSize: theme("1.25rem"),
+              maginTop: theme("1rem"),
+              maginBottom: theme("1rem"),
+            },
+            h4: {
+              fontSize: theme("1.125rem"),
+              maginTop: theme("1rem"),
+              maginBottom: theme("1rem"),
+            },
+            h5: {
+              fontSize: theme("1rem"),
+              maginTop: theme("1rem"),
+              maginBottom: theme("1rem"),
+            },
+            h6: {
+              fontSize: theme("0.875rem"),
+              maginTop: theme("1rem"),
+              maginBottom: theme("1rem"),
+            },
+            p: {
+              fontSize: theme("1rem"),
+              maginTop: theme("1rem"),
+              maginBottom: theme("1rem"),
+            },
+            a: {
+              color: theme("colors.blue.600"),
+              maginTop: theme("1rem"),
+              maginBottom: theme("1rem"),
+              "&:hover": {
+                color: theme("colors.blue.700"),
+              },
+            },
+            // Add more customizations here
+          },
+        },
+      }),
+    },
     screens: {
       mobile: { min: "320px", max: "767px" },
       // => @media (min-width: 320px and max-width: 639px) { ... }
@@ -17,6 +69,21 @@ export default {
     fontFamily: {
       lato: ["Lato", "sans-serif"],
       montserrat: ["Montserrat", "sans-serif"],
+      roboto: ["Roboto", "sans-serif"],
+      ubuntu: ["Ubuntu", "sans-serif"],
+      inter: ["Inter", "sans-serif"],
+      poppins: ["Poppins", "sans-serif"],
+      raleway: ["Raleway", "sans-serif"],
+      robotoMono: ["Roboto Mono", "sans-serif"],
+      oswald: ["Oswald", "sans-serif"],
+      quicksand: ["Quicksand", "sans-serif"],
+      rubik: ["Rubik", "sans-serif"],
+      notoSans: ["Noto Sans", "sans-serif"],
+      notoSansDisplay: ["Noto Sans Display", "sans-serif"],
+      notoSansJP: ["Noto Sans JP", "sans-serif"],
+      notoSansKR: ["Noto Sans KR", "sans-serif"],
+      notoSansSC: ["Noto Sans SC", "sans-serif"],
+      notoSansTC: ["Noto Sans TC", "sans-serif"],
     },
     fontSize: {
       h1: "48px",
@@ -29,5 +96,5 @@ export default {
     },
   },
 
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

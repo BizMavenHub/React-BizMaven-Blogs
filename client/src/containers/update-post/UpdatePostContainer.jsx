@@ -1,7 +1,6 @@
-import { useState, useRef } from "react";
-import ReactQuill, { Quill } from "react-quill";
-
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useState, useEffect } from "react";
+import ReactQuill from "react-quill";
 
 import {
   getStorage,
@@ -11,13 +10,21 @@ import {
 } from "firebase/storage";
 import app from "../../utilities/firebase";
 
+import { useNavigate, useParams } from "react-router-dom";
+
+import { useSelector } from "react-redux";
+
 import "quill-image-uploader/dist/quill.imageUploader.min.css";
 import "react-quill/dist/quill.snow.css";
 
 import "react-circular-progressbar/dist/styles.css";
 
-const CreatePostContainer = () => {
+const UpdatePostContainer = () => {
+  const { currentUser } = useSelector((state) => state.user);
+
   const navigate = useNavigate();
+
+  const { postId } = useParams();
 
   const [file, setFile] = useState(null);
   const [dataForm, setDataForm] = useState({});
@@ -27,6 +34,12 @@ const CreatePostContainer = () => {
   const [publishError, setPublishError] = useState(null);
 
   const [showPreview, setShowPreview] = useState(false);
+
+  useEffect(() => {
+    if (currentUser.isAdmin) {
+      handleGetPostInfo();
+    }
+  }, [postId]);
 
   const handleUploadImage = async () => {
     try {
@@ -61,6 +74,7 @@ const CreatePostContainer = () => {
       );
     } catch (error) {
       setImageUploadError("Upload failed");
+      console.log(error);
     }
   };
 
@@ -77,9 +91,11 @@ const CreatePostContainer = () => {
       }
 
       const res = await fetch(
-        import.meta.env.VITE_API_BASE_URL + "/api/post/create-post",
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/update-post/${postId}/${
+          currentUser._id
+        }`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
@@ -106,6 +122,25 @@ const CreatePostContainer = () => {
     }
   };
 
+  console.log(postId, dataForm);
+
+  const handleGetPostInfo = async () => {
+    const API_URL =
+      import.meta.env.VITE_API_BASE_URL + "/api/post/get-post/" + postId;
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      if (response.ok) {
+        setDataForm(data);
+      }
+      if (!response.ok) {
+        console.log(data.message);
+      }
+    } catch (error) {
+      setPublishError(error.message);
+    }
+  };
+
   const handleShowPreview = (e) => {
     e.preventDefault();
     if (showPreview) {
@@ -117,10 +152,11 @@ const CreatePostContainer = () => {
 
   return (
     <div className="w-[1000px] h-auto p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 m-auto">
-      <h1 className="text-6xl font-bold text-center my-12">Create Post</h1>
+      <h1 className="text-6xl font-bold text-center my-12">Update Post</h1>
       <div className="flex my-8 gap-3">
         <input
           onChange={(e) => setDataForm({ ...dataForm, title: e.target.value })}
+          value={dataForm.title}
           type="text"
           placeholder="Title"
           className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -129,6 +165,7 @@ const CreatePostContainer = () => {
           onChange={(e) =>
             setDataForm({ ...dataForm, category: e.target.value })
           }
+          value={dataForm.category}
           className="w-[30%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option value="Category">Select a categories</option>
@@ -161,6 +198,7 @@ const CreatePostContainer = () => {
             accept="image/*"
             name="file"
             onChange={(e) => setFile(e.target.files[0])}
+            disabled={imageUploadProgress !== null}
           />
         </div>
         <div className="upload-image-btn">
@@ -217,7 +255,7 @@ const CreatePostContainer = () => {
           <div>
             {showPreview ? (
               <div
-                className="p-4 overflow-y-scroll content h-[500px] border border-gray-400 m-auto prose-li:my-0 prose-ul:list-disc prose-ul:my-0 prose-ol:my-0 prose-ol:list-inside prose-ol:list-item prose-ol:list-decimal prose-base prose-headings:my-3 prose-h2:my-3 prose-p:m-0"
+                className="p-4 overflow-y-scroll content h-[500px] border border-gray-400 m-auto dark:prose-dark prose-base prose-headings:my-3 prose-h2:m-3 prose-p:m-0"
                 dangerouslySetInnerHTML={{ __html: dataForm.content }}
               ></div>
             ) : (
@@ -282,7 +320,7 @@ const CreatePostContainer = () => {
 
         <div className="flex justify-center *:">
           <button className="my-8 w-4/12 px-5 py-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-            Publish post
+            Edit Post
           </button>
         </div>
 
@@ -298,4 +336,4 @@ const CreatePostContainer = () => {
   );
 };
 
-export default CreatePostContainer;
+export default UpdatePostContainer;
