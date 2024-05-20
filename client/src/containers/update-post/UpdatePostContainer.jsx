@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 
+import { PreviewComponent } from "../../components";
+
 import {
   getStorage,
   ref,
@@ -254,10 +256,7 @@ const UpdatePostContainer = () => {
           </div>
           <div>
             {showPreview ? (
-              <div
-                className="p-4 overflow-y-scroll content h-[500px] border border-gray-400 m-auto dark:prose-dark prose-base prose-headings:my-3 prose-h2:m-3 prose-p:m-0"
-                dangerouslySetInnerHTML={{ __html: dataForm.content }}
-              ></div>
+              <PreviewComponent value={dataForm.content} />
             ) : (
               <ReactQuill
                 className="h-[500px]"
