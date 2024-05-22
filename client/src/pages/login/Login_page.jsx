@@ -63,7 +63,7 @@ function Login_page() {
 
       if (res.ok) {
         dispatch(loginSuccess(data));
-        navigate("/");
+        navigate("/blogs");
       }
     } catch (err) {
       dispatch(loginFailure(err.message));
