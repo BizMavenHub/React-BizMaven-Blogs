@@ -10,43 +10,28 @@ export default {
             color: theme("colors.gray.800"),
             h1: {
               fontSize: theme("2.5rem"),
-              maginTop: theme("1rem"),
-              maginBottom: theme("1rem"),
             },
             h2: {
               fontSize: theme("2rem"),
-              maginTop: theme("1rem"),
-              maginBottom: theme("1rem"),
             },
             h3: {
-              fontSize: theme("1.25rem"),
-              maginTop: theme("1rem"),
-              maginBottom: theme("1rem"),
+              fontSize: theme("1.2rem"),
             },
             h4: {
               fontSize: theme("1.125rem"),
-              maginTop: theme("1rem"),
-              maginBottom: theme("1rem"),
             },
             h5: {
               fontSize: theme("1rem"),
-              maginTop: theme("1rem"),
-              maginBottom: theme("1rem"),
             },
             h6: {
               fontSize: theme("0.875rem"),
-              maginTop: theme("1rem"),
-              maginBottom: theme("1rem"),
             },
             p: {
               fontSize: theme("1rem"),
-              maginTop: theme("1rem"),
-              maginBottom: theme("1rem"),
             },
             a: {
               color: theme("colors.blue.600"),
-              maginTop: theme("1rem"),
-              maginBottom: theme("1rem"),
+
               "&:hover": {
                 color: theme("colors.blue.700"),
               },

@@ -1,6 +1,8 @@
 import { useState, useRef } from "react";
 import ReactQuill, { Quill } from "react-quill";
 
+import { PreviewComponent } from "../../components";
+
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -115,6 +117,8 @@ const CreatePostContainer = () => {
     }
   };
 
+  console.log(dataForm);
+
   return (
     <div className="w-[1000px] h-auto p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 m-auto">
       <h1 className="text-6xl font-bold text-center my-12">Create Post</h1>
@@ -216,10 +220,7 @@ const CreatePostContainer = () => {
           </div>
           <div>
             {showPreview ? (
-              <div
-                className="p-4 overflow-y-scroll content h-[500px] border border-gray-400 m-auto prose-li:my-0 prose-ul:list-disc prose-ul:my-0 prose-ol:my-0 prose-ol:list-inside prose-ol:list-item prose-ol:list-decimal prose-base prose-headings:my-3 prose-h2:my-3 prose-p:m-0"
-                dangerouslySetInnerHTML={{ __html: dataForm.content }}
-              ></div>
+              <PreviewComponent content={dataForm.content} />
             ) : (
               <ReactQuill
                 className="h-[500px]"
@@ -264,16 +265,12 @@ const CreatePostContainer = () => {
                   "blockquote",
                   "list",
                   "bullet",
-                  "indent",
                   "link",
                   "image",
                   "video",
                   "code-block",
                   "color",
                   "background",
-                  "align",
-                  "clean",
-                  "code",
                 ]}
               />
             )}

@@ -20,7 +20,7 @@ const HomepageContainer = () => {
     <div className="homepage-container mx-auto min-h-[100vh] w-full ">
       <div className="w-full mx-auto ">
         {/* Section 1 - Hero */}
-        <section className=" min-h-[50vh] bg-blue-500 py-20">
+        <section className=" min-h-[50vh] bg-blue-500 py-32">
           <div className="h-2/4 ">
             {/* Block 1 - Intro */}
             <div className=" w-[67%] m-auto ">

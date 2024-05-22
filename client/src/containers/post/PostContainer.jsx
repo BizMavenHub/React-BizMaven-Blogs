@@ -46,7 +46,7 @@ const PostContainer = () => {
     <div className="p-4">
       <h1 className="text-5xl font-bold text-center my-6">{posts.title}</h1>
       <div
-        className="p-4 content w-[1000px] m-auto dark:prose-dark prose-base prose-headings:my-3 prose-h2:m-3  prose-p:m-0"
+        className="p-4 content w-[1000px] m-auto dark:prose-dark prose-lg prose-h1:font-bold prose-h2:my-2 prose-h2:font-semibold  prose-p:m-0"
         dangerouslySetInnerHTML={{ __html: posts.content }}
       ></div>
     </div>
