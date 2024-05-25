@@ -49,6 +49,8 @@ const DashPostContainer = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+          withCredentials: true,
         }
       );
       const data = await res.json();
@@ -76,7 +78,14 @@ const DashPostContainer = () => {
       startIndex;
 
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch(API_URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        withCredentials: true,
+      });
       const data = await res.json();
       if (res.ok) {
         setPosts((prev) => [...prev, ...data.posts]);

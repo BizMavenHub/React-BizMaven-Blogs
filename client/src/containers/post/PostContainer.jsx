@@ -25,22 +25,27 @@ const PostContainer = () => {
 
       const data = await response.json();
       if (response.ok) {
-        setPosts(data);
+        setPosts(data.posts);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log(posts);
-
   return (
-    <div className="p-4">
-      <h1 className="text-5xl font-bold text-center my-6">{posts.title}</h1>
-      <div
-        className="p-4 content w-[1000px] m-auto prose-lg prose-p:m-0"
-        dangerouslySetInnerHTML={{ __html: posts.content }}
-      ></div>
+    <div className="p-4 mb-8">
+      {posts.map((post) => (
+        <>
+          <h1 className="text-6xl font-bold text-center my-12">{post.title}</h1>
+          <div className="image-container flex justify-center items-center mb-4">
+            <img className="h-[550px]" src={post.image} alt="image" />
+          </div>
+          <div
+            className="p-4 content w-[1000px] m-auto prose-lg prose-p:m-0 prose-headings:my-2 prose-p:my-1 prose-ol:list-inside prose-ol:list-decimal prose-li:list-inside prose-ul:list-disc prose-li:mb-3"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          ></div>
+        </>
+      ))}
     </div>
   );
 };
