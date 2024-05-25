@@ -101,6 +101,8 @@ const UpdatePostContainer = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+          withCredentials: true,
           body: JSON.stringify(dataForm),
         }
       );
@@ -124,13 +126,18 @@ const UpdatePostContainer = () => {
     }
   };
 
-  console.log(postId, dataForm);
-
   const handleGetPostInfo = async () => {
     const API_URL =
       import.meta.env.VITE_API_BASE_URL + "/api/post/get-post/" + postId;
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(API_URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        withCredentials: true,
+      });
       const data = await response.json();
       if (response.ok) {
         setDataForm(data);
