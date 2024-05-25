@@ -42,6 +42,11 @@ const NavbarComponent = () => {
         import.meta.env.VITE_API_BASE_URL + "/api/user/logout",
         {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
         }
       );
       const data = await res.json();

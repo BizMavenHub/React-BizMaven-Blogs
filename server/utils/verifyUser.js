@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-export const verifyUser = (req, res, next) => {
+const verifyUser = (req, res, next) => {
   const token = req.cookies.access_token;
 
   if (!token) {
@@ -16,3 +16,5 @@ export const verifyUser = (req, res, next) => {
     next();
   });
 };
+
+export default verifyUser;

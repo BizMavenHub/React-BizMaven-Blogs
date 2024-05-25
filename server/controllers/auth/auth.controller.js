@@ -37,7 +37,8 @@ export async function loginWithEmail(req, res, next) {
       .setHeader("Access-Control-Allow-Credentials", true)
       .cookie("access_token", token, {
         httpOnly: true,
-        sameSite: "Strict",
+        secure: true,
+        sameSite: "strict",
       })
       .json({ message: "Login successfully", ...rest, token });
   } catch (error) {
@@ -89,7 +90,11 @@ export async function loginWithGoogle(req, res, next) {
 
       res
         .status(200)
-        .cookie("access_token", token)
+        .cookie("access_token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "strict",
+        })
         .json({ message: "Login successfully", ...rest });
     } else {
       const generatePassword =
@@ -110,7 +115,11 @@ export async function loginWithGoogle(req, res, next) {
 
       res
         .status(200)
-        .cookie("access_token", token)
+        .cookie("access_token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "strict",
+        })
         .json({ message: "Login successfully", ...rest });
     }
   } catch (error) {

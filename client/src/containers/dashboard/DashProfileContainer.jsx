@@ -132,6 +132,8 @@ const DashProfileContainer = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+          withCredentials: true,
           body: JSON.stringify(dataForm),
         }
       );
@@ -162,6 +164,11 @@ const DashProfileContainer = () => {
           currentUser._id,
         {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
         }
       );
 

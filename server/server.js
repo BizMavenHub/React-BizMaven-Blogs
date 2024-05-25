@@ -3,7 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import { verifyUser } from "./utils/verifyUser.js";
 
 // Import Routes
 import userRoute from "./routes/user.route.js";
@@ -21,8 +20,10 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+
 app.use(cookieParser());
-app.use(verifyUser);
+
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Handle preflight requests
