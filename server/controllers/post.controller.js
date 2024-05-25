@@ -75,8 +75,6 @@ export const getPosts = async (req, res, next) => {
       date.getDate()
     );
 
-    console.log(oneMonthAgo);
-
     const lastMonthPosts = await Post.find({
       createdAt: { $gte: oneMonthAgo },
     });
