@@ -3,11 +3,8 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotnev from "dotenv";
 import { errorHandler } from "../../utils/error.js";
-import { LocalStorage } from "node-localstorage";
 
 dotnev.config();
-
-const localStorage = new LocalStorage("./scratch");
 
 export async function loginWithEmail(req, res, next) {
   const { email, password } = req.body;
@@ -35,12 +32,14 @@ export async function loginWithEmail(req, res, next) {
     );
     const { password: pass, ...rest } = user._doc;
 
-    localStorage.setItem("token", token);
-
     res
       .status(200)
-      .cookie("token", token)
-      .json({ message: "Login successfully", ...rest });
+      .setHeader("Access-Control-Allow-Credentials", true)
+      .cookie("access_token", token, {
+        httpOnly: true,
+        sameSite: "Strict",
+      })
+      .json({ message: "Login successfully", ...rest, token });
   } catch (error) {
     next(error);
   }
@@ -88,11 +87,9 @@ export async function loginWithGoogle(req, res, next) {
       );
       const { password, ...rest } = user._doc;
 
-      localStorage.setItem("token", token);
-
       res
         .status(200)
-        .cookie("token", token)
+        .cookie("access_token", token)
         .json({ message: "Login successfully", ...rest });
     } else {
       const generatePassword =
@@ -111,11 +108,9 @@ export async function loginWithGoogle(req, res, next) {
       const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
       const { password, ...rest } = newUser._doc;
 
-      localStorage.setItem("token", token);
-
       res
         .status(200)
-        .cookie("token", token)
+        .cookie("access_token", token)
         .json({ message: "Login successfully", ...rest });
     }
   } catch (error) {

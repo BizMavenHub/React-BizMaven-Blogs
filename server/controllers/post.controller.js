@@ -75,6 +75,8 @@ export const getPosts = async (req, res, next) => {
       date.getDate()
     );
 
+    console.log(oneMonthAgo);
+
     const lastMonthPosts = await Post.find({
       createdAt: { $gte: oneMonthAgo },
     });
@@ -87,8 +89,6 @@ export const getPosts = async (req, res, next) => {
 
 export const deletePost = async (req, res, next) => {
   const postId = req.params.postId;
-
-  console.log(postId);
 
   if (!req.user.isAdmin) {
     return next(errorHandler("You are not allowed to delete a post", 403));

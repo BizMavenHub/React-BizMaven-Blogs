@@ -1,13 +1,11 @@
 import { errorHandler } from "../utils/error.js";
 import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
-import { LocalStorage } from "node-localstorage";
-
-const localStorage = new LocalStorage("./scratch");
 
 export const getAllUser = async (req, res) => {
   const users = await User.find();
   res.send({ message: "Getting all users", users });
+  console.log(req);
 };
 
 export const getUser = async (req, res) => {
@@ -77,9 +75,11 @@ export const deleteUser = async (req, res, next) => {
 };
 
 export const logout = (req, res, next) => {
-  localStorage.removeItem("token");
   res
     .status(200)
-    .clearCookie("token", "", { expires: new Date(Date.now()), httpOnly: true })
+    .clearCookie("access_token", "", {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+    })
     .json("Logged out successfully");
 };
