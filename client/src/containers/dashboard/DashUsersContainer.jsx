@@ -82,6 +82,10 @@ const DashUsersContainer = () => {
   };
 
   const handleDeleteUser = async (userIdToDelete) => {
+    if (!confirm("Are you sure you want to delete this user?")) {
+      return;
+    }
+
     try {
       const res = await fetch(
         import.meta.env.VITE_API_BASE_URL +
