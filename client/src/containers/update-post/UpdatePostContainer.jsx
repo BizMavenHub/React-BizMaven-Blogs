@@ -263,7 +263,7 @@ const UpdatePostContainer = () => {
           </div>
           <div>
             {showPreview ? (
-              <PreviewComponent value={dataForm.content} />
+              <PreviewComponent content={dataForm.content} />
             ) : (
               <ReactQuill
                 className="h-[500px]"
