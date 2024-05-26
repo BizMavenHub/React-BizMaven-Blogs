@@ -1,13 +1,44 @@
 import { errorHandler } from "../utils/error.js";
 import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
-import { LocalStorage } from "node-localstorage";
 
-const localStorage = new LocalStorage("./scratch");
+export const getAllUser = async (req, res, next) => {
+  if (!req.user.isAdmin) {
+    return next(errorHandler("You are not allowed to get all users", 403));
+  }
 
-export const getAllUser = async (req, res) => {
-  const users = await User.find();
-  res.send({ message: "Getting all users", users });
+  try {
+    const startIndex = parseInt(req.query.startIndex) || 0;
+    const limit = parseInt(req.query.limit) || 9;
+    const sortDirection = req.query.order === "asc" ? 1 : -1;
+
+    const users = await User.find()
+      .sort({ createdAt: sortDirection })
+      .skip(startIndex)
+      .limit(limit);
+
+    const userWithoutPassword = users.map((user) => {
+      const { password, ...rest } = user._doc;
+      return rest;
+    });
+    const totalUsers = await User.countDocuments();
+    const now = new Date();
+    const oneMonthAgo = new Date(
+      now.getFullYear(),
+      now.getMonth() - 1,
+      now.getDate()
+    );
+    const lastMonthUsers = await User.find({
+      createdAt: { $gte: oneMonthAgo },
+    });
+
+    res.send({
+      message: "Getting all users",
+      users: userWithoutPassword,
+      totalUsers,
+      lastMonthUsers,
+    });
+  } catch (error) {}
 };
 
 export const getUser = async (req, res) => {
@@ -63,7 +94,7 @@ export const updateUserProfile = async (req, res, next) => {
 };
 
 export const deleteUser = async (req, res, next) => {
-  if (req.user.id !== req.params.userId) {
+  if (!req.user.isAdmin && req.user.id !== req.params.userId) {
     return next(
       errorHandler("You are not allowed to delete this account", 403)
     );
@@ -77,9 +108,11 @@ export const deleteUser = async (req, res, next) => {
 };
 
 export const logout = (req, res, next) => {
-  localStorage.removeItem("token");
   res
     .status(200)
-    .clearCookie("token", "", { expires: new Date(Date.now()), httpOnly: true })
+    .clearCookie("access_token", "", {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+    })
     .json("Logged out successfully");
 };

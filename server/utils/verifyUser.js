@@ -1,14 +1,11 @@
 import jwt from "jsonwebtoken";
 import { errorHandler } from "../utils/error.js";
 import dotenv from "dotenv";
-import { LocalStorage } from "node-localstorage";
 
 dotenv.config();
 
-const localStorage = new LocalStorage("./scratch");
-
-export const verifyUser = (req, res, next) => {
-  const token = localStorage.getItem("token");
+const verifyUser = (req, res, next) => {
+  const token = req.cookies.access_token;
 
   if (!token) {
     return next(errorHandler("You are not authenticated", 401));
@@ -19,3 +16,5 @@ export const verifyUser = (req, res, next) => {
     next();
   });
 };
+
+export default verifyUser;

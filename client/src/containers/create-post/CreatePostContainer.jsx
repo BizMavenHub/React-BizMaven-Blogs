@@ -85,6 +85,8 @@ const CreatePostContainer = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+          withCredentials: true,
           body: JSON.stringify(dataForm),
         }
       );
@@ -116,8 +118,6 @@ const CreatePostContainer = () => {
       setShowPreview(true);
     }
   };
-
-  console.log(dataForm);
 
   return (
     <div className="w-[1000px] h-auto p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 m-auto">
@@ -235,19 +235,10 @@ const CreatePostContainer = () => {
                     container: [
                       [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-                      ["bold", "italic", "underline", "strike", "blockquote"],
-                      [
-                        { list: "ordered" },
-                        { list: "bullet" },
-                        { indent: "-1" },
-                        { indent: "+1" },
-                      ],
+                      ["bold", "italic", "underline", "strike"],
+                      [{ list: "ordered" }, { list: "bullet" }],
                       ["link", "image", "video"],
-
                       ["code-block"],
-                      ["clean"],
-                      [{ color: [] }, { background: [] }],
-                      [{ align: [] }],
                     ],
                   },
                   clipboard: {
@@ -262,15 +253,13 @@ const CreatePostContainer = () => {
                   "italic",
                   "underline",
                   "strike",
-                  "blockquote",
                   "list",
                   "bullet",
                   "link",
                   "image",
-                  "video",
                   "code-block",
-                  "color",
-                  "background",
+                  "code",
+                  "video",
                 ]}
               />
             )}

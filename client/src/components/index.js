@@ -1,5 +1,6 @@
 /* Add all components here */
 import PreviewComponent from "./preview_component/PreviewComponent";
+import CommentComponent from "./comment_component/CommentComponent";
 
 import FooterComponent from "./footer/FooterComponent";
 import NavbarComponent from "./navbar/NavbarComponent";
@@ -15,6 +16,7 @@ import BlogCard_1 from "./cards/BlogCard_1";
 
 export {
   PreviewComponent,
+  CommentComponent,
   FooterComponent,
   NavbarComponent,
   BlogCard,

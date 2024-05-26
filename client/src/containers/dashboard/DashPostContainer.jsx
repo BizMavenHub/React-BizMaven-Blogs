@@ -29,7 +29,7 @@ const DashPostContainer = () => {
       const data = await response.json();
       if (response.ok) {
         setPosts(data.posts);
-        if (data.posts.length > 10) {
+        if (data.posts.length < 10) {
           setShowMore(false);
         }
       }
@@ -39,6 +39,10 @@ const DashPostContainer = () => {
   };
 
   const handleDeletePost = async (postIdToDelete) => {
+    if (!confirm("Are you sure you want to delete this post?")) {
+      return;
+    }
+
     try {
       const res = await fetch(
         import.meta.env.VITE_API_BASE_URL +
@@ -49,6 +53,8 @@ const DashPostContainer = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+          withCredentials: true,
         }
       );
       const data = await res.json();
@@ -66,8 +72,6 @@ const DashPostContainer = () => {
   const handleShowMore = async () => {
     const startIndex = posts.length;
 
-    console.log(startIndex);
-
     const API_URL =
       import.meta.env.VITE_API_BASE_URL +
       "/api/post/get-post?userId=" +
@@ -76,12 +80,24 @@ const DashPostContainer = () => {
       startIndex;
 
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch(API_URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        withCredentials: true,
+      });
+
       const data = await res.json();
+
       if (res.ok) {
         setPosts((prev) => [...prev, ...data.posts]);
-        if (data.posts.length < 10) {
+
+        if (data.posts.length === 0) {
           setShowMore(false);
+        } else if (data.posts.length > 2) {
+          setShowMore(true);
         }
       }
     } catch (error) {
@@ -90,7 +106,7 @@ const DashPostContainer = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="px-4 pt-4 pb-16">
       <div className="relative overflow-x-auto sm:rounded-lg">
         {currentUser.isAdmin && posts.length > 0 ? (
           <>

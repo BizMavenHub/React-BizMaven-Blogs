@@ -48,13 +48,16 @@ function Login_page() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
+        withCredentials: true,
         body: JSON.stringify(dataForm),
       });
 
       const data = await res.json();
 
-      if (data.success === false) {
-        return dispatch(loginFailure(data.message));
+      if (!res.ok || data.success === false) {
+        const errorMessage = data.message || "Login failed";
+        return dispatch(loginFailure(errorMessage));
       }
 
       if (data.message == "User not found") {

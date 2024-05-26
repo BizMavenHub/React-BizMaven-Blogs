@@ -101,6 +101,8 @@ const UpdatePostContainer = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+          withCredentials: true,
           body: JSON.stringify(dataForm),
         }
       );
@@ -124,13 +126,18 @@ const UpdatePostContainer = () => {
     }
   };
 
-  console.log(postId, dataForm);
-
   const handleGetPostInfo = async () => {
     const API_URL =
       import.meta.env.VITE_API_BASE_URL + "/api/post/get-post/" + postId;
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(API_URL, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        withCredentials: true,
+      });
       const data = await response.json();
       if (response.ok) {
         setDataForm(data);
@@ -256,7 +263,7 @@ const UpdatePostContainer = () => {
           </div>
           <div>
             {showPreview ? (
-              <PreviewComponent value={dataForm.content} />
+              <PreviewComponent content={dataForm.content} />
             ) : (
               <ReactQuill
                 className="h-[500px]"
@@ -271,19 +278,11 @@ const UpdatePostContainer = () => {
                     container: [
                       [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-                      ["bold", "italic", "underline", "strike", "blockquote"],
-                      [
-                        { list: "ordered" },
-                        { list: "bullet" },
-                        { indent: "-1" },
-                        { indent: "+1" },
-                      ],
-                      ["link", "image", "video"],
+                      ["bold", "italic", "underline", "strike"],
+                      [{ list: "ordered" }, { list: "bullet" }],
+                      ["link", "image"],
 
                       ["code-block"],
-                      ["clean"],
-                      [{ color: [] }, { background: [] }],
-                      [{ align: [] }],
                     ],
                   },
                   clipboard: {
@@ -298,18 +297,12 @@ const UpdatePostContainer = () => {
                   "italic",
                   "underline",
                   "strike",
-                  "blockquote",
                   "list",
                   "bullet",
-                  "indent",
                   "link",
                   "image",
-                  "video",
                   "code-block",
-                  "color",
-                  "background",
-                  "align",
-                  "clean",
+
                   "code",
                 ]}
               />

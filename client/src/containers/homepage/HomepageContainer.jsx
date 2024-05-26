@@ -26,7 +26,7 @@ const HomepageContainer = () => {
             <div className=" w-[67%] m-auto ">
               <h1 className=" text-white text-[58pt] font-medium font-roboto leading-none tracking-tight md:text-5xl lg:text-6xl">
                 Welcome to{" "}
-                <span className=" text-yellow-400 dark:text-yellow-500">
+                <span className=" text-yellow-400 dark:text-yellow-400">
                   Byte Tech Community
                 </span>{" "}
                 Explore the world of fascinating topics.
@@ -92,7 +92,9 @@ const HomepageContainer = () => {
             </h1>
             <div className="flex justify-center mt-12 mobile:mt-8">
               <Link
-                to="/sign-up"
+                onClick={() => {
+                  window.location.href = "/sign-up";
+                }}
                 relative="path"
                 className="text-2xl text-center bg-purple-500 shadow-lg text-white font-semibold font-overpass rounded-lg py-4 px-12 mobile:px-6 "
               >

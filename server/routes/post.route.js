@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyUser } from "../utils/verifyUser.js";
+import verifyUser from "../utils/verifyUser.js";
 
 import {
   createPost,

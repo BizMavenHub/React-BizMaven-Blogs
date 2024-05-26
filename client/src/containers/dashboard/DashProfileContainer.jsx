@@ -132,6 +132,8 @@ const DashProfileContainer = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+          withCredentials: true,
           body: JSON.stringify(dataForm),
         }
       );
@@ -162,6 +164,11 @@ const DashProfileContainer = () => {
           currentUser._id,
         {
           method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
         }
       );
 
@@ -340,7 +347,7 @@ const DashProfileContainer = () => {
         </div>
       </div>
       {showModal && (
-        <div className="absolute top-[50%] left-[44.5%] bg-slate-200 p-4 w-[450px] rounded-lg">
+        <div className="absolute top-[45.5%] left-[45.5%] bg-slate-200 p-4 w-[450px] rounded-lg">
           <div className="flex justify-center">
             <svg
               className="w-[60px] h-[60px] text-gray-800 dark:text-white"

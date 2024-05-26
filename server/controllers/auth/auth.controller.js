@@ -3,48 +3,8 @@ import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotnev from "dotenv";
 import { errorHandler } from "../../utils/error.js";
-import { LocalStorage } from "node-localstorage";
 
 dotnev.config();
-
-const localStorage = new LocalStorage("./scratch");
-
-export async function loginWithEmail(req, res, next) {
-  const { email, password } = req.body;
-
-  if (!email || !password || email === "" || password === "") {
-    next(errorHandler("All fields are required", 400));
-  }
-
-  try {
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return next(errorHandler("User not found", 404));
-    }
-
-    const vaildPassword = await bcryptjs.compareSync(password, user.password);
-
-    if (!vaildPassword) {
-      return next(errorHandler("Invalid password", 400));
-    }
-
-    const token = jwt.sign(
-      { id: user._id, isAdmin: user.isAdmin },
-      process.env.JWT_SECRET
-    );
-    const { password: pass, ...rest } = user._doc;
-
-    localStorage.setItem("token", token);
-
-    res
-      .status(200)
-      .cookie("token", token)
-      .json({ message: "Login successfully", ...rest });
-  } catch (error) {
-    next(error);
-  }
-}
 
 export async function registerWithEmail(req, res, next) {
   const { username, email, password } = req.body;
@@ -76,6 +36,47 @@ export async function registerWithEmail(req, res, next) {
   }
 }
 
+export async function loginWithEmail(req, res, next) {
+  const { email, password } = req.body;
+
+  if (!email || !password || email === "" || password === "") {
+    next(errorHandler("All fields are required", 400));
+  }
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return next(errorHandler("User not found", 404));
+    }
+
+    const vaildPassword = await bcryptjs.compareSync(password, user.password);
+
+    if (!vaildPassword) {
+      return next(errorHandler("Invalid password", 400));
+    }
+
+    const token = jwt.sign(
+      { id: user._id, isAdmin: user.isAdmin },
+      process.env.JWT_SECRET
+    );
+    const { password: pass, ...rest } = user._doc;
+
+    res
+      .status(200)
+      .setHeader("Access-Control-Allow-Credentials", true)
+      .cookie("access_token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+      })
+      .json({ message: "Login successfully", ...rest, token });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function loginWithGoogle(req, res, next) {
   const { username, email, google_photo_url } = req.body;
 
@@ -88,11 +89,14 @@ export async function loginWithGoogle(req, res, next) {
       );
       const { password, ...rest } = user._doc;
 
-      localStorage.setItem("token", token);
-
       res
         .status(200)
-        .cookie("token", token)
+        .cookie("access_token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "strict",
+          maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+        })
         .json({ message: "Login successfully", ...rest });
     } else {
       const generatePassword =
@@ -111,11 +115,14 @@ export async function loginWithGoogle(req, res, next) {
       const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
       const { password, ...rest } = newUser._doc;
 
-      localStorage.setItem("token", token);
-
       res
         .status(200)
-        .cookie("token", token)
+        .cookie("access_token", token, {
+          httpOnly: true,
+          secure: true,
+          sameSite: "strict",
+          maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+        })
         .json({ message: "Login successfully", ...rest });
     }
   } catch (error) {

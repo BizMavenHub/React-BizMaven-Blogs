@@ -42,6 +42,11 @@ const NavbarComponent = () => {
         import.meta.env.VITE_API_BASE_URL + "/api/user/logout",
         {
           method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
         }
       );
       const data = await res.json();
@@ -84,7 +89,7 @@ const NavbarComponent = () => {
                 onClick={handleShowNavLinks}
               >
                 <img
-                  className="w-12 h-10 rounded-full object-cover"
+                  className="w-14 h-10 rounded-full object-cover"
                   src={
                     currentUser.pictureProfile
                       ? currentUser.pictureProfile
@@ -96,7 +101,7 @@ const NavbarComponent = () => {
 
               {currentUser.isAdmin && (
                 <button
-                  onClick={() => navigate("/create-post")}
+                  onClick={() => (window.location.href = "/create-post")}
                   className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm h-[40px] w-[120px] dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                   Create Post
@@ -121,7 +126,9 @@ const NavbarComponent = () => {
                     {currentUser.isAdmin && (
                       <li>
                         <Link
-                          to="/dashboard?tab=overview"
+                          onClick={() => {
+                            window.location.href = "/dashboard?tab=overview";
+                          }}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                         >
                           Dashboard
@@ -130,7 +137,9 @@ const NavbarComponent = () => {
                     )}
                     <li>
                       <Link
-                        to="/dashboard?tab=profile"
+                        onClick={() => {
+                          window.location.href = "/dashboard?tab=profile";
+                        }}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                       >
                         Profile
@@ -156,16 +165,9 @@ const NavbarComponent = () => {
               <ul className="flex font-medium p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
                   <Link
-                    to="/"
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                    aria-current="page"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/blogs"
+                    onClick={() => {
+                      window.location.href = "/blogs";
+                    }}
                     className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                     aria-current="page"
                   >
@@ -174,7 +176,9 @@ const NavbarComponent = () => {
                 </li>
                 <li>
                   <Link
-                    to="/about-us"
+                    onClick={() => {
+                      window.location.href = "/about-us";
+                    }}
                     className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     About
@@ -182,7 +186,9 @@ const NavbarComponent = () => {
                 </li>
                 <li>
                   <Link
-                    to="/contact-us"
+                    onClick={() => {
+                      window.location.href = "/contact-us";
+                    }}
                     className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Contact
@@ -196,7 +202,12 @@ const NavbarComponent = () => {
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
           <div className=" flex items-center justify-between ">
             {/* Logo */}
-            <Link to="/" className="flex justify-start items-center ">
+            <Link
+              onClick={() => {
+                window.location.href = "/";
+              }}
+              className="flex justify-start items-center w-[428px] space-x-3"
+            >
               <img
                 src="https://flowbite.com/docs/images/logo.svg"
                 className="h-8"
@@ -213,7 +224,9 @@ const NavbarComponent = () => {
               <ul className="flex font-medium mr-8 p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
                   <Link
-                    to="/"
+                    onClick={() => {
+                      window.location.href = "/";
+                    }}
                     className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                     aria-current="page"
                   >
@@ -222,7 +235,9 @@ const NavbarComponent = () => {
                 </li>
                 <li>
                   <Link
-                    to="/about-us"
+                    onClick={() => {
+                      window.location.href = "/about-us";
+                    }}
                     className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     About
@@ -230,7 +245,9 @@ const NavbarComponent = () => {
                 </li>
                 <li>
                   <Link
-                    to="/contact-us"
+                    onClick={() => {
+                      window.location.href = "/contact-us";
+                    }}
                     className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   >
                     Contact
