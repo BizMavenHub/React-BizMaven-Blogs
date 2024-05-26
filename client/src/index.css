@@ -8,7 +8,7 @@ html {
 
 .post-content h1 {
   font-size: 32pt;
-  margin: 1rem;
+  margin: 1rem 0;
 }
 
 .post-content h2 {
@@ -59,4 +59,11 @@ html {
 
 .post-content a {
   color: #0000ff;
+}
+
+.post-content pre {
+  background-color: #c9c9c9;
+  padding: 10px;
+  font-size: 12pt;
+  border-radius: 5px;
 }
