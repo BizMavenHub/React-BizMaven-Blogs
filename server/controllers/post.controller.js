@@ -126,3 +126,12 @@ export const updatePost = async (req, res, next) => {
     next(errorHandler(error));
   }
 };
+
+export const getAllPostsFromDB = async (req, res, next) => {
+  try {
+    const posts = await Post.find();
+    res.status(200).json(posts);
+  } catch (error) {
+    next(errorHandler(error));
+  }
+};

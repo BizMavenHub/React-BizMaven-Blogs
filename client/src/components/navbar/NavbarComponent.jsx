@@ -73,10 +73,10 @@ const NavbarComponent = () => {
                 Btye Tech Community
               </span>
             </Link>
-            <div className="flex items-center md:order-2 md:space-x-0 rtl:space-x-reverse">
+            <div className="flex items-center order-2">
               <button
                 type="button"
-                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 mr-8"
+                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                 id="user-menu-button"
                 aria-expanded="false"
                 data-dropdown-toggle="user-dropdown"
@@ -194,20 +194,15 @@ const NavbarComponent = () => {
         </nav>
       ) : (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
-          <div className="max-w-screen flex items-center justify-between px-8 py-2">
+          <div className=" flex items-center justify-between ">
             {/* Logo */}
-            <Link
-              to="/"
-              className="flex justify-start items-center w-[428px] space-x-3"
-            >
+            <Link to="/" className="flex justify-start items-center ">
               <img
                 src="https://flowbite.com/docs/images/logo.svg"
                 className="h-8"
                 alt="Flowbite Logo"
               />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                BizMaven Blog
-              </span>
+              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
             </Link>
 
             {/* Navbar links */}
