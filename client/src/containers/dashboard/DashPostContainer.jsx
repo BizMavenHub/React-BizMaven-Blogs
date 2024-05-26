@@ -39,6 +39,10 @@ const DashPostContainer = () => {
   };
 
   const handleDeletePost = async (postIdToDelete) => {
+    if (!confirm("Are you sure you want to delete this post?")) {
+      return;
+    }
+
     try {
       const res = await fetch(
         import.meta.env.VITE_API_BASE_URL +
