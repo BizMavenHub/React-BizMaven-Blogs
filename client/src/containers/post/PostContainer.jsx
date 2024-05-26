@@ -32,8 +32,6 @@ const PostContainer = () => {
     }
   };
 
-  console.log(posts);
-
   return (
     <div className="p-4 mb-8">
       {posts.map((post) => (
