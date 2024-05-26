@@ -8,6 +8,8 @@ const DashUsersContainer = () => {
 
   const [usersList, setUsersList] = useState([]);
 
+  const [showMore, setShowMore] = useState(true);
+
   useEffect(() => {
     if (currentUser.isAdmin) {
       handleGetAllUsers();
@@ -34,13 +36,14 @@ const DashUsersContainer = () => {
       const data = await response.json();
       if (response.ok) {
         setUsersList(data.users);
+        if (data.users.length < 10) {
+          setShowMore(false);
+        }
       }
     } catch (error) {
       console.log(error);
     }
   };
-
-  console.log(usersList);
 
   const handleShowMore = async () => {
     const startIndex = usersList.length;
@@ -62,12 +65,44 @@ const DashUsersContainer = () => {
       });
       const data = await res.json();
 
+      if (res.ok) {
+        setUsersList((prev) => [...prev, ...data.users]);
+
+        if (data.users.length === 0) {
+          setShowMore(false);
+        } else if (data.users.length > 2) {
+          setShowMore(true);
+        }
+      } else {
+        console.log(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDeleteUser = async (userIdToDelete) => {
+    try {
+      const res = await fetch(
+        import.meta.env.VITE_API_BASE_URL +
+          "/api/user/delete-user/" +
+          userIdToDelete,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
+        }
+      );
+      const data = await res.json();
       if (!res.ok) {
         console.log(data.message);
       } else {
-        setUsersList((prev) => [...prev, ...data.users]);
-        if (data.users.length < 10) {
-        }
+        setUsersList((prev) =>
+          prev.filter((user) => user._id !== userIdToDelete)
+        );
       }
     } catch (error) {
       console.log(error);
@@ -105,10 +140,15 @@ const DashUsersContainer = () => {
                 </td>
                 <td>{user.username}</td>
                 <td>{user.email}</td>
-                <td>{user.isAdmin ? "✅" : "❌"}</td>
+                <td>
+                  {user.isAdmin ? <span className="text-lg">✅</span> : "❌"}
+                </td>
                 <td>
                   <div>
-                    <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    <button
+                      onClick={() => handleDeleteUser(user._id)}
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                    >
                       Delete
                     </button>
                   </div>
@@ -118,6 +158,16 @@ const DashUsersContainer = () => {
           ))}
         </tbody>
       </table>
+      <div className="w-full flex justify-center">
+        {showMore && (
+          <button
+            onClick={handleShowMore}
+            className=" text-blue-500 w-[150px] h-[50px] text-center hover:text-blue-700 font-bold py-2 px-4 rounded-lg"
+          >
+            Show More
+          </button>
+        )}
+      </div>
     </div>
   );
 };
