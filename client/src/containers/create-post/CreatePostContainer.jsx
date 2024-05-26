@@ -119,8 +119,6 @@ const CreatePostContainer = () => {
     }
   };
 
-  console.log(dataForm);
-
   return (
     <div className="w-[1000px] h-auto p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 m-auto">
       <h1 className="text-6xl font-bold text-center my-12">Create Post</h1>
