@@ -278,19 +278,11 @@ const UpdatePostContainer = () => {
                     container: [
                       [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
-                      ["bold", "italic", "underline", "strike", "blockquote"],
-                      [
-                        { list: "ordered" },
-                        { list: "bullet" },
-                        { indent: "-1" },
-                        { indent: "+1" },
-                      ],
-                      ["link", "image", "video"],
+                      ["bold", "italic", "underline", "strike"],
+                      [{ list: "ordered" }, { list: "bullet" }],
+                      ["link", "image"],
 
                       ["code-block"],
-                      ["clean"],
-                      [{ color: [] }, { background: [] }],
-                      [{ align: [] }],
                     ],
                   },
                   clipboard: {
@@ -305,18 +297,12 @@ const UpdatePostContainer = () => {
                   "italic",
                   "underline",
                   "strike",
-                  "blockquote",
                   "list",
                   "bullet",
-                  "indent",
                   "link",
                   "image",
-                  "video",
                   "code-block",
-                  "color",
-                  "background",
-                  "align",
-                  "clean",
+
                   "code",
                 ]}
               />

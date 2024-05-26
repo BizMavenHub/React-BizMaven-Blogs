@@ -238,6 +238,7 @@ const CreatePostContainer = () => {
                       ["bold", "italic", "underline", "strike"],
                       [{ list: "ordered" }, { list: "bullet" }],
                       ["link", "image", "video"],
+                      ["code-block"],
                     ],
                   },
                   clipboard: {
@@ -256,6 +257,8 @@ const CreatePostContainer = () => {
                   "bullet",
                   "link",
                   "image",
+                  "code-block",
+                  "code",
                   "video",
                 ]}
               />
