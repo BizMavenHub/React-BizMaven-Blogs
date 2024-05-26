@@ -41,13 +41,17 @@ const PostContainer = () => {
             (
               <div key={post._id} className="w-[1300px] m-auto">
                 <h1 className="text-7xl font-bold text-center my-12">
-                  {post.title}
+                  {post && post.title}
                 </h1>
                 <p className="text-2xl text-center font-medium my-8">
-                  {post.category}
+                  {post && post.category}
                 </p>
                 <div className="image-container flex justify-center items-center mb-4">
-                  <img className="h-[580px]" src={post.image} alt="image" />
+                  <img
+                    className="h-[580px]"
+                    src={post && post.image}
+                    alt="image"
+                  />
                 </div>
                 <div className="w-[75%] m-auto my-6 flex justify-between">
                   <span className="text-lg font-semibold">
