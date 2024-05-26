@@ -6,6 +6,36 @@ import { errorHandler } from "../../utils/error.js";
 
 dotnev.config();
 
+export async function registerWithEmail(req, res, next) {
+  const { username, email, password } = req.body;
+
+  if (!username || !email || !password) {
+    next(errorHandler("All fields are required", 400));
+  }
+
+  const existedEmail = await User.findOne({ email });
+
+  if (existedEmail) {
+    next(errorHandler("Email already exists", 400));
+  }
+
+  const hashedPassword = await bcryptjs.hashSync(password, 10);
+
+  // Save user to database
+  const newUser = new User({
+    username,
+    email,
+    password: hashedPassword,
+  });
+
+  try {
+    await newUser.save();
+    res.send({ message: "User created successfully", newUser });
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function loginWithEmail(req, res, next) {
   const { email, password } = req.body;
 
@@ -39,38 +69,9 @@ export async function loginWithEmail(req, res, next) {
         httpOnly: true,
         secure: true,
         sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
       })
       .json({ message: "Login successfully", ...rest, token });
-  } catch (error) {
-    next(error);
-  }
-}
-
-export async function registerWithEmail(req, res, next) {
-  const { username, email, password } = req.body;
-
-  if (!username || !email || !password) {
-    next(errorHandler("All fields are required", 400));
-  }
-
-  const existedEmail = await User.findOne({ email });
-
-  if (existedEmail) {
-    next(errorHandler("Email already exists", 400));
-  }
-
-  const hashedPassword = await bcryptjs.hashSync(password, 10);
-
-  // Save user to database
-  const newUser = new User({
-    username,
-    email,
-    password: hashedPassword,
-  });
-
-  try {
-    await newUser.save();
-    res.send({ message: "User created successfully", newUser });
   } catch (error) {
     next(error);
   }
@@ -94,6 +95,7 @@ export async function loginWithGoogle(req, res, next) {
           httpOnly: true,
           secure: true,
           sameSite: "strict",
+          maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
         })
         .json({ message: "Login successfully", ...rest });
     } else {
@@ -119,6 +121,7 @@ export async function loginWithGoogle(req, res, next) {
           httpOnly: true,
           secure: true,
           sameSite: "strict",
+          maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
         })
         .json({ message: "Login successfully", ...rest });
     }
