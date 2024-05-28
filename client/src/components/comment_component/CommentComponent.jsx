@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import CommentCard from "../cards/CommentCard";
 
 const CommentComponent = ({ postId }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -16,6 +17,10 @@ const CommentComponent = ({ postId }) => {
       return setError("Comment must be less than 200 characters");
     }
 
+    if (!currentUser || !currentUser._id) {
+      return setError("User not authenticated or missing user ID");
+    }
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/comment/create-comment`,
@@ -25,6 +30,7 @@ const CommentComponent = ({ postId }) => {
             "Content-Type": "application/json",
           },
           credentials: "include",
+          withCredentials: true,
           body: JSON.stringify({
             postId: postId,
             userId: currentUser._id,
@@ -37,9 +43,47 @@ const CommentComponent = ({ postId }) => {
       if (!response.ok) {
         setError(data.message);
       } else {
-        setComments((prevComments) => [...prevComments, data.comment]);
+        fetchComments(); // Add the new comment to the comments state
         setComment(""); // Clear the comment input
         setError(null); // Clear any previous error
+      }
+    } catch (error) {
+      console.error(error);
+      setError("An error occurred. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    fetchComments();
+  }, [postId]);
+
+  const fetchComments = async () => {
+    try {
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/api/comment/get-comments/${postId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message);
+      } else {
+        const validComments = data.filter(
+          (comment) => comment && comment._id && comment.content
+        );
+        setComments(validComments);
+        setComment("");
+        setError(null);
       }
     } catch (error) {
       console.error(error);
@@ -52,22 +96,26 @@ const CommentComponent = ({ postId }) => {
       {currentUser ? (
         <>
           <div className="flex items-center my-6">
-            <div>
-              <img className="h-10" src={currentUser.pictureProfile} alt="" />
+            <div className="mr-4">
+              <img
+                className="h-10 w-10 rounded-full object-cover"
+                src={currentUser.pictureProfile}
+                alt=""
+              />
             </div>
             <p className="text-sm font-medium">
               signed in as{" "}
               <span className="text-blue-500">{currentUser.email}</span>
             </p>
           </div>
-          <p className="my-4 text-xl font-medium">Comments:</p>
+
           <form onSubmit={handleSubmitComment}>
             <div className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
               <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                 <textarea
                   id="comment"
-                  onChange={(e) => setComment(e.target.value)}
-                  value={comment} // Bind the value to the comment state
+                  onChange={(e) => setComment(e.target.value)} // Bind the value to the comment state
+                  value={comment}
                   rows="4"
                   className="outline-none w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
                   placeholder="Write a comment..."
@@ -87,13 +135,24 @@ const CommentComponent = ({ postId }) => {
               </div>
             </div>
           </form>
+          <p className="my-4 text-xl font-medium">
+            Comments:{" "}
+            <span className="px-4 py-1 border">{comments.length}</span>
+          </p>
+          <div></div>
           {error && <p className="text-red-500">{error}</p>}
-          <div className="showComments">
-            {comments.map((comment, index) => (
-              <div key={index} className="comment">
-                {comment.content}
-              </div>
-            ))}
+          <div className="comments-container">
+            {comments.length === 0 ? (
+              <>
+                <h1 className="text-lg ml-4">No comments yet</h1>
+              </>
+            ) : (
+              <>
+                {comments.map((comment) => (
+                  <CommentCard key={comment._id} comment={comment} />
+                ))}
+              </>
+            )}
           </div>
         </>
       ) : (
