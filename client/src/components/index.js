@@ -13,10 +13,12 @@ import OnlyIsAdminPrivateRoute from "./private_route/OnlyIsAdminPrivateRoute";
 
 import BlogCard from "./cards/BlogCard";
 import BlogCard_1 from "./cards/BlogCard_1";
+import CommentCard from "./cards/CommentCard";
 
 export {
   PreviewComponent,
   CommentComponent,
+  CommentCard,
   FooterComponent,
   NavbarComponent,
   BlogCard,
