@@ -27,24 +27,24 @@ const CommentCard = ({ comment }) => {
   };
 
   return (
-    <div className="my-4 bg-gray-200 py-4 px-4 rounded-lg" key={comment.postId}>
-      <div className="flex items-top justify-between">
-        <div className="flex items-top">
-          <div>
-            <img
-              className="h-10 w-10 mr-2 object-cover rounded-full "
-              src={user.pictureProfile}
-              alt=""
-            />
-          </div>
-          <p className="text-sm font-medium text-blue-500">@{user.username}</p>
+    <div className="my-4 w-[80%] py-4 px-4 rounded-lg " key={comment.postId}>
+      <div className="flex items-top">
+        <div className="flex-shrink-0">
+          <img
+            className="w-10 h-10 rounded-full object-cover mr-4"
+            src={user.pictureProfile}
+            alt=""
+          />
         </div>
-        <p className="text-sm text-gray-500">
-          {moment(comment.createdAt).fromNow()}
-        </p>
-      </div>
-      <div className="flex mt-4">
-        <p className="text-sm text-gray-500">{comment.content}</p>
+        <div>
+          <p className="text-sm font-medium text-blue-500">@{user.username}</p>
+          <p className="text-xs text-gray-400">
+            {moment(comment.createdAt).fromNow()}
+          </p>
+          <div>
+            <p className="mt-3">{comment.content}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
