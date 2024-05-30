@@ -70,6 +70,9 @@ export async function loginWithEmail(req, res, next) {
         secure: true,
         sameSite: "strict",
         maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+        expires: new Date(
+          new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
+        ), // 10 years
       })
       .json({ message: "Login successfully", ...rest, token });
   } catch (error) {
@@ -96,6 +99,9 @@ export async function loginWithGoogle(req, res, next) {
           secure: true,
           sameSite: "strict",
           maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+          expires: new Date(
+            new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
+          ), // 10 years
         })
         .json({ message: "Login successfully", ...rest });
     } else {
@@ -122,6 +128,9 @@ export async function loginWithGoogle(req, res, next) {
           secure: true,
           sameSite: "strict",
           maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+          expires: new Date(
+            new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
+          ), // 10 years
         })
         .json({ message: "Login successfully", ...rest });
     }

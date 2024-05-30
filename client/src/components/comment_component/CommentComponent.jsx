@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CommentCard from "../cards/CommentCard";
 
 const CommentComponent = ({ postId }) => {
@@ -9,6 +9,8 @@ const CommentComponent = ({ postId }) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState(""); // Add a separate state for the comment input
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -50,6 +52,90 @@ const CommentComponent = ({ postId }) => {
     } catch (error) {
       console.error(error);
       setError("An error occurred. Please try again.");
+    }
+  };
+
+  const handleLike = async (commentId) => {
+    try {
+      if (!currentUser) {
+        navigate("/login");
+        return;
+      }
+
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/api/comment/like-comment/${commentId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
+        }
+      );
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error(data.message);
+      } else {
+        setComments(
+          comments.map((comment) =>
+            comment._id === commentId
+              ? {
+                  ...comment,
+                  likes: data.likes,
+                  numberOfLikes: data.likes.length,
+                }
+              : comment
+          )
+        );
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDislike = async (commentId) => {
+    try {
+      if (!currentUser) {
+        navigate("/login");
+        return;
+      }
+
+      const response = await fetch(
+        `${
+          import.meta.env.VITE_API_BASE_URL
+        }/api/comment/dislike-comment/${commentId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
+        }
+      );
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error(data.message);
+      } else {
+        setComments(
+          comments.map((comment) =>
+            comment._id === commentId
+              ? {
+                  ...comment,
+                  dislikes: data.dislikes,
+                  numberOfDislikes: data.dislikes.length,
+                }
+              : comment
+          )
+        );
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -149,7 +235,12 @@ const CommentComponent = ({ postId }) => {
             ) : (
               <>
                 {comments.map((comment) => (
-                  <CommentCard key={comment._id} comment={comment} />
+                  <CommentCard
+                    key={comment._id}
+                    comment={comment}
+                    onLike={handleLike}
+                    onDislike={handleDislike}
+                  />
                 ))}
               </>
             )}
