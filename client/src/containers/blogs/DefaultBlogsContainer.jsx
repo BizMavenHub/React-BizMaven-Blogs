@@ -1,29 +1,46 @@
 import React from "react";
 import { BlogCard, BlogCard_1 } from "../../components";
+import { useState, useEffect } from "react";
 
 const DefaultBlogsContainer = () => {
-  let blogCard = [];
-  let blogCard_1 = [];
+  const [posts, setPosts] = useState({
+    lastMonthPosts: [],
+    posts: [],
+  });
 
-  for (let i = 0; i < 10; i++) {
-    blogCard.push(
-      <BlogCard
-        img="https://beebom.com/wp-content/uploads/2024/04/cillian-murphy-peaky-blinders.jpg?resize=300%2C180&quality=75&strip=all"
-        title="Noteworthy technology acquisitions 2021"
-        desc="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-      />
-    );
-  }
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  for (let i = 0; i < 9; i++) {
-    blogCard_1.push(
-      <BlogCard_1
-        img="https://beebom.com/wp-content/uploads/2024/04/cillian-murphy-peaky-blinders.jpg?resize=300%2C180&quality=75&strip=all"
-        title="Noteworthy technology acquisitions 2021"
-        desc="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-      />
-    );
-  }
+  useEffect(() => {
+    GetPosts();
+  }, []);
+
+  const GetPosts = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post`
+      );
+
+      const data = await response.json();
+
+      console.log(data);
+
+      if (!response.ok) {
+        setError(data.message);
+        setLoading(false);
+      } else {
+        setPosts(data);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const { lastMonthPosts, posts: allPosts } = posts;
 
   return (
     <div className="blogs-container my-12">
@@ -36,7 +53,16 @@ const DefaultBlogsContainer = () => {
           Recommend Blogs Published On Our Website
         </h2>
         <div className="card-container grid grid-cols-3 gap-6">
-          {blogCard_1}
+          {lastMonthPosts.map((post) => (
+            <BlogCard_1
+              key={post._id}
+              title={post.title}
+              desc={post.desc}
+              img={post.image}
+              index={post.index}
+              slug={post.slug}
+            />
+          ))}
         </div>
       </section>
 
@@ -46,9 +72,7 @@ const DefaultBlogsContainer = () => {
         <h2 className="text-xl font-bold text-gray-900 mb-4">
           Latest Blogs Published On Our Website
         </h2>
-        <div className="card-container grid grid-cols-2 gap-6 my-6">
-          {blogCard}
-        </div>
+        <div className="card-container grid grid-cols-2 gap-6 my-6"></div>
       </section>
     </div>
   );

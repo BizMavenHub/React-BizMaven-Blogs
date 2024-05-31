@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BlogCard_1 = (props) => {
+  const navigate = useNavigate();
+
   return (
     <div
       className="max-w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -11,7 +13,7 @@ const BlogCard_1 = (props) => {
         <img className="rounded-t-lg h-auto w-full" src={props.img} alt="" />
       </Link>
       <div className="p-5">
-        <Link to="#">
+        <Link to={`/post/${props.slug}`}>
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {props.title}
           </h5>
