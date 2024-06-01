@@ -79,6 +79,36 @@ const CommentCard = ({ comment, onLike, onDislike, onDelete, onEdit }) => {
     }
   };
 
+  const handleDeleteComment = async () => {
+    if (!window.confirm("Are you sure you want to delete this comment?")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/comment/delete-comment/${
+          comment._id
+        }?userId=${currentUser._id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
+        }
+      );
+      const data = await response.json();
+      if (!response.ok) {
+        console.error(data.message);
+      } else {
+        onDelete(comment._id);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className=" w-[80%] py-2 rounded-lg " key={comment.postId}>
@@ -212,7 +242,10 @@ const CommentCard = ({ comment, onLike, onDislike, onDelete, onEdit }) => {
                           />
                         </svg>
                       </button>
-                      <button className="text-red-500 flex">
+                      <button
+                        className="text-red-500 flex"
+                        onClick={handleDeleteComment}
+                      >
                         Delete
                         <svg
                           className="w-6 h-6 text-red-500 ml-2"

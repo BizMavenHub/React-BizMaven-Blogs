@@ -143,6 +143,10 @@ const CommentComponent = ({ postId }) => {
     );
   };
 
+  const handleDeleteComment = async (commentId) => {
+    setComments(comments.filter((comment) => comment._id !== commentId));
+  };
+
   return (
     <div className="w-[55%] m-auto">
       {currentUser ? (
@@ -184,6 +188,7 @@ const CommentComponent = ({ postId }) => {
                     onLike={handleLike}
                     onDislike={handleDislike}
                     onEdit={handleEditComment}
+                    onDelete={handleDeleteComment}
                   />
                 ))}
               </>
