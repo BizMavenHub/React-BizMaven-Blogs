@@ -118,7 +118,7 @@ export const editComment = async (req, res, next) => {
       return next(errorHandler("Comment not found", 404));
     }
 
-    if (comment.userId !== req.user.id && req.user.isAdmin === false) {
+    if (comment.userId !== req.user.id && !req.user.isAdmin) {
       return next(
         errorHandler("You are not allowed to edit this comment", 403)
       );
@@ -134,7 +134,7 @@ export const editComment = async (req, res, next) => {
       return next(errorHandler("Comment not found", 404));
     }
 
-    res.status(200).json(editComment);
+    res.status(200).json(editedComment);
   } catch (error) {
     next(error);
   }

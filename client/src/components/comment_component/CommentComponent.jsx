@@ -133,6 +133,16 @@ const CommentComponent = ({ postId }) => {
     }
   };
 
+  const handleEditComment = async (commentId, editedComment) => {
+    setComments(
+      comments.map((comment) =>
+        comment._id === commentId
+          ? { ...comment, content: editedComment }
+          : comment
+      )
+    );
+  };
+
   return (
     <div className="w-[55%] m-auto">
       {currentUser ? (
@@ -173,6 +183,7 @@ const CommentComponent = ({ postId }) => {
                     comment={comment}
                     onLike={handleLike}
                     onDislike={handleDislike}
+                    onEdit={handleEditComment}
                   />
                 ))}
               </>

@@ -3,13 +3,13 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import { useSelector } from "react-redux";
 
-const CommentCard = ({ comment, onLike, onDislike }) => {
+const CommentCard = ({ comment, onLike, onDislike, onDelete, onEdit }) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [user, setUser] = useState({});
 
   const [isEditing, setIsEditing] = useState(false);
-  const [editedComment, setEditedComment] = useState(comment.comment);
+  const [editedComment, setEditedComment] = useState(comment.content);
 
   useEffect(() => {
     getUser();
@@ -38,8 +38,54 @@ const CommentCard = ({ comment, onLike, onDislike }) => {
   };
 
   const handleSaveComment = async () => {
-    // Send a PUT request to update the comment
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/comment/edit-comment/${
+          comment._id
+        }?userId=${currentUser._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
+          body: JSON.stringify({ content: editedComment }),
+        }
+      );
+
+      console.log("Response:", response);
+
+      const responseText = await response.text();
+
+      console.log("Response:", responseText);
+
+      // Check if the response is OK
+      if (!response.ok) {
+        try {
+          const errorData = JSON.parse(responseText);
+          console.log("Error:", errorData.message);
+        } catch {
+          console.log("Error: Failed to parse error response:", responseText);
+        }
+        return; // Exit the function if there's an error
+      }
+      const data = responseText ? JSON.parse(responseText) : null;
+
+      console.log("Data:", data);
+
+      if (data) {
+        onEdit(comment._id, editedComment);
+        setIsEditing(false); // Close the editing mode
+      } else {
+        console.log("No data received from the server.");
+      }
+    } catch (error) {
+      console.log("Error saving the comment:", error);
+    }
   };
+
+  console.log(editedComment);
 
   return (
     <>
