@@ -109,3 +109,33 @@ export const deleteComment = async (req, res, next) => {
     next(error);
   }
 };
+
+export const editComment = async (req, res, next) => {
+  try {
+    const comment = await Comment.findByIdAndUpdate(req.params.commentId);
+
+    if (!comment) {
+      return next(errorHandler("Comment not found", 404));
+    }
+
+    if (comment.userId !== req.user.id && req.user.isAdmin === false) {
+      return next(
+        errorHandler("You are not allowed to edit this comment", 403)
+      );
+    }
+
+    const editedComment = await Comment.findByIdAndUpdate(
+      req.params.commentId,
+      { content: req.body.content },
+      { new: true }
+    );
+
+    if (!editedComment) {
+      return next(errorHandler("Comment not found", 404));
+    }
+
+    res.status(200).json(editComment);
+  } catch (error) {
+    next(error);
+  }
+};

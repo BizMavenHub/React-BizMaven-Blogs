@@ -7,6 +7,7 @@ import {
   likeComment,
   dislikeComment,
   deleteComment,
+  editComment,
 } from "../controllers/comment.controller.js";
 
 const router = express.Router();
@@ -17,6 +18,8 @@ router.get("/get-user/:userId", getUsers);
 
 router.put("/like-comment/:commentId", verifyUser, likeComment);
 router.put("/dislike-comment/:commentId", verifyUser, dislikeComment);
+
+router.put("/edit-comment/:commentId", verifyUser, editComment);
 
 router.delete("/delete-comment/:commentId", verifyUser, deleteComment);
 

@@ -1,12 +1,15 @@
 import React from "react";
 import { BlogCard, BlogCard_1 } from "../../components";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const DefaultBlogsContainer = () => {
   const [posts, setPosts] = useState({
     lastMonthPosts: [],
     posts: [],
   });
+
+  const [showMore, setShowMore] = useState(true);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,19 +22,19 @@ const DefaultBlogsContainer = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post`
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=${9}`
       );
 
       const data = await response.json();
-
-      console.log(data);
 
       if (!response.ok) {
         setError(data.message);
         setLoading(false);
       } else {
         setPosts(data);
-        setLoading(false);
+        if (data.posts.length < 10) {
+          setShowMore(false);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -39,6 +42,8 @@ const DefaultBlogsContainer = () => {
       setLoading(false);
     }
   };
+
+  console.log(posts);
 
   const { lastMonthPosts, posts: allPosts } = posts;
 
@@ -63,6 +68,14 @@ const DefaultBlogsContainer = () => {
               slug={post.slug}
             />
           ))}
+        </div>
+        <div>
+          {showMore && (
+            <button onClick={GetPosts} className="btn btn-primary btn-sm mt-4">
+              {" "}
+              Load More
+            </button>
+          )}
         </div>
       </section>
 

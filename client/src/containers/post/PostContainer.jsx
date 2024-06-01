@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { CommentComponent } from "../../components";
 
-const PostContainer = () => {
+const PostContainer = ({ fetchComments }) => {
   const { currentUser } = useSelector((state) => state.user);
   const { slug } = useParams();
 
@@ -82,7 +82,9 @@ const PostContainer = () => {
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 ></div>
               </div>
-              <CommentComponent postId={post._id} />
+              <div>
+                <CommentComponent postId={post._id} />
+              </div>
             </>
           )}
         </>
