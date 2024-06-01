@@ -54,11 +54,7 @@ const CommentCard = ({ comment, onLike, onDislike, onDelete, onEdit }) => {
         }
       );
 
-      console.log("Response:", response);
-
       const responseText = await response.text();
-
-      console.log("Response:", responseText);
 
       // Check if the response is OK
       if (!response.ok) {
@@ -72,8 +68,6 @@ const CommentCard = ({ comment, onLike, onDislike, onDelete, onEdit }) => {
       }
       const data = responseText ? JSON.parse(responseText) : null;
 
-      console.log("Data:", data);
-
       if (data) {
         onEdit(comment._id, editedComment);
         setIsEditing(false); // Close the editing mode
@@ -84,8 +78,6 @@ const CommentCard = ({ comment, onLike, onDislike, onDelete, onEdit }) => {
       console.log("Error saving the comment:", error);
     }
   };
-
-  console.log(editedComment);
 
   return (
     <>
