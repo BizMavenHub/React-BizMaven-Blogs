@@ -18,10 +18,6 @@ const DefaultBlogsContainer = () => {
     GetPosts();
   }, []);
 
-  const handleShowMore = () => {
-    setShowMore(!showMore);
-  };
-
   const GetPosts = async () => {
     setLoading(true);
     try {
@@ -94,6 +90,7 @@ const DefaultBlogsContainer = () => {
               index={post.index}
               slug={post.slug}
               category={post.category}
+              date={post.createdAt}
             />
           ))}
         </div>
@@ -119,15 +116,19 @@ const DefaultBlogsContainer = () => {
           Latest Blogs Published On Our Website
         </h2>
         <div className="card-container grid grid-cols-2 gap-6 my-6">
-          {lastMonthPosts.map((post) => {
+          {lastMonthPosts.map((post, index) => {
             return (
-              <BlogCard
-                id={post._id}
-                title={post.title}
-                image={post.image}
-                category={post.category}
-                slug={post.slug}
-              />
+              <>
+                {index < 12 && (
+                  <BlogCard
+                    id={post._id}
+                    title={post.title}
+                    image={post.image}
+                    category={post.category}
+                    slug={post.slug}
+                  />
+                )}
+              </>
             );
           })}
         </div>

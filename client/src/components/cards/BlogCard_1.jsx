@@ -16,11 +16,14 @@ const BlogCard_1 = (props) => {
           alt=""
         />
       </div>
-      <div className="p-5">
+      <div className="p-4">
         <div className="mb-5 h-[100px]">
-          <div className="mb-3">
+          <div className="mb-3 flex justify-between">
             <span className=" py-1 px-4 text-white font-semibold rounded-lg bg-gray-700">
               {props.category}
+            </span>
+            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+              {new Date(props.date).toDateString()}
             </span>
           </div>
           <h3 className="mb-2  text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
