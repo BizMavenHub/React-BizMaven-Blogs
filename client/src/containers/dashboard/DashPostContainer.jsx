@@ -94,10 +94,8 @@ const DashPostContainer = () => {
       if (res.ok) {
         setPosts((prev) => [...prev, ...data.posts]);
 
-        if (data.posts.length === 0) {
+        if (data.posts.length > 2) {
           setShowMore(false);
-        } else if (data.posts.length > 2) {
-          setShowMore(true);
         }
       }
     } catch (error) {
