@@ -105,7 +105,7 @@ const CommentComponent = ({ postId }) => {
       const response = await fetch(
         `${
           import.meta.env.VITE_API_BASE_URL
-        }/api/comment/get-comments/${postId}`,
+        }/api/comment/get-comment/${postId}`,
         {
           method: "GET",
           headers: {
