@@ -68,10 +68,8 @@ const DashUsersContainer = () => {
       if (res.ok) {
         setUsersList((prev) => [...prev, ...data.users]);
 
-        if (data.users.length === 0) {
+        if (data.users.length > 2) {
           setShowMore(false);
-        } else if (data.users.length > 2) {
-          setShowMore(true);
         }
       } else {
         console.log(data.message);
