@@ -9,22 +9,25 @@ const BlogCard_1 = (props) => {
       className="max-w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
       key={props.index}
     >
-      <Link to="#">
+      <div>
         <img
-          className="rounded-t-lg h-48 w-full object-cover"
-          src={props.img}
+          className="rounded-t-lg h-60 w-full object-cover"
+          src={props.image}
           alt=""
         />
-      </Link>
+      </div>
       <div className="p-5">
-        <div>
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <div className="mb-5 h-[100px]">
+          <div className="mb-3">
+            <span className=" py-1 px-4 text-white font-semibold rounded-lg bg-gray-700">
+              {props.category}
+            </span>
+          </div>
+          <h3 className="mb-2  text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {props.title}
-          </h5>
+          </h3>
         </div>
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
-          {props.desc}
-        </p>
+
         <Link
           to={`/post/${props.slug}`}
           className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

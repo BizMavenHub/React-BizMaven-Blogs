@@ -18,11 +18,15 @@ const DefaultBlogsContainer = () => {
     GetPosts();
   }, []);
 
+  const handleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
   const GetPosts = async () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=${9}`
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=9`
       );
 
       const data = await response.json();
@@ -32,7 +36,8 @@ const DefaultBlogsContainer = () => {
         setLoading(false);
       } else {
         setPosts(data);
-        if (data.posts.length < 10) {
+        setLoading(false);
+        if (data.posts.length < 3) {
           setShowMore(false);
         }
       }
@@ -43,7 +48,30 @@ const DefaultBlogsContainer = () => {
     }
   };
 
-  console.log(posts);
+  const GetMorePosts = async () => {
+    const startIndex = posts.posts.length;
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=${
+          startIndex + 3
+        }`
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message);
+      } else {
+        setPosts({ lastMonthPosts: posts.lastMonthPosts, posts: data.posts });
+        if (data.posts.length > 3) {
+          setShowMore(false);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const { lastMonthPosts, posts: allPosts } = posts;
 
@@ -58,23 +86,28 @@ const DefaultBlogsContainer = () => {
           Recommend Blogs Published On Our Website
         </h2>
         <div className="card-container grid grid-cols-3 gap-6">
-          {lastMonthPosts.map((post) => (
+          {allPosts.map((post) => (
             <BlogCard_1
               key={post._id}
               title={post.title}
-              desc={post.desc}
-              img={post.image}
+              image={post.image}
               index={post.index}
               slug={post.slug}
+              category={post.category}
             />
           ))}
         </div>
         <div>
           {showMore && (
-            <button onClick={GetPosts} className="btn btn-primary btn-sm mt-4">
-              {" "}
-              Load More
-            </button>
+            <div className="flex justify-center">
+              <button
+                onClick={GetMorePosts}
+                className="btn btn-primary btn-sm mt-4 bg-blue-500 text-white font-semibold px-4 py-3 rounded-lg"
+              >
+                {" "}
+                Load More
+              </button>
+            </div>
           )}
         </div>
       </section>
@@ -85,7 +118,19 @@ const DefaultBlogsContainer = () => {
         <h2 className="text-xl font-bold text-gray-900 mb-4">
           Latest Blogs Published On Our Website
         </h2>
-        <div className="card-container grid grid-cols-2 gap-6 my-6"></div>
+        <div className="card-container grid grid-cols-2 gap-6 my-6">
+          {lastMonthPosts.map((post) => {
+            return (
+              <BlogCard
+                id={post._id}
+                title={post.title}
+                image={post.image}
+                category={post.category}
+                slug={post.slug}
+              />
+            );
+          })}
+        </div>
       </section>
     </div>
   );
