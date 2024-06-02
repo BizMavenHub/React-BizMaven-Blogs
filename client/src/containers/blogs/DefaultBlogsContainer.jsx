@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const DefaultBlogsContainer = () => {
+  const { currentUser } = useSelector((state) => state.user);
+
   const [posts, setPosts] = useState({
     lastMonthPosts: [],
     posts: [],

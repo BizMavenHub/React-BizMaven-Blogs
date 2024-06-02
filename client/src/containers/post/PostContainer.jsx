@@ -17,8 +17,11 @@ const PostContainer = ({ fetchComments }) => {
 
   useEffect(() => {
     fetchPost();
+  }, [slug]);
+
+  useEffect(() => {
     fetchRecentPosts();
-  }, []);
+  }, [posts]);
 
   const fetchPost = async () => {
     try {
@@ -127,21 +130,17 @@ const PostContainer = ({ fetchComments }) => {
       <div className="w-[75%] m-auto">
         <h1 className="text-5xl font-bold text-center my-10">Recent Posts</h1>
         <div className="grid grid-cols-3 gap-4">
-          {recentPosts.map(
-            (post) => (
-              console.log(post),
-              (
-                <Fragment key={post._id}>
-                  <BlogCard_1
-                    title={post.title}
-                    image={post.image}
-                    category={post.category}
-                    slug={post.slug}
-                  />
-                </Fragment>
-              )
-            )
-          )}
+          {recentPosts.map((post) => (
+            <Fragment key={post._id}>
+              <BlogCard_1
+                title={post.title}
+                image={post.image}
+                category={post.category}
+                slug={post.slug}
+                date={post.createdAt}
+              />
+            </Fragment>
+          ))}
         </div>
       </div>
     </div>

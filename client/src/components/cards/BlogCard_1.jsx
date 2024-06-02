@@ -1,9 +1,7 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 const BlogCard_1 = (props) => {
-  const navigate = useNavigate();
-
   return (
     <div
       className="max-w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
@@ -17,23 +15,24 @@ const BlogCard_1 = (props) => {
         />
       </div>
       <div className="p-4">
-        <div className="mb-5 h-[100px]">
-          <div className="mb-3 flex justify-between">
-            <span className=" py-1 px-4 text-white font-semibold rounded-lg bg-gray-700">
+        <div className="mb-2 min-h-[100px]">
+          <div className="mb-1 flex justify-between">
+            <span className=" inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
               {props.category}
             </span>
             <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
               {new Date(props.date).toDateString()}
             </span>
           </div>
-          <h3 className="mb-2  text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {props.title}
           </h3>
         </div>
 
         <Link
           to={`/post/${props.slug}`}
-          className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          onClick={() => redirect(`/post/${props.slug}`)}
+          className="mt-4 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Read more
           <svg
