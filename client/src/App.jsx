@@ -5,13 +5,7 @@ import {
   OnlyIsAdminPrivateRoute,
 } from "./components/index";
 
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useNavigate,
-  redirect,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import Cookies from "js-cookie";
