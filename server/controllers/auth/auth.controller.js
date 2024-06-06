@@ -94,6 +94,7 @@ export async function loginWithGoogle(req, res, next) {
 
       res
         .status(200)
+        .setHeader("Access-Control-Allow-Credentials", true)
         .cookie("access_token", token, {
           httpOnly: true,
           secure: true,
@@ -118,11 +119,15 @@ export async function loginWithGoogle(req, res, next) {
         pictureProfile: google_photo_url,
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const token = jwt.sign(
+        { id: newUser._id, isAdmin: newUser.isAdmin },
+        process.env.JWT_SECRET
+      );
       const { password, ...rest } = newUser._doc;
 
       res
         .status(200)
+        .setHeader("Access-Control-Allow-Credentials", true)
         .cookie("access_token", token, {
           httpOnly: true,
           secure: true,
