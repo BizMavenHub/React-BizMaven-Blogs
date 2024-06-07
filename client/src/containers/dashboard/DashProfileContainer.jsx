@@ -251,11 +251,8 @@ const DashProfileContainer = () => {
           Update Profile
         </h1>
         <form onSubmit={handleSubmit} className="w-[40%] m-auto mt-2">
-          <div class="mb-3">
-            <label
-              for="default-input"
-              class="block mb-2 text-sm font-medium text-gray-900"
-            >
+          <div className="mb-3">
+            <label className="block mb-2 text-sm font-medium text-gray-900">
               Username
             </label>
             <input
@@ -264,14 +261,11 @@ const DashProfileContainer = () => {
               onChange={handleChange}
               type="text"
               id="default-input"
-              class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />
           </div>
-          <div class="mb-3">
-            <label
-              for="default-input"
-              class="block mb-2 text-sm font-medium text-gray-900"
-            >
+          <div className="mb-3">
+            <label className="block mb-2 text-sm font-medium text-gray-900">
               Email
             </label>
             <input
@@ -280,27 +274,24 @@ const DashProfileContainer = () => {
               onChange={handleChange}
               type="text"
               id="default-input"
-              class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />
           </div>
-          <div class="mb-3">
-            <label
-              for="default-input"
-              class="block mb-2 text-sm font-medium text-gray-900"
-            >
+          <div className="mb-3">
+            <label className="block mb-2 text-sm font-medium text-gray-900">
               Password
             </label>
             <input
               type="text"
               id="default-input"
-              class="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             />
           </div>
-          <div class="mt-6">
+          <div className="mt-6">
             <button
               type="submit"
               id="default-input"
-              class="bg-indigo-500 border
+              className="bg-indigo-500 border
               border-gray-300 text-white text-[11pt] rounded-lg font-semibold
               focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 
               "

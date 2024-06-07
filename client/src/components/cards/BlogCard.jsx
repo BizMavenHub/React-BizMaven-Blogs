@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 const BlogCard = (props) => {
   return (
-    <div className="card w-full" key={props.id}>
+    <div className="card w-full">
       <Link
         to={`/post/${props.slug}`}
         className="flex items-top justify-start bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"

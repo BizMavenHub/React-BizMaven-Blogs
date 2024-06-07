@@ -1,12 +1,9 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link, redirect } from "react-router-dom";
 
 const BlogCard_1 = (props) => {
   return (
-    <div
-      className="max-w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
-      key={props.index}
-    >
+    <div className="max-w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div>
         <img
           className="rounded-t-lg h-60 w-full object-cover"
@@ -42,13 +39,7 @@ const BlogCard_1 = (props) => {
             fill="none"
             viewBox="0 0 14 10"
           >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M1 5h12m0 0L9 1m4 4L9 9"
-            />
+            <path stroke="currentColor" d="M1 5h12m0 0L9 1m4 4L9 9" />
           </svg>
         </Link>
       </div>

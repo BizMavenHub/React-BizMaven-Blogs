@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { BlogCard, BlogCard_1 } from "../../components";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -84,12 +84,12 @@ const DefaultBlogsContainer = () => {
           Recommend Blogs Published On Our Website
         </h2>
         <div className="card-container grid grid-cols-3 gap-6">
-          {allPosts.map((post) => (
+          {allPosts.map((post, index) => (
             <BlogCard_1
-              key={post._id}
+              key={index}
+              id={post._id}
               title={post.title}
               image={post.image}
-              index={post.index}
               slug={post.slug}
               category={post.category}
               date={post.createdAt}
@@ -120,9 +120,10 @@ const DefaultBlogsContainer = () => {
         <div className="card-container grid grid-cols-2 gap-6 my-6">
           {lastMonthPosts.map((post, index) => {
             return (
-              <>
+              <div key={index}>
                 {index < 12 && (
                   <BlogCard
+                    key={index}
                     id={post._id}
                     title={post.title}
                     image={post.image}
@@ -130,7 +131,7 @@ const DefaultBlogsContainer = () => {
                     slug={post.slug}
                   />
                 )}
-              </>
+              </div>
             );
           })}
         </div>
