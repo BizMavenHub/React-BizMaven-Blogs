@@ -267,8 +267,8 @@ const DashOverviewContainer = () => {
 
         {/* Section 2 - Charts */}
       </div>
-      <div className="mt-12 flex justify-between items-start">
-        <div className="bg-gray-800 p-6 w-full rounded-xl mx-16">
+      <div className="mt-12 flex justify-between items-start gap-12">
+        <div className="bg-gray-800 p-6 w-2/3 rounded-xl ml-16">
           <div className="flex justify-between items-center">
             <h2 className="text-gray-400 text-2xl font-light">Recent Users</h2>
             <div>
@@ -314,7 +314,7 @@ const DashOverviewContainer = () => {
             </ul>
           </div>
         </div>
-        <div className="bg-gray-800 p-6 w-full rounded-xl mx-16">
+        <div className="bg-gray-800 p-6 w-full rounded-xl mr-16">
           <div className="flex justify-between items-center">
             <h2 className="text-gray-400 text-2xl font-light">
               Recent Comments
@@ -332,9 +332,9 @@ const DashOverviewContainer = () => {
           </div>
           <div className="my-4">
             <table>
-              <thead className="text-white p-4 text-xl">
+              <thead className="text-white p-4 text-[16pt] font-light font-inter">
                 <tr>
-                  <th className="px-6 py-3">Comment</th>
+                  <th className="px-6 py-3 text-left">Comment Content</th>
                   <th className="px-6 py-3">Created</th>
                   <th className="px-6 py-3">Likes</th>
                   <th className="px-6 py-3">Dislike</th>
@@ -343,8 +343,8 @@ const DashOverviewContainer = () => {
               <tbody className="text-white">
                 {comments.map((comment, index) => (
                   <tr key={index} className="p-4 ">
-                    <td className="px-6 py-2">{comment.content}</td>
-                    <td className="px-6 text-center">
+                    <td className="px-6 py-2 w-2/3">{comment.content}</td>
+                    <td className="px-6 w-2/3 text-center">
                       {moment(comment.createdAt).fromNow()}
                     </td>
                     <td className="text-center">{comment.numberOfLikes}</td>
