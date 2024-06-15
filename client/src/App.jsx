@@ -21,6 +21,7 @@ import {
   Post_page,
   UpdatePost_page,
   CreatePost_page,
+  SearchPage,
 } from "./pages/index";
 
 import UseAccessToken from "./components/cookie/UseAccessToken";
@@ -50,6 +51,7 @@ function AppRoutes() {
         <Route path="/feedback" element={<Feedback_page />} />
         <Route path="/contact-us" element={<Contact_page />} />
         <Route path="/blogs" element={<Blogs_page />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard_page />} />
         </Route>

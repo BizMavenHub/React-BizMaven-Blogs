@@ -14,6 +14,8 @@ import DashCommentContainer from "./dashboard/DashCommentContainer";
 import DashOverviewContainer from "./dashboard/DashOverviewContainer";
 import DashUsersContainer from "./dashboard/DashUsersContainer";
 
+import SearchContainer from "./search/SearchContainer";
+
 export {
   HomepageContainer,
   About_us_Container,
@@ -28,4 +30,5 @@ export {
   DashCommentContainer,
   DashOverviewContainer,
   DashUsersContainer,
+  SearchContainer,
 };
