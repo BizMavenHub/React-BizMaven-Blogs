@@ -74,7 +74,7 @@ const NavbarComponent = () => {
                 className="h-8"
                 alt="Flowbite Logo"
               />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">
                 Btye Tech Community
               </span>
             </Link>
@@ -102,7 +102,7 @@ const NavbarComponent = () => {
               {currentUser.isAdmin && (
                 <button
                   onClick={() => (window.location.href = "/create-post")}
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm h-[40px] w-[120px] dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                  className="ml-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm h-[40px] w-[120px] dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                   Create Post
                 </button>
@@ -213,7 +213,9 @@ const NavbarComponent = () => {
                 className="h-8"
                 alt="Flowbite Logo"
               />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
+              <span className="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">
+                Byte Tech Community
+              </span>
             </Link>
 
             {/* Navbar links */}
