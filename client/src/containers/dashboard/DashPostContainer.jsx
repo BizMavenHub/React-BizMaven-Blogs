@@ -8,7 +8,7 @@ const DashPostContainer = () => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [posts, setPosts] = useState([]);
-  const [showMore, setShowMore] = useState(true);
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     if (currentUser.isAdmin) {
@@ -29,8 +29,9 @@ const DashPostContainer = () => {
       const data = await response.json();
       if (response.ok) {
         setPosts(data.posts);
-        if (data.posts.length < 10) {
-          setShowMore(false);
+        console.log(data.posts.length);
+        if (data.posts.length > 10) {
+          setShowMore(true);
         }
       }
     } catch (error) {
@@ -94,7 +95,9 @@ const DashPostContainer = () => {
       if (res.ok) {
         setPosts((prev) => [...prev, ...data.posts]);
 
-        if (data.posts.length > 2) {
+        console.log(data.posts.length);
+
+        if (data.posts.length > 0) {
           setShowMore(false);
         }
       }
