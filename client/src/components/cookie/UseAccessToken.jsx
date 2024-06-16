@@ -21,7 +21,6 @@ const UseAccessToken = () => {
       }
 
       localStorage.clear();
-      navigate("/login");
     }
   }, [navigate]);
 
