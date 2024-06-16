@@ -3,10 +3,10 @@ import React from "react";
 const Contact_Container_ = () => {
   return (
     <div className="Contact_Container_ desktop:w-[1300px] w-[90%] m-auto">
-      <h1 className="text-6xl text-center font-semibold my-12 text-[#FBDF07]">
+      <h1 className="text-6xl text-center font-semibold my-12 text-blue-500">
         Contact us
       </h1>
-      <div className="paragraph_container text-white mb-20 text-2xl tracking-wide mobile:text-lg">
+      <div className="paragraph_container text-black mb-20 text-xl tracking-wide mobile:text-lg ">
         <section className="mb-4 tracking-wide">
           In the digital age, where virtual interactions often dominate our
           daily lives, the importance of genuine connections cannot be
