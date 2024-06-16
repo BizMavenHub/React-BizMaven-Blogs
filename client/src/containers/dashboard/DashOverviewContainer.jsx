@@ -46,8 +46,8 @@ const DashOverviewContainer = () => {
 
       if (response.ok) {
         setUsers(data.users);
-        setTotalUsers(data.users.length);
-        setLastMonthUsers(data.users.length);
+        setTotalUsers(data.totalUsers);
+        setLastMonthUsers(data.lastMonthUsers.length);
       }
     } catch (error) {
       console.log(error);
@@ -74,8 +74,8 @@ const DashOverviewContainer = () => {
 
       if (response.ok) {
         setPosts(data.posts);
-        setTotalPosts(data.posts.length);
-        setLastMonthPosts(data.posts.length);
+        setTotalPosts(data.totalPosts);
+        setLastMonthPosts(data.lastMonthPosts.length);
       }
     } catch (error) {
       console.log(error);
@@ -102,8 +102,8 @@ const DashOverviewContainer = () => {
 
       if (response.ok) {
         setComments(data.comments);
-        setTotalComments(data.comments.length);
-        setLastMonthComments(data.comments.length);
+        setTotalComments(data.totalComments);
+        setLastMonthComments(data.lastMonthComments);
       }
     } catch (error) {
       console.log(error);
@@ -113,7 +113,7 @@ const DashOverviewContainer = () => {
   return (
     <div className="mx-10">
       {/* Total Block */}
-      <div className="total-block-container grid grid-cols-3 gap-x-[5rem] mt-12">
+      <div className="total-block-container grid grid-cols-3 gap-x-[5rem] mt-16">
         <section>
           <div className="total-user-block bg-gray-800 p-4 h-min-[200px] rounded-xl">
             <div className="flex justify-between items-center">
@@ -348,7 +348,7 @@ const DashOverviewContainer = () => {
                       {moment(comment.createdAt).fromNow()}
                     </td>
                     <td className="text-center">{comment.numberOfLikes}</td>
-                    <td className="text-center">{comment.numberOfLikes}</td>
+                    <td className="text-center">{comment.numberOfDislikes}</td>
                   </tr>
                 ))}
               </tbody>
