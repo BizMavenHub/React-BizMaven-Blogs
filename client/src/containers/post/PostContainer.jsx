@@ -4,20 +4,26 @@ import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
 import { CommentComponent } from "../../components";
+import { BlogCard_1 } from "../../components";
 
-const PostContainer = () => {
+const PostContainer = ({ fetchComments }) => {
   const { currentUser } = useSelector((state) => state.user);
   const { slug } = useParams();
 
   const [posts, setPosts] = useState([]);
+  const [recentPosts, setRecentPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchPosts();
-  }, []);
+    fetchPost();
+  }, [slug]);
 
-  const fetchPosts = async () => {
+  useEffect(() => {
+    fetchRecentPosts();
+  }, [posts]);
+
+  const fetchPost = async () => {
     try {
       setLoading(true);
       const response = await fetch(
@@ -42,6 +48,37 @@ const PostContainer = () => {
       if (response.ok) {
         setLoading(false);
         setPosts(data.posts);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchRecentPosts = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=3`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setLoading(false);
+        setError(data.message);
+      }
+
+      if (response.ok) {
+        setLoading(false);
+        setRecentPosts(data.posts);
       }
     } catch (error) {
       console.log(error);
@@ -82,11 +119,30 @@ const PostContainer = () => {
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 ></div>
               </div>
-              <CommentComponent postId={post._id} />
+              <div>
+                <CommentComponent postId={post._id} />
+              </div>
             </>
           )}
         </>
       ))}
+
+      <div className="w-[75%] m-auto">
+        <h1 className="text-5xl font-bold text-center my-10">Recent Posts</h1>
+        <div className="grid grid-cols-3 gap-4">
+          {recentPosts.map((post) => (
+            <Fragment key={post._id}>
+              <BlogCard_1
+                title={post.title}
+                image={post.image}
+                category={post.category}
+                slug={post.slug}
+                date={post.createdAt}
+              />
+            </Fragment>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 // Import Routes
 import userRoute from "./routes/user.route.js";
@@ -11,6 +12,8 @@ import postRoute from "./routes/post.route.js";
 import commentRoute from "./routes/comment.route.js";
 
 dotenv.config();
+
+const __dirname = path.resolve();
 
 const app = express();
 
@@ -36,6 +39,8 @@ app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
 app.use("/api/comment", commentRoute);
 
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
 // Error handling middleware
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
@@ -50,6 +55,10 @@ app.use((err, req, res, next) => {
 
 app.get("/", (req, res) => {
   res.send("hello world");
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 });
 
 // Connect to the database

@@ -174,28 +174,28 @@ const UpdatePostContainer = () => {
           onChange={(e) =>
             setDataForm({ ...dataForm, category: e.target.value })
           }
-          value={dataForm.category}
+          value={dataForm.category || "uncategorized"}
           className="w-[30%] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
-          <option value="Category">Select a categories</option>
-          <option value="Art">Art</option>
-          <option value="Books">Books</option>
-          <option value="Business">Business</option>
-          <option value="Code">Code</option>
-          <option value="Education">Education</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Fashion">Fashion</option>
-          <option value="Food">Food</option>
-          <option value="Gaming">Gaming</option>
-          <option value="Health">Health</option>
-          <option value="Movie">Movie</option>
-          <option value="Music">Music</option>
-          <option value="Pets">Pets</option>
-          <option value="Science">Science</option>
-          <option value="Sports">Sports</option>
-          <option value="Technology">Technology</option>
-          <option value="Travel">Travel</option>
-          <option value="Other">Other</option>
+          <option value="uncategory">Select a categories</option>
+          <option value="art">Art</option>
+          <option value="books">Books</option>
+          <option value="business">Business</option>
+          <option value="code">Code</option>
+          <option value="education">Education</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="fashion">Fashion</option>
+          <option value="food">Food</option>
+          <option value="gaming">Gaming</option>
+          <option value="health">Health</option>
+          <option value="movie">Movie</option>
+          <option value="music">Music</option>
+          <option value="pets">Pets</option>
+          <option value="science">Science</option>
+          <option value="sports">Sports</option>
+          <option value="technology">Technology</option>
+          <option value="travel">Travel</option>
+          <option value="other">Other</option>
         </select>
       </div>
       <div className="flex justify-center items-center border border-dashed border-gray-700 p-4 gap-3 rounded-lg">

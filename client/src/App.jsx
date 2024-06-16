@@ -1,11 +1,12 @@
+import React, { useState, useEffect } from "react";
+
 import {
   NavbarComponent,
   FooterComponent,
   PrivateRoute,
   OnlyIsAdminPrivateRoute,
 } from "./components/index";
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Ensure BrowserRouter is imported as Router
 
 import {
   Homepage,
@@ -20,38 +21,63 @@ import {
   Post_page,
   UpdatePost_page,
   CreatePost_page,
+  SearchPage,
 } from "./pages/index";
+
+import UseAccessToken from "./components/cookie/UseAccessToken";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className=" min-h-[100vh]">
+    <Router>
+      <div className="min-h-[100vh]">
         <NavbarComponent />
+        <AppRoutes />
+        <FooterComponent />
+      </div>
+    </Router>
+  );
+}
+
+function AppRoutes() {
+  const hasAccessToken = UseAccessToken();
+
+  return (
+    <>
+      {hasAccessToken && (
         <Routes>
-          <Route path="/" exact element={<Homepage />} />
+          <Route path="/" element={<Homepage />} />
           <Route path="/sign-up" element={<SignUp_page />} />
           <Route path="/login" element={<Login_page />} />
           <Route path="/about-us" element={<About_us_page />} />
           <Route path="/feedback" element={<Feedback_page />} />
           <Route path="/contact-us" element={<Contact_page />} />
           <Route path="/blogs" element={<Blogs_page />} />
-
+          <Route path="/search" element={<SearchPage />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard_page />} />
           </Route>
-
           <Route element={<OnlyIsAdminPrivateRoute />}>
             <Route path="/create-post" element={<CreatePost_page />} />
             <Route path="/update-post/:postId" element={<UpdatePost_page />} />
           </Route>
-
           <Route path="/post/:slug" element={<Post_page />} />
-
           <Route path="*" element={<NotFound_page />} />
         </Routes>
-        <FooterComponent />
-      </div>
-    </BrowserRouter>
+      )}
+
+      {!hasAccessToken && (
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/sign-up" element={<SignUp_page />} />
+          <Route path="/login" element={<Login_page />} />
+          <Route path="/about-us" element={<About_us_page />} />
+          <Route path="/feedback" element={<Feedback_page />} />
+          <Route path="/contact-us" element={<Contact_page />} />
+          <Route path="/blogs" element={<Blogs_page />} />
+          <Route path="*" element={<NotFound_page />} />
+        </Routes>
+      )}
+    </>
   );
 }
 

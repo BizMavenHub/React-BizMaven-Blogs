@@ -1,30 +1,77 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { BlogCard, BlogCard_1 } from "../../components";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const DefaultBlogsContainer = () => {
-  let blogCard = [];
-  let blogCard_1 = [];
+  const { currentUser } = useSelector((state) => state.user);
 
-  for (let i = 0; i < 10; i++) {
-    blogCard.push(
-      <BlogCard
-        img="https://beebom.com/wp-content/uploads/2024/04/cillian-murphy-peaky-blinders.jpg?resize=300%2C180&quality=75&strip=all"
-        title="Noteworthy technology acquisitions 2021"
-        desc="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-      />
-    );
-  }
+  const [posts, setPosts] = useState({
+    lastMonthPosts: [],
+    posts: [],
+  });
 
-  for (let i = 0; i < 9; i++) {
-    blogCard_1.push(
-      <BlogCard_1
-        img="https://beebom.com/wp-content/uploads/2024/04/cillian-murphy-peaky-blinders.jpg?resize=300%2C180&quality=75&strip=all"
-        title="Noteworthy technology acquisitions 2021"
-        desc="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-      />
-    );
-  }
+  const [showMore, setShowMore] = useState(true);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    GetPosts();
+  }, []);
+
+  const GetPosts = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=9`
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message);
+        setLoading(false);
+      } else {
+        setPosts(data);
+        setLoading(false);
+        if (data.posts.length < 3) {
+          setShowMore(false);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const GetMorePosts = async () => {
+    const startIndex = posts.posts.length;
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=${
+          startIndex + 3
+        }`
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message);
+      } else {
+        setPosts({ lastMonthPosts: posts.lastMonthPosts, posts: data.posts });
+        if (data.posts.length > 3) {
+          setShowMore(false);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const { lastMonthPosts, posts: allPosts } = posts;
 
   return (
     <div className="blogs-container my-12">
@@ -37,7 +84,30 @@ const DefaultBlogsContainer = () => {
           Recommend Blogs Published On Our Website
         </h2>
         <div className="card-container grid grid-cols-3 gap-6">
-          {blogCard_1}
+          {allPosts.map((post, index) => (
+            <BlogCard_1
+              key={index}
+              id={post._id}
+              title={post.title}
+              image={post.image}
+              slug={post.slug}
+              category={post.category}
+              date={post.createdAt}
+            />
+          ))}
+        </div>
+        <div>
+          {showMore && (
+            <div className="flex justify-center">
+              <button
+                onClick={GetMorePosts}
+                className="btn btn-primary btn-sm mt-4 bg-blue-500 text-white font-semibold px-4 py-3 rounded-lg"
+              >
+                {" "}
+                Load More
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -48,7 +118,22 @@ const DefaultBlogsContainer = () => {
           Latest Blogs Published On Our Website
         </h2>
         <div className="card-container grid grid-cols-2 gap-6 my-6">
-          {blogCard}
+          {lastMonthPosts.map((post, index) => {
+            return (
+              <div key={index}>
+                {index < 12 && (
+                  <BlogCard
+                    key={index}
+                    id={post._id}
+                    title={post.title}
+                    image={post.image}
+                    category={post.category}
+                    slug={post.slug}
+                  />
+                )}
+              </div>
+            );
+          })}
         </div>
       </section>
     </div>

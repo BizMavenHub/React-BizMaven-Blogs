@@ -1,20 +1,14 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { logoutSuccess } from "../../redux/user/userSlice";
 
 const NavbarComponent = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const [showNavLinks, setShowNavLinks] = useState(false);
-  const { currentUser } = useSelector((state) => state.user);
-
   const mobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 767px)",
   });
@@ -27,6 +21,23 @@ const NavbarComponent = () => {
   const desktop = useMediaQuery({
     query: "(min-width: 1536px) and (max-width: 5000px)",
   });
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [showNavLinks, setShowNavLinks] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
 
   const handleShowNavLinks = () => {
     if (showNavLinks) {
@@ -60,28 +71,105 @@ const NavbarComponent = () => {
     } catch (error) {}
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("searchTerm", searchTerm);
+    urlParams.delete("sort");
+    urlParams.delete("category");
+
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
+
   return (
     <>
       {currentUser ? (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
-          <div className="max-w-screen flex items-center justify-between mx-auto p-2">
-            <Link
-              to="/"
-              class="flex items-center space-x-3 rtl:space-x-reverse"
-            >
-              <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="h-8"
-                alt="Flowbite Logo"
-              />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">
-                Btye Tech Community
-              </span>
-            </Link>
-            <div className="flex items-center order-2">
+          <div className="max-w-screen flex items-center justify-between mx-auto p-2 px-12">
+            <div>
+              <Link
+                to="/"
+                className="flex items-center space-x-3 rtl:space-x-reverse"
+              >
+                <img
+                  src="https://flowbite.com/docs/images/logo.svg"
+                  className="h-8"
+                  alt="Flowbite Logo"
+                />
+                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                  Btye Tech Community
+                </span>
+              </Link>
+            </div>
+
+            <div className="flex items-center">
+              <div
+                className=" items-center justify-end w-full md:flex md:w-auto md:order-1 mr-8"
+                id="navbar-cta"
+              >
+                <ul className="flex font-medium p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
+                  <li>
+                    <Link
+                      onClick={() => {
+                        window.location.href = "/blogs";
+                      }}
+                      className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      aria-current="page"
+                    >
+                      Blogs
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      onClick={() => {
+                        window.location.href = "/about-us";
+                      }}
+                      className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      onClick={() => {
+                        window.location.href = "/contact-us";
+                      }}
+                      className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      onClick={() => {
+                        window.location.href = "/feedback";
+                      }}
+                      className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    >
+                      Feedback
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="flex items-center">
+              <div className="flex items-center justify-center mx-4">
+                <form action="" onSubmit={handleSearch}>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="p-2 w-[350px] rounded outline-none"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </form>
+              </div>
+
               <button
                 type="button"
-                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 mx-4"
                 id="user-menu-button"
                 aria-expanded="false"
                 data-dropdown-toggle="user-dropdown"
@@ -89,7 +177,7 @@ const NavbarComponent = () => {
                 onClick={handleShowNavLinks}
               >
                 <img
-                  className="w-14 h-10 rounded-full object-cover"
+                  className="w-10 h-10 rounded-full object-cover "
                   src={
                     currentUser.pictureProfile
                       ? currentUser.pictureProfile
@@ -102,7 +190,7 @@ const NavbarComponent = () => {
               {currentUser.isAdmin && (
                 <button
                   onClick={() => (window.location.href = "/create-post")}
-                  className="ml-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm h-[40px] w-[120px] dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                  className="text-white ml-4   bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm h-[40px] w-[120px] dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                 >
                   Create Post
                 </button>
@@ -111,7 +199,7 @@ const NavbarComponent = () => {
               {/* <!-- Dropdown menu --> */}
               {showNavLinks && (
                 <div
-                  className="absolute z-10 top-12 right-0 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                  className="absolute z-10 top-12 right-10 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                   id="user-dropdown"
                 >
                   <div className="px-4 py-3">
@@ -157,45 +245,6 @@ const NavbarComponent = () => {
                 </div>
               )}
             </div>
-
-            <div
-              className=" items-center justify-end w-full md:flex md:w-auto md:order-1 mr-8"
-              id="navbar-cta"
-            >
-              <ul className="flex font-medium p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                  <Link
-                    onClick={() => {
-                      window.location.href = "/blogs";
-                    }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                    aria-current="page"
-                  >
-                    Blogs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => {
-                      window.location.href = "/about-us";
-                    }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => {
-                      window.location.href = "/contact-us";
-                    }}
-                    className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
           </div>
         </nav>
       ) : (
@@ -230,9 +279,18 @@ const NavbarComponent = () => {
                       window.location.href = "/";
                     }}
                     className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                    aria-current="page"
                   >
                     Home
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    onClick={() => {
+                      window.location.href = "/blogs";
+                    }}
+                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  >
+                    Blogs
                   </Link>
                 </li>
                 <li>

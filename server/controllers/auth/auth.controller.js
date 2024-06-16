@@ -66,12 +66,12 @@ export async function loginWithEmail(req, res, next) {
       .status(200)
       .setHeader("Access-Control-Allow-Credentials", true)
       .cookie("access_token", token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "strict",
         maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+        expires: new Date(
+          new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
+        ), // 10 years
       })
-      .json({ message: "Login successfully", ...rest, token });
+      .json({ message: "Login successfully", ...rest });
   } catch (error) {
     next(error);
   }
@@ -91,11 +91,12 @@ export async function loginWithGoogle(req, res, next) {
 
       res
         .status(200)
+        .setHeader("Access-Control-Allow-Credentials", true)
         .cookie("access_token", token, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "strict",
           maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+          expires: new Date(
+            new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
+          ), // 10 years
         })
         .json({ message: "Login successfully", ...rest });
     } else {
@@ -112,16 +113,20 @@ export async function loginWithGoogle(req, res, next) {
         pictureProfile: google_photo_url,
       });
       await newUser.save();
-      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+      const token = jwt.sign(
+        { id: newUser._id, isAdmin: newUser.isAdmin },
+        process.env.JWT_SECRET
+      );
       const { password, ...rest } = newUser._doc;
 
       res
         .status(200)
+        .setHeader("Access-Control-Allow-Credentials", true)
         .cookie("access_token", token, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "strict",
           maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
+          expires: new Date(
+            new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
+          ), // 10 years
         })
         .json({ message: "Login successfully", ...rest });
     }

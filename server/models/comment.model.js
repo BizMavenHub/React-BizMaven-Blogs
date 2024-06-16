@@ -18,6 +18,14 @@ const commentSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    dislikes: {
+      type: Array,
+      default: [],
+    },
+    numberOfDislikes: {
+      type: Number,
+      default: 0,
+    },
     numberOfLikes: {
       type: Number,
       default: 0,

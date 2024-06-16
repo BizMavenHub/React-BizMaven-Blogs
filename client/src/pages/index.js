@@ -11,6 +11,8 @@ import CreatePost_page from "./create-post/CreatePost_page";
 import UpdatePost_page from "./update-post/UpdatePost_page";
 import Post_page from "./post/Post_page";
 
+import SearchPage from "./search/SearchPage";
+
 export {
   Homepage,
   SignUp_page,
@@ -24,4 +26,5 @@ export {
   UpdatePost_page,
   Dashboard_page,
   Post_page,
+  SearchPage,
 };
