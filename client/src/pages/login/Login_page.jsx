@@ -1,12 +1,8 @@
 import React from "react";
 
-import {
-  Google_OAuth_btn,
-  Github_OAuth_btn,
-  Facebook_OAuth_btn,
-} from "../../components/oauth";
+import { Google_OAuth_btn } from "../../components/index";
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -18,8 +14,10 @@ import {
 import { useState } from "react";
 
 function Login_page() {
-  const history = useHistory();
+  const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { loading, error: errorMessage } = useSelector((state) => state.user);
 
   const [dataForm, setDataForm] = useState({});
@@ -38,22 +36,28 @@ function Login_page() {
       return dispatch(loginFailure("All fields are required"));
     }
 
+    if (dataForm.email && dataForm.password) {
+      dispatch(loginFailure(false));
+    }
+
     try {
       dispatch(loginStart());
 
-      const res = await fetch("/api/auth/login-with-email", {
+      const res = await fetch(API_URL_BASE + "/api/auth/login-with-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
+        withCredentials: true,
         body: JSON.stringify(dataForm),
       });
 
       const data = await res.json();
-      console.log(data);
 
-      if (data.success === false) {
-        return dispatch(loginFailure(data.message));
+      if (!res.ok || data.success === false) {
+        const errorMessage = data.message || "Login failed";
+        return dispatch(loginFailure(errorMessage));
       }
 
       if (data.message == "User not found") {
@@ -62,8 +66,7 @@ function Login_page() {
 
       if (res.ok) {
         dispatch(loginSuccess(data));
-        history.push("/");
-        console.log("login success");
+        navigate("/blogs");
       }
     } catch (err) {
       dispatch(loginFailure(err.message));
@@ -72,7 +75,8 @@ function Login_page() {
 
   const [showPass, setShowPass] = useState(false);
 
-  const showPassword = () => {
+  const showPassword = (e) => {
+    e.preventDefault();
     const password = document.getElementById("password");
     if (password.type === "password") {
       password.type = "text";
@@ -84,13 +88,15 @@ function Login_page() {
   };
 
   return (
-    <div className="min-h-[100vh] mt-20">
-      <h1 className="text-7xl text-white font-poppins font-semibold text-center pt-16 pb-20 mobile:pt-16 mobile:pb-16 mobile:text-4xl">
-        Hello, Welcome Back!
+    <div className="h-[100vh] mt-8 shadow-md">
+      <h1 className="text-indigo-500 font-bold text-[64pt] text-center pt-16 pb-20 mobile:pt-16 mobile:pb-16 mobile:text-4xl">
+        Welcome Back!
       </h1>
       <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%]">
-        <h1 className="text-4xl text-center font-bold mb-8">Login</h1>
-        <form action="post" onSubmit={handleSubmit}>
+        <h1 className="text-5xl text-center font-bold mb-8 text-gray-800">
+          Login
+        </h1>
+        <form action="POST" onSubmit={handleSubmit}>
           <div className="my-5">
             <input
               type="email"
@@ -98,6 +104,7 @@ function Login_page() {
               id="email"
               className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
               placeholder="Email"
+              value={dataForm.email}
               onChange={handleChange}
             />
           </div>
@@ -108,6 +115,7 @@ function Login_page() {
               id="password"
               className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
               placeholder="Password"
+              value={dataForm.password}
               onChange={handleChange}
             />
             {showPass ? (
@@ -136,7 +144,7 @@ function Login_page() {
           <div className="mt-4 mobile:mt-4 ">
             {loading ? (
               <button
-                className="w-full border p-4 rounded-lg bg-gradient-to-r from-[#F72798] to-[#EBF400] text-xl text-white font-semibold mobile:p-2"
+                className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-8 text-center mobile:p-2"
                 onSubmit={handleSubmit}
                 disabled={loading}
               >
@@ -144,7 +152,7 @@ function Login_page() {
               </button>
             ) : (
               <button
-                className="w-full border p-4 rounded-lg bg-gradient-to-r from-[#F72798] to-[#EBF400] text-xl text-white font-semibold mobile:p-2"
+                className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center mobile:p-2"
                 onSubmit={handleSubmit}
               >
                 Login
@@ -157,17 +165,14 @@ function Login_page() {
           <div className="oauth-google-btn-container">
             <Google_OAuth_btn />
           </div>
-          <div className="oauth-facebook-btn-container">
-            <Facebook_OAuth_btn />
-          </div>
-          <div className="oauth-github-btn-container">
-            <Github_OAuth_btn />
-          </div>
         </div>
         <div className="already_have_account mt-4">
-          <p className=" text-center text-lg">
+          <p className=" text-center text-lg ">
             Don't have an account?{" "}
-            <a href="/sign-up" className=" text-content-bg">
+            <a
+              href="/sign-up"
+              className=" text-content-bg hover:underline hover:underline-offset-2 text-blue-600"
+            >
               Get Started
             </a>
           </p>

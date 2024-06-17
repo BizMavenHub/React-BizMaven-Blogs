@@ -1,12 +1,14 @@
 import React from "react";
 import { useState } from "react";
-import {
-  Google_OAuth_btn,
-  Github_OAuth_btn,
-  Facebook_OAuth_btn,
-} from "../../components/oauth";
+import { Google_OAuth_btn } from "../../components/index";
+
+import { useNavigate } from "react-router-dom";
 
 function SignUp_page() {
+  const navigate = useNavigate();
+
+  const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
+
   const [dataForm, setDataForm] = useState({});
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -45,7 +47,7 @@ function SignUp_page() {
       setLoading(true);
       setErrorMessage(null);
 
-      const res = await fetch("/api/auth/register-with-email", {
+      const res = await fetch(API_URL_BASE + "/api/auth/register-with-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,6 +69,8 @@ function SignUp_page() {
       setDataForm({});
 
       setLoading(false);
+
+      navigate("/login");
     } catch (error) {
       setErrorMessage(error.message);
       setLoading(false);
@@ -75,7 +79,8 @@ function SignUp_page() {
 
   const [showPass, setShowPass] = useState(false);
 
-  const showPassword = () => {
+  const showPassword = (e) => {
+    e.preventDefault();
     const password = document.getElementById("password");
     const confirmedPassword = document.getElementById("confirmed_password");
 
@@ -91,11 +96,11 @@ function SignUp_page() {
   };
 
   return (
-    <div className="min-h-[100vh] mt-20">
-      <h1 className="text-7xl text-white font-poppins font-semibold text-center tablet:pt-20 pt-12 pb-20 mobile:pt-12 mobile:pb-12 mobile:text-4xl">
-        Hello, Welcome!
+    <div className="min-h-[100vh] mt-12 mb-12">
+      <h1 className="text-indigo-500 font-bold text-[64pt] text-center mb-8 tablet:pt-20 mobile:pt-12 mobile:pb-12 mobile:text-4xl">
+        Welcome!
       </h1>
-      <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%] mb-16">
+      <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%]">
         <h1 className="text-4xl text-center font-bold mb-8">Register</h1>
         <form action="post" onSubmit={handleSubmit}>
           <div className="my-5">
@@ -155,7 +160,7 @@ function SignUp_page() {
           </div>
 
           <div className="password-requirement">
-            <h1 className="text-xl mt-4 mb-2 ml-4 font-semibold text-navbar-footer-bg">
+            <h1 className="text-xl mt-4 mb-2 ml-4 font-semibold text-blue-500">
               Please use at least:
             </h1>
             <ul className=" list-disc ml-12 grid grid-cols-2">
@@ -173,14 +178,16 @@ function SignUp_page() {
 
           {errorMessage && (
             <div className="error-container mt-4">
-              <h1 className="text-red text-center text-lg">{errorMessage}</h1>
+              <h1 className="text-red-500 text-center text-lg">
+                {errorMessage}
+              </h1>
             </div>
           )}
 
           <div className="mt-4 ">
             {loading ? (
               <button
-                className="w-full border p-4 rounded-lg bg-gradient-to-r from-[#F72798] to-[#EBF400] text-xl text-white font-semibold mobile:p-2"
+                className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-8 text-center mobile:p-2"
                 onSubmit={handleSubmit}
                 disabled={loading}
               >
@@ -188,7 +195,7 @@ function SignUp_page() {
               </button>
             ) : (
               <button
-                className="w-full border p-4 rounded-lg bg-gradient-to-r from-[#F72798] to-[#EBF400] text-xl text-white font-semibold mobile:p-2"
+                className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center mobile:p-2"
                 onSubmit={handleSubmit}
               >
                 Register Now
@@ -197,22 +204,25 @@ function SignUp_page() {
           </div>
         </form>
 
-        <hr className="my-6" />
-        <div className="other_options flex justify-around w-full m-auto items-center mt-4">
+        <div className="flex md:justify-between justify-center items-center mt-8">
+          <div className="bg-gray-300 md:block w-full h-[1px]"></div>
+          <p className="md:mx-2 text-xl font-light text-gray-400"> Or </p>
+          <div className="bg-gray-300 md:block w-full h-[1px]"></div>
+        </div>
+
+        <div className="other_options flex justify-around w-full m-auto items-center mt-4 ">
           <div className="oauth-google-btn-container">
             <Google_OAuth_btn />
           </div>
-          <div className="oauth-facebook-btn-container">
-            <Facebook_OAuth_btn />
-          </div>
-          <div className="oauth-github-btn-container">
-            <Github_OAuth_btn />
-          </div>
         </div>
+        <hr className="my-4" />
         <div className="already_have_account mt-4">
           <p className=" text-center text-lg">
             Already have an account?{" "}
-            <a href="/login" className=" text-content-bg">
+            <a
+              href="/login"
+              className=" text-content-bg hover:underline hover:underline-offset-2 text-blue-600"
+            >
               Login
             </a>
           </p>
