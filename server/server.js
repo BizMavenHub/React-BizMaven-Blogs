@@ -39,7 +39,7 @@ app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
 app.use("/api/comment", commentRoute);
 
-app.use(express.static(path.join(__dirname, "/client/dist")));
+app.use(express.static(path.join(__dirname, "/client/build")));
 
 // Error handling middleware
 app.use((err, req, res, next) => {
