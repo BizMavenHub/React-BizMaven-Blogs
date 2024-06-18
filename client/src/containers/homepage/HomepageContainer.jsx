@@ -27,9 +27,9 @@ const HomepageContainer = () => {
               <h1 className=" text-white text-[58pt] font-medium font-roboto leading-none tracking-tight md:text-5xl lg:text-6xl">
                 Welcome to{" "}
                 <span className=" text-yellow-400 dark:text-yellow-400">
-                  Byte Tech Community
-                </span>{" "}
-                Explore the world of fascinating topics.
+                  Insight Loop
+                </span>
+                . Explore the world of fascinating topics.
               </h1>
               <p className=" w-[90%] text-white font-meduim  text-2xl tracking-[1px] font-poppins leading-tight mt-6">
                 Get ready to explore a world of diverse voices and fascinating
