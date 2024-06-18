@@ -86,7 +86,7 @@ const NavbarComponent = () => {
     <>
       {currentUser ? (
         <nav className="bg-white border-gray-200 dark:bg-gray-900">
-          <div className="max-w-screen flex items-center justify-between mx-auto p-2 px-12">
+          <div className="max-w-screen flex items-center justify-between mx-auto p-3 px-12">
             <div>
               <Link
                 to="/"
@@ -248,7 +248,7 @@ const NavbarComponent = () => {
           </div>
         </nav>
       ) : (
-        <nav className="bg-white border-gray-200 dark:bg-gray-900 py-2">
+        <nav className="bg-white border-gray-200 dark:bg-gray-900 py-3">
           <div className="flex items-center justify-between ">
             {/* Logo */}
             <Link
