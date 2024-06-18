@@ -248,14 +248,14 @@ const NavbarComponent = () => {
           </div>
         </nav>
       ) : (
-        <nav className="bg-white border-gray-200 dark:bg-gray-900">
-          <div className="max-w-screen flex items-center justify-between px-8 py-2">
+        <nav className="bg-white border-gray-200 dark:bg-gray-900 py-2">
+          <div className="flex items-center justify-between ">
             {/* Logo */}
             <Link
               onClick={() => {
                 window.location.href = "/";
               }}
-              className="flex justify-start items-center w-[428px] space-x-3"
+              className="flex justify-start items-center w-[428px] space-x-3 ml-4"
             >
               <img
                 src="https://flowbite.com/docs/images/logo.svg"
@@ -314,7 +314,7 @@ const NavbarComponent = () => {
                   </Link>
                 </li>
               </ul>
-              <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+              <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse mr-4">
                 <button
                   type="button"
                   onClick={() => {
