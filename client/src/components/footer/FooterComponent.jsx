@@ -21,7 +21,7 @@ const FooterComponent = () => {
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8 ">
         <div className="flex justify-center ">
           <Link className="text-3xl font-bold text-teal-600" to="/">
-            Btye Tech Community
+            Insight Loop
           </Link>
         </div>
 
@@ -165,7 +165,7 @@ const FooterComponent = () => {
           </li>
         </ul>
         <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 dark:text-white">
-          © 2023 BizMaven. All rights reserved.
+          © 2024 Insight Loop. All rights reserved.
         </p>
       </div>
     </footer>

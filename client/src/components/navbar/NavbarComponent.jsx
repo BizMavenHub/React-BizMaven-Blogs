@@ -98,7 +98,7 @@ const NavbarComponent = () => {
                   alt="Flowbite Logo"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Btye Tech Community
+                  Insight Loop
                 </span>
               </Link>
             </div>
@@ -263,7 +263,7 @@ const NavbarComponent = () => {
                 alt="Flowbite Logo"
               />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                BizMaven Blog
+                Insight Loop
               </span>
             </Link>
 
