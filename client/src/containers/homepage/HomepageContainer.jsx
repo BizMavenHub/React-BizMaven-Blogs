@@ -20,7 +20,7 @@ const HomepageContainer = () => {
     <div className="homepage-container mx-auto min-h-[100vh] w-full ">
       <div className="w-full mx-auto bg-blue-500">
         {/* Section 1 - Hero */}
-        <section className="h-[90vh] pt-28">
+        <section className="h-[100vh] pt-28">
           <div className="flex w-[90%] m-auto">
             <div>
               {/* Block 1 - Intro */}
@@ -43,7 +43,7 @@ const HomepageContainer = () => {
                       window.location.href = "/sign-up";
                     }}
                     relative="path"
-                    className="text-2xl text-center border-2 text-yellow-400 font-semibold font-overpass rounded-lg py-4 px-12 mobile:px-6 "
+                    className="text-2xl text-center border-2 text-yellow-400 font-semibold font-overpass rounded-lg py-4 px-12 transition duration-300 hover:text-white hover:bg-yellow-400"
                   >
                     Getting Started Now | Free
                   </Link>
@@ -441,10 +441,10 @@ const HomepageContainer = () => {
               </svg>
             </div>
           </div>
-          <div className="relative bottom-[5.2cm] z-9">
+          <div className="relative bottom-[0.2cm] z-9">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1440 320"
+              viewBox="0 110 1440 320"
               className="w-full "
             >
               <path
