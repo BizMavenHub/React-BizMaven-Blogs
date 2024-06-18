@@ -3,24 +3,16 @@ import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 const FooterComponent = () => {
-  const mobile = useMediaQuery({
-    query: "(min-width: 320px) and (max-width: 767px)",
-  });
-  const tablet = useMediaQuery({
-    query: "(min-width: 768px) and (max-width: 1279px)",
-  });
-  const laptop = useMediaQuery({
-    query: "(min-width: 1280px) and (max-width: 1535px)",
-  });
-  const desktop = useMediaQuery({
-    query: "(min-width: 1536px) and (max-width: 5000px)",
-  });
-
   return (
     <footer className="bg-gray-100 dark:bg-gray-900 ">
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8 ">
         <div className="flex justify-center ">
-          <Link className="text-3xl font-bold text-teal-600" to="/">
+          <Link className="text-3xl font-bold text-teal-600 flex" to="/">
+            <img
+              src="../src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
+              alt="Insight Loop Logo"
+              className="h-10 mr-4"
+            />
             Insight Loop
           </Link>
         </div>

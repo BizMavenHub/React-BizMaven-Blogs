@@ -9,19 +9,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutSuccess } from "../../redux/user/userSlice";
 
 const NavbarComponent = () => {
-  const mobile = useMediaQuery({
-    query: "(min-width: 320px) and (max-width: 767px)",
-  });
-  const tablet = useMediaQuery({
-    query: "(min-width: 768px) and (max-width: 1279px)",
-  });
-  const laptop = useMediaQuery({
-    query: "(min-width: 1280px) and (max-width: 1535px)",
-  });
-  const desktop = useMediaQuery({
-    query: "(min-width: 1536px) and (max-width: 5000px)",
-  });
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -93,9 +80,9 @@ const NavbarComponent = () => {
                 className="flex items-center space-x-3 rtl:space-x-reverse"
               >
                 <img
-                  src="https://flowbite.com/docs/images/logo.svg"
+                  src="../src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
                   className="h-8"
-                  alt="Flowbite Logo"
+                  alt="Insight Loop Logo"
                 />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                   Insight Loop
@@ -258,9 +245,9 @@ const NavbarComponent = () => {
               className="flex justify-start items-center w-[428px] space-x-3 ml-4"
             >
               <img
-                src="https://flowbite.com/docs/images/logo.svg"
+                src="../src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
                 className="h-8"
-                alt="Flowbite Logo"
+                alt="Insight Loop Logo"
               />
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
                 Insight Loop
