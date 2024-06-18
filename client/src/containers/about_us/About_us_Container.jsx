@@ -4,10 +4,10 @@ function About_us_Container() {
   return (
     <>
       <div className="about_us_container desktop:w-[1300px] w-[90%] m-auto">
-        <h1 className="text-6xl text-center font-semibold my-12 text-[#FBDF07]">
+        <h1 className="text-6xl text-center font-semibold my-12 text-blue-500">
           About Us
         </h1>
-        <div className="paragraph_container text-white text-2xl tracking-wide mobile:text-lg">
+        <div className="paragraph_container text-black text-xl tracking-wide mobile:text-lg">
           <section className="mb-4 tracking-wide">
             In the boundless expanse of the digital landscape, our blog stands
             as a beacon of exploration, a sanctuary for the curious soul. Here,
