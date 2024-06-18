@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 import { BlogCard } from "../../components/index.js";
 
 const HomepageContainer = () => {
+  const desktop = useMediaQuery({
+    query: "(min-width: 1280px and max-width: 1919px)",
+  });
+
   let element = [];
   for (let i = 0; i < 8; i++) {
     element.push(
@@ -17,22 +22,22 @@ const HomepageContainer = () => {
   }
 
   return (
-    <div className="homepage-container mx-auto min-h-[100vh] w-full ">
+    <div className="homepage-container h-min-screen mx-auto w-full ">
       <div className="w-full mx-auto bg-blue-500">
         {/* Section 1 - Hero */}
-        <section className="h-[100vh] pt-28">
+        <section className="pt-28">
           <div className="flex w-[90%] m-auto">
             <div>
               {/* Block 1 - Intro */}
               <div className="w-[95%] m-left-auto ">
-                <h1 className=" text-white text-[72pt] font-medium font-roboto leading-none tracking-tight md:text-5xl lg:text-6xl">
+                <h1 className=" text-white desktop:text-[55pt] text-[70pt] font-medium font-roboto leading-none tracking-tight md:text-5xl lg:text-6xl">
                   Welcome to{" "}
                   <span className=" text-yellow-400 dark:text-yellow-400">
                     Insight Loop
                   </span>
                   . Explore the world of fascinating topics.
                 </h1>
-                <p className="w-[50%] text-white font-meduim text-2xl tracking-[1px] font-poppins leading-tight mt-8">
+                <p className="w-[50%] desktop:w-[65%] text-white font-meduim text-2xl tracking-[1px] font-poppins leading-tight mt-8">
                   Get ready to explore a world of diverse voices and fascinating
                   topics. Whether you're seeking inspiration, advice, or just a
                   good read, you'll find it all here.
@@ -56,8 +61,7 @@ const HomepageContainer = () => {
                 fill="none"
                 viewBox="0 0 400 400"
                 id="Conference--Streamline-Manchester"
-                height={620}
-                width={620}
+                className="w-[650px] desktop:w-[450px]"
               >
                 <desc>
                   {
@@ -441,10 +445,10 @@ const HomepageContainer = () => {
               </svg>
             </div>
           </div>
-          <div className="relative bottom-[0.2cm] z-9">
+          <div className="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 110 1440 320"
+              viewBox="0 100 1440 220"
               className="w-full "
             >
               <path
