@@ -48,8 +48,11 @@ export default {
       tablet: { min: "768px", max: "1279px" },
       // => @media (min-width: 640px and max-width: 1279px) { ... }
 
-      desktop: { min: "1280px" },
+      desktop: { min: "1280px", max: "1919px" },
       // => @media (min-width: 1280px and max-width: 1919px ) { ... }
+
+      largeDesktop: { min: "1920px" },
+      // => @media (min-width: 1920px) { ... }
     },
     fontFamily: {
       lato: ["Lato", "sans-serif"],
