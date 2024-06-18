@@ -30,7 +30,7 @@ const HomepageContainer = () => {
             <div>
               {/* Block 1 - Intro */}
               <div className="w-[95%] m-left-auto ">
-                <h1 className=" text-white desktop:text-[55pt] text-[70pt] font-medium font-roboto leading-none tracking-tight md:text-5xl lg:text-6xl">
+                <h1 className=" text-white desktop:text-[55pt] largeDesktop:text-[70pt] font-medium font-roboto leading-none tracking-tight md:text-5xl lg:text-6xl">
                   Welcome to{" "}
                   <span className=" text-yellow-400 dark:text-yellow-400">
                     Insight Loop
