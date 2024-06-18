@@ -7,6 +7,7 @@ import {
   getPosts,
   deletePost,
   updatePost,
+  getAllPostsFromDB,
 } from "../controllers/post.controller.js";
 
 const router = express.Router();
@@ -16,5 +17,7 @@ router.get("/get-post/:postId", getPost);
 router.get("/get-post", getPosts);
 router.delete("/delete-post/:postId", verifyUser, deletePost);
 router.put("/update-post/:postId/:userId", verifyUser, updatePost);
+
+router.get("/get-all-posts-from-db", getAllPostsFromDB);
 
 export default router;
