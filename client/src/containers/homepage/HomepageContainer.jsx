@@ -37,7 +37,7 @@ const HomepageContainer = () => {
                   </span>
                   . Explore the world of fascinating topics.
                 </h1>
-                <p className="w-[50%] desktop:w-[65%] text-white font-meduim text-2xl tracking-[1px] font-poppins leading-tight mt-8">
+                <p className="w-[50%] desktop:w-[65%] text-white font-medium text-2xl tracking-[1px] font-poppins leading-tight mt-8">
                   Get ready to explore a world of diverse voices and fascinating
                   topics. Whether you're seeking inspiration, advice, or just a
                   good read, you'll find it all here.

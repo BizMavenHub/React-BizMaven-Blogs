@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /create-post
-Disallow: /update-post/
-Disallow: /dashboard
