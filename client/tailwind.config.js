@@ -52,7 +52,7 @@ export default {
       desktop: { min: "1280px", max: "1919px" },
       // => @media (min-width: 1280px and max-width: 1919px ) { ... }
 
-      largeDesktop: { min: "1920px" },
+      largeDesktop: { min: "1919px" },
       // => @media (min-width: 1920px) { ... }
     },
     fontFamily: {
