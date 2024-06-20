@@ -94,16 +94,16 @@ const NavbarComponent = () => {
 
             <div className="flex items-center">
               <div
-                className=" items-center justify-end w-full md:flex md:w-auto md:order-1 mr-8"
+                className=" items-center justify-end w-full mr-8"
                 id="navbar-cta"
               >
-                <ul className="flex font-medium p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
+                <ul className="flex font-medium p-2 rounded-lg rtl:space-x-reverse dark:border-gray-700">
                   <li>
                     <Link
                       onClick={() => {
                         window.location.href = "/blogs";
                       }}
-                      className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:border-gray-700"
                       aria-current="page"
                     >
                       Blogs
@@ -114,7 +114,7 @@ const NavbarComponent = () => {
                       onClick={() => {
                         window.location.href = "/about-us";
                       }}
-                      className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                     >
                       About
                     </Link>
@@ -124,7 +124,7 @@ const NavbarComponent = () => {
                       onClick={() => {
                         window.location.href = "/contact-us";
                       }}
-                      className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                     >
                       Contact
                     </Link>
@@ -134,7 +134,7 @@ const NavbarComponent = () => {
                       onClick={() => {
                         window.location.href = "/feedback";
                       }}
-                      className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                     >
                       Feedback
                     </Link>
@@ -158,7 +158,7 @@ const NavbarComponent = () => {
 
               <button
                 type="button"
-                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 mx-4"
+                className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 mx-4"
                 id="user-menu-button"
                 aria-expanded="false"
                 data-dropdown-toggle="user-dropdown"
@@ -261,13 +261,13 @@ const NavbarComponent = () => {
               className=" items-center justify-end flex w-auto"
               id="navbar-cta"
             >
-              <ul className="flex font-medium mr-8 p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
+              <ul className="flex font-medium mr-8 p-2 rounded-lg dark:border-gray-700">
                 <li>
                   <Link
                     onClick={() => {
                       window.location.href = "/";
                     }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                   >
                     Home
                   </Link>
@@ -277,7 +277,7 @@ const NavbarComponent = () => {
                     onClick={() => {
                       window.location.href = "/blogs";
                     }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                   >
                     Blogs
                   </Link>
@@ -287,7 +287,7 @@ const NavbarComponent = () => {
                     onClick={() => {
                       window.location.href = "/about-us";
                     }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                   >
                     About
                   </Link>
@@ -297,13 +297,13 @@ const NavbarComponent = () => {
                     onClick={() => {
                       window.location.href = "/contact-us";
                     }}
-                    className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                   >
                     Contact
                   </Link>
                 </li>
               </ul>
-              <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse mr-4">
+              <div className="flex space-x-3 rtl:space-x-reverse mr-4">
                 <button
                   type="button"
                   onClick={() => {
