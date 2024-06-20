@@ -11,11 +11,20 @@ import { insight_loop_logo } from "../../assets";
 import { logoutSuccess } from "../../redux/user/userSlice";
 
 const NavbarComponent = () => {
+  const desktop = useMediaQuery({
+    query: "(min-width: 1280px)",
+  });
+
+  const mobile = useMediaQuery({
+    query: "(min-width: 320px) and (max-width: 767px)",
+  });
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
   const [showNavLinks, setShowNavLinks] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -71,6 +80,13 @@ const NavbarComponent = () => {
     navigate(`/search?${searchQuery}`);
   };
 
+  const toggleNavbar = () => {
+    setToggleMenu(!toggleMenu);
+  };
+
+  console.log(mobile);
+  console.log(desktop);
+
   return (
     <>
       {currentUser ? (
@@ -100,9 +116,7 @@ const NavbarComponent = () => {
                 <ul className="flex font-medium p-2 rounded-lg rtl:space-x-reverse dark:border-gray-700">
                   <li>
                     <Link
-                      onClick={() => {
-                        window.location.href = "/blogs";
-                      }}
+                      to="/blogs"
                       className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:border-gray-700"
                       aria-current="page"
                     >
@@ -111,9 +125,7 @@ const NavbarComponent = () => {
                   </li>
                   <li>
                     <Link
-                      onClick={() => {
-                        window.location.href = "/about-us";
-                      }}
+                      to="about-us"
                       className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                     >
                       About
@@ -121,9 +133,7 @@ const NavbarComponent = () => {
                   </li>
                   <li>
                     <Link
-                      onClick={() => {
-                        window.location.href = "/contact-us";
-                      }}
+                      to="contact-us"
                       className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                     >
                       Contact
@@ -131,9 +141,7 @@ const NavbarComponent = () => {
                   </li>
                   <li>
                     <Link
-                      onClick={() => {
-                        window.location.href = "/feedback";
-                      }}
+                      to="feedback"
                       className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                     >
                       Feedback
@@ -237,8 +245,8 @@ const NavbarComponent = () => {
           </div>
         </nav>
       ) : (
-        <nav className="bg-white border-gray-200 dark:bg-gray-900 py-2">
-          <div className="flex items-center justify-between ">
+        <nav className="bg-white border-gray-200 dark:bg-gray-900 py-2 ">
+          <div className="flex items-center justify-between">
             {/* Logo */}
             <Link
               onClick={() => {
@@ -248,74 +256,176 @@ const NavbarComponent = () => {
             >
               <img
                 src={insight_loop_logo}
-                className="h-8"
+                className="h-8 mobile:h-4"
                 alt="Insight Loop Logo"
               />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              <span className="self-center mobile:text-lg desktop:text-[14pt] largeDesktop:text-[16pt] font-semibold whitespace-nowrap dark:text-white">
                 Insight Loop
               </span>
             </Link>
 
             {/* Navbar links */}
+
             <div
               className=" items-center justify-end flex w-auto"
               id="navbar-cta"
             >
-              <ul className="flex font-medium mr-8 p-2 rounded-lg dark:border-gray-700">
-                <li>
-                  <Link
-                    onClick={() => {
-                      window.location.href = "/";
-                    }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => {
-                      window.location.href = "/blogs";
-                    }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
-                  >
-                    Blogs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => {
-                      window.location.href = "/about-us";
-                    }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    onClick={() => {
-                      window.location.href = "/contact-us";
-                    }}
-                    className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
-                  >
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-              <div className="flex space-x-3 rtl:space-x-reverse mr-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    window.location.href = "/sign-up";
-                  }}
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-12 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Get started
-                </button>
-              </div>
+              {mobile && (
+                <div>
+                  {toggleMenu ? (
+                    <div>
+                      <svg
+                        className="w-8 h-8 mr-2 transition-all ease-in-out duration-300 text-gray-800 dark:text-white"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        onClick={toggleNavbar}
+                      >
+                        <path
+                          stroke="currentColor"
+                          d="M6 18 17.94 6M18 18 6.06 6"
+                        />
+                      </svg>
+                    </div>
+                  ) : (
+                    <div>
+                      <svg
+                        className="w-8 h-8 transition-all ease-in-out duration-300 text-gray-800 dark:text-white mr-2"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        onClick={toggleNavbar}
+                      >
+                        <path
+                          stroke="currentColor"
+                          d="M5 7h14M5 12h14M5 17h14"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {desktop && (
+                <div className="flex">
+                  <ul className="flex font-medium mr-4 p-2 rounded-lg dark:border-gray-700 gap-2">
+                    <li>
+                      <Link
+                        to="/"
+                        className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                      >
+                        Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/blogs"
+                        className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                      >
+                        Blogs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/about-us"
+                        className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                      >
+                        About
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/contact-us"
+                        className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                      >
+                        Contact
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="feedback"
+                        className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                      >
+                        Feedback
+                      </Link>
+                    </li>
+                  </ul>
+                  <div className="flex space-x-3 rtl:space-x-reverse mr-4">
+                    <button
+                      type="button"
+                      to="/sign-up"
+                      className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-12 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    >
+                      Get started
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
+          <>
+            {toggleMenu && (
+              <div className="w-[100%] bg-gray-900">
+                <ul className="flex font-medium mr-8 p-2 rounded-lg dark:border-gray-700 mobile:flex mobile:flex-col mobile:m-0 mobile:text-center">
+                  <li>
+                    <Link
+                      to={"/"}
+                      className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/blogs"
+                      className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                    >
+                      Blogs
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/about-us"
+                      className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                    >
+                      About
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/contact-us"
+                      className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                    >
+                      Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="feedback"
+                      className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
+                    >
+                      Feedback
+                    </Link>
+                  </li>
+                </ul>
+                <div className="flex justify-center">
+                  <button
+                    type="button"
+                    to="/sign-up"
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-12 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >
+                    Get started
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         </nav>
       )}
     </>
