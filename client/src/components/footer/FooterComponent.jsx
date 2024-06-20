@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
+import { insight_loop_logo } from "../../assets";
+
 const FooterComponent = () => {
   return (
     <footer className="bg-gray-100 dark:bg-gray-900 ">
@@ -9,7 +11,7 @@ const FooterComponent = () => {
         <div className="flex justify-center ">
           <Link className="text-3xl font-bold text-teal-600 flex" to="/">
             <img
-              src="../src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
+              src={insight_loop_logo}
               alt="Insight Loop Logo"
               className="h-10 mr-4"
             />

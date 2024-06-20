@@ -6,6 +6,8 @@ import { useMediaQuery } from "react-responsive";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { insight_loop_logo } from "../../assets";
+
 import { logoutSuccess } from "../../redux/user/userSlice";
 
 const NavbarComponent = () => {
@@ -80,7 +82,7 @@ const NavbarComponent = () => {
                 className="flex items-center space-x-3 rtl:space-x-reverse"
               >
                 <img
-                  src="src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
+                  src={insight_loop_logo}
                   className="h-8"
                   alt="Insight Loop Logo"
                 />
@@ -245,7 +247,7 @@ const NavbarComponent = () => {
               className="flex justify-start items-center w-[428px] space-x-3 ml-4"
             >
               <img
-                src="src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
+                src={insight_loop_logo}
                 className="h-8"
                 alt="Insight Loop Logo"
               />
