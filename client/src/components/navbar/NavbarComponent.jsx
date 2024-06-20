@@ -80,7 +80,7 @@ const NavbarComponent = () => {
                 className="flex items-center space-x-3 rtl:space-x-reverse"
               >
                 <img
-                  src="../src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
+                  src="src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
                   className="h-8"
                   alt="Insight Loop Logo"
                 />
@@ -245,7 +245,7 @@ const NavbarComponent = () => {
               className="flex justify-start items-center w-[428px] space-x-3 ml-4"
             >
               <img
-                src="../src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
+                src="src/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
                 className="h-8"
                 alt="Insight Loop Logo"
               />
