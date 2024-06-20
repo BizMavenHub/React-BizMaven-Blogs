@@ -17,13 +17,13 @@ const Feedback_Container = () => {
     <div>
       <div className="flex justify-center mt-24 h-screen bg-white">
         <div className="container mx-auto px-4 lg:px-20">
-          <div className="w-full p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl">
+          <div className="w-full p-8 my-4 mr-auto rounded-2xl shadow-2xl">
             <div className="mb-8">
               <h1 className="text-indigo-500 font-bold text-[64pt] text-center">
                 Send Us A Message
               </h1>
             </div>
-            <div className="grid grid-cols-2 gap-5 md:grid-cols-2 mt-4">
+            <div className="grid grid-cols-2 gap-5 mt-4">
               <input
                 className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 type="text"

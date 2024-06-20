@@ -9,7 +9,7 @@ const BlogCard = (props) => {
         className="flex items-top justify-start bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
         <img
-          className="object-cover rounded-l-lg h-40 w-60 md:h-auto md:w-48 md:rounded-l-lg"
+          className="object-cover rounded-l-lg h-40 w-60"
           src={props.image}
           alt=""
         ></img>

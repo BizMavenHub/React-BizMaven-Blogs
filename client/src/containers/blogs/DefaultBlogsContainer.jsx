@@ -75,7 +75,7 @@ const DefaultBlogsContainer = () => {
 
   return (
     <div className="blogs-container my-12">
-      <h1 className="mb-16 text-8xl text-center font-semibold leading-none tracking-tight text-indigo-600 md:text-5xl lg:text-6xl">
+      <h1 className="mb-16 text-8xl text-center font-semibold leading-none tracking-tight text-indigo-600">
         Our Blogs For You
       </h1>
 
