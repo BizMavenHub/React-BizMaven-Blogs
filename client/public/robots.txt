@@ -1,4 +1,15 @@
 User-agent: *
-Disallow: /create-post
-Disallow: /update-post/
-Disallow: /dashboard
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /admin/
+
+User-agent: Googlebot
+Allow: /public/
+Disallow: /private/
+
+User-agent: Bingbot
+Allow: /public/
+Disallow: /private/
+Disallow: /temp/
+
+Sitemap: https://www.insightloop.blog/sitemap.xml
