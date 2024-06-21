@@ -4,6 +4,7 @@ import facebook_icon from "./imgs/facebook-icon.png";
 import woman from "./imgs/business-woman-working-on-laptop-in-her-office.jpg";
 import profile_pic from "./default_profile_picture.png";
 import insight_loop_logo from "./insight_Loop_Logo-only_white-Bg-transparent.png";
+import wave from "./wave.svg";
 
 export {
   google_icon,
@@ -12,4 +13,5 @@ export {
   woman,
   profile_pic,
   insight_loop_logo,
+  wave,
 };
