@@ -101,9 +101,9 @@ function Login_page() {
   };
 
   return (
-    <div className="h-[100vh] mt-8 shadow-md mobile:mt-12">
+    <div className="h-full desktop:h-[100vh] largeDesktop:h-[100vh] mt-8 shadow-md mobile:mt-28 mobile:mb-32 tablet:my-28">
       {mobile ? null : (
-        <h1 className="text-indigo-500 font-bold text-[64pt] text-center pt-16 pb-20 mobile:pt-16 mobile:pb-16 mobile:text-4xl tablet:pt-12">
+        <h1 className="text-indigo-500 font-bold text-[64pt] text-center pt-16 pb-20 mobile:pt-16 mobile:pb-16 mobile:text-4xl tablet:pt-4">
           Welcome Back!
         </h1>
       )}
