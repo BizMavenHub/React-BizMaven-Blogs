@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { wave } from "../../assets/index.js";
 
 import { BlogCard } from "../../components/index.js";
 
@@ -26,33 +27,31 @@ const HomepageContainer = () => {
   }
 
   return (
-    <div className="homepage-container mobile:h-full tablet:h-[100vh] h-min-screen mx-auto w-full ">
+    <div className="homepage-container mobile:h-full tablet:h-full h-min-screen mx-auto w-full ">
       <div className="w-full mx-auto bg-blue-500">
         {/* Section 1 - Hero */}
         {!mobile ? (
-          <section className="pt-28 mobile:pt-6">
+          <section className="pt-28 mobile:pt-6 tablet:pt-10">
             <div className="flex w-[90%] m-auto mobile:flex-col">
               <div>
                 {/* Block 1 - Intro */}
-                <div className="w-[95%] m-left-auto mobile:w-full desktop:flex largeDesktop:flex">
+                <div className="w-[95%] m-left-auto mobile:w-full desktop:flex largeDesktop:flex tablet:w-full">
                   <div className="">
-                    <h1 className=" text-white tablet mobile:text-[26pt] desktop:text-[55pt] largeDesktop:text-[68pt] font-medium font-roboto leading-none tracking-tight">
+                    <h1 className=" text-white tablet mobile:text-[26pt] tablet:text-[46pt] desktop:text-[55pt] largeDesktop:text-[68pt] font-medium font-roboto leading-none tracking-tight">
                       Welcome to{" "}
                       <span className=" text-yellow-400 dark:text-yellow-400">
                         Insight Loop
                       </span>
                       . Explore the world of fascinating topics.
                     </h1>
-                    <p className="w-[50%] mobile:text-[12pt] mobile:w-[90%] desktop:w-[65%] text-white font-medium text-2xl tracking-[1px] font-poppins leading-tight mt-8">
+                    <p className="w-[50%] mobile:text-[12pt] mobile:w-[90%] tablet:w-[95%] desktop:w-[65%] text-white font-medium text-2xl tracking-[1px] font-poppins leading-tight mt-8">
                       Get ready to explore a world of diverse voices and
                       fascinating topics. Whether you're seeking inspiration,
                       advice, or just a good read, you'll find it all here.
                     </p>
-                    <div className="flex justify-start mt-12 mobile:my-8 mobile:justify-center">
+                    <div className="flex justify-start mt-12 mobile:my-8 mobile:justify-center mobile:flex tablet:flex tablet:justify-center">
                       <Link
-                        onClick={() => {
-                          window.location.href = "/sign-up";
-                        }}
+                        to="/sign-up"
                         relative="path"
                         className="text-2xl mobile:text-[12pt] mobile:p-3 text-center border-2 text-yellow-400 font-semibold font-overpass rounded-lg py-4 px-12 transition duration-300 hover:text-white hover:bg-yellow-400"
                       >
@@ -60,13 +59,13 @@ const HomepageContainer = () => {
                       </Link>
                     </div>
                   </div>
-                  <div className="mobile:flex mobile:justify-center mt-10">
+                  <div className="mobile:flex mobile:justify-center tablet:flex tablet:justify-center mt-10 tablet:mb-10">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 400 400"
                       id="Conference--Streamline-Manchester"
-                      className="w-[650px] desktop:w-[450px] mobile:w-[350px]"
+                      className="w-[650px] desktop:w-[450px] tablet:w-[480px]"
                     >
                       <desc>
                         {
@@ -486,9 +485,7 @@ const HomepageContainer = () => {
                   </p>
                   <div className="flex justify-start mt-12 mobile:mt-8 z-10">
                     <Link
-                      onClick={() => {
-                        window.location.href = "/sign-up";
-                      }}
+                      to="/sign-up"
                       relative="path"
                       className="text-2xl text-center border-2 text-yellow-400 font-semibold font-overpass rounded-lg py-4 px-12 transition duration-300 hover:text-white hover:bg-yellow-400"
                     >
