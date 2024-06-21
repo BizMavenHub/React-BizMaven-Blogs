@@ -4,6 +4,8 @@ import { Google_OAuth_btn } from "../../components/index";
 
 import { useNavigate } from "react-router-dom";
 
+import { useMediaQuery } from "react-responsive";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginStart,
@@ -14,6 +16,14 @@ import {
 import { useState } from "react";
 
 function Login_page() {
+  const mobile = useMediaQuery({
+    query: "(min-width: 320px) and (max-width: 767px)",
+  });
+
+  const tablet = useMediaQuery({
+    query: "(min-width: 768px) and (max-width: 1023px)",
+  });
+
   const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
 
   const dispatch = useDispatch();
@@ -64,7 +74,10 @@ function Login_page() {
         return dispatch(loginFailure(data.message));
       }
 
+      console.log(res.ok);
+
       if (res.ok) {
+        console.log("Login successful");
         dispatch(loginSuccess(data));
         navigate("/blogs");
       }
@@ -88,15 +101,17 @@ function Login_page() {
   };
 
   return (
-    <div className="h-[100vh] mt-8 shadow-md">
-      <h1 className="text-indigo-500 font-bold text-[64pt] text-center pt-16 pb-20 mobile:pt-16 mobile:pb-16 mobile:text-4xl">
-        Welcome Back!
-      </h1>
+    <div className="h-[100vh] mt-8 shadow-md mobile:mt-12">
+      {mobile ? null : (
+        <h1 className="text-indigo-500 font-bold text-[64pt] text-center pt-16 pb-20 mobile:pt-16 mobile:pb-16 mobile:text-4xl tablet:pt-12">
+          Welcome Back!
+        </h1>
+      )}
       <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%]">
-        <h1 className="text-5xl text-center font-bold mb-8 text-gray-800">
+        <h1 className="text-5xl text-center font-bold mb-12 text-gray-800 mobile:text-indigo-500">
           Login
         </h1>
-        <form action="POST" onSubmit={handleSubmit}>
+        <form action="POST">
           <div className="my-5">
             <input
               type="email"
@@ -145,15 +160,14 @@ function Login_page() {
             {loading ? (
               <button
                 className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-8 text-center mobile:p-2"
-                onSubmit={handleSubmit}
                 disabled={loading}
               >
                 Loading...
               </button>
             ) : (
               <button
+                onClick={handleSubmit}
                 className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center mobile:p-2"
-                onSubmit={handleSubmit}
               >
                 Login
               </button>
@@ -167,7 +181,7 @@ function Login_page() {
           </div>
         </div>
         <div className="already_have_account mt-4">
-          <p className=" text-center text-lg ">
+          <p className=" text-center text-lg mobile:text-[12pt]">
             Don't have an account?{" "}
             <a
               href="/sign-up"

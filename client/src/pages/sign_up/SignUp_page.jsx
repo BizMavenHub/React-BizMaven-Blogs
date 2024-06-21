@@ -4,7 +4,13 @@ import { Google_OAuth_btn } from "../../components/index";
 
 import { useNavigate } from "react-router-dom";
 
+import { useMediaQuery } from "react-responsive";
+
 function SignUp_page() {
+  const mobile = useMediaQuery({
+    query: "(min-width: 320px) and (max-width: 767px)",
+  });
+
   const navigate = useNavigate();
 
   const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
@@ -96,12 +102,14 @@ function SignUp_page() {
   };
 
   return (
-    <div className="min-h-[100vh] mt-12 mb-12">
-      <h1 className="text-indigo-500 font-bold text-[64pt] text-center mb-8 tablet:pt-20 mobile:pt-12 mobile:pb-12 mobile:text-4xl">
-        Welcome!
+    <div className="min-h-[100vh] my-12 mobile:my-2 tablet:my-4">
+      <h1 className="text-indigo-500 font-bold text-[64pt] text-center mb-8 mobile:pt-4 mobile:text-[38pt] mobile:m-0 tablet:pt-12 ">
+        {mobile ? "Register" : "Welcome"}
       </h1>
-      <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%]">
-        <h1 className="text-4xl text-center font-bold mb-8">Register</h1>
+      <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%] mobile:p-4 mobile:mb-6">
+        <h1 className="text-4xl text-center font-bold mb-8">
+          {mobile ? null : "Register"}
+        </h1>
         <form action="post" onSubmit={handleSubmit}>
           <div className="my-5">
             <input
@@ -163,7 +171,7 @@ function SignUp_page() {
             <h1 className="text-xl mt-4 mb-2 ml-4 font-semibold text-blue-500">
               Please use at least:
             </h1>
-            <ul className=" list-disc ml-12 grid grid-cols-2">
+            <ul className=" list-disc ml-12 grid grid-cols-2 mobile:grid-cols-1">
               <li>
                 <p className="text-gray mb-2 text-lg">6 characters long</p>
               </li>
