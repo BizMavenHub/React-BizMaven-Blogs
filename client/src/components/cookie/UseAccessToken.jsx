@@ -12,15 +12,8 @@ const UseAccessToken = () => {
     if (!token) {
       setHasAccessToken(false);
 
-      const isHasUser = localStorage.getItem("persist:root") ? true : false;
-
       localStorage.clear();
-
-      if (isHasUser) {
-        window.location.reload();
-      }
-
-      localStorage.clear();
+      navigate("/login");
     }
   }, [navigate]);
 
