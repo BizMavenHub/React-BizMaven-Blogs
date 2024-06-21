@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const PrivateRoute = () => {
   const { currentUser } = useSelector((state) => state.user);
-  return currentUser ? <Navigate to="/blogs" /> : <Navigate to="/login" />;
+  return currentUser ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

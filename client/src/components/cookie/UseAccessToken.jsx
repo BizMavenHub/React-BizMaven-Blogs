@@ -8,16 +8,27 @@ const UseAccessToken = () => {
   const [hasAccessToken, setHasAccessToken] = useState(true);
 
   useEffect(() => {
-    const token = Cookies.get("access_token");
-    if (!token) {
-      setHasAccessToken(false);
+    const token = Cookies.get("access_token") ? true : false;
 
-      localStorage.clear();
-      navigate("/login");
+    if (token) {
+      setHasAccessToken(true);
+    } else {
+      setHasAccessToken(false);
+      clearUserData();
     }
   }, [navigate]);
 
   return hasAccessToken;
 };
+
+function clearUserData() {
+  const hasCurrentUser = localStorage.getItem("persist:root") ? true : false;
+
+  if (hasCurrentUser) {
+    localStorage.clear();
+  } else {
+    console.log("No current user found, nothing to clear.");
+  }
+}
 
 export default UseAccessToken;
