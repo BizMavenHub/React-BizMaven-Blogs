@@ -511,7 +511,7 @@ const HomepageContainer = () => {
               <h2 className="font-inter text-7xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
                 Best Articles For Everyone
               </h2>
-              <p className="font-light font-inter mt-4 w-[90%] text-3xl m-auto tracking-wide text-left">
+              <p className="font-light font-inter mt-4 w-[78%] text-3xl m-auto tracking-wide text-left">
                 Offers top-quality articles for a diverse audience, including
                 tech enthusiasts, travel lovers, health-conscious individuals,
                 and lifestyle seekers.
@@ -539,7 +539,7 @@ const HomepageContainer = () => {
               <h2 className="font-inter text-7xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
                 Best Topics
               </h2>
-              <p className="font-light font-inter mt-4 w-[90%] text-3xl m-auto tracking-wide text-left">
+              <p className="font-light font-inter mt-4 w-[80%] text-3xl m-auto tracking-wide text-left">
                 Offers a wide range of topics including technology, travel,
                 health, and lifestyle. Our team continually explores fresh
                 subjects to provide current and relevant content, keeping you
@@ -554,7 +554,7 @@ const HomepageContainer = () => {
               <h2 className="font-inter text-7xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
                 Regular Update
               </h2>
-              <p className="font-light font-inter mt-4 w-[90%] text-3xl m-auto tracking-wide text-left">
+              <p className="font-light font-inter mt-4 w-[78%] text-3xl m-auto tracking-wide text-left">
                 Keeps content fresh with regular updates, frequently adding new
                 articles and features. Stay tuned to never miss out on exciting
                 content.
@@ -582,7 +582,7 @@ const HomepageContainer = () => {
               <h2 className="font-inter text-7xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
                 Reliable Insights
               </h2>
-              <p className="font-light font-inter mt-4 w-[90%] text-3xl m-auto tracking-wide text-left">
+              <p className="font-light font-inter mt-4 w-[85%] text-3xl m-auto tracking-wide text-left">
                 Prioritizes accuracy and reliability, offering well-researched
                 and trustworthy insights. Our commitment to quality ensures you
                 gain valuable knowledge and perspectives from every article.
