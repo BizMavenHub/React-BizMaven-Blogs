@@ -5,7 +5,7 @@ import woman from "./imgs/business-woman-working-on-laptop-in-her-office.jpg";
 import profile_pic from "./default_profile_picture.png";
 import insight_loop_logo from "./insight_Loop_Logo-only_white-Bg-transparent.png";
 
-import girl_sitting_and_reading from "./Homepage-Pictures/Girl_sitting_and_reading.png";
+import Girl_sitting_and_reading from "./Homepage-Pictures/Girl_sitting_and_reading.png";
 import Introduction from "./Homepage-Pictures/Introduction.png";
 import Picture_0 from "./Homepage-Pictures/Picture_0.png";
 import Picture_1 from "./Homepage-Pictures/Picture_1.png";
@@ -20,7 +20,7 @@ export {
   woman,
   profile_pic,
   insight_loop_logo,
-  girl_sitting_and_reading,
+  Girl_sitting_and_reading,
   Introduction,
   Picture_0,
   Picture_1,
