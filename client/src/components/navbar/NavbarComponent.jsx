@@ -581,13 +581,14 @@ const NavbarComponent = () => {
           </div>
           <>
             {toggleMenu && (
-              <>
+              <span className="absolute top-[6.5%] right-[0%] z-10 ">
                 {mobile && (
-                  <div className="w-[100%] bg-gray-900">
+                  <div className="w-[100%] bg-gray-900 p-4 rounded-bl-lg">
                     <ul className="flex font-medium mr-8 p-2 rounded-lg dark:border-gray-700 mobile:flex mobile:flex-col mobile:m-0 mobile:text-center">
                       <li>
                         <Link
                           to={"/"}
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           Home
@@ -596,6 +597,7 @@ const NavbarComponent = () => {
                       <li>
                         <Link
                           to="/blogs"
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           Blogs
@@ -604,6 +606,7 @@ const NavbarComponent = () => {
                       <li>
                         <Link
                           to="/about-us"
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           About
@@ -612,6 +615,7 @@ const NavbarComponent = () => {
                       <li>
                         <Link
                           to="/contact-us"
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           Contact
@@ -620,6 +624,7 @@ const NavbarComponent = () => {
                       <li>
                         <Link
                           to="feedback"
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           Feedback
@@ -646,6 +651,7 @@ const NavbarComponent = () => {
                       <li>
                         <Link
                           to={"/"}
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           Home
@@ -654,6 +660,7 @@ const NavbarComponent = () => {
                       <li>
                         <Link
                           to="/blogs"
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           Blogs
@@ -662,6 +669,7 @@ const NavbarComponent = () => {
                       <li>
                         <Link
                           to="/about-us"
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           About
@@ -670,6 +678,7 @@ const NavbarComponent = () => {
                       <li>
                         <Link
                           to="/contact-us"
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           Contact
@@ -678,6 +687,7 @@ const NavbarComponent = () => {
                       <li>
                         <Link
                           to="feedback"
+                          onClick={toggleNavbar}
                           className="block font-normal text-sm py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           Feedback
@@ -697,7 +707,7 @@ const NavbarComponent = () => {
                     </ul>
                   </div>
                 )}
-              </>
+              </span>
             )}
           </>
         </nav>
