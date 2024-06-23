@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import {
-  girl_sitting_and_reading,
+  Girl_sitting_and_reading,
   Introduction,
   Picture_0,
   Picture_1,
@@ -38,6 +38,7 @@ const HomepageContainer = () => {
   const MobileView = () => {
     return (
       <div>
+        {/* Introduction Section */}
         <div className="introduction section">
           <section className="welcome-txt-container absolute text-white top-[40%] drop-shadow-lg">
             <h1 className="welcome-text font-inter text-5xl font-bold text-center ">
@@ -56,6 +57,8 @@ const HomepageContainer = () => {
             />
           </div>
         </div>
+
+        {/* Features Section */}
         <div className="features-container">
           {/* Feature 1 */}
           <div className="feature-1 bg-[#6B8BED]">
@@ -73,7 +76,7 @@ const HomepageContainer = () => {
               <img
                 src={Picture_0}
                 alt="best articles"
-                className="h-[300px] m-auto"
+                className="h-[330px] m-auto"
               />
             </div>
           </div>
@@ -99,6 +102,81 @@ const HomepageContainer = () => {
               />
             </div>
           </div>
+
+          {/* Feature 3 */}
+          <div className="feature-3 bg-[#9349F1]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Regular Update
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Keeps content fresh with regular updates, frequently adding new
+                articles and features. Stay tuned to never miss out on exciting
+                content.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_2}
+                alt="best articles"
+                className="h-[350px] m-auto pb-5"
+              />
+            </div>
+          </div>
+
+          {/* Feature 4 */}
+          <div className="feature-4 bg-[#F5AF5D]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Reliable Insights
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Prioritizes accuracy and reliability, offering well-researched
+                and trustworthy insights. Our commitment to quality ensures you
+                gain valuable knowledge and perspectives from every article.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_3}
+                alt="best articles"
+                className="h-[350px] m-auto py-5"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Join Us Section */}
+        <div className="join-us-container">
+          <section className="context-container text-center bg-[#BE1818]">
+            <h2 className="font-inter text-4xl font-bold w-[80%] m-auto pt-6 tracking-wide text-white">
+              Explore Top Articles
+            </h2>
+            <div className="image-container">
+              <img
+                src={Girl_sitting_and_reading}
+                alt=" girl reading "
+                className="h-[340px] m-auto mt-6"
+              />
+            </div>
+            <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide text-white">
+              Join us today to enhance your blogging experience and connect with
+              readers who appreciate great content.
+            </p>
+
+            <div className="join-us-btn pt-6">
+              <button
+                onClick={() => (window.location.href = "/sign-up")}
+                className="font-inter text-xl font-semibold text-white py-3 px-8 border-[3px] border-[#E7EB21] rounded-2xl"
+              >
+                Join Us Today For Free
+              </button>
+            </div>
+
+            <div className="wave-container">
+              <img src={Wave} alt="wave" className="h-[120px] w-full" />
+            </div>
+          </section>
         </div>
       </div>
     );
@@ -113,7 +191,7 @@ const HomepageContainer = () => {
   return (
     <>
       {mobile && <MobileView />}
-      {tablet && <TabletView />}
+      {tablet && <MobileView />}
       {desktop && <DesktopView />}
       {largeDesktop && <LargeDesktopView />}
     </>
