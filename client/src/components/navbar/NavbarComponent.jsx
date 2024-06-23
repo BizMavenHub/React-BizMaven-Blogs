@@ -581,9 +581,9 @@ const NavbarComponent = () => {
           </div>
           <>
             {toggleMenu && (
-              <span className="absolute top-[6.5%] right-[0%] z-10 ">
+              <span className="">
                 {mobile && (
-                  <div className="w-[100%] bg-gray-900 p-4 rounded-bl-lg">
+                  <div className=" bg-gray-900 p-4 rounded-bl-lg absolute top-[6.5%] right-[0%] z-10 ">
                     <ul className="flex font-medium mr-8 p-2 rounded-lg dark:border-gray-700 mobile:flex mobile:flex-col mobile:m-0 mobile:text-center">
                       <li>
                         <Link
@@ -646,7 +646,7 @@ const NavbarComponent = () => {
                 )}
 
                 {tablet && (
-                  <div className="w-[100%] bg-gray-900">
+                  <div className="w-[100%] bg-gray-900 absolute top-[3%] right-[0%] z-10 ">
                     <ul className="flex font-medium mr-8 pt-8 pb-3 rounded-lg dark:border-gray-700 mobile:flex mobile:flex-col mobile:m-0 mobile:text-center tablet:flex tablet:justify-around tablet:m-0 tablet:items-center">
                       <li>
                         <Link
