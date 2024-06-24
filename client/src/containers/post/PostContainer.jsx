@@ -87,10 +87,16 @@ const PostContainer = ({ fetchComments }) => {
     }
   };
 
+  console.log(posts);
+
   return (
     <>
       <Helmet>
         <title>{posts && posts[0] && posts[0].title}</title>
+        <meta
+          name="keywords"
+          content={posts && posts[0] && posts[0].keywords}
+        />
       </Helmet>
       <div className="p-4 mb-8">
         {posts.map((post) => (

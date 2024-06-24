@@ -156,6 +156,15 @@ const CreatePostContainer = () => {
           <option value="other">Other</option>
         </select>
       </div>
+      <div className="flex my-8 gap-3">
+        <textarea
+          onChange={(e) =>
+            setDataForm({ ...dataForm, keywords: e.target.value })
+          }
+          placeholder="Keywords (comma separated)"
+          className="w-full h-[250px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+      </div>
       <div className="flex justify-center items-center border border-dashed border-gray-700 p-4 gap-3 rounded-lg">
         <div className="w-full">
           <input

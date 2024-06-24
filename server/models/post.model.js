@@ -15,6 +15,10 @@ const postSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    keywords: {
+      type: String,
+      default: "",
+    },
     image: {
       type: String,
       default:
