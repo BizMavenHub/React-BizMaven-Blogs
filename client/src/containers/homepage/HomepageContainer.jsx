@@ -334,7 +334,7 @@ const HomepageContainer = () => {
       <div>
         {/* Introduction Section */}
         <div className="introduction section">
-          <section className="welcome-txt-container absolute text-white top-[8%] drop-shadow-2xl w-full m-auto">
+          <section className="welcome-txt-container absolute text-white top-[40%] drop-shadow-2xl w-full m-auto">
             <h1 className="welcome-text font-inter text-[76pt] font-bold text-center ">
               Welcome to Insight Loop
             </h1>
@@ -485,7 +485,7 @@ const HomepageContainer = () => {
       <div>
         {/* Introduction Section */}
         <div className="introduction section">
-          <div className="welcome-txt-container absolute text-white top-[8%] drop-shadow-2xl w-full m-auto">
+          <div className="welcome-txt-container absolute text-white top-[40%] drop-shadow-2xl w-full m-auto">
             <h1 className="welcome-text font-inter text-[82pt] font-bold text-center">
               Welcome to Insight Loop
             </h1>
