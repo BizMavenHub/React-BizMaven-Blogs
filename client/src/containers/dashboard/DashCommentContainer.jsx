@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
+import { Helmet } from "react-helmet";
+
 const DashCommentContainer = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
@@ -115,6 +117,9 @@ const DashCommentContainer = () => {
 
   return (
     <div className="px-8 pt-4 pb-16">
+      <Helmet>
+        <title>Dashboard | Comments</title>
+      </Helmet>
       <div className="relative overflow-x-auto sm:rounded-lg">
         {currentUser.isAdmin && comments.length > 0 ? (
           <>

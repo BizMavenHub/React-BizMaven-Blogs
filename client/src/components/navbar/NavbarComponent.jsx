@@ -533,14 +533,6 @@ const NavbarComponent = () => {
                     </li>
                     <li>
                       <Link
-                        to="/blogs"
-                        className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
-                      >
-                        Blogs
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
                         to="/about-us"
                         className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                       >
@@ -596,15 +588,6 @@ const NavbarComponent = () => {
                       </li>
                       <li>
                         <Link
-                          to="/blogs"
-                          onClick={toggleNavbar}
-                          className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
-                        >
-                          Blogs
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
                           to="/about-us"
                           onClick={toggleNavbar}
                           className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
@@ -655,15 +638,6 @@ const NavbarComponent = () => {
                           className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
                         >
                           Home
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to="/blogs"
-                          onClick={toggleNavbar}
-                          className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:border-gray-700"
-                        >
-                          Blogs
                         </Link>
                       </li>
                       <li>

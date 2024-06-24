@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { Helmet } from "react-helmet";
+
 const Feedback_Container = () => {
   const [message, setMessage] = useState("");
 
@@ -15,6 +17,9 @@ const Feedback_Container = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Feedback</title>
+      </Helmet>
       <div className="flex justify-center mt-24 h-screen bg-white">
         <div className="container mx-auto px-4 lg:px-20">
           <div className="w-full p-8 my-4 mr-auto rounded-2xl shadow-2xl">

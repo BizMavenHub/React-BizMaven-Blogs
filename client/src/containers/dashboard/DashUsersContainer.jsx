@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
+import { Helmet } from "react-helmet";
+
 const DashUsersContainer = () => {
   const { currentUser } = useSelector((state) => state.user);
 
@@ -113,6 +115,9 @@ const DashUsersContainer = () => {
 
   return (
     <div className="px-8 py-4">
+      <Helmet>
+        <title>Dashboard | Users</title>
+      </Helmet>
       <table className="w-full text-sm text-center ">
         <thead>
           <tr className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">

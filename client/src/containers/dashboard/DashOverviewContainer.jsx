@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+import { Helmet } from "react-helmet";
+
 const DashOverviewContainer = () => {
   const { currentUser } = useSelector((state) => state.user);
 
@@ -112,6 +114,9 @@ const DashOverviewContainer = () => {
 
   return (
     <div className="mx-10">
+      <Helmet>
+        <title>Dashboard | Overview</title>
+      </Helmet>
       {/* Total Block */}
       <div className="total-block-container grid grid-cols-3 gap-x-[5rem] mt-16">
         <section>

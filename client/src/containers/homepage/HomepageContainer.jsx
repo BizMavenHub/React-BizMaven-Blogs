@@ -14,6 +14,8 @@ import {
 
 import { BlogCard } from "../../components/index.js";
 
+import { Helmet } from "react-helmet";
+
 const HomepageContainer = () => {
   // ---------------Media Queries-------------------
 
@@ -633,6 +635,9 @@ const HomepageContainer = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Welcome to Insight Loop</title>
+      </Helmet>
       {mobile && <MobileView />}
       {tablet && <TabletView />}
       {desktop && <DesktopView />}

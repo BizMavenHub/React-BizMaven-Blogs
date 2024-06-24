@@ -1,8 +1,13 @@
 import React from "react";
 
+import { Helmet } from "react-helmet";
+
 function About_us_Container() {
   return (
     <>
+      <Helmet>
+        <title>About Us</title>
+      </Helmet>
       <div className="about_us_container desktop:w-[1300px] w-[90%] m-auto">
         <h1 className="text-6xl text-center font-semibold my-12 text-blue-500">
           About Us

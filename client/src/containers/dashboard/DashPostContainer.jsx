@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
+import { Helmet } from "react-helmet";
+
 const DashPostContainer = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
@@ -108,6 +110,9 @@ const DashPostContainer = () => {
 
   return (
     <div className="px-4 pt-4 pb-16">
+      <Helmet>
+        <title>Dashboard | Posts</title>
+      </Helmet>
       <div className="relative overflow-x-auto sm:rounded-lg">
         {currentUser.isAdmin && posts.length > 0 ? (
           <>

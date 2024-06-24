@@ -3,6 +3,8 @@ import { BlogCard, BlogCard_1 } from "../../components";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
+import { Helmet } from "react-helmet";
+
 const DefaultBlogsContainer = () => {
   const { currentUser } = useSelector((state) => state.user);
 
@@ -74,69 +76,74 @@ const DefaultBlogsContainer = () => {
   const { lastMonthPosts, posts: allPosts } = posts;
 
   return (
-    <div className="blogs-container my-12">
-      <h1 className="mb-16 text-8xl text-center font-semibold leading-none tracking-tight text-indigo-600">
-        Our Blogs For You
-      </h1>
+    <>
+      <Helmet>
+        <title>Our Blogs | Insight Loop</title>
+      </Helmet>
+      <div className="blogs-container my-12">
+        <h1 className="mb-16 text-8xl text-center font-semibold leading-none tracking-tight text-indigo-600">
+          Our Blogs For You
+        </h1>
 
-      <section className="mb-12">
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
-          Recommend Blogs Published On Our Website
-        </h2>
-        <div className="card-container grid grid-cols-3 gap-6">
-          {allPosts.map((post, index) => (
-            <BlogCard_1
-              key={index}
-              id={post._id}
-              title={post.title}
-              image={post.image}
-              slug={post.slug}
-              category={post.category}
-              date={post.createdAt}
-            />
-          ))}
-        </div>
-        <div>
-          {showMore && (
-            <div className="flex justify-center">
-              <button
-                onClick={GetMorePosts}
-                className="btn btn-primary btn-sm mt-4 bg-blue-500 text-white font-semibold px-4 py-3 rounded-lg"
-              >
-                {" "}
-                Load More
-              </button>
-            </div>
-          )}
-        </div>
-      </section>
-
-      <hr className="mb-8" />
-
-      <section>
-        <h2 className="text-xl font-bold text-gray-900 mb-4">
-          Latest Blogs Published On Our Website
-        </h2>
-        <div className="card-container grid grid-cols-2 gap-6 my-6">
-          {lastMonthPosts.map((post, index) => {
-            return (
-              <div key={index}>
-                {index < 12 && (
-                  <BlogCard
-                    key={index}
-                    id={post._id}
-                    title={post.title}
-                    image={post.image}
-                    category={post.category}
-                    slug={post.slug}
-                  />
-                )}
+        <section className="mb-12">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">
+            Recommend Blogs Published On Our Website
+          </h2>
+          <div className="card-container grid grid-cols-3 gap-6">
+            {allPosts.map((post, index) => (
+              <BlogCard_1
+                key={index}
+                id={post._id}
+                title={post.title}
+                image={post.image}
+                slug={post.slug}
+                category={post.category}
+                date={post.createdAt}
+              />
+            ))}
+          </div>
+          <div>
+            {showMore && (
+              <div className="flex justify-center">
+                <button
+                  onClick={GetMorePosts}
+                  className="btn btn-primary btn-sm mt-4 bg-blue-500 text-white font-semibold px-4 py-3 rounded-lg"
+                >
+                  {" "}
+                  Load More
+                </button>
               </div>
-            );
-          })}
-        </div>
-      </section>
-    </div>
+            )}
+          </div>
+        </section>
+
+        <hr className="mb-8" />
+
+        <section>
+          <h2 className="text-xl font-bold text-gray-900 mb-4">
+            Latest Blogs Published On Our Website
+          </h2>
+          <div className="card-container grid grid-cols-2 gap-6 my-6">
+            {lastMonthPosts.map((post, index) => {
+              return (
+                <div key={index}>
+                  {index < 12 && (
+                    <BlogCard
+                      key={index}
+                      id={post._id}
+                      title={post.title}
+                      image={post.image}
+                      category={post.category}
+                      slug={post.slug}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      </div>
+    </>
   );
 };
 
