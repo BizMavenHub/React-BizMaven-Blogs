@@ -538,7 +538,7 @@ function About_us_Container() {
                 onClick={() => {
                   window.location.href = "/sign-up";
                 }}
-                className="text-[#FF5C00] bg-white hover:bg-[#FF5C00] font-bold py-4 px-16 text-3xl rounded-2xl"
+                className="text-[#FF5C00] bg-white font-bold py-3 px-14 text-xl rounded-2xl"
               >
                 Join Us Here
               </Link>
