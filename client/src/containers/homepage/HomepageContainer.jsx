@@ -5,10 +5,10 @@ import { useMediaQuery } from "react-responsive";
 import {
   Girl_sitting_and_reading,
   Introduction,
-  Picture_0,
-  Picture_1,
-  Picture_2,
-  Picture_3,
+  Picture_0_homepage,
+  Picture_1_homepage,
+  Picture_2_homepage,
+  Picture_3_homepage,
   Wave,
 } from "../../assets/index.js";
 
@@ -76,7 +76,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_0}
+                src={Picture_0_homepage}
                 alt="best articles"
                 className="h-[330px] m-auto"
               />
@@ -98,7 +98,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_1}
+                src={Picture_1_homepage}
                 alt="best articles"
                 className="h-[400px] m-auto py-12"
               />
@@ -119,7 +119,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_2}
+                src={Picture_2_homepage}
                 alt="best articles"
                 className="h-[350px] m-auto pb-5"
               />
@@ -140,7 +140,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_3}
+                src={Picture_3_homepage}
                 alt="best articles"
                 className="h-[350px] m-auto py-5"
               />
@@ -223,7 +223,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_0}
+                src={Picture_0_homepage}
                 alt="best articles"
                 className="h-[330px] m-auto"
               />
@@ -245,7 +245,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_1}
+                src={Picture_1_homepage}
                 alt="best articles"
                 className="h-[400px] m-auto py-12"
               />
@@ -266,7 +266,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_2}
+                src={Picture_2_homepage}
                 alt="best articles"
                 className="h-[350px] m-auto pb-5"
               />
@@ -287,7 +287,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_3}
+                src={Picture_3_homepage}
                 alt="best articles"
                 className="h-[350px] m-auto py-5"
               />
@@ -370,7 +370,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_0}
+                src={Picture_0_homepage}
                 alt="best articles"
                 className="h-[700px] m-auto"
               />
@@ -381,7 +381,7 @@ const HomepageContainer = () => {
           <div className="feature-2 bg-[#F55D5D] flex items-center justify-evenly">
             <div className="image-container">
               <img
-                src={Picture_1}
+                src={Picture_1_homepage}
                 alt="best articles"
                 className="h-[680px] m-auto py-16"
               />
@@ -413,7 +413,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_2}
+                src={Picture_2_homepage}
                 alt="best articles"
                 className="h-[700px] m-auto pb-5"
               />
@@ -424,7 +424,7 @@ const HomepageContainer = () => {
           <div className="feature-4 bg-[#F5AF5D] flex items-center justify-evenly">
             <div className="image-container">
               <img
-                src={Picture_3}
+                src={Picture_3_homepage}
                 alt="best articles"
                 className="h-[620px] m-auto py-5"
               />
@@ -521,7 +521,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_0}
+                src={Picture_0_homepage}
                 alt="best articles"
                 className="h-[700px] m-auto"
               />
@@ -532,7 +532,7 @@ const HomepageContainer = () => {
           <div className="feature-2 bg-[#F55D5D] flex items-center justify-evenly">
             <div className="image-container">
               <img
-                src={Picture_1}
+                src={Picture_1_homepage}
                 alt="best articles"
                 className="h-[650px] m-auto py-12"
               />
@@ -564,7 +564,7 @@ const HomepageContainer = () => {
             </div>
             <div className="image-container">
               <img
-                src={Picture_2}
+                src={Picture_2_homepage}
                 alt="best articles"
                 className="h-[660px] m-auto pb-5"
               />
@@ -575,7 +575,7 @@ const HomepageContainer = () => {
           <div className="feature-4 bg-[#F5AF5D] flex items-center justify-evenly">
             <div className="image-container">
               <img
-                src={Picture_3}
+                src={Picture_3_homepage}
                 alt="best articles"
                 className="h-[630px] m-auto py-5"
               />

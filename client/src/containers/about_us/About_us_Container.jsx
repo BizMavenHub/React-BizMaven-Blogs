@@ -8,7 +8,15 @@ function About_us_Container() {
       <Helmet>
         <title>About Us</title>
       </Helmet>
-      <div className="about_us_container desktop:w-[1300px] w-[90%] m-auto">
+      {mobile && <MobileView />}
+
+      {tablet && <TabletView />}
+
+      {desktop && <DesktopView />}
+
+      {largeDesktop && <LargeDesktopView />}
+
+      {/* <div className="about_us_container desktop:w-[1300px] w-[90%] m-auto">
         <h1 className="text-6xl text-center font-semibold my-12 text-blue-500">
           About Us
         </h1>
