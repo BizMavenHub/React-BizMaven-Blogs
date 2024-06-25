@@ -259,6 +259,9 @@ const Feedback_Container = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Feedback</title>
+      </Helmet>
       {mobile && <MobileView />}
       {tablet && <TabletView />}
       {desktop && <DesktopView />}
