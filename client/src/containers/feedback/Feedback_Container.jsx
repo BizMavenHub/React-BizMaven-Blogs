@@ -1,6 +1,24 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 const Feedback_Container = () => {
+  const mobile = useMediaQuery({
+    query: "(min-width: 320px) and (max-width: 767px)",
+  });
+
+  const tablet = useMediaQuery({
+    query: "(min-width: 768px) and (max-width: 1279px)",
+  });
+
+  const desktop = useMediaQuery({
+    query: "(min-width: 1280px) and (max-width: 1919px)",
+  });
+
+  const largeDesktop = useMediaQuery({
+    query: "(min-width: 1920px)",
+  });
+
   const [message, setMessage] = useState("");
 
   const handleSubmit = (e) => {
@@ -13,200 +31,237 @@ const Feedback_Container = () => {
     }
   };
 
-  return (
-    <div>
-      <div className="flex justify-center mt-24 h-screen bg-white">
-        <div className="container mx-auto px-4 lg:px-20">
-          <div className="w-full p-8 my-4 mr-auto rounded-2xl shadow-2xl">
-            <div className="mb-8">
-              <h1 className="text-indigo-500 font-bold text-[64pt] text-center">
-                Send Us A Message
-              </h1>
-            </div>
-            <div className="grid grid-cols-2 gap-5 mt-4">
-              <input
-                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                type="text"
-                placeholder="Username"
-              />
-              <input
-                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                type="email"
-                placeholder="Email"
-              />
-            </div>
-            <div className="mt-4">
-              <input
-                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                type="text"
-                placeholder="Title"
-              />
-            </div>
-            <div className="my-4">
-              <textarea
-                placeholder="Message*"
-                className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-              ></textarea>
-            </div>
-            <div className="my-3 w-1/2 lg:w-1/4 m-auto">
-              <button
-                className="uppercase text-sm font-bold tracking-wide bg-blue-900 text-gray-100 p-3 rounded-lg w-full 
-                      focus:outline-none focus:shadow-outline"
-              >
-                Send Message
-              </button>
-            </div>
-          </div>
-
-          {/* <div className="w-full lg:-mt-96 lg:w-2/6 px-8 py-12 ml-auto bg-blue-900 rounded-2xl">
-            <div className="flex flex-col text-white">
-              <h1 className="font-bold uppercase text-4xl my-4">
-                Drop in our office
-              </h1>
-              <p className="text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
-                tincidunt arcu diam, eu feugiat felis fermentum id. Curabitur
-                vitae nibh viverra, auctor turpis sed, scelerisque ex.
+  const MobileView = () => {
+    return (
+      <div className="feedback-container">
+        <div className="px-4 pb-8">
+          <h1 className="text-[32pt] text-left mt-6 font-semibold">Feedback</h1>
+          <p className="text-[#4B4B4B] tracking-wide font-inter text-left">
+            Please let us know what you think. We appreciate your feedback and
+            suggestions for improvement.
+          </p>
+          <form className="mt-4">
+            <div className="p-4 shadow-[5px_5px_15px_3px_rgba(0,0,0,0.3)] bg-[#F2F2F2] rounded-xl">
+              <div className="mb-6">
+                <label
+                  for="small-input"
+                  className="block text-[11t] font-medium text-gray-800 mb-1"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-[12pt] focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label
+                  for="small-input"
+                  className="block text-[11pt] font-medium text-gray-800 mb-1"
+                >
+                  Messages
+                </label>
+                <textarea
+                  placeholder="Enter your message"
+                  className="block w-full h-[200px] text-[12pt] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className="w-full mt-8 bg-[#FF5C00] text-white text-[12pt] font-inter font-bold py-2 px-4 rounded-xl"
+                >
+                  Send
+                </button>
+              </div>
+              <p className="text-[#4B4B4B] text-[10pt] mt-4">
+                Feel free to contact us at any time.
               </p>
-
-              <div className="flex my-4 w-2/3 lg:w-1/2">
-                <div className="flex flex-col">
-                  <i className="fas fa-map-marker-alt pt-2 pr-2" />
-                </div>
-                <div className="flex flex-col">
-                  <h2 className="text-2xl">Main Office</h2>
-                  <p className="text-gray-400">
-                    5555 Tailwind RD, Pleasant Grove, UT 73533
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex my-4 w-2/3 lg:w-1/2">
-                <div className="flex flex-col">
-                  <i className="fas fa-phone-alt pt-2 pr-2" />
-                </div>
-                <div className="flex flex-col">
-                  <h2 className="text-2xl">Call Us</h2>
-                  <p className="text-gray-400">Tel: xxx-xxx-xxx</p>
-                  <p className="text-gray-400">Fax: xxx-xxx-xxx</p>
-                </div>
-              </div>
-
-              <div className="flex my-4 w-2/3 lg:w-1/2">
-                <a
-                  href="https://www.facebook.com/ENLIGHTENEERING/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full bg-white h-8 w-8 inline-block mx-1 text-center pt-1"
-                >
-                  <i className="fab fa-facebook-f text-blue-900" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/enlighteneering-inc-"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full bg-white h-8 w-8 inline-block mx-1 text-center pt-1"
-                >
-                  <i className="fab fa-linkedin-in text-blue-900" />
-                </a>
-              </div>
             </div>
-          </div> */}
+          </form>
         </div>
       </div>
+    );
+  };
 
-      {/* <div className="text-container text-black text-2xl tracking-wide mobile:text-lg">
-        <section>
-          <p>
-            Feedback—it's a simple word with profound implications. In the realm
-            of blogging, it serves as the lifeblood of growth, improvement, and
-            community engagement. As we launch our new Feedback page, we're
-            excited to emphasize the importance of this two-way dialogue between
-            creators and readers. Here's why feedback matters and how it plays a
-            pivotal role in shaping the future of our blog.
+  const TabletView = () => {
+    return (
+      <div className="feedback-container">
+        <div className="px-8 pb-[55px] w-[70%] m-auto">
+          <h1 className="text-[36pt] text-left mt-6 font-semibold">Feedback</h1>
+          <p className="text-[#4B4B4B] text-lg tracking-wide font-inter text-left">
+            Please let us know what you think. We appreciate your feedback and
+            suggestions for improvement.
           </p>
-        </section>
-        <br />
-        <section>
-          <p>
-            First and foremost, feedback fosters a sense of belonging and
-            ownership within our community. By actively soliciting input from
-            our readers, we acknowledge their invaluable role as stakeholders in
-            the content we produce. Whether it's through comments, surveys, or
-            direct messages, every piece of feedback is a testament to the
-            shared passion and commitment that binds us together.
-          </p>
-        </section>
-        <br />
-        <section>
-          <p>
-            Moreover, feedback serves as a compass, guiding us towards areas of
-            improvement and innovation. Constructive criticism highlights blind
-            spots, challenges assumptions, and encourages us to push the
-            boundaries of creativity and relevance. Embracing feedback isn't a
-            sign of weakness—it's a testament to our willingness to evolve,
-            adapt, and strive for excellence in everything we do.
-          </p>
-        </section>
-        <br />
-        <section>
-          <p>
-            Additionally, feedback cultivates trust and credibility within our
-            community. When readers feel heard and valued, they're more likely
-            to engage with our content, share their perspectives, and recommend
-            our blog to others. In turn, this organic growth strengthens our
-            reputation as a trusted source of information and inspiration in an
-            increasingly crowded digital landscape.
-          </p>
-        </section>
-        <br />
-        <section>
-          <p>
-            But perhaps most importantly, feedback humanizes the blogging
-            experience, transforming it from a one-way monologue into a dynamic
-            conversation. Behind every comment, suggestion, or critique is a
-            real person with unique experiences, perspectives, and emotions. By
-            actively listening and responding to feedback, we demonstrate our
-            respect for the diverse voices that enrich our community.
-          </p>
-        </section>
-        <br />
-        <section>
-          <p>
-            As we launch our Feedback page, we invite you to join us in this
-            journey of collaboration and co-creation. Your insights, ideas, and
-            observations are invaluable to us, and we're committed to leveraging
-            them to make our blog the best it can be. Together, let's harness
-            the power of feedback to build a vibrant, inclusive, and thriving
-            community—one comment at a time. Thank you for being a part of our
-            story.
-          </p>
-        </section>
-      </div>
-      <div className="write-feedback-container">
-        <h1 className="text-center text-4xl font-semibold text-navbar-text my-12">
-          Write Feedback Here
-        </h1>
-        <div className="input-container flex flex-col justify-center items-center">
-          <textarea
-            name="message"
-            id="message"
-            cols="30"
-            rows="10"
-            placeholder="Message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            className="w-[80%] p-4 border-[1.5px] rounded-md border-solid tablet:w-[70%] mobile:w-[90%] mobile:h-[200px]"
-          ></textarea>
-          <button
-            onClick={handleSubmit}
-            className="text-white bg-navbar-bg p-2 my-8 w-[20%] font-medium rounded-lg tablet:w-[30%] mobile:w-[45%]"
-          >
-            Submit
-          </button>
+          <form className="mt-4">
+            <div className="p-4 shadow-[5px_5px_15px_3px_rgba(0,0,0,0.3)] bg-[#F2F2F2] rounded-xl">
+              <div className="mb-6">
+                <label
+                  for="small-input"
+                  className="block text-[11t] font-medium text-gray-800 mb-1"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-[12pt] focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label
+                  for="small-input"
+                  className="block text-[11pt] font-medium text-gray-800 mb-1"
+                >
+                  Messages
+                </label>
+                <textarea
+                  placeholder="Enter your message"
+                  className="block w-full h-[200px] text-[12pt] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className="w-full mt-8 bg-[#FF5C00] text-white text-[12pt] font-inter font-bold py-2 px-4 rounded-xl"
+                >
+                  Send
+                </button>
+              </div>
+              <p className="text-[#4B4B4B] text-[10pt] mt-4">
+                Feel free to contact us at any time.
+              </p>
+            </div>
+          </form>
         </div>
-      </div> */}
-    </div>
+      </div>
+    );
+  };
+
+  const DesktopView = () => {
+    return (
+      <div className="feedback-container">
+        <div className="px-8 pb-[100px] w-[50%] h-full m-auto">
+          <h1 className="text-[34pt] text-left mt-16 font-semibold">
+            Feedback
+          </h1>
+          <p className="text-[#4B4B4B] text-[11pt] mt-1 tracking-wide font-inter text-left">
+            Please let us know what you think. We appreciate your feedback and
+            suggestions for improvement.
+          </p>
+          <form className="mt-4">
+            <div className="p-4 shadow-[5px_5px_15px_3px_rgba(0,0,0,0.3)] bg-[#F2F2F2] rounded-xl">
+              <div className="mb-6">
+                <label
+                  for="small-input"
+                  className="block text-[11t] font-medium text-gray-800 mb-1"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-[12pt] focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label
+                  for="small-input"
+                  className="block text-[11pt] font-medium text-gray-800 mb-1"
+                >
+                  Messages
+                </label>
+                <textarea
+                  placeholder="Enter your message"
+                  className="block w-full h-[200px] text-[12pt] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className="w-full mt-8 bg-[#FF5C00] text-white text-[12pt] font-inter font-bold py-2 px-4 rounded-xl"
+                >
+                  Send
+                </button>
+              </div>
+              <p className="text-[#4B4B4B] text-[10pt] mt-4">
+                Feel free to contact us at any time.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  };
+
+  const LargeDesktopView = () => {
+    return (
+      <div className="feedback-container">
+        <div className="px-8 pb-[100px] w-[35%] h-full m-auto">
+          <h1 className="text-[42pt] text-left mt-16 font-bold tracking-wider">
+            Feedback
+          </h1>
+          <p className="text-[#4B4B4B] text-[11pt] mt-1 tracking-wide font-inter text-left">
+            Please let us know what you think. We appreciate your feedback and
+            suggestions for improvement.
+          </p>
+          <form className="mt-4">
+            <div className="p-4 shadow-[5px_5px_15px_3px_rgba(0,0,0,0.3)] bg-[#F2F2F2] rounded-xl">
+              <div className="mb-6">
+                <label
+                  for="small-input"
+                  className="block text-[11t] font-medium text-gray-800 mb-1"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  className="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-[12pt] focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <label
+                  for="small-input"
+                  className="block text-[11pt] font-medium text-gray-800 mb-1"
+                >
+                  Messages
+                </label>
+                <textarea
+                  placeholder="Enter your message"
+                  className="block w-full h-[200px] text-[12pt] p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+              </div>
+              <div>
+                <button
+                  type="submit"
+                  className="w-full mt-8 bg-[#FF5C00] text-white text-[12pt] font-inter font-bold py-2 px-4 rounded-xl"
+                >
+                  Send
+                </button>
+              </div>
+              <p className="text-[#4B4B4B] text-[10pt] mt-4">
+                Feel free to contact us at any time.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      {mobile && <MobileView />}
+      {tablet && <TabletView />}
+      {desktop && <DesktopView />}
+      {largeDesktop && <LargeDesktopView />}
+    </>
   );
 };
 
