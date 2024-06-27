@@ -15,6 +15,8 @@ import BlogCard from "./cards/BlogCard";
 import BlogCard_1 from "./cards/BlogCard_1";
 import CommentCard from "./cards/CommentCard";
 
+import Ad_Card from "./cards/Ad_Card";
+
 export {
   PreviewComponent,
   CommentComponent,
@@ -27,4 +29,5 @@ export {
   Google_OAuth_btn,
   SideBar,
   OnlyIsAdminPrivateRoute,
+  Ad_Card,
 };
