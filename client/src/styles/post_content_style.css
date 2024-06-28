@@ -1,0 +1,296 @@
+/* # Mobile */
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .post-content h1 {
+    font-size: 32pt;
+    margin: 1rem 0;
+  }
+
+  .post-content h2 {
+    font-size: 20pt;
+    margin: 1.8rem 0 0;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+  }
+
+  .post-content h3 {
+    font-size: 26pt;
+    margin: 0.6rem 0;
+  }
+
+  .post-content h4 {
+    font-size: 16pt;
+    margin: 0.4rem 0;
+    font-weight: 600;
+  }
+
+  .post-content h5 {
+    font-size: 12pt;
+    margin: 1rem 0 0;
+  }
+
+  .post-content h6 {
+    font-size: 10pt;
+    margin: 1rem 0 0;
+  }
+
+  .post-content p {
+    font-size: 12pt;
+    margin: 0.8rem 0;
+    letter-spacing: 1px;
+    font-family: "Arial";
+  }
+
+  .post-content ul {
+    margin-left: 2rem;
+    list-style-type: disc;
+  }
+
+  .post-content ol {
+    margin-left: 2rem;
+    list-style-type: decimal;
+  }
+
+  .post-content li {
+    font-size: 13pt;
+    margin: 10px 0;
+  }
+
+  .post-content a {
+    color: #0000ff;
+  }
+
+  .post-content pre {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 11pt;
+    line-height: 20px;
+    background: #292929;
+    border: 1px solid #777;
+    padding: 10px;
+    font-weight: 600;
+    color: #e0e0e0;
+    overflow-y: scroll;
+    border-radius: 10px;
+  }
+}
+
+/* # Tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .post-content h1 {
+    font-size: 32pt;
+    margin: 1rem 0;
+  }
+
+  .post-content h2 {
+    font-size: 20pt;
+    margin: 1.8rem 0 0;
+    font-weight: 600;
+    font-family: "Inter", sans-serif;
+  }
+
+  .post-content h3 {
+    font-size: 26pt;
+    margin: 0.6rem 0;
+  }
+
+  .post-content h4 {
+    font-size: 16pt;
+    margin: 0.4rem 0;
+    font-weight: 600;
+  }
+
+  .post-content h5 {
+    font-size: 12pt;
+    margin: 1rem 0 0;
+  }
+
+  .post-content h6 {
+    font-size: 10pt;
+    margin: 1rem 0 0;
+  }
+
+  .post-content p {
+    font-size: 12pt;
+    margin: 0.8rem 0;
+    letter-spacing: 1px;
+    font-family: "Arial";
+  }
+
+  .post-content ul {
+    margin-left: 2rem;
+    list-style-type: disc;
+  }
+
+  .post-content ol {
+    margin-left: 2rem;
+    list-style-type: decimal;
+  }
+
+  .post-content li {
+    font-size: 13pt;
+    margin: 10px 0;
+  }
+
+  .post-content a {
+    color: #0000ff;
+  }
+
+  .post-content pre {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 11pt;
+    line-height: 20px;
+    background: #292929;
+    border: 1px solid #777;
+    padding: 10px;
+    font-weight: 600;
+    color: #e0e0e0;
+    border-radius: 10px;
+  }
+}
+
+/* # Desktop */
+@media screen and (min-width: 1024px) and (max-width: 1919px) {
+  .post-content h1 {
+    font-size: 32pt;
+    margin: 1rem 0;
+  }
+
+  .post-content h2 {
+    font-size: 28pt;
+    margin: 0.8rem 0;
+    font-weight: 700;
+  }
+
+  .post-content h3 {
+    font-size: 26pt;
+    margin: 0.6rem 0;
+  }
+
+  .post-content h4 {
+    font-size: 16pt;
+    margin: 0.4rem 0;
+    font-weight: 600;
+  }
+
+  .post-content h5 {
+    font-size: 12pt;
+    margin: 1rem 0 0;
+  }
+
+  .post-content h6 {
+    font-size: 10pt;
+    margin: 1rem 0 0;
+  }
+
+  .post-content p {
+    font-size: 13pt;
+    margin: 1rem 0;
+    letter-spacing: 1px;
+  }
+
+  .post-content ul {
+    margin-left: 2rem;
+    list-style-type: disc;
+  }
+
+  .post-content ol {
+    margin-left: 2rem;
+    list-style-type: decimal;
+  }
+
+  .post-content li {
+    font-size: 13pt;
+    margin: 10px 0;
+  }
+
+  .post-content a {
+    color: #0000ff;
+  }
+
+  .post-content pre {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 12pt;
+    line-height: 25px;
+    background: #292929;
+    border: 1px solid #777;
+    padding: 10px;
+    font-weight: 600;
+    color: #e0e0e0;
+    border-radius: 10px;
+  }
+}
+
+/* # LargeDesktop */
+@media screen and (min-width: 1920px) {
+  .post-content h1 {
+    font-size: 32pt;
+    margin: 1rem 0;
+  }
+
+  .post-content h2 {
+    font-size: 28pt;
+    margin: 0.8rem 0;
+    font-weight: 700;
+  }
+
+  .post-content h3 {
+    font-size: 26pt;
+    margin: 0.6rem 0;
+  }
+
+  .post-content h4 {
+    font-size: 16pt;
+    margin: 0.4rem 0;
+    font-weight: 600;
+  }
+
+  .post-content h5 {
+    font-size: 12pt;
+    margin: 1rem 0 0;
+  }
+
+  .post-content h6 {
+    font-size: 10pt;
+    margin: 1rem 0 0;
+  }
+
+  .post-content p {
+    font-size: 13pt;
+    margin: 1rem 0;
+    letter-spacing: 1px;
+  }
+
+  .post-content ul {
+    margin-left: 2rem;
+    list-style-type: disc;
+  }
+
+  .post-content ol {
+    margin-left: 2rem;
+    list-style-type: decimal;
+  }
+
+  .post-content li {
+    font-size: 13pt;
+    margin: 10px 0;
+  }
+
+  .post-content a {
+    color: #0000ff;
+  }
+
+  .post-content pre {
+    box-sizing: border-box;
+    margin: 0;
+    font-size: 11pt;
+    line-height: 20px;
+    background: #292929;
+    border: 1px solid #777;
+    padding: 10px;
+    font-weight: 600;
+    color: #e0e0e0;
+    border-radius: 10px;
+  }
+}
