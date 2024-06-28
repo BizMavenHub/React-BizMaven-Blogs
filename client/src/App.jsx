@@ -74,6 +74,7 @@ function AppRoutes() {
           <Route path="/feedback" element={<Feedback_page />} />
           <Route path="/contact-us" element={<Contact_page />} />
           <Route path="/blogs" element={<Blogs_page />} />
+          <Route path="/post/:slug" element={<Post_page />} />
           <Route path="*" element={<NotFound_page />} />
         </Routes>
       )}
