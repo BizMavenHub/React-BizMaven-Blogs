@@ -18,7 +18,7 @@ const __dirname = path.resolve();
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow requests from this origin
+  origin: import.meta.env.FRONTEND_URL, // Allow requests from this origin
   credentials: true, // Allow credentials (cookies, etc.)
   optionSuccessStatus: 200,
 };
