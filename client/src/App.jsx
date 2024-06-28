@@ -22,6 +22,7 @@ import {
   UpdatePost_page,
   CreatePost_page,
   SearchPage,
+  TermCondition,
 } from "./pages/index";
 
 import UseAccessToken from "./components/cookie/UseAccessToken";
@@ -52,6 +53,7 @@ function AppRoutes() {
           <Route path="/feedback" element={<Feedback_page />} />
           <Route path="/contact-us" element={<Contact_page />} />
           <Route path="/blogs" element={<Blogs_page />} />
+          <Route path="/terms-and-conditions" element={<TermCondition />} />
           <Route path="/search" element={<SearchPage />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard_page />} />
@@ -72,6 +74,7 @@ function AppRoutes() {
           <Route path="/login" element={<Login_page />} />
           <Route path="/about-us" element={<About_us_page />} />
           <Route path="/feedback" element={<Feedback_page />} />
+          <Route path="/terms-and-conditions" element={<TermCondition />} />
           <Route path="/contact-us" element={<Contact_page />} />
           <Route path="/blogs" element={<Blogs_page />} />
           <Route path="/post/:slug" element={<Post_page />} />
