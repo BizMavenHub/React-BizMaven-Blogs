@@ -4,7 +4,25 @@ import { Link, useNavigate } from "react-router-dom";
 import CommentCard from "../cards/CommentCard";
 import CommentForm from "../comment_component/CommentForm";
 
+import { useMediaQuery } from "react-responsive";
+
 const CommentComponent = ({ postId }) => {
+  const mobile = useMediaQuery({
+    query: "(min-width: 320px) and (max-width: 767px)",
+  });
+
+  const tablet = useMediaQuery({
+    query: "(min-width: 768px) and (max-width: 1023px)",
+  });
+
+  const desktop = useMediaQuery({
+    query: "(min-width: 1024px) and (max-width: 1919px)",
+  });
+
+  const largeDesktop = useMediaQuery({
+    query: "(min-width: 1920px)",
+  });
+
   const { currentUser } = useSelector((state) => state.user);
 
   const [comments, setComments] = useState([]);
@@ -147,66 +165,269 @@ const CommentComponent = ({ postId }) => {
     setComments(comments.filter((comment) => comment._id !== commentId));
   };
 
-  return (
-    <div className="w-[55%] m-auto">
-      {currentUser ? (
-        <>
-          <div className="flex items-center my-6">
-            <div className="mr-4">
-              <img
-                className="h-10 w-10 rounded-full object-cover"
-                src={currentUser.pictureProfile}
-                alt=""
-              />
+  const MobileView = () => {
+    return (
+      <div className="w-[95%] m-auto">
+        {currentUser ? (
+          <>
+            <div className="flex items-center my-6">
+              <div className="mr-4">
+                <img
+                  className="h-10 w-10 rounded-full object-cover"
+                  src={currentUser.pictureProfile}
+                  alt=""
+                />
+              </div>
+              <p className="text-sm font-medium">
+                signed in as{" "}
+                <span className="text-blue-500">{currentUser.email}</span>
+              </p>
             </div>
-            <p className="text-sm font-medium">
-              signed in as{" "}
-              <span className="text-blue-500">{currentUser.email}</span>
+
+            <p className="my-4 text-xl font-medium">
+              Comments:{" "}
+              <span className="px-4 py-1 border">{comments.length}</span>
+            </p>
+
+            <CommentForm postId={postId} onFetchComment={fetchComments} />
+
+            {error && <p className="text-red-500">{error}</p>}
+
+            <div className="comments-container">
+              {comments.length === 0 ? (
+                <>
+                  <h1 className="text-lg ml-4">No comments yet</h1>
+                </>
+              ) : (
+                <>
+                  {comments.map((comment) => (
+                    <CommentCard
+                      key={comment._id}
+                      comment={comment}
+                      onLike={handleLike}
+                      onDislike={handleDislike}
+                      onEdit={handleEditComment}
+                      onDelete={handleDeleteComment}
+                    />
+                  ))}
+                </>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="my-8">
+            <p className="text-xl font-medium">
+              Please{" "}
+              <Link to="/sign-up" className="text-blue-500">
+                sign in
+              </Link>{" "}
+              to write or see comment
             </p>
           </div>
+        )}
+      </div>
+    );
+  };
 
-          <p className="my-4 text-xl font-medium">
-            Comments:{" "}
-            <span className="px-4 py-1 border">{comments.length}</span>
-          </p>
+  const TabletView = () => {
+    return (
+      <div className="w-[95%] m-auto">
+        {currentUser ? (
+          <>
+            <div className="flex items-center my-6">
+              <div className="mr-4">
+                <img
+                  className="h-10 w-10 rounded-full object-cover"
+                  src={currentUser.pictureProfile}
+                  alt=""
+                />
+              </div>
+              <p className="text-sm font-medium">
+                signed in as{" "}
+                <span className="text-blue-500">{currentUser.email}</span>
+              </p>
+            </div>
 
-          <CommentForm postId={postId} onFetchComment={fetchComments} />
+            <p className="my-4 text-xl font-medium">
+              Comments:{" "}
+              <span className="px-4 py-1 border">{comments.length}</span>
+            </p>
 
-          {error && <p className="text-red-500">{error}</p>}
+            <CommentForm postId={postId} onFetchComment={fetchComments} />
 
-          <div className="comments-container">
-            {comments.length === 0 ? (
-              <>
-                <h1 className="text-lg ml-4">No comments yet</h1>
-              </>
-            ) : (
-              <>
-                {comments.map((comment) => (
-                  <CommentCard
-                    key={comment._id}
-                    comment={comment}
-                    onLike={handleLike}
-                    onDislike={handleDislike}
-                    onEdit={handleEditComment}
-                    onDelete={handleDeleteComment}
-                  />
-                ))}
-              </>
-            )}
+            {error && <p className="text-red-500">{error}</p>}
+
+            <div className="comments-container">
+              {comments.length === 0 ? (
+                <>
+                  <h1 className="text-lg ml-4">No comments yet</h1>
+                </>
+              ) : (
+                <>
+                  {comments.map((comment) => (
+                    <CommentCard
+                      key={comment._id}
+                      comment={comment}
+                      onLike={handleLike}
+                      onDislike={handleDislike}
+                      onEdit={handleEditComment}
+                      onDelete={handleDeleteComment}
+                    />
+                  ))}
+                </>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="my-8">
+            <p className="text-xl font-medium">
+              Please{" "}
+              <Link to="/sign-up" className="text-blue-500">
+                sign in
+              </Link>{" "}
+              to write or see comment
+            </p>
           </div>
-        </>
-      ) : (
-        <div className="my-8">
-          <p className="text-xl font-medium">
-            Please{" "}
-            <Link to="/sign-up" className="text-blue-500">
-              sign in
-            </Link>{" "}
-            to write or see comment
-          </p>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    );
+  };
+
+  const DesktopView = () => {
+    return (
+      <div className="w-[55%] m-auto">
+        {currentUser ? (
+          <>
+            <div className="flex items-center my-6">
+              <div className="mr-4">
+                <img
+                  className="h-10 w-10 rounded-full object-cover"
+                  src={currentUser.pictureProfile}
+                  alt=""
+                />
+              </div>
+              <p className="text-sm font-medium">
+                signed in as{" "}
+                <span className="text-blue-500">{currentUser.email}</span>
+              </p>
+            </div>
+
+            <p className="my-4 text-xl font-medium">
+              Comments:{" "}
+              <span className="px-4 py-1 border">{comments.length}</span>
+            </p>
+
+            <CommentForm postId={postId} onFetchComment={fetchComments} />
+
+            {error && <p className="text-red-500">{error}</p>}
+
+            <div className="comments-container">
+              {comments.length === 0 ? (
+                <>
+                  <h1 className="text-lg ml-4">No comments yet</h1>
+                </>
+              ) : (
+                <>
+                  {comments.map((comment) => (
+                    <CommentCard
+                      key={comment._id}
+                      comment={comment}
+                      onLike={handleLike}
+                      onDislike={handleDislike}
+                      onEdit={handleEditComment}
+                      onDelete={handleDeleteComment}
+                    />
+                  ))}
+                </>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="my-8">
+            <p className="text-xl font-medium">
+              Please{" "}
+              <Link to="/sign-up" className="text-blue-500">
+                sign in
+              </Link>{" "}
+              to write or see comment
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const LargeDesktopView = () => {
+    return (
+      <div className="w-[55%] m-auto">
+        {currentUser ? (
+          <>
+            <div className="flex items-center my-6">
+              <div className="mr-4">
+                <img
+                  className="h-10 w-10 rounded-full object-cover"
+                  src={currentUser.pictureProfile}
+                  alt=""
+                />
+              </div>
+              <p className="text-sm font-medium">
+                signed in as{" "}
+                <span className="text-blue-500">{currentUser.email}</span>
+              </p>
+            </div>
+
+            <p className="my-4 text-xl font-medium">
+              Comments:{" "}
+              <span className="px-4 py-1 border">{comments.length}</span>
+            </p>
+
+            <CommentForm postId={postId} onFetchComment={fetchComments} />
+
+            {error && <p className="text-red-500">{error}</p>}
+
+            <div className="comments-container">
+              {comments.length === 0 ? (
+                <>
+                  <h1 className="text-lg ml-4">No comments yet</h1>
+                </>
+              ) : (
+                <>
+                  {comments.map((comment) => (
+                    <CommentCard
+                      key={comment._id}
+                      comment={comment}
+                      onLike={handleLike}
+                      onDislike={handleDislike}
+                      onEdit={handleEditComment}
+                      onDelete={handleDeleteComment}
+                    />
+                  ))}
+                </>
+              )}
+            </div>
+          </>
+        ) : (
+          <div className="my-8">
+            <p className="text-xl font-medium">
+              Please{" "}
+              <Link to="/sign-up" className="text-blue-500">
+                sign in
+              </Link>{" "}
+              to write or see comment
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  return (
+    <>
+      {mobile && <MobileView />}
+      {tablet && <TabletView />}
+      {desktop && <DesktopView />}
+      {largeDesktop && <LargeDesktopView />}
+    </>
   );
 };
 

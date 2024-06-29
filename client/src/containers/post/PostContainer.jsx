@@ -122,6 +122,9 @@ const PostContainer = () => {
               className="post-content"
               dangerouslySetInnerHTML={{ __html: post.content }}
             ></div>
+            <div>
+              <CommentComponent postId={post._id} />
+            </div>
           </div>
         ))}
       </div>
@@ -143,6 +146,9 @@ const PostContainer = () => {
               className="post-content"
               dangerouslySetInnerHTML={{ __html: post.content }}
             ></div>
+            <div>
+              <CommentComponent postId={post._id} />
+            </div>
           </div>
         ))}
       </div>
@@ -164,6 +170,9 @@ const PostContainer = () => {
               className="post-content"
               dangerouslySetInnerHTML={{ __html: post.content }}
             ></div>
+            <div>
+              <CommentComponent postId={post._id} />
+            </div>
           </div>
         ))}
       </div>
