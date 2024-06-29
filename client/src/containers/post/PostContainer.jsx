@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet";
 
 import "../../styles/post_content_style.css";
 
-const PostContainer = ({ fetchComments }) => {
+const PostContainer = () => {
   const mobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 767px)",
   });
@@ -42,14 +42,14 @@ const PostContainer = ({ fetchComments }) => {
   }, [slug]);
 
   useEffect(() => {
-    fetchRecentPosts();
+    // fetchRecentPosts();
   }, [posts]);
 
   const fetchPost = async () => {
     try {
       setLoading(true);
       const response = await fetch(
-        import.meta.env.VITE_API_BASE_URL + "/api/post/get-post?slug=" + slug,
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?slug=${slug}`,
         {
           method: "GET",
           headers: {
@@ -76,38 +76,36 @@ const PostContainer = ({ fetchComments }) => {
     }
   };
 
-  const fetchRecentPosts = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=3`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          withCredentials: true,
-        }
-      );
+  // const fetchRecentPosts = async () => {
+  //   try {
+  //     setLoading(true);
+  //     const response = await fetch(
+  //       `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=3`,
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         credentials: "include",
+  //         withCredentials: true,
+  //       }
+  //     );
 
-      const data = await response.json();
+  //     const data = await response.json();
 
-      if (!response.ok) {
-        setLoading(false);
-        setError(data.message);
-      }
+  //     if (!response.ok) {
+  //       setLoading(false);
+  //       setError(data.message);
+  //     }
 
-      if (response.ok) {
-        setLoading(false);
-        setRecentPosts(data.posts);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  console.log(posts);
+  //     if (response.ok) {
+  //       setLoading(false);
+  //       setRecentPosts(data.posts);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const MobileView = () => {
     return (
@@ -246,13 +244,20 @@ const PostContainer = ({ fetchComments }) => {
         />
       </Helmet>
 
-      {mobile && <MobileView />}
-
-      {tablet && <TabletView />}
-
-      {desktop && <DesktopView />}
-
-      {largeDesktop && <LargeDesktopView />}
+      <>
+        {posts.map((post) => (
+          <>
+            {post.slug === slug && (
+              <>
+                {mobile && <MobileView />}
+                {tablet && <TabletView />}
+                {desktop && <DesktopView />}
+                {largeDesktop && <LargeDesktopView />}
+              </>
+            )}
+          </>
+        ))}
+      </>
 
       {/* <div className="p-4 mb-8">
         {posts.map((post) => (
