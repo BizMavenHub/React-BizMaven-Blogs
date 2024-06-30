@@ -119,7 +119,7 @@ const NavbarComponent = () => {
                     <li>
                       <Link
                         to="/blogs"
-                        className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:border-gray-700"
+                        className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded dark:text-white dark:border-gray-700"
                         aria-current="page"
                       >
                         Blogs
@@ -157,7 +157,7 @@ const NavbarComponent = () => {
                     <li>
                       <Link
                         to="/blogs"
-                        className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:border-gray-700"
+                        className="block font-normal text-sm tracking-[2px] py-2 px-3 text-gray-900 rounded hover:bg-gray-600 dark:text-white dark:border-gray-700"
                         aria-current="page"
                       >
                         Blogs
