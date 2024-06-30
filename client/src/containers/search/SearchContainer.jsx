@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import { BlogCard_1 } from "../../components";
+import { BlogCard, RecentBlogCard } from "../../components";
 
 const SearchContainer = () => {
   const navigate = useNavigate();
@@ -239,7 +239,7 @@ const SearchContainer = () => {
                 <div className="grid grid-cols-4 gap-6">
                   {posts.map((post, index) => (
                     <div key={index}>
-                      <BlogCard_1
+                      <BlogCard
                         id={post._id}
                         title={post.title}
                         image={post.image}

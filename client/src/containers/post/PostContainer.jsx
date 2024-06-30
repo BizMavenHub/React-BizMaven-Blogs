@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import { CommentComponent } from "../../components";
-import { BlogCard_1 } from "../../components";
+import { RecentBlogCard } from "../../components";
 
 import { Helmet } from "react-helmet";
 
@@ -22,11 +22,11 @@ const PostContainer = () => {
   });
 
   const desktop = useMediaQuery({
-    query: "(min-width: 1024px) and (max-width: 1279px)",
+    query: "(min-width: 1024px) and (max-width: 1919px)",
   });
 
   const largeDesktop = useMediaQuery({
-    query: "(min-width: 1280px)",
+    query: "(min-width: 1920px)",
   });
 
   const { currentUser } = useSelector((state) => state.user);
@@ -42,7 +42,7 @@ const PostContainer = () => {
   }, [slug]);
 
   useEffect(() => {
-    // fetchRecentPosts();
+    fetchRecentPosts();
   }, [posts]);
 
   const fetchPost = async () => {
@@ -76,36 +76,36 @@ const PostContainer = () => {
     }
   };
 
-  // const fetchRecentPosts = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const response = await fetch(
-  //       `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=3`,
-  //       {
-  //         method: "GET",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         credentials: "include",
-  //         withCredentials: true,
-  //       }
-  //     );
+  const fetchRecentPosts = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=4`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
+        }
+      );
 
-  //     const data = await response.json();
+      const data = await response.json();
 
-  //     if (!response.ok) {
-  //       setLoading(false);
-  //       setError(data.message);
-  //     }
+      if (!response.ok) {
+        setLoading(false);
+        setError(data.message);
+      }
 
-  //     if (response.ok) {
-  //       setLoading(false);
-  //       setRecentPosts(data.posts);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      if (response.ok) {
+        setLoading(false);
+        setRecentPosts(data.posts);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const MobileView = () => {
     return (
@@ -127,13 +127,37 @@ const PostContainer = () => {
             </div>
           </div>
         ))}
+        <div className="recent-posts">
+          <h1 className="text-2xl font-bold text-left mb-2 mt-10 tracking-wide">
+            Recent Posts
+          </h1>
+          <div className="grid grid-cols-1 gap-4">
+            {recentPosts.map(
+              (post) => (
+                console.log(post),
+                (
+                  <Fragment key={post._id}>
+                    <RecentBlogCard
+                      title={post.title}
+                      image={post.image}
+                      category={post.category}
+                      content={post.content}
+                      slug={post.slug}
+                      date={post.createdAt}
+                    />
+                  </Fragment>
+                )
+              )
+            )}
+          </div>
+        </div>
       </div>
     );
   };
 
   const TabletView = () => {
     return (
-      <div className="px-4 py-8">
+      <div className="px-4 py-8 w-[95%] m-auto">
         {posts.map((post) => (
           <div key={post._id}>
             <div className="title-content pb-6">
@@ -151,17 +175,41 @@ const PostContainer = () => {
             </div>
           </div>
         ))}
+        <div className="recent-posts">
+          <h1 className="text-5xl font-bold text-center my-10">Recent Posts</h1>
+          <div className="grid grid-cols-2 gap-4">
+            {recentPosts.map(
+              (post) => (
+                console.log(post),
+                (
+                  <Fragment key={post._id}>
+                    <RecentBlogCard
+                      title={post.title}
+                      image={post.image}
+                      category={post.category}
+                      content={post.content}
+                      slug={post.slug}
+                      date={post.createdAt}
+                    />
+                  </Fragment>
+                )
+              )
+            )}
+          </div>
+        </div>
       </div>
     );
   };
 
   const DesktopView = () => {
     return (
-      <div className="px-4 py-8">
+      <div className="px-4 py-8 w-[90%] m-auto">
         {posts.map((post) => (
           <div key={post._id}>
-            <div className="title-content pb-6">
-              <h1 className="text-3xl font-semibold">{post.title}</h1>
+            <div className="title-content mb-16">
+              <h1 className="text-[52pt] font-semibold leading-[80px]">
+                {post.title}
+              </h1>
             </div>
             <div className="image-container">
               <img src={post.image} alt="image of post" />
@@ -175,6 +223,28 @@ const PostContainer = () => {
             </div>
           </div>
         ))}
+        <div className="recent-posts">
+          <h1 className="text-5xl font-bold text-center my-10">Recent Posts</h1>
+          <div className="grid grid-cols-4 gap-4">
+            {recentPosts.map(
+              (post) => (
+                console.log(post),
+                (
+                  <Fragment key={post._id}>
+                    <RecentBlogCard
+                      title={post.title}
+                      image={post.image}
+                      category={post.category}
+                      content={post.content}
+                      slug={post.slug}
+                      date={post.createdAt}
+                    />
+                  </Fragment>
+                )
+              )
+            )}
+          </div>
+        </div>
       </div>
     );
   };
@@ -225,18 +295,24 @@ const PostContainer = () => {
 
         <div className="w-[75%] m-auto">
           <h1 className="text-5xl font-bold text-center my-10">Recent Posts</h1>
-          <div className="grid grid-cols-3 gap-4">
-            {recentPosts.map((post) => (
-              <Fragment key={post._id}>
-                <BlogCard_1
-                  title={post.title}
-                  image={post.image}
-                  category={post.category}
-                  slug={post.slug}
-                  date={post.createdAt}
-                />
-              </Fragment>
-            ))}
+          <div className="grid grid-cols-4 gap-4">
+            {recentPosts.map(
+              (post) => (
+                console.log(post),
+                (
+                  <Fragment key={post._id}>
+                    <RecentBlogCard
+                      title={post.title}
+                      image={post.image}
+                      category={post.category}
+                      content={post.content}
+                      slug={post.slug}
+                      date={post.createdAt}
+                    />
+                  </Fragment>
+                )
+              )
+            )}
           </div>
         </div>
       </div>

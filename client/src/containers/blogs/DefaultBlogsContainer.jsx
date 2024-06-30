@@ -1,11 +1,29 @@
 import React, { Fragment } from "react";
-import { BlogCard, BlogCard_1 } from "../../components";
+import { BlogCard, RecentBlogCard } from "../../components";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+
+import { useMediaQuery } from "react-responsive";
 
 import { Helmet } from "react-helmet";
 
 const DefaultBlogsContainer = () => {
+  const mobile = useMediaQuery({
+    query: "(min-width: 320px) and (max-width: 767px)",
+  });
+
+  const tablet = useMediaQuery({
+    query: "(min-width: 768px) and (max-width: 1023px)",
+  });
+
+  const desktop = useMediaQuery({
+    query: "(min-width: 1024px) and (max-width: 1279px)",
+  });
+
+  const largeDesktop = useMediaQuery({
+    query: "(min-width: 1280px)",
+  });
+
   const { currentUser } = useSelector((state) => state.user);
 
   const [posts, setPosts] = useState({
@@ -22,11 +40,49 @@ const DefaultBlogsContainer = () => {
     GetPosts();
   }, []);
 
+  useEffect(() => {
+    GetPostsByLimit();
+  }, []);
+
   const GetPosts = async () => {
     setLoading(true);
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          withCredentials: true,
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.message);
+        setLoading(false);
+      } else {
+        setPosts(data);
+        setLoading(false);
+        if (data.posts.length < 3) {
+          setShowMore(false);
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const GetPostsByLimit = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=5`,
         {
           method: "GET",
           headers: {
@@ -91,6 +147,10 @@ const DefaultBlogsContainer = () => {
 
   const { lastMonthPosts, posts: allPosts } = posts;
 
+  const MobileView = () => {
+    return <div></div>;
+  };
+
   return (
     <>
       <Helmet>
@@ -99,7 +159,7 @@ const DefaultBlogsContainer = () => {
       <div className="blogs-container my-12">
         <div className="card-container w-[600px] m-auto grid">
           {allPosts.map((post, index) => (
-            <BlogCard_1
+            <BlogCard
               key={index}
               id={post._id}
               writerId={post.userId}
