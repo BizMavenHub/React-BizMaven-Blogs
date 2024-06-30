@@ -114,11 +114,11 @@ const DashUsersContainer = () => {
   };
 
   return (
-    <div className="px-8 py-4">
+    <div className="px-8 py-4 overflow-x-scroll">
       <Helmet>
         <title>Dashboard | Users</title>
       </Helmet>
-      <table className="w-full text-sm text-center ">
+      <table className="w-full text-sm text-center overflow-x-scroll ">
         <thead>
           <tr className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
             <th className="p-4">Created At</th>

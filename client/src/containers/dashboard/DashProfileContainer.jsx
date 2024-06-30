@@ -160,7 +160,7 @@ const DashProfileContainer = () => {
       <Helmet>
         <title>Dashboard | Profile</title>
       </Helmet>
-      <div className="w-[50%] mt-0 m-auto">
+      <div className="w-[50%] mobile:w-[90%] tablet:w-[90%] mt-0 m-auto">
         <h1 className="text-center text-4xl tracking-wide text-indigo-500 font-montserrat font-semibold">
           Profile
         </h1>
@@ -219,7 +219,7 @@ const DashProfileContainer = () => {
         </h1>
         <h2 className="text-center text-lg">{currentUser.email}</h2>
       </div>
-      <div className="w-[25%] m-auto mt-16">
+      <div className="w-[25%] mobile:w-[80%] tablet:w-[55%]  m-auto mt-16">
         <h1 className="text-center text-2xl tracking-wide text-indigo-500 font-montserrat font-semibold">
           Update Profile
         </h1>
