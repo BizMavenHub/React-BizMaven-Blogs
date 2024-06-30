@@ -156,8 +156,11 @@ const DefaultBlogsContainer = () => {
       <Helmet>
         <title>Our Blogs | Insight Loop</title>
       </Helmet>
-      <div className="blogs-container my-12">
+      <div className="blogs-container my-4">
         <div className="card-container w-[600px] m-auto grid">
+          <div className="title my-8">
+            <h1 className="text-3xl font-medium">For you</h1>
+          </div>
           {allPosts.map((post, index) => (
             <BlogCard
               key={index}
