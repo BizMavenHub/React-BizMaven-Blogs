@@ -192,7 +192,7 @@ const SideBar = () => {
         ) : (
           <aside
             id="default-sidebar"
-            className=" fixe top-0 left-0 z-40 w-64 min-h-[92vh] h-full transition-transform"
+            className=" fixe top-0 left-0 z-40 w-16 min-h-[92vh] h-full transition-transform"
             aria-label="Sidebar"
           >
             <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
@@ -379,7 +379,7 @@ const SideBar = () => {
         ) : (
           <aside
             id="default-sidebar"
-            className=" fixe top-0 left-0 z-40 w-64 min-h-[92vh] h-full transition-transform"
+            className=" fixe top-0 left-0 z-40 w-16 min-h-[92vh] h-full transition-transform"
             aria-label="Sidebar"
           >
             <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
