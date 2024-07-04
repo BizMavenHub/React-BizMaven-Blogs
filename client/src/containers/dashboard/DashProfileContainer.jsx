@@ -181,7 +181,7 @@ const DashProfileContainer = () => {
           <img
             src={imageFileUrl || currentUser.pictureProfile}
             alt=""
-            className={`rounded-full h-32 w-32 p-1 ring-2 ring-gray-400 cursor-pointer object-contain ${
+            className={`rounded-full h-32 w-32 p-1 ring-2 ring-gray-400 cursor-pointer object-cover ${
               imageFileUploadProgress &&
               imageFileUploadProgress < 100 &&
               "opacity-100"
