@@ -167,12 +167,12 @@ const HomepageContainer = () => {
             </p>
 
             <div className="join-us-btn pt-6">
-              <button
-                onClick={() => (window.location.href = "/sign-up")}
+              <Link
+                to="/sign-up"
                 className="font-inter text-xl font-semibold text-white py-3 px-8 border-[3px] border-[#E7EB21] rounded-2xl"
               >
                 Join Us Today For Free
-              </button>
+              </Link>
             </div>
 
             <div className="wave-container">
@@ -314,12 +314,12 @@ const HomepageContainer = () => {
             </p>
 
             <div className="join-us-btn pt-6">
-              <button
-                onClick={() => (window.location.href = "/sign-up")}
+              <Link
+                to="/sign-up"
                 className="font-inter text-xl font-semibold text-white py-3 px-8 border-[3px] border-[#E7EB21] rounded-2xl"
               >
                 Join Us Today For Free
-              </button>
+              </Link>
             </div>
 
             <div className="wave-container">
@@ -454,12 +454,12 @@ const HomepageContainer = () => {
                 with readers who appreciate great content.
               </p>
               <div className="join-us-btn mt-8">
-                <button
-                  onClick={() => (window.location.href = "/sign-up")}
+                <Link
+                  to="/sign-up"
                   className="font-inter text-xl font-semibold text-white py-3 px-8 border-[3px] border-[#E7EB21] rounded-2xl"
                 >
                   Join Us Today For Free
-                </button>
+                </Link>
               </div>
             </div>
             <div className="image-container">
@@ -605,12 +605,12 @@ const HomepageContainer = () => {
                 with readers who appreciate great content.
               </p>
               <div className="join-us-btn mt-8">
-                <button
-                  onClick={() => (window.location.href = "/sign-up")}
-                  className="font-inter text-2xl font-semibold text-white py-5 px-12 border-[3px] border-[#E7EB21] rounded-2xl"
+                <Link
+                  to="/sign-up"
+                  className="font-inter text-xl font-semibold text-white py-3 px-8 border-[3px] border-[#E7EB21] rounded-2xl"
                 >
                   Join Us Today For Free
-                </button>
+                </Link>
               </div>
             </div>
             <div className="image-container">
