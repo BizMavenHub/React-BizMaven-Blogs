@@ -2,7 +2,7 @@ import React from "react";
 
 import { Google_OAuth_btn } from "../../components/index";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useMediaQuery } from "react-responsive";
 
@@ -190,12 +190,12 @@ function Login_page() {
           <div className="already_have_account mt-4">
             <p className=" text-center text-lg mobile:text-[12pt]">
               Don't have an account?{" "}
-              <a
-                href="/sign-up"
+              <Link
+                to="/sign-up"
                 className=" text-content-bg hover:underline hover:underline-offset-2 text-blue-600"
               >
                 Get Started
-              </a>
+              </Link>
             </p>
           </div>
         </div>
