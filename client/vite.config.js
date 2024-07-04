@@ -8,8 +8,20 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:8000",
+        target:
+          "https://react-bizmaven-blogs.onrender.com/api/auth/login-with-email",
         changeOrigin: true,
+        ws: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods":
+            "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+          "Access-Control-Allow-Headers":
+            "X-Requested-With, content-type, Authorization",
+          "Access-Control-Allow-Credentials": "true",
+          "Content-Type": "application/json",
+        },
         secure: false,
       },
     },
