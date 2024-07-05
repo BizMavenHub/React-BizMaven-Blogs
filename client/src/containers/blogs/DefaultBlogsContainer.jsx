@@ -54,6 +54,7 @@ const DefaultBlogsContainer = () => {
           mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
           },
           credentials: "include",
         }
