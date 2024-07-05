@@ -15,7 +15,7 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL, // Allow requests from this origin
+  origin: `${process.env.FRONTEND_URL}`, // Allow requests from this origin
   credentials: true, // Allow credentials (cookies, etc.)
   methods: ["GET", "POST", "PUT", "DELETE"],
 };
