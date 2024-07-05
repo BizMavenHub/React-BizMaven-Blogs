@@ -51,10 +51,8 @@ const DefaultBlogsContainer = () => {
         `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post`,
         {
           method: "GET",
-          mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
           },
           credentials: "include",
         }

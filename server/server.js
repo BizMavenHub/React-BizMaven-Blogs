@@ -15,18 +15,15 @@ dotenv.config();
 const app = express();
 
 const corsOptions = {
-  origin: "*", // Allow requests from this origin
+  origin: process.env.FRONTEND_URL, // Allow requests from this origin
   credentials: true, // Allow credentials (cookies, etc.)
-  optionSuccessStatus: 200,
+  methods: ["GET", "POST", "PUT", "DELETE"],
 };
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-// Handle preflight requests
-app.options("*", cors(corsOptions));
 
 // Routers
 app.use("/api/auth", authRoute);
