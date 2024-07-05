@@ -153,6 +153,14 @@ const NavbarComponent = () => {
                       <li className="hover:bg-gray-700">
                         <Link
                           className="block py-2 px-4 hover:bg-gray-700"
+                          to="/blogs"
+                        >
+                          Blogs
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-2 px-4 hover:bg-gray-700"
                           to="/about-us"
                         >
                           About Us
