@@ -33,10 +33,10 @@ const FooterComponent = () => {
           <li>
             <Link
               className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
-              to={"/careers"}
+              to={"/career"}
             >
               {" "}
-              Careers{" "}
+              Career{" "}
             </Link>
           </li>
 
@@ -57,16 +57,6 @@ const FooterComponent = () => {
             >
               {" "}
               Blog{" "}
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
-              to={"/faqs"}
-            >
-              {" "}
-              FAQs{" "}
             </Link>
           </li>
 
