@@ -12,4 +12,4 @@ Allow: /public/
 Disallow: /private/
 Disallow: /temp/
 
-Sitemap: https://insightloop.blog/sitemap.xml
+Sitemap: https://www.insightloop.blog/sitemap.xml
