@@ -1,5 +1,7 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
 User-agent: *
-Disallow: 
-Disallow: /cgi-bin/
+Allow: /
 
 Sitemap: https://www.insightloop.blog/sitemap.xml
