@@ -1,15 +1,5 @@
 User-agent: *
-Disallow: /private/
-Disallow: /tmp/
-Disallow: /admin/
-
-User-agent: Googlebot
-Allow: /public/
-Disallow: /private/
-
-User-agent: Bingbot
-Allow: /public/
-Disallow: /private/
-Disallow: /temp/
+Disallow: 
+Disallow: /cgi-bin/
 
 Sitemap: https://www.insightloop.blog/sitemap.xml
