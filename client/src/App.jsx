@@ -18,6 +18,7 @@ import {
   NotFound_page,
   Blogs_page,
   Dashboard_page,
+  Career_Page,
   Post_page,
   UpdatePost_page,
   CreatePost_page,
@@ -52,6 +53,7 @@ function AppRoutes() {
           <Route path="/about-us" element={<About_us_page />} />
           <Route path="/feedback" element={<Feedback_page />} />
           <Route path="/contact-us" element={<Contact_page />} />
+          <Route path="/career" element={<Career_Page />} />
           <Route path="/blogs" element={<Blogs_page />} />
           <Route path="/terms-and-conditions" element={<TermCondition />} />
           <Route path="/search" element={<SearchPage />} />
@@ -76,6 +78,7 @@ function AppRoutes() {
           <Route path="/feedback" element={<Feedback_page />} />
           <Route path="/terms-and-conditions" element={<TermCondition />} />
           <Route path="/contact-us" element={<Contact_page />} />
+          <Route path="/career" element={<Career_Page />} />
           <Route path="/blogs" element={<Blogs_page />} />
           <Route path="/post/:slug" element={<Post_page />} />
           <Route path="*" element={<NotFound_page />} />
