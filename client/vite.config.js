@@ -8,8 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target:
-          "https://react-bizmaven-blogs.onrender.com/api/auth/login-with-email",
+        target: "http://localhost:8000",
         changeOrigin: true,
         ws: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
