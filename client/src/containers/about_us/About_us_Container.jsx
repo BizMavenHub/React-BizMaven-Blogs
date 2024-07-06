@@ -33,8 +33,8 @@ function About_us_Container() {
 
   const MobileView = () => {
     return (
-      <div className="about-us-container ">
-        <div className="px-4">
+      <div className="about-us-container">
+        <div className="w-[90%] m-auto">
           <div className="title-container">
             <h1 className="text-[32pt] text-left mb-4 mt-8 font-semibold">
               About Our Website
