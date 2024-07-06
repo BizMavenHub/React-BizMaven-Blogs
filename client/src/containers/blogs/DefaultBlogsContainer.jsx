@@ -17,11 +17,11 @@ const DefaultBlogsContainer = () => {
   });
 
   const desktop = useMediaQuery({
-    query: "(min-width: 1024px) and (max-width: 1279px)",
+    query: "(min-width: 1024px) and (max-width: 1919px)",
   });
 
   const largeDesktop = useMediaQuery({
-    query: "(min-width: 1280px)",
+    query: "(min-width: 1920px)",
   });
 
   const { currentUser } = useSelector((state) => state.user);
@@ -148,14 +148,63 @@ const DefaultBlogsContainer = () => {
   const { lastMonthPosts, posts: allPosts } = posts;
 
   const MobileView = () => {
-    return <div></div>;
+    return (
+      <div className="blogs-container my-4">
+        <div className="card-container w-[95%] m-auto ">
+          <div className="title my-8">
+            <h1 className="text-3xl font-medium">For you</h1>
+          </div>
+          <div>
+            {allPosts.map((post, index) => (
+              <BlogCard
+                key={index}
+                id={post._id}
+                writerId={post.userId}
+                title={post.title}
+                image={post.image}
+                slug={post.slug}
+                category={post.category}
+                keywords={post.keywords}
+                content={post.content}
+                date={post.createdAt}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
   };
 
-  return (
-    <>
-      <Helmet>
-        <title>Our Blogs | Insight Loop</title>
-      </Helmet>
+  const TabletView = () => {
+    return (
+      <div className="blogs-container">
+        <div className="card-container w-[90%] m-auto">
+          <div className="title my-8">
+            <h1 className="text-3xl font-medium">For you</h1>
+          </div>
+          <div className="grid">
+            {allPosts.map((post, index) => (
+              <BlogCard
+                key={index}
+                id={post._id}
+                writerId={post.userId}
+                title={post.title}
+                image={post.image}
+                slug={post.slug}
+                category={post.category}
+                keywords={post.keywords}
+                content={post.content}
+                date={post.createdAt}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const DesktopView = () => {
+    return (
       <div className="blogs-container my-4">
         <div className="card-container w-[600px] m-auto grid">
           <div className="title my-8">
@@ -177,6 +226,56 @@ const DefaultBlogsContainer = () => {
           ))}
         </div>
       </div>
+    );
+  };
+
+  const LargeDesktopView = () => {
+    return (
+      <div className="blogs-container my-4">
+        <div className="card-container w-[600px] m-auto grid">
+          <div className="title my-8">
+            <h1 className="text-3xl font-medium">For you</h1>
+          </div>
+          {allPosts.map((post, index) => (
+            <BlogCard
+              key={index}
+              id={post._id}
+              writerId={post.userId}
+              title={post.title}
+              image={post.image}
+              slug={post.slug}
+              category={post.category}
+              keywords={post.keywords}
+              content={post.content}
+              date={post.createdAt}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Our Blogs | Insight Loop</title>
+      </Helmet>
+      <>
+        {loading ? (
+          <div className="loading-container h-min-screen h-full flex justify-center items-center">
+            <div className="loading">
+              <h3 className="text-3xl font-bold text-center">Loading...</h3>
+            </div>
+          </div>
+        ) : (
+          <>
+            {mobile && <MobileView />}
+            {tablet && <TabletView />}
+            {desktop && <DesktopView />}
+            {largeDesktop && <LargeDesktopView />}
+          </>
+        )}
+      </>
     </>
   );
 };
