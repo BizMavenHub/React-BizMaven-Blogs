@@ -112,7 +112,7 @@ function SignUp_page() {
         <h1 className="text-indigo-500 font-bold text-[64pt] text-center mb-8 mobile:pt-4 mobile:text-[38pt] mobile:m-0 tablet:pt-12 ">
           {mobile ? "Register" : "Welcome"}
         </h1>
-        <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%] mobile:p-4 mobile:mb-6">
+        <div className=" drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%] w-[500px] mobile:p-4 mobile:mb-6">
           <h1 className="text-4xl text-center font-bold mb-8">
             {mobile ? null : "Register"}
           </h1>

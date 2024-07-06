@@ -27,6 +27,14 @@ function Login_page() {
     query: "(min-width: 768px) and (max-width: 1023px)",
   });
 
+  const desktop = useMediaQuery({
+    query: "(min-width: 1024px) and (max-width: 1919px)",
+  });
+
+  const largeDesktop = useMediaQuery({
+    query: "(min-width: 1920px)",
+  });
+
   const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
 
   const dispatch = useDispatch();
@@ -108,13 +116,13 @@ function Login_page() {
       <Helmet>
         <title>Login | Insight Loop</title>
       </Helmet>
-      <div className="h-full desktop:h-[100vh] largeDesktop:h-[100vh] mt-8 shadow-md mobile:mt-28 mobile:mb-32 tablet:my-28">
+      <div className="h-full desktop:h-[100vh] largeDesktop:h-[100vh] mt-8 mobile:mt-28 mobile:mb-32 tablet:my-28">
         {mobile ? null : (
           <h1 className="text-indigo-500 font-bold text-[64pt] text-center pt-16 pb-20 mobile:pt-16 mobile:pb-16 mobile:text-4xl tablet:pt-4">
             Welcome Back!
           </h1>
         )}
-        <div className="w-[500px] drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%]">
+        <div className="drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%] w-[500px]">
           <h1 className="text-5xl text-center font-bold mb-12 text-gray-800 mobile:text-indigo-500">
             Login
           </h1>
