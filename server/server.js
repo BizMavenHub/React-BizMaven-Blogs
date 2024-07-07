@@ -15,6 +15,8 @@ dotenv.config();
 
 const app = express();
 
+const __dirname = path.resolve();
+
 app.use(
   cors({
     origin: `${process.env.FRONTEND_URL}`, // Allow requests from this origin
