@@ -84,4 +84,16 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+  <url>
+    <loc>https://www.insightloop.blog/ads.txt</loc>
+    <lastmod>2024-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.insightloop.blog/robots.txt</loc>
+    <lastmod>2024-06-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
 </urlset>
