@@ -93,9 +93,16 @@ const NavbarComponent = () => {
       <>
         <div className="navbar-container bg-gray-900 flex justify-between px-4 py-3">
           <div className="title-container">
-            <h1 className="title text-xl font-bold text-white tracking-wide">
-              Insight Loop
-            </h1>
+            <Link to="/" className="flex items-center">
+              <img
+                src={insight_loop_logo}
+                className="h-6"
+                alt="Insight Loop Logo"
+              />
+              <span className=" ml-4 self-center text-xl font-semibold whitespace-nowrap text-white">
+                Insight Loop
+              </span>
+            </Link>
           </div>
 
           {/* toggle navbar */}
