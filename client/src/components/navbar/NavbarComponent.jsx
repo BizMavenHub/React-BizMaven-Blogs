@@ -141,21 +141,13 @@ const NavbarComponent = () => {
               {toggleMenu && (
                 <div className="px-4 pb-4 absolute rights-0 z-10 w-full bg-gray-900">
                   <div className="" onClick={toggleNavbar}>
-                    <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide">
-                      <li className="hover:bg-gray-700">
-                        <Link
-                          className="block py-2 px-4 hover:bg-gray-700"
-                          to="/"
-                        >
-                          Home
-                        </Link>
-                      </li>
+                    <ul className="text-white font-roboto font-medium text-center w-full tracking-wide">
                       <li className="hover:bg-gray-700">
                         <Link
                           className="block py-2 px-4 hover:bg-gray-700"
                           to="/blogs"
                         >
-                          Blogs
+                          Home
                         </Link>
                       </li>
                       <li className="hover:bg-gray-700">
@@ -180,6 +172,15 @@ const NavbarComponent = () => {
                           to="/feedback"
                         >
                           Feedback
+                        </Link>
+                      </li>
+                      <li className="justify-center flex">
+                        <Link
+                          to="/create-post"
+                          onClick={toggleNavbar}
+                          className="text-white py-2 w-2/3 mb-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-semibold block rounded-lg text-lg dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                          Create Post
                         </Link>
                       </li>
                     </ul>
@@ -399,21 +400,13 @@ const NavbarComponent = () => {
                   </Link>
                   <hr />
                   <div className="mt-2" onClick={toggleNavbar}>
-                    <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide">
-                      <li className="hover:bg-gray-700">
-                        <Link
-                          className="block py-2 px-4 hover:bg-gray-700"
-                          to="/"
-                        >
-                          Home
-                        </Link>
-                      </li>
+                    <ul className="text-white font-roboto font-medium text-center w-full tracking-wide">
                       <li className="hover:bg-gray-700">
                         <Link
                           className="block py-2 px-4 hover:bg-gray-700"
                           to="/blogs"
                         >
-                          Blogs
+                          Home
                         </Link>
                       </li>
                       <li className="hover:bg-gray-700">
@@ -547,17 +540,13 @@ const NavbarComponent = () => {
           <div className="">
             {currentUser ? (
               <div className="flex items-center">
-                <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide flex justify-between">
+                <ul className="text-white font-roboto font-medium text-center w-full tracking-wide flex justify-between">
                   <li className="hover:bg-gray-700">
-                    <Link className=" py-2 px-4 hover:bg-gray-700" to="/">
+                    <Link className=" py-2 px-4 hover:bg-gray-700" to="/blogs">
                       Home
                     </Link>
                   </li>
-                  <li className="hover:bg-gray-700">
-                    <Link className=" py-2 px-4 hover:bg-gray-700" to="/blogs">
-                      Blogs
-                    </Link>
-                  </li>
+
                   <li className="hover:bg-gray-700">
                     <Link
                       className=" py-2 px-4 hover:bg-gray-700"
@@ -726,17 +715,13 @@ const NavbarComponent = () => {
           <div className="">
             {currentUser ? (
               <div className="flex items-center">
-                <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide flex justify-between">
+                <ul className="text-white font-roboto font-medium text-center w-full tracking-wide flex justify-between">
                   <li className="hover:bg-gray-700">
-                    <Link className=" py-2 px-4 hover:bg-gray-700" to="/">
+                    <Link className=" py-2 px-4 hover:bg-gray-700" to="/blogs">
                       Home
                     </Link>
                   </li>
-                  <li className="hover:bg-gray-700">
-                    <Link className=" py-2 px-4 hover:bg-gray-700" to="/blogs">
-                      Blogs
-                    </Link>
-                  </li>
+
                   <li className="hover:bg-gray-700">
                     <Link
                       className=" py-2 px-4 hover:bg-gray-700"
@@ -773,7 +758,7 @@ const NavbarComponent = () => {
                     onClick={handleShowNavLinks}
                   >
                     <img
-                      className="w-[90px] h-12 rounded-full object-cover"
+                      className="w-[5vw] h-12 rounded-full object-cover"
                       src={
                         currentUser.pictureProfile
                           ? currentUser.pictureProfile
