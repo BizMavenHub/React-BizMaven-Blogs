@@ -544,7 +544,7 @@ const NavbarComponent = () => {
           </div>
 
           {/* nav links */}
-          <div className="" onClick={toggleNavbar}>
+          <div className="">
             {currentUser ? (
               <div className="flex items-center">
                 <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide flex justify-between">
@@ -723,7 +723,7 @@ const NavbarComponent = () => {
           </div>
 
           {/* nav links */}
-          <div className="" onClick={toggleNavbar}>
+          <div className="">
             {currentUser ? (
               <div className="flex items-center">
                 <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide flex justify-between">
@@ -759,6 +759,8 @@ const NavbarComponent = () => {
                 <form onSubmit={handleSearch} className="search-container mx-4">
                   <input
                     type="text"
+                    name="search"
+                    id="search"
                     placeholder="Search"
                     className="p-2 w-[300px]"
                   />
