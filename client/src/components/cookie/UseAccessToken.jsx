@@ -16,7 +16,7 @@ const UseAccessToken = () => {
       setHasAccessToken(false);
       clearUserData();
     }
-  }, [navigate]);
+  }, []);
 
   return hasAccessToken;
 };
