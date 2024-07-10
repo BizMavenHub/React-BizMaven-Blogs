@@ -24,6 +24,7 @@ import {
   CreatePost_page,
   SearchPage,
   TermCondition,
+  PrivacyPolicy,
 } from "./pages/index";
 
 import UseAccessToken from "./components/cookie/UseAccessToken";
@@ -57,6 +58,7 @@ function AppRoutes() {
           <Route path="/blogs" element={<Blogs_page />} />
           <Route path="/terms-and-conditions" element={<TermCondition />} />
           <Route path="/search" element={<SearchPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard_page />} />
           </Route>
@@ -77,10 +79,19 @@ function AppRoutes() {
           <Route path="/about-us" element={<About_us_page />} />
           <Route path="/feedback" element={<Feedback_page />} />
           <Route path="/terms-and-conditions" element={<TermCondition />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/contact-us" element={<Contact_page />} />
+          <Route element={<PrivateRoute />}>
+            <Route path="/dashboard" element={<Dashboard_page />} />
+          </Route>
+          <Route element={<OnlyIsAdminPrivateRoute />}>
+            <Route path="/create-post" element={<CreatePost_page />} />
+            <Route path="/update-post/:postId" element={<UpdatePost_page />} />
+          </Route>
           <Route path="/career" element={<Career_Page />} />
           <Route path="/blogs" element={<Blogs_page />} />
           <Route path="/post/:slug" element={<Post_page />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="*" element={<NotFound_page />} />
         </Routes>
       )}

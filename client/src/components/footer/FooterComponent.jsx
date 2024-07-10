@@ -53,10 +53,10 @@ const FooterComponent = () => {
           <li>
             <Link
               className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
-              to={"/blogs"}
+              to={"/privacy-policy"}
             >
               {" "}
-              Blog{" "}
+              Privacy Policy{" "}
             </Link>
           </li>
 
