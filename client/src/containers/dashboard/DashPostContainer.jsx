@@ -108,6 +108,10 @@ const DashPostContainer = () => {
   return (
     <div className="px-4 pt-4 pb-16">
       <Helmet>
+        <link
+          rel="canonical"
+          href="https://insightloop.com/dashboard?tab=posts"
+        />
         <title>Dashboard | Posts</title>
       </Helmet>
       <div className="relative overflow-x-auto sm:rounded-lg">

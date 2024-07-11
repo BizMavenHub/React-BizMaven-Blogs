@@ -159,6 +159,10 @@ const DashProfileContainer = () => {
     <div className="mt-20">
       <Helmet>
         <title>Dashboard | Profile</title>
+        <link
+          rel="canonical"
+          href="https://insightloop.com/dashboard?tab=profile"
+        />
       </Helmet>
       <div className="w-[50%] mobile:w-[90%] tablet:w-[90%] mt-0 m-auto">
         <h1 className="text-center text-4xl tracking-wide text-indigo-500 font-montserrat font-semibold">

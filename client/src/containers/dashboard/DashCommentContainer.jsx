@@ -119,6 +119,10 @@ const DashCommentContainer = () => {
     <div className="px-8 pt-4 pb-16">
       <Helmet>
         <title>Dashboard | Comments</title>
+        <link
+          rel="canonical"
+          href="https://insightloop.com/dashboard?tab=comments"
+        />
       </Helmet>
       <div className="relative overflow-x-auto sm:rounded-lg">
         {currentUser.isAdmin && comments.length > 0 ? (

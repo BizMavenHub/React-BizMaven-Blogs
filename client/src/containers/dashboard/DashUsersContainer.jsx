@@ -117,6 +117,10 @@ const DashUsersContainer = () => {
     <div className="px-8 py-4 overflow-x-scroll">
       <Helmet>
         <title>Dashboard | Users</title>
+        <link
+          rel="canonical"
+          href="https://insightloop.com/dashboard?tab=users"
+        />
       </Helmet>
       <table className="w-full text-sm text-center overflow-x-scroll ">
         <thead>

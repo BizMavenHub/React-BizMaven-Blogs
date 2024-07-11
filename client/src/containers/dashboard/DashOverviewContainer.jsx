@@ -1091,6 +1091,10 @@ const DashOverviewContainer = () => {
     <>
       <Helmet>
         <title>Dashboard</title>
+        <link
+          rel="canonical"
+          href="https://insightloop.com/dashboard?tab=overview"
+        />
       </Helmet>
 
       {mobile && <MobileView />}
