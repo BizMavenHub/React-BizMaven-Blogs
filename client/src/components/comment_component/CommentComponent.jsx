@@ -215,8 +215,8 @@ const CommentComponent = ({ postId }) => {
             </div>
           </>
         ) : (
-          <div className="my-8">
-            <p className="text-xl font-medium">
+          <div className="my-8 bg-gray-200 p-4 rounded-xl">
+            <p className="text-[12pt] font-medium">
               Please{" "}
               <Link to="/sign-up" className="text-blue-500">
                 sign in
@@ -279,7 +279,7 @@ const CommentComponent = ({ postId }) => {
             </div>
           </>
         ) : (
-          <div className="my-8">
+          <div className="my-8 bg-gray-200 p-4 rounded-xl">
             <p className="text-xl font-medium">
               Please{" "}
               <Link to="/sign-up" className="text-blue-500">
@@ -343,7 +343,7 @@ const CommentComponent = ({ postId }) => {
             </div>
           </>
         ) : (
-          <div className="my-8">
+          <div className="my-8 bg-gray-200 p-4 rounded-xl">
             <p className="text-xl font-medium">
               Please{" "}
               <Link to="/sign-up" className="text-blue-500">
@@ -407,7 +407,7 @@ const CommentComponent = ({ postId }) => {
             </div>
           </>
         ) : (
-          <div className="my-8">
+          <div className="my-8 bg-gray-200 p-4 rounded-xl">
             <p className="text-xl font-medium">
               Please{" "}
               <Link to="/sign-up" className="text-blue-500">
