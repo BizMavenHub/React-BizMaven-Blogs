@@ -17,6 +17,11 @@ import Picture_0_about_us from "./About-Us-Pictures/Picture_0.png";
 import Picture_1_about_us from "./About-Us-Pictures/Picture_1.png";
 import Picture_2_about_us from "./About-Us-Pictures/Picture_2.png";
 
+import Picture_0_career from "./Career-Pictures/Picture_0.png";
+import Picture_1_career from "./Career-Pictures/Picture_1.png";
+import Picture_2_career from "./Career-Pictures/Picture_2.png";
+import Picture_3_career from "./Career-Pictures/Picture_3.png";
+
 export {
   google_icon,
   github_icon,
@@ -34,4 +39,8 @@ export {
   Picture_0_about_us,
   Picture_1_about_us,
   Picture_2_about_us,
+  Picture_0_career,
+  Picture_1_career,
+  Picture_2_career,
+  Picture_3_career,
 };
