@@ -2,8 +2,10 @@ import React from "react";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="w-[70%] mx-auto">
-      <h1 className="text-3xl text-center">Privacy Policy</h1>
+    <div className="w-[60%] m-auto text-lg mobile:w-[90%] tablet:w-[90%] pb-16">
+      <h1 className="text-6xl text-center my-12 font-lato font-medium">
+        Privacy Policy
+      </h1>
       <p className="mb-3 text-xl font-medium">Last updated: July 10, 2024</p>
       <p className="mb-3">
         This Privacy Policy describes Our policies and procedures on the

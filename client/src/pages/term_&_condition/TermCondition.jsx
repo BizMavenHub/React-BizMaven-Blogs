@@ -2,7 +2,7 @@ import React from "react";
 
 const TermCondition = () => {
   return (
-    <div className="w-[60%] m-auto text-lg mobile:w-[90%] tablet:w-[90%]">
+    <div className="w-[60%] m-auto text-lg mobile:w-[90%] tablet:w-[90%] pb-16">
       {/* https://www.privacypolicyonline.com/live.php?token=BffpFiM9CuA1SmhQGuhTw5nXjSOSV8kj */}
       <h2 className="text-5xl font-medium mb-4 my-14">
         <strong>Terms and Conditions</strong>
