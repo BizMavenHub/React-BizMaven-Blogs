@@ -7,6 +7,8 @@ dotenv.config();
 const verifyUser = (req, res, next) => {
   const token = req.cookies.access_token;
 
+  console.log(token);
+
   if (!token) {
     return next(errorHandler("You are not authenticated", 401));
   }

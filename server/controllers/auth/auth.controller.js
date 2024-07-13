@@ -72,6 +72,8 @@ export async function loginWithEmail(req, res, next) {
         ), // 10 years
         secure: true,
         httpOnly: true,
+        domain: "https://www.insightloop.blog",
+        path: "/api",
       })
       .json({ message: "Login successfully", ...rest });
   } catch (error) {
@@ -101,6 +103,8 @@ export async function loginWithGoogle(req, res, next) {
           ), // 10 years
           secure: true,
           httpOnly: true,
+          domain: "https://www.insightloop.blog",
+          path: "/api",
         })
         .json({ message: "Login successfully", ...rest });
     } else {
@@ -131,6 +135,10 @@ export async function loginWithGoogle(req, res, next) {
           expires: new Date(
             new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
           ), // 10 years
+          secure: true,
+          httpOnly: true,
+          domain: "https://www.insightloop.blog",
+          path: "/api",
         })
         .json({ message: "Login successfully", ...rest });
     }

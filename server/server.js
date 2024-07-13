@@ -23,6 +23,10 @@ app.use(
     origin: `${process.env.FRONTEND_URL}`, // Allow requests from this origin
     credentials: true, // Allow credentials (cookies, etc.)
     methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    preflightContinue: true,
+    optionsSuccessStatus: 200,
+    maxAge: 3600,
   })
 );
 app.use(cookieParser());
