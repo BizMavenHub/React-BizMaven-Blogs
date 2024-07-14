@@ -64,6 +64,10 @@ const DashOverviewContainer = () => {
 
       const data = await response.json();
 
+      if (!response.ok) {
+        console.log(data.message);
+      }
+
       if (response.ok) {
         setUsers(data.users);
         setTotalUsers(data.totalUsers);
@@ -119,6 +123,10 @@ const DashOverviewContainer = () => {
       );
 
       const data = await response.json();
+
+      if (!response.ok) {
+        console.log(data.message);
+      }
 
       if (response.ok) {
         setComments(data.comments);
