@@ -24,8 +24,6 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     preflightContinue: true,
-    optionsSuccessStatus: 200,
-    maxAge: 3600,
   })
 );
 app.use(cookieParser());
