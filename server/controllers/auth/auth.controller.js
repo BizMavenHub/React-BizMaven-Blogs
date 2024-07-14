@@ -60,19 +60,17 @@ export async function loginWithEmail(req, res, next) {
       { id: user._id, isAdmin: user.isAdmin },
       process.env.JWT_SECRET
     );
+
     const { password: pass, ...rest } = user._doc;
 
     res
       .status(200)
       .setHeader("Access-Control-Allow-Credentials", true)
       .cookie("access_token", token, {
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-        expires: new Date(
-          new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
-        ), // 10 years
+        expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
         secure: true,
         httpOnly: true,
-        domain: "https://www.insightloop.blog",
+        domain: "insightloop.blog",
         path: "/api",
       })
       .json({ message: "Login successfully", ...rest });
@@ -97,13 +95,10 @@ export async function loginWithGoogle(req, res, next) {
         .status(200)
         .setHeader("Access-Control-Allow-Credentials", true)
         .cookie("access_token", token, {
-          maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-          expires: new Date(
-            new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
-          ), // 10 years
+          expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
           secure: true,
           httpOnly: true,
-          domain: "https://www.insightloop.blog",
+          domain: "insightloop.blog",
           path: "/api",
         })
         .json({ message: "Login successfully", ...rest });
@@ -131,13 +126,10 @@ export async function loginWithGoogle(req, res, next) {
         .status(200)
         .setHeader("Access-Control-Allow-Credentials", true)
         .cookie("access_token", token, {
-          maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-          expires: new Date(
-            new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
-          ), // 10 years
+          expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
           secure: true,
           httpOnly: true,
-          domain: "https://www.insightloop.blog",
+          domain: "insightloop.blog",
           path: "/api",
         })
         .json({ message: "Login successfully", ...rest });

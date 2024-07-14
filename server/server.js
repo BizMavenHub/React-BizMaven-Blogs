@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import path from "path";
-import { readdirSync } from "fs";
 
 // Import Routes
 import userRoute from "./routes/user.route.js";
@@ -30,6 +29,7 @@ app.use(
   })
 );
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "client/build")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
