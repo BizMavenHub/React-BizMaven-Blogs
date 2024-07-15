@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import path from "path";
 
+import verifyUser from "./utils/verifyUser.js";
+
 // Import Routes
 import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
@@ -17,15 +19,16 @@ const app = express();
 
 const __dirname = path.resolve();
 
+app.use(cookieParser());
 app.use(
   cors({
-    origin: `${process.env.FRONTEND_URL}`, // Allow requests from this origin
+    origin: process.env.FRONTEND_URL, // Allow requests from this origin
     credentials: true, // Allow credentials (cookies, etc.)
     methods: ["GET", "POST", "PUT", "DELETE"],
     preflightContinue: false,
   })
 );
-app.use(cookieParser());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "client/build")));

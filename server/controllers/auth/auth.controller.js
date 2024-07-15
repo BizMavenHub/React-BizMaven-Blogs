@@ -71,8 +71,6 @@ export async function loginWithEmail(req, res, next) {
         secure: true,
         httpOnly: true,
         sameSite: "none",
-        domain: "insightloop.blog",
-        path: "/api",
       })
       .json({ message: "Login successfully", ...rest });
   } catch (error) {
@@ -100,8 +98,6 @@ export async function loginWithGoogle(req, res, next) {
           secure: true,
           httpOnly: true,
           sameSite: "none",
-          domain: "insightloop.blog",
-          path: "/api",
         })
         .json({ message: "Login successfully", ...rest });
     } else {
@@ -132,8 +128,6 @@ export async function loginWithGoogle(req, res, next) {
           secure: true,
           httpOnly: true,
           sameSite: "none",
-          domain: "insightloop.blog",
-          path: "/api",
         })
         .json({ message: "Login successfully", ...rest });
     }
