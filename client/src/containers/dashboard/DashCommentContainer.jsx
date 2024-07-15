@@ -30,7 +30,6 @@ const DashCommentContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
 
@@ -63,7 +62,6 @@ const DashCommentContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
 
@@ -97,7 +95,6 @@ const DashCommentContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
 

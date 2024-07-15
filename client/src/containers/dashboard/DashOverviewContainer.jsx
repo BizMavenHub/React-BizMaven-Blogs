@@ -57,7 +57,6 @@ const DashOverviewContainer = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
           credentials: "include",
         }
       );
@@ -116,7 +115,6 @@ const DashOverviewContainer = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
           credentials: "include",
         }
       );

@@ -32,7 +32,6 @@ const DashUsersContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
       const data = await response.json();
@@ -63,7 +62,6 @@ const DashUsersContainer = () => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        withCredentials: true,
       });
       const data = await res.json();
 
@@ -97,7 +95,6 @@ const DashUsersContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
       const data = await res.json();

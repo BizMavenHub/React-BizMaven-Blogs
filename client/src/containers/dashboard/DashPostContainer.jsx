@@ -56,7 +56,6 @@ const DashPostContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
       const data = await res.json();
@@ -88,7 +87,6 @@ const DashPostContainer = () => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        withCredentials: true,
       });
 
       const data = await res.json();
