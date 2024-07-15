@@ -68,6 +68,11 @@ export async function loginWithEmail(req, res, next) {
       .setHeader("Access-Control-Allow-Credentials", true)
       .cookie("access_token", token, {
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
+        secure: true,
+        httpOnly: true,
+        sameSite: "none",
+        domain: "insightloop.blog",
+        path: "/api",
       })
       .json({ message: "Login successfully", ...rest });
   } catch (error) {
@@ -94,6 +99,7 @@ export async function loginWithGoogle(req, res, next) {
           expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
           secure: true,
           httpOnly: true,
+          sameSite: "none",
           domain: "insightloop.blog",
           path: "/api",
         })
@@ -125,6 +131,7 @@ export async function loginWithGoogle(req, res, next) {
           expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
           secure: true,
           httpOnly: true,
+          sameSite: "none",
           domain: "insightloop.blog",
           path: "/api",
         })

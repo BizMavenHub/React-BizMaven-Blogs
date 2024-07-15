@@ -22,7 +22,6 @@ app.use(
     origin: `${process.env.FRONTEND_URL}`, // Allow requests from this origin
     credentials: true, // Allow credentials (cookies, etc.)
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
     preflightContinue: false,
   })
 );
@@ -47,6 +46,12 @@ app.use((err, req, res, next) => {
     message: errorMessage,
     stack: err.stack,
   });
+});
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL);
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
 });
 
 app.get("/", (req, res) => {
