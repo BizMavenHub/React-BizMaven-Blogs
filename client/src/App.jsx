@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { CookiesProvider } from "react-cookie";
 
 import {
   NavbarComponent,
@@ -32,11 +33,13 @@ import UseAccessToken from "./components/cookie/UseAccessToken";
 function App() {
   return (
     <Router>
-      <div className="min-h-[100vh]">
-        <NavbarComponent />
-        <AppRoutes />
-        <FooterComponent />
-      </div>
+      <CookiesProvider>
+        <div className="min-h-[100vh]">
+          <NavbarComponent />
+          <AppRoutes />
+          <FooterComponent />
+        </div>
+      </CookiesProvider>
     </Router>
   );
 }

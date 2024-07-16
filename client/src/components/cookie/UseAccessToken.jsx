@@ -1,34 +1,30 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+
+import { deleteUserSuccess } from "../../redux/user/userSlice";
 
 const UseAccessToken = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [hasAccessToken, setHasAccessToken] = useState(true);
 
-  useEffect(() => {
-    const token = Cookies.get("access_token") ? true : false;
+  const cookies = Cookies.get();
 
-    if (token) {
-      setHasAccessToken(true);
-    } else {
+  useEffect(() => {
+    const token = cookies.access_token;
+
+    if (!token) {
       setHasAccessToken(false);
-      clearUserData();
+      localStorage.clear();
+      dispatch(deleteUserSuccess());
+      navigate("/login");
     }
   }, []);
 
   return hasAccessToken;
 };
-
-function clearUserData() {
-  const hasCurrentUser = localStorage.getItem("persist:root") ? true : false;
-
-  if (hasCurrentUser) {
-    localStorage.clear();
-  } else {
-    console.log("No current user found, nothing to clear.");
-  }
-}
 
 export default UseAccessToken;
