@@ -27,7 +27,7 @@ const Dashboard_page = () => {
   return (
     <div className="flex">
       <SideBar />
-      <div className="w-full">
+      <div className="w-screen">
         {tab === "profile" && <DashProfileContainer />}
         {tab === "post" && <DashPostContainer />}
         {tab === "overview" && <DashOverviewContainer />}

@@ -38,7 +38,7 @@ function Google_OAuth_btn() {
       // if successful redirect to home
       if (res.ok) {
         dispatch(loginSuccess(data));
-        navigate("/");
+        navigate("/blogs");
       }
     } catch (error) {
       console.log(error);

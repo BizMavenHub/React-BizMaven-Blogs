@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 
+import { Helmet } from "react-helmet";
+
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
@@ -132,7 +134,6 @@ const DashProfileContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
           body: JSON.stringify(dataForm),
         }
       );
@@ -155,137 +156,142 @@ const DashProfileContainer = () => {
 
   return (
     <div className="mt-20">
-      <div>
-        <div className="w-[50%] mt-0 m-auto">
-          <h1 className="text-center text-4xl tracking-wide text-indigo-500 font-montserrat font-semibold">
-            Profile
-          </h1>
-          <div
-            className="flex justify-center my-4"
-            onClick={() => {
-              filePickerRef.current.click();
-            }}
-          >
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleChangeImage}
-              ref={filePickerRef}
-              className="hidden"
+      <Helmet>
+        <title>Dashboard | Profile</title>
+        <link
+          rel="canonical"
+          href="https://insightloop.com/dashboard?tab=profile"
+        />
+      </Helmet>
+      <div className="w-[50%] mobile:w-[90%] tablet:w-[90%] mt-0 m-auto">
+        <h1 className="text-center text-4xl tracking-wide text-indigo-500 font-montserrat font-semibold">
+          Profile
+        </h1>
+        <div
+          className="flex justify-center my-4"
+          onClick={() => {
+            filePickerRef.current.click();
+          }}
+        >
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleChangeImage}
+            ref={filePickerRef}
+            className="hidden"
+          />
+
+          <img
+            src={imageFileUrl || currentUser.pictureProfile}
+            alt=""
+            className={`rounded-full h-32 w-32 p-1 ring-2 ring-gray-400 cursor-pointer object-cover ${
+              imageFileUploadProgress &&
+              imageFileUploadProgress < 100 &&
+              "opacity-100"
+            }`}
+          />
+          {imageFileUploadProgress && (
+            <CircularProgressbar
+              value={imageFileUploadProgress || 0}
+              text={`${imageFileUploadProgress}%`}
+              strokeWidth={5}
+              styles={{
+                root: {
+                  width: "8rem",
+                  height: "8rem",
+                  position: "absolute",
+                  display: "flex",
+                },
+                path: { stroke: "blue" },
+              }}
+              className={`${imageFileUploadProgress >= 100 && "opacity-0"}`}
             />
-
-            <img
-              src={imageFileUrl || currentUser.pictureProfile}
-              alt=""
-              className={`rounded-full h-32 w-32 p-1 ring-2 ring-gray-400 cursor-pointer object-contain ${
-                imageFileUploadProgress &&
-                imageFileUploadProgress < 100 &&
-                "opacity-100"
-              }`}
-            />
-            {imageFileUploadProgress && (
-              <CircularProgressbar
-                value={imageFileUploadProgress || 0}
-                text={`${imageFileUploadProgress}%`}
-                strokeWidth={5}
-                styles={{
-                  root: {
-                    width: "8rem",
-                    height: "8rem",
-                    position: "absolute",
-                    display: "flex",
-                  },
-                  path: { stroke: "blue" },
-                }}
-                className={`${imageFileUploadProgress >= 100 && "opacity-0"}`}
-              />
-            )}
-          </div>
-
-          {/* Check for errors */}
-          {imageFileUploadError && (
-            <p className="text-red-500 text-center">{imageFileUploadError}</p>
           )}
-          {imageFileUploadProgress && imageFileUploadProgress >= 100 && (
-            <p className="text-green-500 text-center">Image uploaded</p>
-          )}
-
-          <h1 className="text-center text-3xl mb-2 font-lato">
-            {currentUser.username}
-          </h1>
-          <h2 className="text-center text-lg">{currentUser.email}</h2>
         </div>
-        <div className="w-[25%] m-auto mt-16">
-          <h1 className="text-center text-2xl tracking-wide text-indigo-500 font-montserrat font-semibold">
-            Update Profile
-          </h1>
-          <form onSubmit={handleSubmit} className="w-full m-auto mt-2">
-            <div className="mb-3">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
-                Username
-              </label>
-              <input
-                name="username"
-                placeholder={currentUser.username}
-                onChange={handleChange}
-                type="text"
-                id="default-input"
-                className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              />
-            </div>
-            <div className="mb-3">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
-                Email
-              </label>
-              <input
-                name="email"
-                placeholder={currentUser.email}
-                onChange={handleChange}
-                type="text"
-                id="default-input"
-                className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              />
-            </div>
-            <div className="mb-3">
-              <label className="block mb-2 text-sm font-medium text-gray-900">
-                Password
-              </label>
-              <input
-                type="text"
-                id="default-input"
-                className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-              />
-            </div>
-            <div className="mt-6">
-              <button
-                type="submit"
-                id="default-input"
-                className="bg-indigo-500 border
+
+        {/* Check for errors */}
+        {imageFileUploadError && (
+          <p className="text-red-500 text-center">{imageFileUploadError}</p>
+        )}
+        {imageFileUploadProgress && imageFileUploadProgress >= 100 && (
+          <p className="text-green-500 text-center">Image uploaded</p>
+        )}
+
+        <h1 className="text-center text-3xl mb-2 font-lato">
+          {currentUser.username}
+        </h1>
+        <h2 className="text-center text-lg">{currentUser.email}</h2>
+      </div>
+      <div className="w-[25%] mobile:w-[80%] tablet:w-[55%]  m-auto mt-16">
+        <h1 className="text-center text-2xl tracking-wide text-indigo-500 font-montserrat font-semibold">
+          Update Profile
+        </h1>
+        <form onSubmit={handleSubmit} className="w-full m-auto mt-2">
+          <div className="mb-3">
+            <label className="block mb-2 text-sm font-medium text-gray-900">
+              Username
+            </label>
+            <input
+              name="username"
+              placeholder={currentUser.username}
+              onChange={handleChange}
+              type="text"
+              id="default-input"
+              className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            />
+          </div>
+          <div className="mb-3">
+            <label className="block mb-2 text-sm font-medium text-gray-900">
+              Email
+            </label>
+            <input
+              name="email"
+              placeholder={currentUser.email}
+              onChange={handleChange}
+              type="text"
+              id="default-input"
+              className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            />
+          </div>
+          <div className="mb-3">
+            <label className="block mb-2 text-sm font-medium text-gray-900">
+              Password
+            </label>
+            <input
+              type="text"
+              id="default-input"
+              className="bg-gray-50 border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+            />
+          </div>
+          <div className="mt-6">
+            <button
+              type="submit"
+              id="default-input"
+              className="bg-indigo-500 border
               border-gray-300 text-white text-[11pt] rounded-lg font-semibold
               focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 
               "
-              >
-                Update
-              </button>
-            </div>
-          </form>
+            >
+              Update
+            </button>
+          </div>
+        </form>
 
-          {updateUserSuccess && (
-            <div className="display-success bg-green-200 w-[40%] m-auto p-4 rounded-lg mt-4">
-              <p className="text-green-500 text-center font-medium">
-                {updateUserSuccess}
-              </p>
-            </div>
-          )}
+        {updateUserSuccess && (
+          <div className="display-success bg-green-200 w-[40%] m-auto p-4 rounded-lg mt-4">
+            <p className="text-green-500 text-center font-medium">
+              {updateUserSuccess}
+            </p>
+          </div>
+        )}
 
-          {updateUserError && (
-            <div className="display-success bg-red-200 w-[40%] m-auto p-4 rounded-lg mt-4">
-              <p className="text-red-500 text-center font-medium">
-                {updateUserError}
-              </p>
-            </div>
-          )}
-        </div>
+        {updateUserError && (
+          <div className="display-success bg-red-200 w-[40%] m-auto p-4 rounded-lg mt-4">
+            <p className="text-red-500 text-center font-medium">
+              {updateUserError}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

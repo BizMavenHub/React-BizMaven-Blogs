@@ -2,6 +2,7 @@ import HomepageContainer from "./homepage/HomepageContainer";
 import About_us_Container from "./about_us/About_us_Container";
 import Feedback_Container from "./feedback/Feedback_Container";
 import Contact_Container_ from "./contact/Contact_Container_";
+import Career_Container from "./career/Career_Container";
 import DefaultBlogsContainer from "./blogs/DefaultBlogsContainer";
 
 import PostContainer from "./post/PostContainer";
@@ -21,6 +22,7 @@ export {
   About_us_Container,
   Feedback_Container,
   Contact_Container_,
+  Career_Container,
   DefaultBlogsContainer,
   PostContainer,
   CreatePostContainer,

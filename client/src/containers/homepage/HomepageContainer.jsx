@@ -1,110 +1,648 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+
+import {
+  Girl_sitting_and_reading,
+  Introduction,
+  Picture_0_homepage,
+  Picture_1_homepage,
+  Picture_2_homepage,
+  Picture_3_homepage,
+  Wave,
+} from "../../assets/index.js";
 
 import { BlogCard } from "../../components/index.js";
 
-const HomepageContainer = () => {
-  let element = [];
-  for (let i = 0; i < 8; i++) {
-    element.push(
-      <BlogCard
-        img="https://beebom.com/wp-content/uploads/2024/04/cillian-murphy-peaky-blinders.jpg?resize=300%2C180&quality=75&strip=all"
-        title="Noteworthy technology acquisitions 2021"
-        desc="Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order."
-        index={i}
-      />
-    );
-  }
+import { Helmet } from "react-helmet";
 
-  return (
-    <div className="homepage-container mx-auto min-h-[100vh] w-full ">
-      <div className="w-full mx-auto ">
-        {/* Section 1 - Hero */}
-        <section className=" min-h-[50vh] bg-blue-500 py-32">
-          <div className="h-2/4 ">
-            {/* Block 1 - Intro */}
-            <div className=" w-[67%] m-auto ">
-              <h1 className=" text-white text-[58pt] font-medium font-roboto leading-none tracking-tight md:text-5xl lg:text-6xl">
-                Welcome to{" "}
-                <span className=" text-yellow-400 dark:text-yellow-400">
-                  Byte Tech Community
-                </span>{" "}
-                Explore the world of fascinating topics.
-              </h1>
-              <p className=" w-[90%] text-white font-meduim  text-2xl tracking-[1px] font-poppins leading-tight mt-6">
-                Get ready to explore a world of diverse voices and fascinating
-                topics. Whether you're seeking inspiration, advice, or just a
-                good read, you'll find it all here.
+const HomepageContainer = () => {
+  // ---------------Media Queries-------------------
+
+  const mobile = useMediaQuery({
+    query: "(min-width: 320px) and (max-width: 767px)",
+  });
+
+  const tablet = useMediaQuery({
+    query: "(min-width: 768px) and (max-width: 1279px)",
+  });
+
+  const desktop = useMediaQuery({
+    query: "(min-width: 1280px) and (max-width: 1919px)",
+  });
+
+  const largeDesktop = useMediaQuery({
+    query: "(min-width: 1920px)",
+  });
+
+  // ---------------Views-------------------
+
+  const MobileView = () => {
+    return (
+      <div>
+        {/* Introduction Section */}
+        <div className="introduction section">
+          <section className="welcome-txt-container absolute text-white top-[40%] drop-shadow-lg">
+            <h1 className="welcome-text font-inter text-5xl font-bold text-center ">
+              <span className="text-6xl">Welcome to </span>Insight Loop
+            </h1>
+            <p className="w-[80%] m-auto text-center">
+              your premier destination for captivating and enlightening blog
+              content
+            </p>
+          </section>
+          <div className="image-container">
+            <img
+              src={Introduction}
+              alt="induction picture"
+              className="h-[680px] w-[1000px] object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="features-container">
+          {/* Feature 1 */}
+          <div className="feature-1 bg-[#6B8BED]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Best Articles For Everyone
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Offers top-quality articles for a diverse audience, including
+                tech enthusiasts, travel lovers, health-conscious individuals,
+                and lifestyle seekers.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_0_homepage}
+                alt="best articles"
+                className="h-[330px] m-auto"
+              />
+            </div>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="feature-2 bg-[#F55D5D]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Best Topics
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Offers a wide range of topics including technology, travel,
+                health, and lifestyle. Our team continually explores fresh
+                subjects to provide current and relevant content, keeping you
+                informed with the latest trends and insights.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_1_homepage}
+                alt="best articles"
+                className="h-[400px] m-auto py-12"
+              />
+            </div>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="feature-3 bg-[#9349F1]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Regular Update
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Keeps content fresh with regular updates, frequently adding new
+                articles and features. Stay tuned to never miss out on exciting
+                content.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_2_homepage}
+                alt="best articles"
+                className="h-[350px] m-auto pb-5"
+              />
+            </div>
+          </div>
+
+          {/* Feature 4 */}
+          <div className="feature-4 bg-[#F5AF5D]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Reliable Insights
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Prioritizes accuracy and reliability, offering well-researched
+                and trustworthy insights. Our commitment to quality ensures you
+                gain valuable knowledge and perspectives from every article.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_3_homepage}
+                alt="best articles"
+                className="h-[350px] m-auto py-5"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Join Us Section */}
+        <div className="join-us-container">
+          <section className="context-container text-center bg-[#BE1818]">
+            <h2 className="font-inter text-4xl font-bold w-[80%] m-auto pt-6 tracking-wide text-white">
+              Explore Top Articles
+            </h2>
+            <div className="image-container">
+              <img
+                src={Girl_sitting_and_reading}
+                alt=" girl reading "
+                className="h-[340px] m-auto mt-6"
+              />
+            </div>
+            <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide text-white">
+              Join us today to enhance your blogging experience and connect with
+              readers who appreciate great content.
+            </p>
+
+            <div className="join-us-btn pt-6">
+              <Link
+                to="/sign-up"
+                className="font-inter text-xl font-semibold text-white py-3 px-8 border-[3px] border-[#E7EB21] rounded-2xl"
+              >
+                Join Us Today For Free
+              </Link>
+            </div>
+
+            <div className="wave-container">
+              <img src={Wave} alt="wave" className="h-[120px] w-full" />
+            </div>
+          </section>
+        </div>
+      </div>
+    );
+  };
+
+  const TabletView = () => {
+    return (
+      <div>
+        {/* Introduction Section */}
+        <div className="introduction section">
+          <section className="welcome-txt-container absolute text-white top-1/4 text-center drop-shadow-lg m-auto w-full">
+            <h1 className="welcome-text font-inter text-6xl font-bold ">
+              Welcome to Insight Loop
+            </h1>
+            <p className="w-[60%] m-auto text-2xl mt-2">
+              your premier destination for captivating and enlightening blog
+              content
+            </p>
+          </section>
+          <div className="image-container">
+            <img
+              src={Introduction}
+              alt="induction picture"
+              className="h-[600px] w-full object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="features-container">
+          {/* Feature 1 */}
+          <div className="feature-1 bg-[#6B8BED]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Best Articles For Everyone
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Offers top-quality articles for a diverse audience, including
+                tech enthusiasts, travel lovers, health-conscious individuals,
+                and lifestyle seekers.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_0_homepage}
+                alt="best articles"
+                className="h-[330px] m-auto"
+              />
+            </div>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="feature-2 bg-[#F55D5D]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Best Topics
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Offers a wide range of topics including technology, travel,
+                health, and lifestyle. Our team continually explores fresh
+                subjects to provide current and relevant content, keeping you
+                informed with the latest trends and insights.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_1_homepage}
+                alt="best articles"
+                className="h-[400px] m-auto py-12"
+              />
+            </div>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="feature-3 bg-[#9349F1]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Regular Update
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Keeps content fresh with regular updates, frequently adding new
+                articles and features. Stay tuned to never miss out on exciting
+                content.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_2_homepage}
+                alt="best articles"
+                className="h-[350px] m-auto pb-5"
+              />
+            </div>
+          </div>
+
+          {/* Feature 4 */}
+          <div className="feature-4 bg-[#F5AF5D]">
+            <div className="context-container text-center text-white">
+              <h2 className="font-inter text-3xl font-bold w-[80%] m-auto pt-6 tracking-wide">
+                Reliable Insights
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide">
+                Prioritizes accuracy and reliability, offering well-researched
+                and trustworthy insights. Our commitment to quality ensures you
+                gain valuable knowledge and perspectives from every article.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_3_homepage}
+                alt="best articles"
+                className="h-[350px] m-auto py-5"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Join Us Section */}
+        <div className="join-us-container">
+          <section className="context-container text-center bg-[#BE1818]">
+            <h2 className="font-inter text-4xl font-bold w-[80%] m-auto pt-6 tracking-wide text-white">
+              Explore Top Articles
+            </h2>
+            <div className="image-container">
+              <img
+                src={Girl_sitting_and_reading}
+                alt=" girl reading "
+                className="h-[340px] m-auto mt-6"
+              />
+            </div>
+            <p className="font-regular font-inter mt-4 w-[90%] m-auto tracking-wide text-white">
+              Join us today to enhance your blogging experience and connect with
+              readers who appreciate great content.
+            </p>
+
+            <div className="join-us-btn pt-6">
+              <Link
+                to="/sign-up"
+                className="font-inter text-xl font-semibold text-white py-3 px-8 border-[3px] border-[#E7EB21] rounded-2xl"
+              >
+                Join Us Today For Free
+              </Link>
+            </div>
+
+            <div className="wave-container">
+              <img src={Wave} alt="wave" className="h-[120px] w-full" />
+            </div>
+          </section>
+        </div>
+      </div>
+    );
+  };
+
+  const DesktopView = () => {
+    return (
+      <div>
+        {/* Introduction Section */}
+        <div className="introduction section">
+          <section className="welcome-txt-container absolute text-white top-[40%] drop-shadow-2xl w-full m-auto">
+            <h1 className="welcome-text font-inter text-[76pt] font-bold text-center ">
+              Welcome to Insight Loop
+            </h1>
+            <p className="w-[60%] m-auto text-center text-[26pt]">
+              your premier destination for captivating and enlightening blog
+              content
+            </p>
+          </section>
+          <div className="image-container ">
+            <img
+              src={Introduction}
+              alt="induction picture"
+              className="h-[900px] w-[100%] object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="features-container">
+          {/* Feature 1 */}
+          <div className="feature-1 bg-[#6B8BED] flex items-center justify-evenly">
+            <div className="context-container text-center text-white w-[50%]">
+              <h2 className="font-inter text-6xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
+                Best Articles For Everyone
+              </h2>
+              <p className="font-light font-inter mt-4 w-[90%] text-3xl m-auto tracking-wide text-left leading-[1.4]">
+                Offers top-quality articles for a diverse audience, including
+                tech enthusiasts, travel lovers, health-conscious individuals,
+                and lifestyle seekers.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_0_homepage}
+                alt="best articles"
+                className="h-[700px] m-auto"
+              />
+            </div>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="feature-2 bg-[#F55D5D] flex items-center justify-evenly">
+            <div className="image-container">
+              <img
+                src={Picture_1_homepage}
+                alt="best articles"
+                className="h-[680px] m-auto py-16"
+              />
+            </div>
+            <div className="context-container text-center text-white w-[50%]">
+              <h2 className="font-inter text-6xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
+                Best Topics
+              </h2>
+              <p className="font-light font-inter mt-4 w-[90%] text-3xl m-auto tracking-wide text-left leading-[1.4]">
+                Offers a wide range of topics including technology, travel,
+                health, and lifestyle. Our team continually explores fresh
+                subjects to provide current and relevant content, keeping you
+                informed with the latest trends and insights.
               </p>
             </div>
           </div>
-        </section>
-        <section className=" min-h-[60vh] py-20 bg-blue-950">
-          <div className="">
-            <h1 className="text-8xl text-center font-roboto font-semibold text-yellow-400 mobile:text-4xl tablet:text-7xl">
-              What we care <span className=" text-navbar-text">about</span>
-            </h1>
-            <div className=" flex justify-center mt-12 mobile:flex-col mobile:items-center mobile:mt-8 tablet:flex-col tablet:items-center tablet:mx-8 w-[1200px] m-auto">
-              <section className=" shadow-lg w-full p-4 pt-8 bg-[#ECECEC] m-4 rounded-lg tablet:pb-6 tablet:px-4 tablet:text-center">
-                <span>
-                  <h2 className="text-3xl text-center font-semibold font-overpass">
-                    Best Topics
-                  </h2>
-                  <p className="text-xl mt-4 text-center">
-                    Choose topics that our audience cares about, finds
-                    interesting and understanding our audience interests.
-                  </p>
-                </span>
-              </section>
-              <section className=" shadow-lg w-full p-4 pt-8 bg-[#ECECEC] m-4 rounded-lg tablet:pb-6 tablet:px-4 tablet:text-center ">
-                <span>
-                  <h2 className="text-3xl text-center font-semibold font-overpass">
-                    Quality Contents
-                  </h2>
-                  <p className="text-xl mt-4 text-center">
-                    Create content that's well-researched, well-written, and
-                    valuable. It should be informative, easy to understand, and
-                    offer something useful for readers.
-                  </p>
-                </span>
-              </section>
-              <section className=" shadow-lg w-full p-4 pt-6 bg-[#ECECEC] m-4 rounded-lg tablet:pb-6 tablet:px-4 tablet:text-center ">
-                <span>
-                  <h2 className="text-3xl text-center font-semibold font-overpass">
-                    Useful
-                  </h2>
-                  <p className="text-xl mt-4 text-center">
-                    Make sure your content provides practical value to our
-                    audience. Whether it's solving a problem or offering helpful
-                    tips, aim to empower readers with information they can use
-                    in their lives.
-                  </p>
-                </span>
-              </section>
+
+          {/* Feature 3 */}
+          <div className="feature-3 bg-[#9349F1] flex items-center justify-evenly">
+            <div className="context-container text-center text-white w-[50%] ">
+              <h2 className="font-inter text-6xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
+                Regular Update
+              </h2>
+              <p className="font-light font-inter mt-4 w-[90%] text-3xl m-auto tracking-wide text-left leading-[1.4]">
+                Keeps content fresh with regular updates, frequently adding new
+                articles and features. Stay tuned to never miss out on exciting
+                content.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_2_homepage}
+                alt="best articles"
+                className="h-[700px] m-auto pb-5"
+              />
             </div>
           </div>
-        </section>
-        <section className="min-h-[35vh] py-20 bg-yellow-300">
-          <div className=" mobile:mt-12 mobile:mb-12 tablet:mt-10 tablet:mb-10 ">
-            <h1 className=" mx-auto w-[40%] text-6xl text-center font-roboto font-bold text-blue-500 mobile:text-4xl tablet:text-6xl">
-              Start Reading & Sharing your thoughts{" "}
-              <span className=" text-blue-950">Now!</span>
-            </h1>
-            <div className="flex justify-center mt-12 mobile:mt-8">
-              <Link
-                onClick={() => {
-                  window.location.href = "/sign-up";
-                }}
-                relative="path"
-                className="text-2xl text-center bg-purple-500 shadow-lg text-white font-semibold font-overpass rounded-lg py-4 px-12 mobile:px-6 "
-              >
-                Getting Started Now | Free
-              </Link>
+
+          {/* Feature 4 */}
+          <div className="feature-4 bg-[#F5AF5D] flex items-center justify-evenly">
+            <div className="image-container">
+              <img
+                src={Picture_3_homepage}
+                alt="best articles"
+                className="h-[620px] m-auto py-5"
+              />
+            </div>
+            <div className="context-container text-center text-white w-[50%]">
+              <h2 className="font-inter text-6xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
+                Reliable Insights
+              </h2>
+              <p className="font-light font-inter mt-4 w-[90%] text-3xl m-auto tracking-wide text-left leading-[1.4]">
+                Prioritizes accuracy and reliability, offering well-researched
+                and trustworthy insights. Our commitment to quality ensures you
+                gain valuable knowledge and perspectives from every article.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+
+        {/* Join Us Section */}
+        <div className="join-us-container bg-[#BE1818]">
+          <section className="context-container text-center flex justify-evenly items-center">
+            <div className="context-container w-[60%]">
+              <h2 className="font-inter text-7xl font-semibold w-full m-auto pb-8 tracking-wide text-white">
+                Explore Top Articles
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[75%] m-auto tracking-wide text-white text-2xl leading-[1.3]">
+                Join us today to enhance your blogging experience and connect
+                with readers who appreciate great content.
+              </p>
+              <div className="join-us-btn mt-8">
+                <Link
+                  to="/sign-up"
+                  className="font-inter text-xl font-semibold text-white py-3 px-8 border-[3px] border-[#E7EB21] rounded-2xl"
+                >
+                  Join Us Today For Free
+                </Link>
+              </div>
+            </div>
+            <div className="image-container">
+              <img
+                src={Girl_sitting_and_reading}
+                alt=" girl reading "
+                className="h-[500px] m-auto mt-14"
+              />
+            </div>
+          </section>
+          <div className="wave-container">
+            <img
+              src={Wave}
+              alt="wave"
+              className="h-[280px] w-full object-cover"
+            />
+          </div>
+        </div>
       </div>
-    </div>
+    );
+  };
+
+  const LargeDesktopView = () => {
+    return (
+      <div>
+        {/* Introduction Section */}
+        <div className="introduction section">
+          <div className="welcome-txt-container absolute text-white top-[40%] drop-shadow-2xl w-full m-auto">
+            <h1 className="welcome-text font-inter text-[82pt] font-bold text-center">
+              Welcome to Insight Loop
+            </h1>
+            <p className="w-[60%] m-auto text-center text-[28pt]">
+              your premier destination for captivating and enlightening blog
+              content
+            </p>
+          </div>
+          <div className="image-container ">
+            <img
+              src={Introduction}
+              alt="induction picture"
+              className="h-[1000px] w-[100%] object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="features-container">
+          {/* Feature 1 */}
+          <div className="feature-1 bg-[#6B8BED] flex items-center justify-evenly">
+            <div className="context-container text-center text-white w-[50%]">
+              <h2 className="font-inter text-7xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
+                Best Articles For Everyone
+              </h2>
+              <p className="font-light font-inter mt-4 w-[78%] text-3xl m-auto tracking-wide text-left leading-[1.5]  ">
+                Offers top-quality articles for a diverse audience, including
+                tech enthusiasts, travel lovers, health-conscious individuals,
+                and lifestyle seekers.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_0_homepage}
+                alt="best articles"
+                className="h-[700px] m-auto"
+              />
+            </div>
+          </div>
+
+          {/* Feature 2 */}
+          <div className="feature-2 bg-[#F55D5D] flex items-center justify-evenly">
+            <div className="image-container">
+              <img
+                src={Picture_1_homepage}
+                alt="best articles"
+                className="h-[650px] m-auto py-12"
+              />
+            </div>
+            <div className="context-container text-center text-white w-[50%]">
+              <h2 className="font-inter text-7xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
+                Best Topics
+              </h2>
+              <p className="font-light font-inter mt-4 w-[80%] text-3xl m-auto tracking-wide text-left leading-[1.5]">
+                Offers a wide range of topics including technology, travel,
+                health, and lifestyle. Our team continually explores fresh
+                subjects to provide current and relevant content, keeping you
+                informed with the latest trends and insights.
+              </p>
+            </div>
+          </div>
+
+          {/* Feature 3 */}
+          <div className="feature-3 bg-[#9349F1] flex items-center justify-evenly">
+            <div className="context-container text-center text-white w-[50%] ">
+              <h2 className="font-inter text-7xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
+                Regular Update
+              </h2>
+              <p className="font-light font-inter mt-4 w-[78%] text-3xl m-auto tracking-wide text-left leading-[1.5]">
+                Keeps content fresh with regular updates, frequently adding new
+                articles and features. Stay tuned to never miss out on exciting
+                content.
+              </p>
+            </div>
+            <div className="image-container">
+              <img
+                src={Picture_2_homepage}
+                alt="best articles"
+                className="h-[660px] m-auto pb-5"
+              />
+            </div>
+          </div>
+
+          {/* Feature 4 */}
+          <div className="feature-4 bg-[#F5AF5D] flex items-center justify-evenly">
+            <div className="image-container">
+              <img
+                src={Picture_3_homepage}
+                alt="best articles"
+                className="h-[630px] m-auto py-5"
+              />
+            </div>
+            <div className="context-container text-center text-white w-[50%]">
+              <h2 className="font-inter text-7xl font-semibold w-[80%] m-auto pb-8 tracking-wide">
+                Reliable Insights
+              </h2>
+              <p className="font-light font-inter mt-4 w-[85%] text-3xl m-auto tracking-wide text-left leading-[1.5]">
+                Prioritizes accuracy and reliability, offering well-researched
+                and trustworthy insights. Our commitment to quality ensures you
+                gain valuable knowledge and perspectives from every article.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Join Us Section */}
+        <div className="join-us-container bg-[#BE1818]">
+          <section className="context-container text-center flex justify-evenly items-center">
+            <div className="context-container w-[50%]">
+              <h2 className="font-inter text-7xl font-semibold w-full m-auto pb-8 tracking-wide text-white">
+                Explore Top Articles
+              </h2>
+              <p className="font-regular font-inter mt-4 w-[55%] m-auto tracking-wide text-white text-2xl leading-[1.5]">
+                Join us today to enhance your blogging experience and connect
+                with readers who appreciate great content.
+              </p>
+              <div className="join-us-btn mt-8">
+                <Link
+                  to="/sign-up"
+                  className="font-inter text-xl font-semibold text-white py-3 px-8 border-[3px] border-[#E7EB21] rounded-2xl"
+                >
+                  Join Us Today For Free
+                </Link>
+              </div>
+            </div>
+            <div className="image-container">
+              <img
+                src={Girl_sitting_and_reading}
+                alt=" girl reading "
+                className="h-[600px] m-auto mt-14"
+              />
+            </div>
+          </section>
+          <div className="wave-container">
+            <img
+              src={Wave}
+              alt="wave"
+              className="h-[280px] w-full object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <Helmet>
+        <title>Welcome to Insight Loop</title>
+      </Helmet>
+      {mobile && <MobileView />}
+      {tablet && <TabletView />}
+      {desktop && <DesktopView />}
+      {largeDesktop && <LargeDesktopView />}
+    </>
   );
 };
 

@@ -11,9 +11,11 @@ import SideBar from "./sidebar/SideBar";
 import PrivateRoute from "./private_route/PrivateRoute";
 import OnlyIsAdminPrivateRoute from "./private_route/OnlyIsAdminPrivateRoute";
 
+import RecentBlogCard from "./cards/RecentBlogCard";
 import BlogCard from "./cards/BlogCard";
-import BlogCard_1 from "./cards/BlogCard_1";
 import CommentCard from "./cards/CommentCard";
+
+import Ad_Card from "./cards/Ad_Card";
 
 export {
   PreviewComponent,
@@ -21,10 +23,11 @@ export {
   CommentCard,
   FooterComponent,
   NavbarComponent,
+  RecentBlogCard,
   BlogCard,
-  BlogCard_1,
   PrivateRoute,
   Google_OAuth_btn,
   SideBar,
   OnlyIsAdminPrivateRoute,
+  Ad_Card,
 };

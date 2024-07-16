@@ -112,6 +112,7 @@ export const updatePost = async (req, res, next) => {
         $set: {
           title: req.body.title,
           content: req.body.content,
+          keywords: req.body.keywords,
           image: req.body.image,
           category: req.body.category,
           slug: req.body.slug,
@@ -120,6 +121,15 @@ export const updatePost = async (req, res, next) => {
       { new: true }
     );
     res.status(200).json(updatedPost);
+  } catch (error) {
+    next(errorHandler(error));
+  }
+};
+
+export const getAllPostsFromDB = async (req, res, next) => {
+  try {
+    const posts = await Post.find();
+    res.status(200).json(posts);
   } catch (error) {
     next(errorHandler(error));
   }

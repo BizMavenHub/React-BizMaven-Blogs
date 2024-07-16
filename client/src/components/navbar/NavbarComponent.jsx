@@ -6,20 +6,25 @@ import { useMediaQuery } from "react-responsive";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
+import { insight_loop_logo } from "../../assets";
+
 import { logoutSuccess } from "../../redux/user/userSlice";
 
 const NavbarComponent = () => {
   const mobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 767px)",
   });
+
   const tablet = useMediaQuery({
     query: "(min-width: 768px) and (max-width: 1279px)",
   });
-  const laptop = useMediaQuery({
-    query: "(min-width: 1280px) and (max-width: 1535px)",
-  });
+
   const desktop = useMediaQuery({
-    query: "(min-width: 1536px) and (max-width: 5000px)",
+    query: "(min-width: 1280px) and (max-width: 1919px)",
+  });
+
+  const largeDesktop = useMediaQuery({
+    query: "(min-width: 1920px)",
   });
 
   const dispatch = useDispatch();
@@ -27,6 +32,7 @@ const NavbarComponent = () => {
   const location = useLocation();
 
   const [showNavLinks, setShowNavLinks] = useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -40,11 +46,7 @@ const NavbarComponent = () => {
   }, [location.search]);
 
   const handleShowNavLinks = () => {
-    if (showNavLinks) {
-      setShowNavLinks(false);
-    } else {
-      setShowNavLinks(true);
-    }
+    setShowNavLinks(!showNavLinks);
   };
 
   const handleLogout = async () => {
@@ -66,7 +68,7 @@ const NavbarComponent = () => {
         console.log(data.message);
       } else {
         dispatch(logoutSuccess());
-        navigate("/login");
+        window.location.href = "/login";
       }
     } catch (error) {}
   };
@@ -82,254 +84,810 @@ const NavbarComponent = () => {
     navigate(`/search?${searchQuery}`);
   };
 
-  return (
-    <>
-      {currentUser ? (
-        <nav className="bg-white border-gray-200 dark:bg-gray-900">
-          <div className="max-w-screen flex items-center justify-between mx-auto p-2 px-12">
-            <div>
-              <Link
-                to="/"
-                className="flex items-center space-x-3 rtl:space-x-reverse"
-              >
-                <img
-                  src="https://flowbite.com/docs/images/logo.svg"
-                  className="h-8"
-                  alt="Flowbite Logo"
-                />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Btye Tech Community
-                </span>
-              </Link>
-            </div>
+  const toggleNavbar = () => {
+    setToggleMenu(!toggleMenu);
+  };
 
-            <div className="flex items-center">
-              <div
-                className=" items-center justify-end w-full md:flex md:w-auto md:order-1 mr-8"
-                id="navbar-cta"
-              >
-                <ul className="flex font-medium p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
-                  <li>
-                    <Link
-                      onClick={() => {
-                        window.location.href = "/blogs";
-                      }}
-                      className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                      aria-current="page"
+  const MobileView = () => {
+    return (
+      <>
+        <div className="navbar-container bg-gray-900 flex justify-between px-4 py-3">
+          <div className="title-container">
+            <Link to="/" className="flex items-center">
+              <img
+                src={insight_loop_logo}
+                className="h-6"
+                alt="Insight Loop Logo"
+              />
+              <span className=" ml-4 self-center text-xl font-semibold whitespace-nowrap text-white">
+                Insight Loop
+              </span>
+            </Link>
+          </div>
+
+          {/* toggle navbar */}
+          <div className="toggle-navbar-container">
+            {toggleMenu ? (
+              <div>
+                <svg
+                  className="w-8 h-8 transition-all ease-in-out duration-300 text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  onClick={toggleNavbar}
+                >
+                  <path stroke="currentColor" d="M6 18 17.94 6M18 18 6.06 6" />
+                </svg>
+              </div>
+            ) : (
+              <div>
+                <svg
+                  className="w-8 h-8 transition-all ease-in-out duration-300 text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  onClick={toggleNavbar}
+                >
+                  <path stroke="currentColor" d="M5 7h14M5 12h14M5 17h14" />
+                </svg>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* check if user is logged in or not */}
+        <div className="bg-gray-900">
+          {currentUser ? (
+            <>
+              {toggleMenu && (
+                <div className="px-4 pb-4 absolute rights-0 z-10 w-full bg-gray-900">
+                  <div className="" onClick={toggleNavbar}>
+                    <ul className="text-white font-roboto font-medium text-center w-full tracking-wide">
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-2 px-4 hover:bg-gray-700"
+                          to="/blogs"
+                        >
+                          Home
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-2 px-4 hover:bg-gray-700"
+                          to="/about-us"
+                        >
+                          About Us
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-3 px-4 hover:bg-gray-700 "
+                          to="contact-us"
+                        >
+                          Contact Us
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-3 px-4 hover:bg-gray-700 "
+                          to="/feedback"
+                        >
+                          Feedback
+                        </Link>
+                      </li>
+                      <li className="justify-center flex">
+                        <Link
+                          to="/create-post"
+                          onClick={toggleNavbar}
+                          className="text-white py-2 w-2/3 mb-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-semibold block rounded-lg text-lg dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                          Create Post
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <form
+                    onSubmit={handleSearch}
+                    className="search-container mt-2"
+                  >
+                    <input
+                      type="text"
+                      placeholder="Search"
+                      className="w-full p-2"
+                    />
+                  </form>
+                  <hr className="mt-6" />
+                  <Link
+                    to={"/dashboard?tab=profile"}
+                    className="flex justify-start items-center py-5"
+                    onClick={toggleNavbar}
+                  >
+                    <div>
+                      <img
+                        src={
+                          currentUser.pictureProfile
+                            ? currentUser.pictureProfile
+                            : "/src/assets/default_profile_picture.png"
+                        }
+                        alt="user profile picture"
+                        className="w-12 h-12 rounded-full object-cover"
+                      />
+                    </div>
+                    <div className="text-gray-400 ml-4">
+                      <div>
+                        <h1 className="font-semibold text-lg">
+                          {currentUser.username}
+                        </h1>
+                      </div>
+                      <div>
+                        <h1>{currentUser.email}</h1>
+                      </div>
+                    </div>
+                  </Link>
+                  <hr />
+                  <div className="mt-2">
+                    <button
+                      onClick={handleLogout}
+                      type="button"
+                      className="w-full text-red-500 block px-4 py-2 font-bold"
                     >
-                      Blogs
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              {toggleMenu && (
+                <div className="px-4 pb-4 absolute rights-0 z-10 w-full bg-gray-900">
+                  <div className="" onClick={toggleNavbar}>
+                    <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide">
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-2 px-4 hover:bg-gray-700"
+                          to="/"
+                          onClick={toggleNavbar}
+                        >
+                          Home
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-2 px-4 hover:bg-gray-700"
+                          to="/about-us"
+                          onClick={toggleNavbar}
+                        >
+                          About Us
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-3 px-4 hover:bg-gray-700 "
+                          to="contact-us"
+                          onClick={toggleNavbar}
+                        >
+                          Contact Us
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-3 px-4 hover:bg-gray-700 "
+                          to="/feedback"
+                          onClick={toggleNavbar}
+                        >
+                          Feedback
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="search-container mt-2 justify-center flex">
+                    <Link
+                      to="/sign-up"
+                      onClick={toggleNavbar}
+                      className="block text-center font-semibold text-white p-2 bg-blue-500 rounded-xl w-2/4"
+                    >
+                      Get Started
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </>
+    );
+  };
+
+  const TabletView = () => {
+    return (
+      <>
+        <div className="navbar-container bg-gray-900 flex justify-between items-center px-4 py-3">
+          <div className="title-container">
+            <Link to="/" className="flex items-center">
+              <img
+                src={insight_loop_logo}
+                className="h-8"
+                alt="Insight Loop Logo"
+              />
+              <span className=" ml-4 self-center text-2xl font-semibold whitespace-nowrap text-white">
+                Insight Loop
+              </span>
+            </Link>
+          </div>
+
+          <div className="flex items-center">
+            <form onSubmit={handleSearch} className="search-container mr-4">
+              <input
+                type="text"
+                placeholder="Search"
+                className="p-2 w-[300px]"
+              />
+            </form>
+
+            {/* toggle navbar */}
+            <div className="toggle-navbar-container">
+              {toggleMenu ? (
+                <div>
+                  <svg
+                    className="w-8 h-8 transition-all ease-in-out duration-300 text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    onClick={toggleNavbar}
+                  >
+                    <path
+                      stroke="currentColor"
+                      d="M6 18 17.94 6M18 18 6.06 6"
+                    />
+                  </svg>
+                </div>
+              ) : (
+                <div>
+                  <svg
+                    className="w-8 h-8 transition-all ease-in-out duration-300 text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    onClick={toggleNavbar}
+                  >
+                    <path stroke="currentColor" d="M5 7h14M5 12h14M5 17h14" />
+                  </svg>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* check if user is logged in or not */}
+        <div className="bg-gray-900">
+          {currentUser ? (
+            <>
+              {toggleMenu && (
+                <div className="px-4 pb-4 absolute right-0 z-10 w-2/5 bg-gray-900 rounded-bl-xl">
+                  <Link
+                    to={"/dashboard?tab=profile"}
+                    className="flex justify-center items-center mb-4"
+                    onClick={toggleNavbar}
+                  >
+                    <div>
+                      <img
+                        src={
+                          currentUser.pictureProfile
+                            ? currentUser.pictureProfile
+                            : "/src/assets/default_profile_picture.png"
+                        }
+                        alt="user profile picture"
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                    </div>
+                    <div className="text-gray-400 ml-4">
+                      <div>
+                        <h1 className="font-semibold">
+                          {currentUser.username}
+                        </h1>
+                      </div>
+                      <div>
+                        <h1>{currentUser.email}</h1>
+                      </div>
+                    </div>
+                  </Link>
+                  <hr />
+                  <div className="mt-2" onClick={toggleNavbar}>
+                    <ul className="text-white font-roboto font-medium text-center w-full tracking-wide">
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-2 px-4 hover:bg-gray-700"
+                          to="/blogs"
+                        >
+                          Home
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-2 px-4 hover:bg-gray-700"
+                          to="/about-us"
+                        >
+                          About Us
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-3 px-4 hover:bg-gray-700 "
+                          to="contact-us"
+                        >
+                          Contact Us
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-3 px-4 hover:bg-gray-700 "
+                          to="/feedback"
+                        >
+                          Feedback
+                        </Link>
+                      </li>
+                      <li className="justify-center flex">
+                        <Link
+                          to="/create-post"
+                          onClick={toggleNavbar}
+                          className="text-white py-2 w-2/3 mb-4 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-semibold block rounded-lg text-lg dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                        >
+                          Create Post
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <hr />
+                  <div className="mt-2">
+                    <button
+                      onClick={handleLogout}
+                      type="button"
+                      className="w-full text-red-500 block px-4 py-2 font-bold"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              {toggleMenu && (
+                <div className="px-4 pb-4 absolute right-0 z-10 w-2/5 bg-gray-900 rounded-bl-xl">
+                  <div className="" onClick={toggleNavbar}>
+                    <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide">
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-2 px-4 hover:bg-gray-700"
+                          to="/"
+                          onClick={toggleNavbar}
+                        >
+                          Home
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-2 px-4 hover:bg-gray-700"
+                          to="/about-us"
+                          onClick={toggleNavbar}
+                        >
+                          About Us
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-3 px-4 hover:bg-gray-700 "
+                          to="contact-us"
+                          onClick={toggleNavbar}
+                        >
+                          Contact Us
+                        </Link>
+                      </li>
+                      <li className="hover:bg-gray-700">
+                        <Link
+                          className="block py-3 px-4 hover:bg-gray-700 "
+                          to="/feedback"
+                          onClick={toggleNavbar}
+                        >
+                          Feedback
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="search-container mt-2 justify-center flex">
+                    <Link
+                      to="/sign-up"
+                      onClick={toggleNavbar}
+                      className="block text-center font-semibold text-white p-2 bg-blue-500 rounded-xl w-2/4"
+                    >
+                      Get Started
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+      </>
+    );
+  };
+
+  const DesktopView = () => {
+    return (
+      <>
+        <div className="navbar-container bg-gray-900 flex justify-between items-center px-4 py-4">
+          <div className="title-container">
+            <Link to="/" className="flex items-center">
+              <img
+                src={insight_loop_logo}
+                className="h-8"
+                alt="Insight Loop Logo"
+              />
+              <span className=" ml-4 self-center text-2xl font-semibold whitespace-nowrap text-white">
+                Insight Loop
+              </span>
+            </Link>
+          </div>
+
+          {/* nav links */}
+          <div className="">
+            {currentUser ? (
+              <div className="flex items-center">
+                <ul className="text-white font-roboto font-medium text-center w-full tracking-wide flex justify-between">
+                  <li className="hover:bg-gray-700">
+                    <Link className=" py-2 px-4 hover:bg-gray-700" to="/blogs">
+                      Home
                     </Link>
                   </li>
-                  <li>
+
+                  <li className="hover:bg-gray-700">
                     <Link
-                      onClick={() => {
-                        window.location.href = "/about-us";
-                      }}
-                      className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      className=" py-2 px-4 hover:bg-gray-700"
+                      to="/about-us"
                     >
-                      About
+                      About Us
                     </Link>
                   </li>
-                  <li>
+
+                  <li className="hover:bg-gray-700">
                     <Link
-                      onClick={() => {
-                        window.location.href = "/contact-us";
-                      }}
-                      className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                    >
-                      Contact
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      onClick={() => {
-                        window.location.href = "/feedback";
-                      }}
-                      className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                      className=" py-3 px-4 hover:bg-gray-700 "
+                      to="/feedback"
                     >
                       Feedback
                     </Link>
                   </li>
                 </ul>
-              </div>
-            </div>
 
-            <div className="flex items-center">
-              <div className="flex items-center justify-center mx-4">
-                <form action="" onSubmit={handleSearch}>
+                <form onSubmit={handleSearch} className="search-container mx-4">
                   <input
                     type="text"
-                    placeholder="Search..."
-                    className="p-2 w-[350px] rounded outline-none"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    placeholder="Search"
+                    className="p-2 w-[300px]"
                   />
                 </form>
-              </div>
 
-              <button
-                type="button"
-                className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 mx-4"
-                id="user-menu-button"
-                aria-expanded="false"
-                data-dropdown-toggle="user-dropdown"
-                data-dropdown-placement="bottom"
-                onClick={handleShowNavLinks}
-              >
-                <img
-                  className="w-10 h-10 rounded-full object-cover "
-                  src={
-                    currentUser.pictureProfile
-                      ? currentUser.pictureProfile
-                      : "/src/assets/default_profile_picture.png"
-                  }
-                  alt="user photo"
-                />
-              </button>
+                <div className="image-container">
+                  <button
+                    className="bg-gray-800 rounded-full"
+                    id="user-menu-button"
+                    onClick={handleShowNavLinks}
+                  >
+                    <img
+                      className="w-[90px] h-12 rounded-full object-cover"
+                      src={
+                        currentUser.pictureProfile
+                          ? currentUser.pictureProfile
+                          : "/src/assets/default_profile_picture.png"
+                      }
+                      alt="user photo"
+                    />
+                  </button>
+                </div>
 
-              {currentUser.isAdmin && (
-                <button
-                  onClick={() => (window.location.href = "/create-post")}
-                  className="text-white ml-4   bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm h-[40px] w-[120px] dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                >
-                  Create Post
-                </button>
-              )}
+                {showNavLinks && (
+                  <div
+                    className="absolute z-10 top-16 right-0 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-bl-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                    id="user-dropdown"
+                  >
+                    <div className="px-4 py-3">
+                      <span className="block text-sm text-gray-900 dark:text-white">
+                        {currentUser.username}
+                      </span>
+                      <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
+                        {currentUser.email}
+                      </span>
+                    </div>
+                    <ul className="py-2" aria-labelledby="user-menu-button">
+                      {currentUser.isAdmin && (
+                        <>
+                          <li>
+                            <Link
+                              to={"/dashboard?tab=overview"}
+                              onClick={handleShowNavLinks}
+                              className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
+                            >
+                              Dashboard
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/create-post"
+                              onClick={handleShowNavLinks}
+                              className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
+                            >
+                              Create Post
+                            </Link>
+                          </li>
+                        </>
+                      )}
 
-              {/* <!-- Dropdown menu --> */}
-              {showNavLinks && (
-                <div
-                  className="absolute z-10 top-12 right-10 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-                  id="user-dropdown"
-                >
-                  <div className="px-4 py-3">
-                    <span className="block text-sm text-gray-900 dark:text-white">
-                      {currentUser.username}
-                    </span>
-                    <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                      {currentUser.email}
-                    </span>
-                  </div>
-                  <ul className="py-2" aria-labelledby="user-menu-button">
-                    {currentUser.isAdmin && (
                       <li>
                         <Link
-                          onClick={() => {
-                            window.location.href = "/dashboard?tab=overview";
-                          }}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                          to="/dashboard?tab=profile"
+                          onClick={handleShowNavLinks}
+                          className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
                         >
-                          Dashboard
+                          Profile
                         </Link>
                       </li>
-                    )}
-                    <li>
-                      <Link
-                        onClick={() => {
-                          window.location.href = "/dashboard?tab=profile";
-                        }}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >
-                        Profile
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        onClick={handleLogout}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                      >
-                        Sign out
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-        </nav>
-      ) : (
-        <nav className="bg-white border-gray-200 dark:bg-gray-900">
-          <div className="max-w-screen flex items-center justify-between px-8 py-2">
-            {/* Logo */}
-            <Link
-              onClick={() => {
-                window.location.href = "/";
-              }}
-              className="flex justify-start items-center w-[428px] space-x-3"
-            >
-              <img
-                src="https://flowbite.com/docs/images/logo.svg"
-                className="h-8"
-                alt="Flowbite Logo"
-              />
-              <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                BizMaven Blog
-              </span>
-            </Link>
-
-            {/* Navbar links */}
-            <div
-              className=" items-center justify-end flex w-auto"
-              id="navbar-cta"
-            >
-              <ul className="flex font-medium mr-8 p-2 rounded-lg md:p-0  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white  md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                  <Link
-                    onClick={() => {
-                      window.location.href = "/";
-                    }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
+                      <li>
+                        <Link
+                          onClick={handleLogout}
+                          className="block px-4 py-2 text-sm hover:bg-gray-600 text-red-500 hover:text-white"
+                        >
+                          Sign out
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide flex justify-center">
+                <li className="hover:bg-gray-700">
+                  <Link className=" py-2 px-4 hover:bg-gray-700" to="/">
                     Home
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    onClick={() => {
-                      window.location.href = "/blogs";
-                    }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                  >
-                    Blogs
+                <li className="hover:bg-gray-700">
+                  <Link className=" py-2 px-4 hover:bg-gray-700" to="/about-us">
+                    About Us
                   </Link>
                 </li>
-                <li>
+                <li className="hover:bg-gray-700">
                   <Link
-                    onClick={() => {
-                      window.location.href = "/about-us";
-                    }}
-                    className="block font-normal text-sm tracking-[2px] py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className=" py-3 px-4 hover:bg-gray-700 "
+                    to="contact-us"
                   >
-                    About
+                    Contact Us
                   </Link>
                 </li>
-                <li>
+                <li className="hover:bg-gray-700">
                   <Link
-                    onClick={() => {
-                      window.location.href = "/contact-us";
-                    }}
-                    className="block font-normal text-sm py-2 px-3 md:p-0 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                    className=" py-3 px-4 hover:bg-gray-700 "
+                    to="/feedback"
                   >
-                    Contact
+                    Feedback
+                  </Link>
+                </li>
+                <li className="ml-6">
+                  <Link
+                    to={"/sign-up"}
+                    className="py-3 px-4 hover:bg-gray-700 bg-blue-500 rounded-lg"
+                  >
+                    Get Started
                   </Link>
                 </li>
               </ul>
-              <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button
-                  type="button"
-                  onClick={() => {
-                    window.location.href = "/sign-up";
-                  }}
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-12 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  Get started
-                </button>
-              </div>
-            </div>
+            )}
           </div>
-        </nav>
-      )}
-    </>
+        </div>
+      </>
+    );
+  };
+
+  const LargeDesktopView = () => {
+    return (
+      <>
+        <div className="navbar-container bg-gray-900 flex justify-between items-center px-4 py-4">
+          <div className="title-container">
+            <Link to="/" className="flex items-center">
+              <img
+                src={insight_loop_logo}
+                className="h-8"
+                alt="Insight Loop Logo"
+              />
+              <span className=" ml-4 self-center text-2xl font-semibold whitespace-nowrap text-white">
+                Insight Loop
+              </span>
+            </Link>
+          </div>
+
+          {/* nav links */}
+          <div className="">
+            {currentUser ? (
+              <div className="flex items-center">
+                <ul className="text-white font-roboto font-medium text-center w-full tracking-wide flex justify-between">
+                  <li className="hover:bg-gray-700">
+                    <Link className=" py-2 px-4 hover:bg-gray-700" to="/blogs">
+                      Home
+                    </Link>
+                  </li>
+
+                  <li className="hover:bg-gray-700">
+                    <Link
+                      className=" py-2 px-4 hover:bg-gray-700"
+                      to="/about-us"
+                    >
+                      About Us
+                    </Link>
+                  </li>
+
+                  <li className="hover:bg-gray-700">
+                    <Link
+                      className=" py-3 px-4 hover:bg-gray-700 "
+                      to="/feedback"
+                    >
+                      Feedback
+                    </Link>
+                  </li>
+                </ul>
+
+                <form onSubmit={handleSearch} className="search-container mx-4">
+                  <input
+                    type="text"
+                    name="search"
+                    id="search"
+                    placeholder="Search"
+                    className="p-2 w-[300px]"
+                  />
+                </form>
+
+                <div className="image-container">
+                  <button
+                    className="bg-gray-800 rounded-full"
+                    id="user-menu-button"
+                    onClick={handleShowNavLinks}
+                  >
+                    <img
+                      className="w-[5vw] h-12 rounded-full object-cover"
+                      src={
+                        currentUser.pictureProfile
+                          ? currentUser.pictureProfile
+                          : "/src/assets/default_profile_picture.png"
+                      }
+                      alt="user photo"
+                    />
+                  </button>
+                </div>
+
+                {showNavLinks && (
+                  <div
+                    className="absolute z-10 top-[70px] right-0 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-bl-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+                    id="user-dropdown"
+                  >
+                    <div className="px-4 py-3">
+                      <span className="block text-sm text-gray-900 dark:text-white">
+                        {currentUser.username}
+                      </span>
+                      <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
+                        {currentUser.email}
+                      </span>
+                    </div>
+                    <ul className="py-2" aria-labelledby="user-menu-button">
+                      {currentUser.isAdmin && (
+                        <>
+                          <li>
+                            <Link
+                              to={"/dashboard?tab=overview"}
+                              onClick={handleShowNavLinks}
+                              className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
+                            >
+                              Dashboard
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/create-post"
+                              onClick={handleShowNavLinks}
+                              className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
+                            >
+                              Create Post
+                            </Link>
+                          </li>
+                        </>
+                      )}
+
+                      <li>
+                        <Link
+                          to="/dashboard?tab=profile"
+                          onClick={handleShowNavLinks}
+                          className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white"
+                        >
+                          Profile
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          onClick={handleLogout}
+                          className="block px-4 py-2 text-sm hover:bg-gray-600 text-red-500 hover:text-white"
+                        >
+                          Sign out
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <ul className="text-white font-roboto font-semibold text-center w-full tracking-wide flex justify-center">
+                <li className="hover:bg-gray-700">
+                  <Link className=" py-2 px-4 hover:bg-gray-700" to="/">
+                    Home
+                  </Link>
+                </li>
+                <li className="hover:bg-gray-700">
+                  <Link className=" py-2 px-4 hover:bg-gray-700" to="/about-us">
+                    About Us
+                  </Link>
+                </li>
+                <li className="hover:bg-gray-700">
+                  <Link
+                    className=" py-3 px-4 hover:bg-gray-700 "
+                    to="contact-us"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+                <li className="hover:bg-gray-700">
+                  <Link
+                    className=" py-3 px-4 hover:bg-gray-700 "
+                    to="/feedback"
+                  >
+                    Feedback
+                  </Link>
+                </li>
+                <li className="ml-6">
+                  <Link
+                    to={"/sign-up"}
+                    className="py-3 px-4 hover:bg-gray-700 bg-blue-500 rounded-lg"
+                  >
+                    Get Started
+                  </Link>
+                </li>
+              </ul>
+            )}
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  return (
+    <nav>
+      {mobile && <MobileView />}
+
+      {tablet && <TabletView />}
+
+      {desktop && <DesktopView />}
+
+      {largeDesktop && <LargeDesktopView />}
+    </nav>
   );
 };
 

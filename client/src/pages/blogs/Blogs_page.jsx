@@ -3,7 +3,7 @@ import { DefaultBlogsContainer } from "../../containers";
 
 const Blogs_page = () => {
   return (
-    <div className="w-[60%] m-auto">
+    <div>
       <DefaultBlogsContainer />
     </div>
   );

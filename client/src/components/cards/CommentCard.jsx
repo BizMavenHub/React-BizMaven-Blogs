@@ -17,7 +17,11 @@ const CommentCard = ({ comment, onLike, onDislike, onDelete, onEdit }) => {
 
   const getUser = async () => {
     try {
-      const response = await fetch(`/api/comment/get-user/${comment.userId}`);
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/comment/get-user/${
+          comment.userId
+        }`
+      );
       const data = await response.json();
 
       if (!response.ok) {

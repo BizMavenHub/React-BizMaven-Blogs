@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import { BlogCard_1 } from "../../components";
+import { BlogCard, RecentBlogCard } from "../../components";
 
 const SearchContainer = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const SearchContainer = () => {
         if (response.ok) {
           const data = await response.json();
           setPosts(data.posts);
-          console.log(data.posts.length);
+
           setLoading(false);
           if (data.posts.length > 7) {
             setShowMore(true);
@@ -126,7 +126,6 @@ const SearchContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
 
@@ -137,7 +136,7 @@ const SearchContainer = () => {
       if (response.ok) {
         const data = await response.json();
         setPosts((prev) => [...prev, ...data.posts]);
-        console.log(data.posts.length);
+
         if (data.posts.length >= 0) {
           setShowMore(false);
         }
@@ -239,7 +238,7 @@ const SearchContainer = () => {
                 <div className="grid grid-cols-4 gap-6">
                   {posts.map((post, index) => (
                     <div key={index}>
-                      <BlogCard_1
+                      <BlogCard
                         id={post._id}
                         title={post.title}
                         image={post.image}

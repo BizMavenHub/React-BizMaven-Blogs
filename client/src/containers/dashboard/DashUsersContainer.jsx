@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
+import { Helmet } from "react-helmet";
+
 const DashUsersContainer = () => {
   const { currentUser } = useSelector((state) => state.user);
 
@@ -30,7 +32,6 @@ const DashUsersContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
       const data = await response.json();
@@ -61,7 +62,6 @@ const DashUsersContainer = () => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        withCredentials: true,
       });
       const data = await res.json();
 
@@ -95,7 +95,6 @@ const DashUsersContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
       const data = await res.json();
@@ -112,8 +111,15 @@ const DashUsersContainer = () => {
   };
 
   return (
-    <div className="px-8 py-4">
-      <table className="w-full text-sm text-center ">
+    <div className="px-8 py-4 overflow-x-scroll">
+      <Helmet>
+        <title>Dashboard | Users</title>
+        <link
+          rel="canonical"
+          href="https://insightloop.com/dashboard?tab=users"
+        />
+      </Helmet>
+      <table className="w-full text-sm text-center overflow-x-scroll ">
         <thead>
           <tr className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
             <th className="p-4">Created At</th>

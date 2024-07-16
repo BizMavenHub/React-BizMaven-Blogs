@@ -58,19 +58,21 @@ export async function loginWithEmail(req, res, next) {
 
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
-      process.env.JWT_SECRET
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "30d",
+      }
     );
+
     const { password: pass, ...rest } = user._doc;
 
     res
-      .status(200)
-      .setHeader("Access-Control-Allow-Credentials", true)
       .cookie("access_token", token, {
-        maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-        expires: new Date(
-          new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
-        ), // 10 years
+        expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
+        secure: true,
+        sameSite: "none",
       })
+      .status(200)
       .json({ message: "Login successfully", ...rest });
   } catch (error) {
     next(error);
@@ -85,7 +87,10 @@ export async function loginWithGoogle(req, res, next) {
     if (user) {
       const token = jwt.sign(
         { id: user._id, isAdmin: user.isAdmin },
-        process.env.JWT_SECRET
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "30d",
+        }
       );
       const { password, ...rest } = user._doc;
 
@@ -93,10 +98,9 @@ export async function loginWithGoogle(req, res, next) {
         .status(200)
         .setHeader("Access-Control-Allow-Credentials", true)
         .cookie("access_token", token, {
-          maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-          expires: new Date(
-            new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
-          ), // 10 years
+          expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
+          secure: true,
+          sameSite: "none",
         })
         .json({ message: "Login successfully", ...rest });
     } else {
@@ -115,7 +119,10 @@ export async function loginWithGoogle(req, res, next) {
       await newUser.save();
       const token = jwt.sign(
         { id: newUser._id, isAdmin: newUser.isAdmin },
-        process.env.JWT_SECRET
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "30d",
+        }
       );
       const { password, ...rest } = newUser._doc;
 
@@ -123,10 +130,9 @@ export async function loginWithGoogle(req, res, next) {
         .status(200)
         .setHeader("Access-Control-Allow-Credentials", true)
         .cookie("access_token", token, {
-          maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
-          expires: new Date(
-            new Date().getTime() + 1000 * 60 * 60 * 24 * 365 * 10
-          ), // 10 years
+          expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
+          secure: true,
+          sameSite: "none",
         })
         .json({ message: "Login successfully", ...rest });
     }

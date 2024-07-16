@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
+import { Helmet } from "react-helmet";
+
 const DashPostContainer = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
@@ -29,7 +31,6 @@ const DashPostContainer = () => {
       const data = await response.json();
       if (response.ok) {
         setPosts(data.posts);
-        console.log(data.posts.length);
         if (data.posts.length > 10) {
           setShowMore(true);
         }
@@ -55,7 +56,6 @@ const DashPostContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
       const data = await res.json();
@@ -64,7 +64,6 @@ const DashPostContainer = () => {
       } else {
         setPosts((prev) => prev.filter((post) => post._id !== postIdToDelete));
       }
-      console.log(posts);
     } catch (error) {
       console.log(error);
     }
@@ -87,15 +86,12 @@ const DashPostContainer = () => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        withCredentials: true,
       });
 
       const data = await res.json();
 
       if (res.ok) {
         setPosts((prev) => [...prev, ...data.posts]);
-
-        console.log(data.posts.length);
 
         if (data.posts.length > 0) {
           setShowMore(false);
@@ -108,6 +104,13 @@ const DashPostContainer = () => {
 
   return (
     <div className="px-4 pt-4 pb-16">
+      <Helmet>
+        <link
+          rel="canonical"
+          href="https://insightloop.com/dashboard?tab=posts"
+        />
+        <title>Dashboard | Posts</title>
+      </Helmet>
       <div className="relative overflow-x-auto sm:rounded-lg">
         {currentUser.isAdmin && posts.length > 0 ? (
           <>

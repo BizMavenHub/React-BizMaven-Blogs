@@ -2,30 +2,24 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
-const FooterComponent = () => {
-  const mobile = useMediaQuery({
-    query: "(min-width: 320px) and (max-width: 767px)",
-  });
-  const tablet = useMediaQuery({
-    query: "(min-width: 768px) and (max-width: 1279px)",
-  });
-  const laptop = useMediaQuery({
-    query: "(min-width: 1280px) and (max-width: 1535px)",
-  });
-  const desktop = useMediaQuery({
-    query: "(min-width: 1536px) and (max-width: 5000px)",
-  });
+import { insight_loop_logo } from "../../assets";
 
+const FooterComponent = () => {
   return (
     <footer className="bg-gray-100 dark:bg-gray-900 ">
       <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8 ">
         <div className="flex justify-center ">
-          <Link className="text-3xl font-bold text-teal-600" to="/">
-            Btye Tech Community
+          <Link className="text-3xl font-bold text-teal-600 flex" to="/">
+            <img
+              src={insight_loop_logo}
+              alt="Insight Loop Logo"
+              className="h-10 mr-4"
+            />
+            Insight Loop
           </Link>
         </div>
 
-        <ul className="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12 ">
+        <ul className="mt-12 flex flex-wrap justify-center gap-6 ">
           <li>
             <Link
               className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
@@ -39,10 +33,10 @@ const FooterComponent = () => {
           <li>
             <Link
               className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
-              to={"/careers"}
+              to={"/career"}
             >
               {" "}
-              Careers{" "}
+              Career{" "}
             </Link>
           </li>
 
@@ -59,20 +53,10 @@ const FooterComponent = () => {
           <li>
             <Link
               className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
-              to={"/blogs"}
+              to={"/privacy-policy"}
             >
               {" "}
-              Blog{" "}
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              className="text-gray-700 transition dark:text-white dark:hover:text-gray-300 hover:text-gray-700/75"
-              to={"/faqs"}
-            >
-              {" "}
-              FAQs{" "}
+              Privacy Policy{" "}
             </Link>
           </li>
 
@@ -87,7 +71,7 @@ const FooterComponent = () => {
           </li>
         </ul>
 
-        <ul className="mt-12 flex justify-center gap-6 md:gap-8">
+        <ul className="mt-12 flex justify-center gap-6">
           <li>
             <a
               href="#"
@@ -165,7 +149,7 @@ const FooterComponent = () => {
           </li>
         </ul>
         <p className="mx-auto mt-6 max-w-md text-center leading-relaxed text-gray-500 dark:text-white">
-          © 2023 BizMaven. All rights reserved.
+          © 2024 Insight Loop. All rights reserved.
         </p>
       </div>
     </footer>

@@ -86,7 +86,6 @@ const CreatePostContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
           body: JSON.stringify(dataForm),
         }
       );
@@ -120,7 +119,7 @@ const CreatePostContainer = () => {
   };
 
   return (
-    <div className="w-[1000px] h-auto p-8 my-4 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 m-auto">
+    <div className="w-[1000px] h-auto p-8 my-4 m-auto">
       <h1 className="text-6xl font-bold text-center my-12">Create Post</h1>
       <div className="flex my-8 gap-3">
         <input
@@ -155,6 +154,15 @@ const CreatePostContainer = () => {
           <option value="travel">Travel</option>
           <option value="other">Other</option>
         </select>
+      </div>
+      <div className="flex my-8 gap-3">
+        <textarea
+          onChange={(e) =>
+            setDataForm({ ...dataForm, keywords: e.target.value })
+          }
+          placeholder="Keywords (comma separated)"
+          className="w-full h-[250px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
       </div>
       <div className="flex justify-center items-center border border-dashed border-gray-700 p-4 gap-3 rounded-lg">
         <div className="w-full">
