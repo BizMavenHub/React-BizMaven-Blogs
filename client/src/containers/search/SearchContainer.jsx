@@ -55,7 +55,7 @@ const SearchContainer = () => {
         if (response.ok) {
           const data = await response.json();
           setPosts(data.posts);
-          console.log(data.posts.length);
+
           setLoading(false);
           if (data.posts.length > 7) {
             setShowMore(true);
@@ -126,7 +126,6 @@ const SearchContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
 
@@ -137,7 +136,7 @@ const SearchContainer = () => {
       if (response.ok) {
         const data = await response.json();
         setPosts((prev) => [...prev, ...data.posts]);
-        console.log(data.posts.length);
+
         if (data.posts.length >= 0) {
           setShowMore(false);
         }

@@ -476,35 +476,30 @@ const DashOverviewContainer = () => {
               </div>
               <div className="my-4">
                 <ul>
-                  {users.map(
-                    (user, index) => (
-                      console.log(user),
-                      (
-                        <li
-                          key={index}
-                          className="my-4 flex items-center justify-between"
-                        >
-                          <div className="flex items-center">
-                            <div className="image-container">
-                              <img
-                                src={user.pictureProfile}
-                                alt=""
-                                className="rounded-full h-10 w-10 object-cover"
-                              />
-                            </div>
-                            <p className="text-white font-medium ml-4">
-                              {user.username}
-                            </p>
-                          </div>
-                          <div>
-                            <p className="text-white font-medium">
-                              created at {new Date(user.date).toDateString()}
-                            </p>
-                          </div>
-                        </li>
-                      )
-                    )
-                  )}
+                  {users.map((user, index) => (
+                    <li
+                      key={index}
+                      className="my-4 flex items-center justify-between"
+                    >
+                      <div className="flex items-center">
+                        <div className="image-container">
+                          <img
+                            src={user.pictureProfile}
+                            alt=""
+                            className="rounded-full h-10 w-10 object-cover"
+                          />
+                        </div>
+                        <p className="text-white font-medium ml-4">
+                          {user.username}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-white font-medium">
+                          created at {new Date(user.date).toDateString()}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -746,35 +741,30 @@ const DashOverviewContainer = () => {
             </div>
             <div className="my-4">
               <ul>
-                {users.map(
-                  (user, index) => (
-                    console.log(user),
-                    (
-                      <li
-                        key={index}
-                        className="my-4 flex items-center justify-between"
-                      >
-                        <div className="flex items-center">
-                          <div className="image-container">
-                            <img
-                              src={user.pictureProfile}
-                              alt=""
-                              className="rounded-full h-10 w-10 object-cover"
-                            />
-                          </div>
-                          <p className="text-white font-medium ml-4">
-                            {user.username}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-white font-medium">
-                            created at {new Date(user.date).toDateString()}
-                          </p>
-                        </div>
-                      </li>
-                    )
-                  )
-                )}
+                {users.map((user, index) => (
+                  <li
+                    key={index}
+                    className="my-4 flex items-center justify-between"
+                  >
+                    <div className="flex items-center">
+                      <div className="image-container">
+                        <img
+                          src={user.pictureProfile}
+                          alt=""
+                          className="rounded-full h-10 w-10 object-cover"
+                        />
+                      </div>
+                      <p className="text-white font-medium ml-4">
+                        {user.username}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">
+                        created at {new Date(user.date).toDateString()}
+                      </p>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -1012,35 +1002,30 @@ const DashOverviewContainer = () => {
             </div>
             <div className="my-4">
               <ul>
-                {users.map(
-                  (user, index) => (
-                    console.log(user),
-                    (
-                      <li
-                        key={index}
-                        className="my-4 flex items-center justify-between"
-                      >
-                        <div className="flex items-center">
-                          <div className="image-container">
-                            <img
-                              src={user.pictureProfile}
-                              alt=""
-                              className="rounded-full h-10 w-10 object-cover"
-                            />
-                          </div>
-                          <p className="text-white font-medium ml-4">
-                            {user.username}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-white font-medium">
-                            created at {new Date(user.date).toDateString()}
-                          </p>
-                        </div>
-                      </li>
-                    )
-                  )
-                )}
+                {users.map((user, index) => (
+                  <li
+                    key={index}
+                    className="my-4 flex items-center justify-between"
+                  >
+                    <div className="flex items-center">
+                      <div className="image-container">
+                        <img
+                          src={user.pictureProfile}
+                          alt=""
+                          className="rounded-full h-10 w-10 object-cover"
+                        />
+                      </div>
+                      <p className="text-white font-medium ml-4">
+                        {user.username}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">
+                        created at {new Date(user.date).toDateString()}
+                      </p>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

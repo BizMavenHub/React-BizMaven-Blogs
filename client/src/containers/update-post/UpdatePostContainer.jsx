@@ -104,7 +104,6 @@ const UpdatePostContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
           body: JSON.stringify(dataForm),
         }
       );
@@ -138,7 +137,6 @@ const UpdatePostContainer = () => {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        withCredentials: true,
       });
       const data = await response.json();
       if (response.ok) {
@@ -160,8 +158,6 @@ const UpdatePostContainer = () => {
       setShowPreview(true);
     }
   };
-
-  console.log(dataForm);
 
   return (
     <>

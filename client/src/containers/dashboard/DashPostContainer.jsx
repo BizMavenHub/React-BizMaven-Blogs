@@ -64,7 +64,6 @@ const DashPostContainer = () => {
       } else {
         setPosts((prev) => prev.filter((post) => post._id !== postIdToDelete));
       }
-      console.log(posts);
     } catch (error) {
       console.log(error);
     }

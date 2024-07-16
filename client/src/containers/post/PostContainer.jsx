@@ -56,7 +56,6 @@ const PostContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
 
@@ -87,7 +86,6 @@ const PostContainer = () => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          withCredentials: true,
         }
       );
 
@@ -132,23 +130,18 @@ const PostContainer = () => {
             Recent Posts
           </h1>
           <div className="grid grid-cols-1 gap-4">
-            {recentPosts.map(
-              (post) => (
-                console.log(post),
-                (
-                  <Fragment key={post._id}>
-                    <RecentBlogCard
-                      title={post.title}
-                      image={post.image}
-                      category={post.category}
-                      content={post.content}
-                      slug={post.slug}
-                      date={post.createdAt}
-                    />
-                  </Fragment>
-                )
-              )
-            )}
+            {recentPosts.map((post) => (
+              <Fragment key={post._id}>
+                <RecentBlogCard
+                  title={post.title}
+                  image={post.image}
+                  category={post.category}
+                  content={post.content}
+                  slug={post.slug}
+                  date={post.createdAt}
+                />
+              </Fragment>
+            ))}
           </div>
         </div>
       </div>
@@ -178,23 +171,18 @@ const PostContainer = () => {
         <div className="recent-posts">
           <h1 className="text-5xl font-bold text-center my-10">Recent Posts</h1>
           <div className="grid grid-cols-2 gap-4">
-            {recentPosts.map(
-              (post) => (
-                console.log(post),
-                (
-                  <Fragment key={post._id}>
-                    <RecentBlogCard
-                      title={post.title}
-                      image={post.image}
-                      category={post.category}
-                      content={post.content}
-                      slug={post.slug}
-                      date={post.createdAt}
-                    />
-                  </Fragment>
-                )
-              )
-            )}
+            {recentPosts.map((post) => (
+              <Fragment key={post._id}>
+                <RecentBlogCard
+                  title={post.title}
+                  image={post.image}
+                  category={post.category}
+                  content={post.content}
+                  slug={post.slug}
+                  date={post.createdAt}
+                />
+              </Fragment>
+            ))}
           </div>
         </div>
       </div>
@@ -226,23 +214,18 @@ const PostContainer = () => {
         <div className="recent-posts">
           <h1 className="text-5xl font-bold text-center my-10">Recent Posts</h1>
           <div className="grid grid-cols-4 gap-4">
-            {recentPosts.map(
-              (post) => (
-                console.log(post),
-                (
-                  <Fragment key={post._id}>
-                    <RecentBlogCard
-                      title={post.title}
-                      image={post.image}
-                      category={post.category}
-                      content={post.content}
-                      slug={post.slug}
-                      date={post.createdAt}
-                    />
-                  </Fragment>
-                )
-              )
-            )}
+            {recentPosts.map((post) => (
+              <Fragment key={post._id}>
+                <RecentBlogCard
+                  title={post.title}
+                  image={post.image}
+                  category={post.category}
+                  content={post.content}
+                  slug={post.slug}
+                  date={post.createdAt}
+                />
+              </Fragment>
+            ))}
           </div>
         </div>
       </div>
@@ -296,23 +279,18 @@ const PostContainer = () => {
         <div className="w-[75%] m-auto">
           <h1 className="text-5xl font-bold text-center my-10">Recent Posts</h1>
           <div className="grid grid-cols-4 gap-4">
-            {recentPosts.map(
-              (post) => (
-                console.log(post),
-                (
-                  <Fragment key={post._id}>
-                    <RecentBlogCard
-                      title={post.title}
-                      image={post.image}
-                      category={post.category}
-                      content={post.content}
-                      slug={post.slug}
-                      date={post.createdAt}
-                    />
-                  </Fragment>
-                )
-              )
-            )}
+            {recentPosts.map((post) => (
+              <Fragment key={post._id}>
+                <RecentBlogCard
+                  title={post.title}
+                  image={post.image}
+                  category={post.category}
+                  content={post.content}
+                  slug={post.slug}
+                  date={post.createdAt}
+                />
+              </Fragment>
+            ))}
           </div>
         </div>
       </div>

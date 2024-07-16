@@ -70,7 +70,6 @@ function Login_page() {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        withCredentials: true,
         body: JSON.stringify(dataForm),
       });
 
