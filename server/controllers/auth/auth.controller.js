@@ -70,7 +70,6 @@ export async function loginWithEmail(req, res, next) {
       .cookie("access_token", token, {
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
         secure: true,
-        httpOnly: true,
         sameSite: "none",
       })
       .status(200)
@@ -101,7 +100,6 @@ export async function loginWithGoogle(req, res, next) {
         .cookie("access_token", token, {
           expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
           secure: true,
-          httpOnly: true,
           sameSite: "none",
         })
         .json({ message: "Login successfully", ...rest });
@@ -134,7 +132,6 @@ export async function loginWithGoogle(req, res, next) {
         .cookie("access_token", token, {
           expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
           secure: true,
-          httpOnly: true,
           sameSite: "none",
         })
         .json({ message: "Login successfully", ...rest });
