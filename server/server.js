@@ -5,8 +5,6 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import path from "path";
 
-import verifyUser from "./utils/verifyUser.js";
-
 // Import Routes
 import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
@@ -31,6 +29,8 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "assets")));
 
 // Routers
 app.use("/api/auth", authRoute);

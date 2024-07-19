@@ -1,4 +1,8 @@
 import mongoose, { Types } from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
+const url_of_image = `${process.env.FRONTEND_URL}/src/assets/imgs/post_picture.png`;
 
 const postSchema = new mongoose.Schema(
   {
@@ -21,8 +25,7 @@ const postSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      default:
-        "https://contenthub-static.grammarly.com/blog/wp-content/uploads/2017/11/how-to-write-a-blog-post.jpeg",
+      default: url_of_image,
     },
     category: {
       type: String,
