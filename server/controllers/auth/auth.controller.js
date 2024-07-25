@@ -68,10 +68,9 @@ export async function loginWithEmail(req, res, next) {
 
     res
       .cookie("access_token", token, {
-        expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
+        expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
         sameSite: "none",
-        secure: process.env.NODE_ENV === "production" ? true : false,
-        domain: "insightloop.blog",
+        secure: true,
         path: "/",
       })
       .status(200)
