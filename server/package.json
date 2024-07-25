@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
-  "proxy": "http://localhost:5173",
+  "proxy": "https://react-bizmaven-blogs.onrender.com",
   "type": "module",
   "keywords": [],
   "author": "",
