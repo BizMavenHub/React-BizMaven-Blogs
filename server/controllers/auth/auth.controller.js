@@ -71,7 +71,7 @@ export async function loginWithEmail(req, res, next) {
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
         sameSite: "none",
         secure: true,
-        domain: "react-bizmaven-blogs.onrender.com",
+        domain: process.env.FRONTEND_URL,
         path: "/",
       })
       .status(200)
