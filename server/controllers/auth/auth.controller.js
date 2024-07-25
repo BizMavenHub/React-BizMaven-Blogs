@@ -71,6 +71,7 @@ export async function loginWithEmail(req, res, next) {
       .cookie("access_token", token, {
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
         secure: true,
+        sameSite: "lax",
       })
       .json({ message: "Login successfully", ...rest });
   } catch (error) {
