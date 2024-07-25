@@ -67,14 +67,11 @@ export async function loginWithEmail(req, res, next) {
     const { password: pass, ...rest } = user._doc;
 
     res
+      .status(200)
       .cookie("access_token", token, {
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
-        sameSite: "none",
         secure: true,
-        domain: process.env.FRONTEND_URL,
-        path: "/",
       })
-      .status(200)
       .json({ message: "Login successfully", ...rest });
   } catch (error) {
     next(error);
