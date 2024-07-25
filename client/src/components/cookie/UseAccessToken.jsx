@@ -18,6 +18,8 @@ const UseAccessToken = () => {
     const token = cookies.access_token;
     const Url = location.pathname;
 
+    console.log(token ? "true" : "false");
+
     if (!token) {
       setHasAccessToken(false);
       localStorage.clear();
