@@ -2,12 +2,15 @@ import React, { Fragment } from "react";
 import { BlogCard, RecentBlogCard } from "../../components";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useCookies } from "react-cookie";
 
 import { useMediaQuery } from "react-responsive";
 
 import { Helmet } from "react-helmet";
 
 const DefaultBlogsContainer = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
+
   const mobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 767px)",
   });
@@ -37,6 +40,12 @@ const DefaultBlogsContainer = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setCookie("access_token", cookies.access_token, {
+      path: "/",
+      secure: true,
+      sameSite: "none",
+      domain: ".insightloop.blog",
+    });
     GetPosts();
   }, []);
 
