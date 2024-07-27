@@ -46,6 +46,7 @@ const DefaultBlogsContainer = () => {
       sameSite: "none",
       domain: ".insightloop.blog",
     });
+    console.log(cookies.access_token);
     GetPosts();
   }, []);
 
