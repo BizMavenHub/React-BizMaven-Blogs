@@ -148,7 +148,11 @@ const DashPostContainer = () => {
                     </td>
                     <td className="px-6 py-4">{post._id}</td>
                     <td className="px-6 py-4">
-                      <img src={post.image} alt="" className="h-12" />
+                      <img
+                        src={post.image}
+                        alt=""
+                        className="h-12 object-cover"
+                      />
                     </td>
                     <td className="px-6 py-4">
                       <Link
