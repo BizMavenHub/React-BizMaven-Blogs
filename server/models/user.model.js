@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema({
   },
   pictureProfile: {
     type: String,
-    default: "/src/assets/default_profile_picture.png",
+    default:
+      "https://storage.needpix.com/rsynced_images/blank-profile-picture-973460_1280.png",
   },
   isAdmin: {
     type: Boolean,
