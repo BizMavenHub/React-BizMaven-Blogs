@@ -6,6 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useMediaQuery } from "react-responsive";
 
+import {
+  deleteUserFailure,
+  deleteUserSuccess,
+} from "../../redux/user/userSlice";
+
 import { Helmet } from "react-helmet";
 
 const SideBar = () => {
