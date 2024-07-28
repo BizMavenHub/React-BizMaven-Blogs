@@ -74,8 +74,6 @@ const DashCommentContainer = () => {
           prev.filter((comment) => comment._id !== commentIdToDelete)
         );
       }
-
-      console.log(comments);
     } catch (error) {
       console.log(error);
     }
