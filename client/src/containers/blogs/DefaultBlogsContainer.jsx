@@ -40,13 +40,6 @@ const DefaultBlogsContainer = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    setCookie("access_token", cookies.access_token, {
-      path: "/",
-      secure: true,
-      sameSite: "none",
-      domain: ".insightloop.blog",
-    });
-    console.log(cookies.access_token);
     GetPosts();
   }, []);
 
