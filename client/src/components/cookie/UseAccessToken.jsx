@@ -26,6 +26,12 @@ const UseAccessToken = () => {
         navigate("/login");
       }
     } else {
+      Cookies.set("access_token", token, {
+        expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 1 month
+        secure: true,
+        sameSite: "none",
+        domain: ".insightloop.blog",
+      });
       setHasAccessToken(true);
     }
   }, []);
