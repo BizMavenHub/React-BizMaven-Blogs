@@ -6,7 +6,7 @@
   .post-content h4,
   .post-content h5,
   .post-content h6 {
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Montserrat", sans-serif;
     letter-spacing: 1px;
   }
 
@@ -23,7 +23,7 @@
   }
 
   .post-content h3 {
-    font-size: 26pt;
+    font-size: 18pt;
     margin: 0.6rem 0;
   }
 
@@ -92,7 +92,7 @@
   .post-content h4,
   .post-content h5,
   .post-content h6 {
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Montserrat", sans-serif;
     letter-spacing: 1px;
   }
 
@@ -109,7 +109,7 @@
   }
 
   .post-content h3 {
-    font-size: 26pt;
+    font-size: 18pt;
     margin: 0.6rem 0;
   }
 
@@ -177,13 +177,13 @@
   .post-content h4,
   .post-content h5,
   .post-content h6 {
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Montserrat", sans-serif;
     letter-spacing: 1px;
   }
 
   .post-content h1 {
     font-size: 32pt;
-    margin: 1rem 0;
+    margin-bottom: 1rem 0;
   }
 
   .post-content h2 {
@@ -193,7 +193,7 @@
   }
 
   .post-content h3 {
-    font-size: 26pt;
+    font-size: 18pt;
     margin: 0.6rem 0;
   }
 
@@ -260,7 +260,7 @@
   .post-content h4,
   .post-content h5,
   .post-content h6 {
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Montserrat", sans-serif;
     letter-spacing: 1px;
   }
 
@@ -271,12 +271,12 @@
 
   .post-content h2 {
     font-size: 28pt;
-    margin: 2rem 0 0.2rem;
+    margin: 1rem 0 0.2rem;
     font-weight: 700;
   }
 
   .post-content h3 {
-    font-size: 26pt;
+    font-size: 18pt;
     margin: 0.6rem 0;
   }
 
@@ -297,7 +297,7 @@
 
   .post-content p {
     font-size: 14pt;
-    margin: 0.5rem 0;
+    margin: 1rem 0;
     letter-spacing: 1px;
     font-family: "Inter", sans-serif;
   }
