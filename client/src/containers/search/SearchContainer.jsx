@@ -41,7 +41,14 @@ const SearchContainer = () => {
         const searchQuery = urlParams.toString();
         const response = await fetch(
           import.meta.env.VITE_API_BASE_URL +
-            `/api/post/get-post?${searchQuery}&limit=8`
+            `/api/post/get-post?${searchQuery}&limit=8`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include",
+          }
         );
 
         if (!response.ok) {
