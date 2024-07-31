@@ -248,7 +248,7 @@ const PostContainer = () => {
                   </p>
                   <div className="image-container flex justify-center items-center mb-4">
                     <img
-                      className="h-[580px]"
+                      className="h-[650px] object-fill"
                       src={post && post.image}
                       alt="image"
                     />

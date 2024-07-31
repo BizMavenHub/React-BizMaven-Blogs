@@ -12,7 +12,7 @@ const RecentBlogCard = (props) => {
           <img
             src={props.image}
             alt="image of post"
-            className="h-[200px] w-full object-cover"
+            className="h-[200px] w-full object-fill"
           />
         </div>
 
