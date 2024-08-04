@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon api/server.js",
-    "build": "echo \"Error: no build specified\" && exit 1"
+    "start": "nodemon api/server.js"
   },
   "engines": {
     "node": "18.17.1"
