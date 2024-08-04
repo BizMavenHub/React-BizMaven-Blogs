@@ -7,13 +7,12 @@ import { getAuth } from "firebase/auth";
 // Your web app's Firebase configuration
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAc2DdoqtKhMnnFWfZ0Q5oUCj2q3y_kJVk",
-  authDomain: "bizmavenblogs.firebaseapp.com",
-  projectId: "bizmavenblogs",
-  storageBucket: "bizmavenblogs.appspot.com",
-  messagingSenderId: "963091897353",
-  appId: "1:963091897353:web:49f14393d33db163ec2cd8",
-  measurementId: "G-7R93QC3TNX",
+  apiKey: "AIzaSyAhlplyyMMBqheiYMNy_WbR0V4Fzvlad80",
+  authDomain: "insight-loop-blogs.firebaseapp.com",
+  projectId: "insight-loop-blogs",
+  storageBucket: "insight-loop-blogs.appspot.com",
+  messagingSenderId: "789438168754",
+  appId: "1:789438168754:web:7ef60d4f921c6cca28d3ab",
 };
 
 // Initialize Firebase
