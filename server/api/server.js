@@ -6,10 +6,10 @@ import cookieParser from "cookie-parser";
 import path from "path";
 
 // Import Routes
-import userRoute from "./routes/user.route.js";
-import authRoute from "./routes/auth.route.js";
-import postRoute from "./routes/post.route.js";
-import commentRoute from "./routes/comment.route.js";
+import userRoute from "../routes/user.route.js";
+import authRoute from "../routes/auth.route.js";
+import postRoute from "../routes/post.route.js";
+import commentRoute from "../routes/comment.route.js";
 
 dotenv.config();
 
@@ -80,3 +80,5 @@ app.listen(PORT, (err) => {
     console.log(`Server is running on http://localhost:${PORT}`);
   }
 });
+
+export default app;
