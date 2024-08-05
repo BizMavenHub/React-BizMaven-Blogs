@@ -11,8 +11,6 @@ import {
   deleteUserSuccess,
 } from "../../redux/user/userSlice";
 
-import { Helmet } from "react-helmet";
-
 const SideBar = () => {
   const mobile = useMediaQuery({
     query: "(min-width: 320px) and (max-width: 767px)",

@@ -27,8 +27,6 @@ const DefaultBlogsContainer = () => {
     query: "(min-width: 1920px)",
   });
 
-  const { currentUser } = useSelector((state) => state.user);
-
   const [posts, setPosts] = useState({
     lastMonthPosts: [],
     posts: [],
@@ -48,9 +46,6 @@ const DefaultBlogsContainer = () => {
       expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
     });
     GetPosts();
-  }, []);
-
-  useEffect(() => {
     GetPostsByLimit();
   }, []);
 
