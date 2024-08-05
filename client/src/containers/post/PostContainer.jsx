@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { useMediaQuery } from "react-responsive";
 
@@ -29,7 +29,6 @@ const PostContainer = () => {
     query: "(min-width: 1920px)",
   });
 
-  const { currentUser } = useSelector((state) => state.user);
   const { slug } = useParams();
 
   const [posts, setPosts] = useState([]);
@@ -37,73 +36,55 @@ const PostContainer = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchPost();
+  const postUrl = useMemo(() => {
+    return `${
+      import.meta.env.VITE_API_BASE_URL
+    }/api/post/get-post?slug=${slug}`;
   }, [slug]);
 
+  const recentPostsUrl = useMemo(() => {
+    return `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=4`;
+  }, []);
+
   useEffect(() => {
-    fetchRecentPosts();
-  }, [posts]);
+    const controller = new AbortController();
+    const signal = controller.signal;
 
-  const fetchPost = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?slug=${slug}`,
-        {
+    const fetchData = async (url, setter) => {
+      try {
+        setLoading(true);
+        const response = await fetch(url, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
           credentials: "include",
+          signal,
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message);
         }
-      );
 
-      const data = await response.json();
-
-      if (!response.ok) {
         setLoading(false);
-        setError(data.message);
-      }
-
-      if (response.ok) {
-        setLoading(false);
-        setPosts(data.posts);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchRecentPosts = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=4`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
+        setter(data.posts);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          setLoading(false);
+          setError(error.message);
         }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setLoading(false);
-        setError(data.message);
       }
+    };
 
-      if (response.ok) {
-        setLoading(false);
-        setRecentPosts(data.posts);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    fetchData(postUrl, setPosts);
+    fetchData(recentPostsUrl, setRecentPosts);
+
+    return () => {
+      controller.abort();
+    };
+  }, [postUrl, recentPostsUrl]);
 
   const MobileView = () => {
     return (
