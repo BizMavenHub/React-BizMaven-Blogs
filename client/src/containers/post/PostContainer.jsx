@@ -296,6 +296,62 @@ const PostContainer = () => {
           name="keywords"
           content={posts && posts[0] && posts[0].keywords}
         />
+        <meta
+          name="description"
+          content={posts && posts[0] && posts[0].content}
+        />
+        <meta name="image" content={posts && posts[0] && posts[0].image} />
+        <meta
+          property="og:image"
+          content={posts && posts[0] && posts[0].image}
+        />
+        <meta
+          property="twitter:image"
+          content={posts && posts[0] && posts[0].image}
+        />
+        <meta
+          property="og:title"
+          content={posts && posts[0] && posts[0].title}
+        />
+        <meta
+          property="twitter:title"
+          content={posts && posts[0] && posts[0].title}
+        />
+        <meta
+          property="og:description"
+          content={posts && posts[0] && posts[0].content}
+        />
+        <meta
+          property="twitter:description"
+          content={posts && posts[0] && posts[0].content}
+        />
+        <meta property="og:url" content={posts && posts[0] && posts[0].slug} />
+        <meta
+          property="twitter:url"
+          content={posts && posts[0] && posts[0].slug}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:site" content="@bizmaven" />
+        <meta property="twitter:creator" content="@bizmaven" />
+        <meta property="og:site_name" content="BizMaven" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:image:alt" content="BizMaven" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta
+          property="og:image:secure_url"
+          content={posts && posts[0] && posts[0].image}
+        />
+        <meta property="twitter:image:alt" content="BizMaven" />
+        <meta property="twitter:image:width" content="1200" />
+        <meta property="twitter:image:height" content="630" />
+        <meta property="twitter:image:type" content="image/png" />
+        <meta
+          property="twitter:image:secure_url"
+          content={posts && posts[0] && posts[0].image}
+        />
       </Helmet>
 
       <>

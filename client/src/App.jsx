@@ -51,7 +51,7 @@ function AppRoutes() {
     <>
       {hasAccessToken && (
         <Routes>
-          <Route path="/" element={<Homepage />} />
+          <Route path="/" element={<Blogs_page />} />
           <Route path="/sign-up" element={<SignUp_page />} />
           <Route path="/login" element={<Login_page />} />
           <Route path="/about-us" element={<About_us_page />} />
