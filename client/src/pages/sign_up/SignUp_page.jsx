@@ -13,6 +13,18 @@ function SignUp_page() {
     query: "(min-width: 320px) and (max-width: 767px)",
   });
 
+  const tablet = useMediaQuery({
+    query: "(min-width: 768px) and (max-width: 1023px)",
+  });
+
+  const desktop = useMediaQuery({
+    query: "(min-width: 1024px) and (max-width: 1919px)",
+  });
+
+  const largeDesktop = useMediaQuery({
+    query: "(min-width: 1920px)",
+  });
+
   const navigate = useNavigate();
 
   const API_URL_BASE = import.meta.env.VITE_API_BASE_URL;
@@ -108,140 +120,618 @@ function SignUp_page() {
       <Helmet>
         <title>Insight Loop | Sign Up</title>
       </Helmet>
-      <div className="min-h-[100vh] my-12 mobile:my-2 tablet:my-4">
-        <h1 className="text-indigo-500 font-bold text-[64pt] text-center mb-8 mobile:pt-4 mobile:text-[38pt] mobile:m-0 tablet:pt-12 ">
-          {mobile ? "Register" : "Welcome"}
-        </h1>
-        <div className=" drop-shadow-xl bg-white m-auto p-6 rounded-lg mobile:w-[90%] w-[500px] mobile:p-4 mobile:mb-6">
-          <h1 className="text-4xl text-center font-bold mb-8">
-            {mobile ? null : "Register"}
-          </h1>
-          <form action="post" onSubmit={handleSubmit}>
-            <div className="my-5">
-              <input
-                type="text"
-                name="username"
-                id="username"
-                className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
-                placeholder="Username"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="my-5">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
-                placeholder="Email"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="my-5 flex">
-              <input
-                type="password"
-                name="password"
-                id="password"
-                className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
-                placeholder="Password"
-                onChange={handleChange}
-              />
-              {showPass ? (
-                <button
-                  className="w-[80px] px-2 text-content-bg font-medium"
-                  onClick={showPassword}
-                >
-                  Hide
-                </button>
-              ) : (
-                <button
-                  className="w-[80px] px-2 text-content-bg font-medium"
-                  onClick={showPassword}
-                >
-                  Show
-                </button>
-              )}
-            </div>
-            <div className="my-5">
-              <input
-                type="password"
-                name="confirmed_password"
-                id="confirmed_password"
-                className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
-                placeholder="Password again"
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="password-requirement">
-              <h1 className="text-xl mt-4 mb-2 ml-4 font-semibold text-blue-500">
-                Please use at least:
+      <div className="w-full">
+        {mobile && (
+          <>
+            <div className="h-[86vh] py-12">
+              <h1 className="text-center text-indigo-500 font-bold text-[30pt] pb-6">
+                Get Started
               </h1>
-              <ul className=" list-disc ml-12 grid grid-cols-2 mobile:grid-cols-1">
-                <li>
-                  <p className="text-gray mb-2 text-lg">6 characters long</p>
-                </li>
-                <li>
-                  <p className="text-gray mb-2 text-lg">1 number</p>
-                </li>
-                <li>
-                  <p className="text-gray mb-2 text-lg">1 special character</p>
-                </li>
-              </ul>
-            </div>
 
-            {errorMessage && (
-              <div className="error-container mt-4">
-                <h1 className="text-red-500 text-center text-lg">
-                  {errorMessage}
+              {/* Form Container */}
+              <form action="post" className="w-[90%] m-auto">
+                {/* Input Container */}
+                <div className="my-5">
+                  <input
+                    type="text"
+                    name="username"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Username"
+                    value={dataForm.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="">
+                  <input
+                    type="email"
+                    name="email"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Email"
+                    value={dataForm.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="my-5 flex">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Password"
+                    value={dataForm.password}
+                    onChange={handleChange}
+                  />
+                  {showPass ? (
+                    <button
+                      className="px-2 text-content-bg font-medium"
+                      onClick={showPassword}
+                    >
+                      <svg
+                        className="w-7 h-7 text-gray-800"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    </button>
+                  ) : (
+                    <button
+                      className="px-2 text-content-bg font-medium"
+                      onClick={showPassword}
+                    >
+                      <svg
+                        className="w-7 h-7 text-gray-800"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                        />
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+                <div className="my-5">
+                  <input
+                    type="password"
+                    name="confirmed_password"
+                    id="confirmed_password"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Password again"
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* Error Container */}
+                <div className="error-container">
+                  {errorMessage && (
+                    <p className="error-message text-center mt-4 text-lg text-red-500 font-bold">
+                      {errorMessage}
+                    </p>
+                  )}
+                </div>
+
+                {/* Submit Container */}
+                <div className="mt-4   ">
+                  <button
+                    className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center"
+                    disabled={loading}
+                    onClick={handleSubmit}
+                  >
+                    {loading ? "Loading..." : "Login"}
+                  </button>
+                </div>
+              </form>
+
+              <div className="password-requirement my-6 mx-4">
+                <h1 className="text-xl my-3 mx-4 font-semibold text-blue-700">
+                  Please use at least:
                 </h1>
+                <ul className="list-none font-lato font-semibold">
+                  <li className="ml-8 mb-2 list-disc">6 characters</li>
+                  <li className="ml-8 mb-2 list-disc">1 number</li>
+                  <li className="ml-8 mb-2 list-disc">1 special character</li>
+                </ul>
               </div>
-            )}
 
-            <div className="mt-4 ">
-              {loading ? (
-                <button
-                  className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-8 text-center mobile:p-2"
-                  onSubmit={handleSubmit}
-                  disabled={loading}
-                >
-                  Loading...
-                </button>
-              ) : (
-                <button
-                  className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center mobile:p-2"
-                  onSubmit={handleSubmit}
-                >
-                  Register Now
-                </button>
-              )}
+              {/* Oauth Google Container */}
+              <div className="text-center mt-8">
+                <Google_OAuth_btn />
+              </div>
+
+              <hr className="my-4" />
+
+              {/* No Account Container */}
+              <div className="text-center mt-4">
+                <p className="mt-4 text-lg font-medium"></p>
+                Have an account?{" "}
+                <Link to="/login" className="text-blue-700 font-semibold">
+                  Login
+                </Link>
+              </div>
             </div>
-          </form>
+          </>
+        )}
 
-          <div className="flex md:justify-between justify-center items-center mt-8">
-            <div className="bg-gray-300 md:block w-full h-[1px]"></div>
-            <p className="md:mx-2 text-xl font-light text-gray-400"> Or </p>
-            <div className="bg-gray-300 md:block w-full h-[1px]"></div>
-          </div>
+        {tablet && (
+          <>
+            <div className="min-h-[68vh]  py-12 w-[55%] m-auto">
+              <h1 className="text-center text-indigo-500 font-bold text-[30pt] pb-6">
+                Get Started
+              </h1>
 
-          <div className="other_options flex justify-around w-full m-auto items-center mt-4 ">
-            <div className="oauth-google-btn-container">
-              <Google_OAuth_btn />
+              {/* Form Container */}
+              <form action="post" className="w-[90%] m-auto">
+                {/* Input Container */}
+                <div className="my-5">
+                  <input
+                    type="text"
+                    name="username"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Username"
+                    value={dataForm.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="">
+                  <input
+                    type="email"
+                    name="email"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Email"
+                    value={dataForm.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="my-5 flex">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Password"
+                    value={dataForm.password}
+                    onChange={handleChange}
+                  />
+                  {showPass ? (
+                    <button
+                      className="px-2 text-content-bg font-medium"
+                      onClick={showPassword}
+                    >
+                      <svg
+                        className="w-7 h-7 text-gray-800"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    </button>
+                  ) : (
+                    <button
+                      className="px-2 text-content-bg font-medium"
+                      onClick={showPassword}
+                    >
+                      <svg
+                        className="w-7 h-7 text-gray-800"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                        />
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+                <div className="my-5">
+                  <input
+                    type="password"
+                    name="confirmed_password"
+                    id="confirmed_password"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Password again"
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* Error Container */}
+                <div className="error-container">
+                  {errorMessage && (
+                    <p className="error-message text-center mt-4 text-lg text-red-500 font-bold">
+                      {errorMessage}
+                    </p>
+                  )}
+                </div>
+
+                {/* Submit Container */}
+                <div className="mt-4   ">
+                  <button
+                    className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center"
+                    disabled={loading}
+                    onClick={handleSubmit}
+                  >
+                    {loading ? "Loading..." : "Login"}
+                  </button>
+                </div>
+              </form>
+
+              <div className="password-requirement my-6 mx-4">
+                <h1 className="text-xl my-3 mx-4 font-semibold text-blue-700">
+                  Please use at least:
+                </h1>
+                <ul className="list-none font-lato font-semibold">
+                  <li className="ml-8 mb-2 list-disc">6 characters</li>
+                  <li className="ml-8 mb-2 list-disc">1 number</li>
+                  <li className="ml-8 mb-2 list-disc">1 special character</li>
+                </ul>
+              </div>
+
+              {/* Oauth Google Container */}
+              <div className="text-center mt-8">
+                <Google_OAuth_btn />
+              </div>
+
+              <hr className="my-4" />
+
+              {/* No Account Container */}
+              <div className="text-center mt-4">
+                <p className="mt-4 text-lg font-medium"></p>
+                Have an account?{" "}
+                <Link to="/login" className="text-blue-700 font-semibold">
+                  Login
+                </Link>
+              </div>
             </div>
-          </div>
-          <hr className="my-4" />
-          <div className="already_have_account mt-4">
-            <p className=" text-center text-lg">
-              Already have an account?{" "}
-              <Link
-                to="/login"
-                className=" text-content-bg hover:underline hover:underline-offset-2 text-blue-600"
-              >
-                Login
-              </Link>
-            </p>
-          </div>
-        </div>
+          </>
+        )}
+
+        {desktop && (
+          <>
+            <div className="min-h-[60vh] w-[35%] py-12 m-auto">
+              <h1 className="text-center text-indigo-500 font-bold text-[30pt] pb-6">
+                Get Started
+              </h1>
+
+              {/* Form Container */}
+              <form action="post" className="w-[90%] m-auto">
+                {/* Input Container */}
+                <div className="my-5">
+                  <input
+                    type="text"
+                    name="username"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Username"
+                    value={dataForm.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="">
+                  <input
+                    type="email"
+                    name="email"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Email"
+                    value={dataForm.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="my-5 flex">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Password"
+                    value={dataForm.password}
+                    onChange={handleChange}
+                  />
+                  {showPass ? (
+                    <button
+                      className="px-2 text-content-bg font-medium"
+                      onClick={showPassword}
+                    >
+                      <svg
+                        className="w-7 h-7 text-gray-800"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    </button>
+                  ) : (
+                    <button
+                      className="px-2 text-content-bg font-medium"
+                      onClick={showPassword}
+                    >
+                      <svg
+                        className="w-7 h-7 text-gray-800"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                        />
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+                <div className="my-5">
+                  <input
+                    type="password"
+                    name="confirmed_password"
+                    id="confirmed_password"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Password again"
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* Error Container */}
+                <div className="error-container">
+                  {errorMessage && (
+                    <p className="error-message text-center mt-4 text-lg text-red-500 font-bold">
+                      {errorMessage}
+                    </p>
+                  )}
+                </div>
+
+                {/* Submit Container */}
+                <div className="mt-4   ">
+                  <button
+                    className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center"
+                    disabled={loading}
+                    onClick={handleSubmit}
+                  >
+                    {loading ? "Loading..." : "Login"}
+                  </button>
+                </div>
+              </form>
+
+              <div className="password-requirement my-6 mx-4">
+                <h1 className="text-xl my-3 mx-4 font-semibold text-blue-700">
+                  Please use at least:
+                </h1>
+                <ul className="list-none font-lato font-semibold">
+                  <li className="ml-8 mb-2 list-disc">6 characters</li>
+                  <li className="ml-8 mb-2 list-disc">1 number</li>
+                  <li className="ml-8 mb-2 list-disc">1 special character</li>
+                </ul>
+              </div>
+
+              {/* Oauth Google Container */}
+              <div className="text-center mt-8">
+                <Google_OAuth_btn />
+              </div>
+
+              <hr className="my-4" />
+
+              {/* No Account Container */}
+              <div className="text-center mt-4">
+                <p className="mt-4 text-lg font-medium"></p>
+                Have an account?{" "}
+                <Link to="/login" className="text-blue-700 font-semibold">
+                  Login
+                </Link>
+              </div>
+            </div>
+          </>
+        )}
+
+        {largeDesktop && (
+          <>
+            <div className="min-h-[60vh] w-[25%] py-12 m-auto">
+              <h1 className="text-center text-indigo-500 font-bold text-[30pt] pb-6">
+                Get Started
+              </h1>
+
+              {/* Form Container */}
+              <form action="post" className="w-[90%] m-auto">
+                {/* Input Container */}
+                <div className="my-5">
+                  <input
+                    type="text"
+                    name="username"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Username"
+                    value={dataForm.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="">
+                  <input
+                    type="email"
+                    name="email"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Email"
+                    value={dataForm.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="my-5 flex">
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Password"
+                    value={dataForm.password}
+                    onChange={handleChange}
+                  />
+                  {showPass ? (
+                    <button
+                      className="px-2 text-content-bg font-medium"
+                      onClick={showPassword}
+                    >
+                      <svg
+                        className="w-7 h-7 text-gray-800"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3.933 13.909A4.357 4.357 0 0 1 3 12c0-1 4-6 9-6m7.6 3.8A5.068 5.068 0 0 1 21 12c0 1-3 6-9 6-.314 0-.62-.014-.918-.04M5 19 19 5m-4 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    </button>
+                  ) : (
+                    <button
+                      className="px-2 text-content-bg font-medium"
+                      onClick={showPassword}
+                    >
+                      <svg
+                        className="w-7 h-7 text-gray-800"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z"
+                        />
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                </div>
+                <div className="my-5">
+                  <input
+                    type="password"
+                    name="confirmed_password"
+                    id="confirmed_password"
+                    className="w-full border p-2 rounded mobile:p-1.5 mobile:text-sm"
+                    placeholder="Password again"
+                    onChange={handleChange}
+                  />
+                </div>
+
+                {/* Error Container */}
+                <div className="error-container">
+                  {errorMessage && (
+                    <p className="error-message text-center mt-4 text-lg text-red-500 font-bold">
+                      {errorMessage}
+                    </p>
+                  )}
+                </div>
+
+                {/* Submit Container */}
+                <div className="mt-4   ">
+                  <button
+                    className="w-full border text-white bg-gradient-to-br from-pink-500 to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-base px-5 py-3 text-center"
+                    disabled={loading}
+                    onClick={handleSubmit}
+                  >
+                    {loading ? "Loading..." : "Login"}
+                  </button>
+                </div>
+              </form>
+
+              <div className="password-requirement my-6 mx-4">
+                <h1 className="text-xl my-3 mx-4 font-semibold text-blue-700">
+                  Please use at least:
+                </h1>
+                <ul className="list-none font-lato font-semibold">
+                  <li className="ml-8 mb-2 list-disc">6 characters</li>
+                  <li className="ml-8 mb-2 list-disc">1 number</li>
+                  <li className="ml-8 mb-2 list-disc">1 special character</li>
+                </ul>
+              </div>
+
+              {/* Oauth Google Container */}
+              <div className="text-center mt-8">
+                <Google_OAuth_btn />
+              </div>
+
+              <hr className="my-4" />
+
+              {/* No Account Container */}
+              <div className="text-center mt-4">
+                <p className="mt-4 text-lg font-medium"></p>
+                Have an account?{" "}
+                <Link to="/login" className="text-blue-700 font-semibold">
+                  Login
+                </Link>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );
