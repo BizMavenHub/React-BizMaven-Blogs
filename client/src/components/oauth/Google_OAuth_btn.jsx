@@ -25,7 +25,6 @@ function Google_OAuth_btn() {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        withCredentials: true,
         body: JSON.stringify({
           username: result.user.displayName,
           email: result.user.email,
