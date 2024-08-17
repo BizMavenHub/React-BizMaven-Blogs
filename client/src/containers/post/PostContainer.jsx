@@ -291,6 +291,16 @@ const PostContainer = () => {
   return (
     <>
       <Helmet>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta name="revisit-after" content="1 days" />
+
+        <link rel="canonical" href="https://www.insightloop.blog/blogs" />
+
         <title>{posts && posts[0] && posts[0].title}</title>
         <meta
           name="keywords"
