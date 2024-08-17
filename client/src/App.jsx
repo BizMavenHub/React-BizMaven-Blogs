@@ -37,7 +37,6 @@ function App() {
         <div className="min-h-[100vh]">
           <NavbarComponent />
           <AppRoutes />
-          <FooterComponent />
         </div>
       </CookiesProvider>
     </Router>
