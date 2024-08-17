@@ -3,7 +3,7 @@ import React from "react";
 const PreviewComponent = (prop) => {
   return (
     <div
-      className="p-4 overflow-y-scroll content h-[500px] border border-gray-400 m-auto post-content"
+      className="p-4 overflow-y-scroll content h-[650px] m-auto post-content bg-[#F6F5F5]"
       dangerouslySetInnerHTML={{ __html: prop.content }}
     ></div>
   );
