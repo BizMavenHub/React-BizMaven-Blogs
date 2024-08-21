@@ -29,7 +29,7 @@ import {
 } from "./pages/index";
 
 import UseAccessToken from "./components/cookie/UseAccessToken";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   return (
