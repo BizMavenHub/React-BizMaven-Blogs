@@ -13,6 +13,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.3",
     "@snaddyvitch-dispenser/react-router-sitemap": "^1.2.6",
+    "@vercel/speed-insights": "^1.0.12",
     "bootstrap-icons": "^1.11.3",
     "firebase": "^10.11.0",
     "fs": "^0.0.1-security",
