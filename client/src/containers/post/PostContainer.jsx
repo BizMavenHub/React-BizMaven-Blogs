@@ -295,6 +295,12 @@ const PostContainer = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+        <script
+          async="async"
+          data-cfasync="false"
+          src="//thubanoa.com/1?z=7935069"
+        ></script>
+
         <meta name="robots" content="index, follow" />
         <meta name="googlebot" content="index, follow" />
         <meta name="revisit-after" content="1 days" />
