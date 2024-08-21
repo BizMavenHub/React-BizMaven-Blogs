@@ -71,8 +71,10 @@ const DefaultBlogsContainer = () => {
       } else {
         setPosts(data);
         setLoading(false);
-        if (data.posts.length < 3) {
+        if (data.posts.length < 12) {
           setShowMore(false);
+        } else {
+          setShowMore(true);
         }
       }
     } catch (error) {
@@ -118,14 +120,15 @@ const DefaultBlogsContainer = () => {
   const GetMorePosts = async () => {
     const startIndex = posts.posts.length;
 
+    setLoading(true);
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=${
-          startIndex + 3
+          startIndex + 4
         }`,
         {
           method: "GET",
-          mode: "no-cors",
           headers: {
             "Content-Type": "application/json",
           },
@@ -139,12 +142,19 @@ const DefaultBlogsContainer = () => {
         setError(data.message);
       } else {
         setPosts({ lastMonthPosts: posts.lastMonthPosts, posts: data.posts });
-        if (data.posts.length > 3) {
+        console.log("data: ", data.posts.length);
+        console.log("post: ", posts.posts.length);
+        if (data.posts.length > 0) {
+          setShowMore(true);
+        }
+        if (data.posts.length == posts.posts.length + 2) {
           setShowMore(false);
         }
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -172,6 +182,16 @@ const DefaultBlogsContainer = () => {
                 date={post.createdAt}
               />
             ))}
+          </div>
+          <div className="my-8 flex justify-center">
+            {showMore && (
+              <button
+                className="btn text-center font-montserrat font-semibold bg-blue-500 text-white p-3 rounded-lg"
+                onClick={GetMorePosts}
+              >
+                Show More
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -201,6 +221,16 @@ const DefaultBlogsContainer = () => {
               />
             ))}
           </div>
+          <div className="my-8 flex justify-center">
+            {showMore && (
+              <button
+                className="btn text-center font-montserrat font-semibold bg-blue-500 text-white p-3 rounded-lg"
+                onClick={GetMorePosts}
+              >
+                Show More
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -228,6 +258,16 @@ const DefaultBlogsContainer = () => {
             />
           ))}
         </div>
+        <div className="my-8 flex justify-center">
+          {showMore && (
+            <button
+              className="btn text-center font-montserrat font-semibold bg-blue-500 text-white p-3 rounded-lg"
+              onClick={GetMorePosts}
+            >
+              Show More
+            </button>
+          )}
+        </div>
       </div>
     );
   };
@@ -249,6 +289,16 @@ const DefaultBlogsContainer = () => {
               date={post.createdAt}
             />
           ))}
+        </div>
+        <div className="my-8 flex justify-center">
+          {showMore && (
+            <button
+              className="btn text-center font-montserrat font-semibold bg-blue-500 text-white p-3 rounded-lg"
+              onClick={GetMorePosts}
+            >
+              Show More
+            </button>
+          )}
         </div>
       </div>
     );
