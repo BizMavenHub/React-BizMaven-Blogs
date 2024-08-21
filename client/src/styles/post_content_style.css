@@ -7,7 +7,6 @@
   .post-content h5,
   .post-content h6 {
     font-family: "Montserrat", sans-serif;
-    letter-spacing: 1px;
   }
 
   .post-content h1 {
@@ -296,10 +295,9 @@
   }
 
   .post-content p {
-    font-size: 14pt;
+    font-size: 15pt;
     margin: 1rem 0;
-    letter-spacing: 1px;
-    font-family: "Inter", sans-serif;
+    font-family: "Merriweather", sans-serif;
   }
 
   .post-content ul {
