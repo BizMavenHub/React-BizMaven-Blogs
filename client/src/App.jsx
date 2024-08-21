@@ -29,6 +29,7 @@ import {
 } from "./pages/index";
 
 import UseAccessToken from "./components/cookie/UseAccessToken";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <div className="min-h-[100vh]">
           <NavbarComponent />
           <AppRoutes />
+          <SpeedInsights />
         </div>
       </CookiesProvider>
     </Router>
