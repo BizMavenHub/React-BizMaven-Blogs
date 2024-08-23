@@ -236,24 +236,8 @@ const PostContainer = () => {
                   </div>
                 ) : (
                   <>
-                    <div className="flex w-[90%] m-auto">
-                      <div className="left-box">
-                        {/* <div className="ad-box w-[300px] h-[300px] border flex justify-center items-center mt-16">
-                          <p>Advertisement</p>
-                        </div> */}
-                      </div>
-                      <div key={post._id} className="w-[1500px] m-auto">
-                        <div>
-                          <Helmet>
-                            <script type="text/javascript">{`var atOptions = ${JSON.stringify(
-                              atOptions
-                            )};`}</script>
-                            <script
-                              type="text/javascript"
-                              src="//www.topcreativeformat.com/6b1747131bd0f4f304dea0f19f454e86/invoke.js"
-                            ></script>
-                          </Helmet>
-                        </div>
+                    <div className="">
+                      <div key={post._id} className="w-[1300px] m-auto">
                         <h1 className="text-7xl font-bold text-center my-10">
                           {post && post.title}
                         </h1>
@@ -281,11 +265,6 @@ const PostContainer = () => {
                           className="w-[75%] m-auto post-content"
                           dangerouslySetInnerHTML={{ __html: post.content }}
                         ></div>
-                      </div>
-                      <div className="right-box">
-                        {/* <div className="ad-box-1 w-[300px] h-[300px] border flex justify-center items-center mt-16">
-                          <p>Advertisement</p>
-                        </div> */}
                       </div>
                     </div>
                     <div>
