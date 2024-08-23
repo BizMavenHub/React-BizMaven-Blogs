@@ -213,6 +213,14 @@ const PostContainer = () => {
     );
   };
 
+  const atOptions = {
+    key: "6b1747131bd0f4f304dea0f19f454e86",
+    format: "iframe",
+    height: 90,
+    width: 728,
+    params: {},
+  };
+
   const LargeDesktopView = () => {
     return (
       <div className="p-4 mb-8">
@@ -228,34 +236,55 @@ const PostContainer = () => {
                   </div>
                 ) : (
                   <>
-                    <div key={post._id} className="w-[1300px] m-auto">
-                      <h1 className="text-7xl font-bold text-center my-10">
-                        {post && post.title}
-                      </h1>
-                      <p className="text-2xl text-center font-medium my-8 underline underline-offset-4 m-auto">
-                        {post && post.category}
-                      </p>
-                      <div className="image-container flex justify-center items-center mb-4">
-                        <img
-                          className="h-[650px] object-fill"
-                          src={post && post.image}
-                          alt="image"
-                        />
+                    <div className="flex w-[90%] m-auto">
+                      <div className="left-box">
+                        <div className="ad-box w-[300px] h-[300px] border flex justify-center items-center mt-16">
+                          <p>Advertisement</p>
+                        </div>
                       </div>
-                      <div className="w-[75%] m-auto my-6 flex justify-between">
-                        <span className="text-lg font-semibold">
-                          {new Date(post.createdAt).toDateString()}
-                        </span>
-                        <span className="text-lg font-semibold">
-                          {post && (post.content.length / 1000).toFixed(0)} mins
-                          read
-                        </span>
+                      <div key={post._id} className="w-[1300px] m-auto">
+                        <div>
+                          <Helmet>
+                            <script type="text/javascript">{`${atOptions}`}</script>
+                            <script
+                              type="text/javascript"
+                              src="//www.topcreativeformat.com/6b1747131bd0f4f304dea0f19f454e86/invoke.js"
+                            ></script>
+                          </Helmet>
+                        </div>
+                        <h1 className="text-7xl font-bold text-center my-10">
+                          {post && post.title}
+                        </h1>
+                        <p className="text-2xl text-center font-medium my-8 underline underline-offset-4 m-auto">
+                          {post && post.category}
+                        </p>
+                        <div className="image-container flex justify-center items-center mb-4">
+                          <img
+                            className="h-[650px] object-fill"
+                            src={post && post.image}
+                            alt="image"
+                          />
+                        </div>
+                        <div className="w-[75%] m-auto my-6 flex justify-between">
+                          <span className="text-lg font-semibold">
+                            {new Date(post.createdAt).toDateString()}
+                          </span>
+                          <span className="text-lg font-semibold">
+                            {post && (post.content.length / 1000).toFixed(0)}{" "}
+                            mins read
+                          </span>
+                        </div>
+                        <hr className="my-6 border-b-1 border-gray-400 w-[75%] m-auto" />
+                        <div
+                          className="w-[75%] m-auto post-content"
+                          dangerouslySetInnerHTML={{ __html: post.content }}
+                        ></div>
                       </div>
-                      <hr className="my-6 border-b-1 border-gray-400 w-[75%] m-auto" />
-                      <div
-                        className="w-[75%] m-auto post-content"
-                        dangerouslySetInnerHTML={{ __html: post.content }}
-                      ></div>
+                      <div className="right-box">
+                        <div className="ad-box-1 w-[300px] h-[300px] border flex justify-center items-center mt-16">
+                          <p>Advertisement</p>
+                        </div>
+                      </div>
                     </div>
                     <div>
                       <CommentComponent postId={post._id} />
