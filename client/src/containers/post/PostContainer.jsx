@@ -238,14 +238,16 @@ const PostContainer = () => {
                   <>
                     <div className="flex w-[90%] m-auto">
                       <div className="left-box">
-                        <div className="ad-box w-[300px] h-[300px] border flex justify-center items-center mt-16">
+                        {/* <div className="ad-box w-[300px] h-[300px] border flex justify-center items-center mt-16">
                           <p>Advertisement</p>
-                        </div>
+                        </div> */}
                       </div>
                       <div key={post._id} className="w-[1300px] m-auto">
                         <div>
                           <Helmet>
-                            <script type="text/javascript">{`${atOptions}`}</script>
+                            <script type="text/javascript">{`var atOptions = ${JSON.stringify(
+                              atOptions
+                            )};`}</script>
                             <script
                               type="text/javascript"
                               src="//www.topcreativeformat.com/6b1747131bd0f4f304dea0f19f454e86/invoke.js"
@@ -281,9 +283,9 @@ const PostContainer = () => {
                         ></div>
                       </div>
                       <div className="right-box">
-                        <div className="ad-box-1 w-[300px] h-[300px] border flex justify-center items-center mt-16">
+                        {/* <div className="ad-box-1 w-[300px] h-[300px] border flex justify-center items-center mt-16">
                           <p>Advertisement</p>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                     <div>
