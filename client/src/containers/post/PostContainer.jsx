@@ -242,7 +242,7 @@ const PostContainer = () => {
                           <p>Advertisement</p>
                         </div> */}
                       </div>
-                      <div key={post._id} className="w-[1300px] m-auto">
+                      <div key={post._id} className="w-[1500px] m-auto">
                         <div>
                           <Helmet>
                             <script type="text/javascript">{`var atOptions = ${JSON.stringify(
