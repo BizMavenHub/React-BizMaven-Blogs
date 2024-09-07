@@ -29,9 +29,10 @@ const DashPostContainer = () => {
       );
 
       const data = await response.json();
+
       if (response.ok) {
         setPosts(data.posts);
-        if (data.posts.length > 10) {
+        if (data.posts.length > 9) {
           setShowMore(true);
         }
       }
@@ -93,7 +94,7 @@ const DashPostContainer = () => {
       if (res.ok) {
         setPosts((prev) => [...prev, ...data.posts]);
 
-        if (data.posts.length > 0) {
+        if (data.posts.length <= 0) {
           setShowMore(false);
         }
       }
