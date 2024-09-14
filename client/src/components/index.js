@@ -16,6 +16,7 @@ import BlogCard from "./cards/BlogCard";
 import CommentCard from "./cards/CommentCard";
 
 import Ad_Card from "./cards/Ad_Card";
+import AdsComponent from "./cards/AdsComponent";
 
 export {
   PreviewComponent,
@@ -30,4 +31,5 @@ export {
   SideBar,
   OnlyIsAdminPrivateRoute,
   Ad_Card,
+  AdsComponent,
 };

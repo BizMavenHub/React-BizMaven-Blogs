@@ -8,6 +8,8 @@ import { useMediaQuery } from "react-responsive";
 import { CommentComponent } from "../../components";
 import { RecentBlogCard } from "../../components";
 
+import { AdsComponent } from "../../components";
+
 import { Helmet } from "react-helmet";
 
 import "../../styles/post_content_style.css";
@@ -228,8 +230,11 @@ const PostContainer = () => {
                   </div>
                 ) : (
                   <>
-                    <div>
-                      <div key={post._id} className="w-[1300px] m-auto">
+                    <div className="flex flex-row w-[95%] m-auto ">
+                      <div className="ads-container bg-slate-50 w-[300px] h-[540px] mt-[10cm] sticky top-[8cm]">
+                        <AdsComponent />
+                      </div>
+                      <div key={post._id} className="w-[80%]">
                         <h1 className="text-7xl font-bold text-center my-10">
                           {post && post.title}
                         </h1>
@@ -243,23 +248,29 @@ const PostContainer = () => {
                             alt="image"
                           />
                         </div>
-                        <div className="w-[75%] m-auto my-6 flex justify-between">
-                          <span className="text-lg font-semibold">
-                            {new Date(post.createdAt).toDateString()}
-                          </span>
-                          <span className="text-lg font-semibold">
-                            {post && (post.content.length / 1000).toFixed(0)}{" "}
-                            mins read
-                          </span>
-                        </div>
+                        <div className="w-[75%] m-auto">
+                          <div className="my-6 flex justify-between">
+                            <span className="text-lg font-semibold">
+                              {new Date(post.createdAt).toDateString()}
+                            </span>
+                            <span className="text-lg font-semibold">
+                              {post && (post.content.length / 1000).toFixed(0)}{" "}
+                              mins read
+                            </span>
+                          </div>
 
-                        <hr className="my-6 border-b-1 border-gray-400 w-[75%] m-auto" />
-                        <div
-                          className="w-[75%] m-auto post-content"
-                          dangerouslySetInnerHTML={{ __html: post.content }}
-                        ></div>
+                          <hr className="my-6 border-b-1 border-gray-400" />
+                          <div
+                            className="post-content"
+                            dangerouslySetInnerHTML={{ __html: post.content }}
+                          ></div>
+                        </div>
+                      </div>
+                      <div className="ads-container bg-slate-50 w-[300px] h-[540px] mt-[10cm] sticky top-[8cm]">
+                        <AdsComponent />
                       </div>
                     </div>
+
                     <div>
                       <CommentComponent postId={post._id} />
                     </div>
