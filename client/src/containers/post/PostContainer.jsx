@@ -213,14 +213,6 @@ const PostContainer = () => {
     );
   };
 
-  const atOptions = {
-    key: "6b1747131bd0f4f304dea0f19f454e86",
-    format: "iframe",
-    height: 90,
-    width: 728,
-    params: {},
-  };
-
   const LargeDesktopView = () => {
     return (
       <div className="p-4 mb-8">
@@ -236,7 +228,7 @@ const PostContainer = () => {
                   </div>
                 ) : (
                   <>
-                    <div className="">
+                    <div>
                       <div key={post._id} className="w-[1300px] m-auto">
                         <h1 className="text-7xl font-bold text-center my-10">
                           {post && post.title}
@@ -260,6 +252,7 @@ const PostContainer = () => {
                             mins read
                           </span>
                         </div>
+
                         <hr className="my-6 border-b-1 border-gray-400 w-[75%] m-auto" />
                         <div
                           className="w-[75%] m-auto post-content"
