@@ -176,19 +176,21 @@ const PostContainer = () => {
     return (
       <div className="px-4 py-8 w-[90%] m-auto">
         {posts.map((post) => (
-          <div key={post._id}>
+          <div key={post._id} className="post-container">
             <div className="title-content mb-16">
-              <h1 className="text-[52pt] font-semibold leading-[80px]">
+              <h1 className="text-[52pt] text-center font-semibold leading-[80px]">
                 {post.title}
               </h1>
             </div>
-            <div className="image-container">
-              <img src={post.image} alt="image of post" />
+            <div className="post-content-&-image w-[75vw] m-auto">
+              <div className="image-container">
+                <img src={post.image} alt="image of post" />
+              </div>
+              <div
+                className="post-content "
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              ></div>
             </div>
-            <div
-              className="post-content"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            ></div>
             <div>
               <CommentComponent postId={post._id} />
             </div>
