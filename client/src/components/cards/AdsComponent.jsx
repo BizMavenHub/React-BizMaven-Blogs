@@ -1,33 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const AdsComponent = () => {
+  const adRef = useRef(null);
+  const isAdLoaded = useRef(false); // Tracks whether the ad is already initialized
+
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1874919607682854";
-    script.async = true;
-    script.crossOrigin = "anonymous";
+    if (!isAdLoaded.current) {
+      try {
+        const script = document.createElement("script");
+        script.src =
+          "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+        script.async = true;
+        script.crossOrigin = "anonymous";
 
-    // Appending the script tag to the DOM
-    document.body.appendChild(script);
+        // Append the script only once
+        document.body.appendChild(script);
 
-    // Adding an event listener for when the script loads
-    window.addEventListener("load", function () {
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    });
+        script.onload = () => {
+          try {
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            isAdLoaded.current = true; // Mark the ad as initialized
+          } catch (e) {
+            console.error("AdSense push error: ", e);
+          }
+        };
 
-    // Cleanup if the component unmounts
-    return () => {
-      document.body.removeChild(script);
-    };
+        return () => {
+          // Cleanup to remove the script when the component unmounts
+          document.body.removeChild(script);
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    }
   }, []);
 
   return (
     <ins
+      ref={adRef}
       className="adsbygoogle"
-      style={{ width: "300px", height: "540px" }}
-      data-ad-client="ca-pub-1874919607682854" // Replace with your AdSense client ID
-      data-ad-slot="5848668290" // Replace with your ad slot ID
+      style={{ display: "block", width: "300px", height: "540px" }}
+      data-ad-client="ca-pub-1874919607682854"
+      data-ad-slot="5848668290"
       data-ad-format="auto"
       data-full-width-responsive="true"
     />

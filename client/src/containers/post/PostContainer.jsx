@@ -231,7 +231,7 @@ const PostContainer = () => {
                 ) : (
                   <>
                     <div className="flex flex-row w-[95%] m-auto ">
-                      <div className="ads-container bg-slate-50 w-[300px] h-[540px] mt-[10cm] sticky top-[8cm]">
+                      <div className="ads-container bg-slate-50 block w-[300px] h-[540px] mt-[10cm] sticky top-[7cm]">
                         <AdsComponent />
                       </div>
                       <div key={post._id} className="w-[80%]">
@@ -266,7 +266,7 @@ const PostContainer = () => {
                           ></div>
                         </div>
                       </div>
-                      <div className="ads-container bg-slate-50 w-[300px] h-[540px] mt-[10cm] sticky top-[8cm]">
+                      <div className="ads-container bg-slate-50 block w-[300px] h-[540px] mt-[10cm] sticky top-[7cm]">
                         <AdsComponent />
                       </div>
                     </div>
