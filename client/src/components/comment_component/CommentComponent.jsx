@@ -295,7 +295,7 @@ const CommentComponent = ({ postId }) => {
 
   const DesktopView = () => {
     return (
-      <div className="w-[55%] m-auto">
+      <div className="w-[80%] m-auto float-start">
         {currentUser ? (
           <>
             <div className="flex items-center my-6">
@@ -359,7 +359,7 @@ const CommentComponent = ({ postId }) => {
 
   const LargeDesktopView = () => {
     return (
-      <div className="w-[55%] m-auto">
+      <div className="w-[80%] m-auto float-start">
         {currentUser ? (
           <>
             <div className="flex items-center my-6">
