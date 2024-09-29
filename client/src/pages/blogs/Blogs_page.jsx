@@ -3,6 +3,9 @@ import { DefaultBlogsContainer } from "../../containers";
 
 import { Helmet } from "react-helmet";
 
+// Components
+import FooterComponent from "../../components/footer/FooterComponent";
+
 const Blogs_page = () => {
   return (
     <div>
@@ -25,6 +28,7 @@ const Blogs_page = () => {
         />
       </Helmet>
       <DefaultBlogsContainer />
+      <FooterComponent />
     </div>
   );
 };
