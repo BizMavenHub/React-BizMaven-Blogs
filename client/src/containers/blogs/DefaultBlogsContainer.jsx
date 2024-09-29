@@ -8,31 +8,19 @@ import { useMediaQuery } from "react-responsive";
 
 import { Helmet } from "react-helmet";
 
+// Post Components
+import MainBoxCardPostComponent from "../../components/postCards/MainBoxCardPostComponent";
+import BoxCardPostComponent from "../../components/postCards/BoxCardPostComponent";
+import HorizontalCardPostComponent from "../../components/postCards/HorizontalCardPostComponent";
+
+// Utils
+import { handleReloadPage } from "../../utilities/js/handleReloadPage";
+
 const DefaultBlogsContainer = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
 
-  const mobile = useMediaQuery({
-    query: "(min-width: 320px) and (max-width: 767px)",
-  });
-
-  const tablet = useMediaQuery({
-    query: "(min-width: 768px) and (max-width: 1023px)",
-  });
-
-  const desktop = useMediaQuery({
-    query: "(min-width: 1024px) and (max-width: 1919px)",
-  });
-
-  const largeDesktop = useMediaQuery({
-    query: "(min-width: 1920px)",
-  });
-
-  const [posts, setPosts] = useState({
-    lastMonthPosts: [],
-    posts: [],
-  });
-
-  const [showMore, setShowMore] = useState(true);
+  const [allPosts, setAllPosts] = useState([]);
+  const [mostViewedPosts, setMostViewedPosts] = useState([]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -46,6 +34,7 @@ const DefaultBlogsContainer = () => {
       expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
     });
     GetPosts();
+    GetMostViewedPosts();
   }, []);
 
   const getPostsUrl = useMemo(() => {
@@ -53,9 +42,10 @@ const DefaultBlogsContainer = () => {
   }, []);
 
   const GetPosts = async () => {
-    setLoading(true);
     try {
-      const response = await fetch(getPostsUrl, {
+      setLoading(true);
+
+      const res = await fetch(getPostsUrl, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -63,20 +53,15 @@ const DefaultBlogsContainer = () => {
         credentials: "include",
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (!response.ok) {
+      if (!res.ok) {
         setError(data.message);
         setLoading(false);
-      } else {
-        setPosts(data);
-        setLoading(false);
-        if (data.posts.length < 12) {
-          setShowMore(false);
-        } else {
-          setShowMore(true);
-        }
+        return;
       }
+
+      setAllPosts(data.posts);
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -84,32 +69,21 @@ const DefaultBlogsContainer = () => {
     }
   };
 
-  const GetPostsByLimit = async () => {
-    setLoading(true);
+  const GetMostViewedPosts = async () => {
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=5`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
+      setLoading(true);
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-most-viewed-posts`
       );
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (!response.ok) {
+      if (!res.ok) {
         setError(data.message);
         setLoading(false);
-      } else {
-        setPosts(data);
-        setLoading(false);
-        if (data.posts.length < 3) {
-          setShowMore(false);
-        }
       }
+
+      setMostViewedPosts(data.posts);
     } catch (error) {
       console.log(error.message);
     } finally {
@@ -117,192 +91,7 @@ const DefaultBlogsContainer = () => {
     }
   };
 
-  const GetMorePosts = async () => {
-    const startIndex = posts.posts.length;
-
-    setLoading(true);
-
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?limit=${
-          startIndex + 4
-        }`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setError(data.message);
-      } else {
-        setPosts({ lastMonthPosts: posts.lastMonthPosts, posts: data.posts });
-        console.log("data: ", data.posts.length);
-        console.log("post: ", posts.posts.length);
-        if (data.posts.length > 0) {
-          setShowMore(true);
-        }
-        if (data.posts.length == posts.posts.length + 2) {
-          setShowMore(false);
-        }
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const { lastMonthPosts, posts: allPosts } = posts;
-
-  const MobileView = () => {
-    return (
-      <div className="blogs-container my-4">
-        <div className="card-container w-[95%] m-auto ">
-          <div className="title my-8">
-            <h1 className="text-3xl font-medium">For you</h1>
-          </div>
-          <div>
-            {allPosts.map((post, index) => (
-              <BlogCard
-                key={index}
-                id={post._id}
-                writerId={post.userId}
-                title={post.title}
-                image={post.image}
-                slug={post.slug}
-                category={post.category}
-                keywords={post.keywords}
-                content={post.content}
-                date={post.createdAt}
-              />
-            ))}
-          </div>
-          <div className="my-8 flex justify-center">
-            {showMore && (
-              <button
-                className="btn text-center font-montserrat font-semibold bg-blue-500 text-white p-3 rounded-lg"
-                onClick={GetMorePosts}
-              >
-                Show More
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const TabletView = () => {
-    return (
-      <div className="blogs-container">
-        <div className="card-container w-[90%] m-auto">
-          <div className="title my-8">
-            <h1 className="text-3xl font-medium">For you</h1>
-          </div>
-          <div className="grid">
-            {allPosts.map((post, index) => (
-              <BlogCard
-                key={index}
-                id={post._id}
-                writerId={post.userId}
-                title={post.title}
-                image={post.image}
-                slug={post.slug}
-                category={post.category}
-                keywords={post.keywords}
-                content={post.content}
-                date={post.createdAt}
-              />
-            ))}
-          </div>
-          <div className="my-8 flex justify-center">
-            {showMore && (
-              <button
-                className="btn text-center font-montserrat font-semibold bg-blue-500 text-white p-3 rounded-lg"
-                onClick={GetMorePosts}
-              >
-                Show More
-              </button>
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  };
-
-  const DesktopView = () => {
-    return (
-      <div className="blogs-container my-4 m-auto w-[1200px]">
-        <div className="title my-8">
-          <h1 className="text-3xl font-medium">For you</h1>
-        </div>
-        <div className="card-container grid grid-cols-3 gap-8">
-          {allPosts.map((post, index) => (
-            <BlogCard
-              key={index}
-              id={post._id}
-              writerId={post.userId}
-              title={post.title}
-              image={post.image}
-              slug={post.slug}
-              category={post.category}
-              keywords={post.keywords}
-              content={post.content}
-              date={post.createdAt}
-            />
-          ))}
-        </div>
-        <div className="my-8 flex justify-center">
-          {showMore && (
-            <button
-              className="btn text-center font-montserrat font-semibold bg-blue-500 text-white p-3 rounded-lg"
-              onClick={GetMorePosts}
-            >
-              Show More
-            </button>
-          )}
-        </div>
-      </div>
-    );
-  };
-
-  const LargeDesktopView = () => {
-    return (
-      <div className="blogs-container my-4 w-[80%]  m-auto">
-        <div className="title my-8">
-          <h1 className="text-3xl font-medium">For you</h1>
-        </div>
-        <div className="card-container grid grid-cols-4 gap-8">
-          {allPosts.map((post, index) => (
-            <RecentBlogCard
-              title={post.title}
-              image={post.image}
-              category={post.category}
-              content={post.content}
-              slug={post.slug}
-              date={post.createdAt}
-            />
-          ))}
-        </div>
-        <div className="my-8 flex justify-center">
-          {showMore && (
-            <button
-              className="btn text-center font-montserrat font-semibold bg-blue-500 text-white p-3 rounded-lg"
-              onClick={GetMorePosts}
-            >
-              Show More
-            </button>
-          )}
-        </div>
-      </div>
-    );
-  };
+  console.log(mostViewedPosts);
 
   return (
     <>
@@ -336,12 +125,89 @@ const DefaultBlogsContainer = () => {
             </div>
           </div>
         ) : (
-          <>
-            {mobile && <MobileView />}
-            {tablet && <TabletView />}
-            {desktop && <DesktopView />}
-            {largeDesktop && <LargeDesktopView />}
-          </>
+          <main className="xl:w-[80%] md:w-[90%] md:py-12 mx-auto sm:p-4">
+            <div className="section-container">
+              {/* Top Posts */}
+              <div className="top-post-container-section grid md:gap-x-12 xl:grid-cols-2 md:grid-cols-1 sm:gap-8">
+                {allPosts.slice(0, 2).map((post, index) => (
+                  <MainBoxCardPostComponent
+                    title={post.title}
+                    image={post.image}
+                    category={post.category}
+                    createdDate={post.createdDate}
+                    slug={post.slug}
+                    key={index}
+                  />
+                ))}
+              </div>
+
+              {/* Recent Posts */}
+              <div>
+                <h1 className="recent-post-title text-3xl my-12 font-medium">
+                  Recent Posts
+                </h1>
+                <div className="posts-container md:grid xl:grid-cols-4 md:grid-cols-2 sm:grid sm:gap-6 sm:grid-cols-1">
+                  {allPosts.slice(0, 8).map((post, index) => (
+                    <BoxCardPostComponent
+                      title={post.title}
+                      image={post.image}
+                      category={post.category}
+                      createdDate={post.createdDate}
+                      slug={post.slug}
+                      key={index}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="most-viewed-posts-category-section-container xl:flex">
+                {/* Most Viewed Posts */}
+                <div className="recent-post-container-section ">
+                  <h1 className="recent-post-title text-3xl my-8 font-medium">
+                    Most Viewed Posts
+                  </h1>
+                  <div className="recent-posts-category">
+                    <div className="most-viewed-posts-container md:flex md:flex-col md:gap-8 sm:grid sm:grid-cols-1 sm:gap-4 ">
+                      {mostViewedPosts.slice(0, 5).map((post, index) => (
+                        <HorizontalCardPostComponent
+                          title={post.title}
+                          image={post.image}
+                          category={post.category}
+                          createdDate={post.createdDate}
+                          content={post.content}
+                          slug={post.slug}
+                          key={index}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Categories */}
+                <div className="category-container">
+                  <h1 className="category-title text-3xl my-8 font-medium">
+                    Categories
+                  </h1>
+                  <div className="categories-container w-[350px] grid grid-cols-1 gap-2">
+                    {/**categories.map((category, index) => (
+                        <li
+                          key={index}
+                          onClick={() =>
+                            handleReloadPage(`/categories/${category}`)
+                          }
+                          className="p-2 border-b-[1px] hover:scale-105 hover:text-blue-500 transition-all"
+                        >
+                          <Link className="hover:underline hover:underline-offset-2">
+                            {category.charAt(0).toUpperCase() +
+                              category.slice(1)}
+                          </Link>
+                        </li>
+                      ))} */}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
         )}
       </>
     </>
