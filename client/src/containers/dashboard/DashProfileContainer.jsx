@@ -141,8 +141,8 @@ const DashProfileContainer = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        return dispatch(updateFailure(data.message));
         setUpdateUserError(data.message);
+        return dispatch(updateFailure(data.message));
       } else {
         dispatch(updateSuccess(data));
         setUpdateUserSuccess("User's profile updated successfully");
