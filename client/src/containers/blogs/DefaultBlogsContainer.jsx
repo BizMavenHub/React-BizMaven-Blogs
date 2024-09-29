@@ -1,10 +1,8 @@
-import React, { Fragment } from "react";
-import { BlogCard, RecentBlogCard } from "../../components";
+import React from "react";
 import { useState, useEffect, useMemo } from "react";
-import { useSelector } from "react-redux";
-import { useCookies } from "react-cookie";
+import { Link } from "react-router-dom";
 
-import { useMediaQuery } from "react-responsive";
+import { useCookies } from "react-cookie";
 
 import { Helmet } from "react-helmet";
 
@@ -15,6 +13,18 @@ import HorizontalCardPostComponent from "../../components/postCards/HorizontalCa
 
 // Utils
 import { handleReloadPage } from "../../utilities/js/handleReloadPage";
+
+const categories = [
+  "all",
+  "programming",
+  "web-development",
+  "css",
+  "html",
+  "javascript",
+  "react",
+  "python",
+  "java",
+];
 
 const DefaultBlogsContainer = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["access_token"]);
@@ -90,8 +100,6 @@ const DefaultBlogsContainer = () => {
       setLoading(false);
     }
   };
-
-  console.log(mostViewedPosts);
 
   return (
     <>
@@ -188,21 +196,20 @@ const DefaultBlogsContainer = () => {
                   <h1 className="category-title text-3xl my-8 font-medium">
                     Categories
                   </h1>
-                  <div className="categories-container w-[350px] grid grid-cols-1 gap-2">
-                    {/**categories.map((category, index) => (
-                        <li
-                          key={index}
-                          onClick={() =>
-                            handleReloadPage(`/categories/${category}`)
-                          }
-                          className="p-2 border-b-[1px] hover:scale-105 hover:text-blue-500 transition-all"
-                        >
-                          <Link className="hover:underline hover:underline-offset-2">
-                            {category.charAt(0).toUpperCase() +
-                              category.slice(1)}
-                          </Link>
-                        </li>
-                      ))} */}
+                  <div className="categories-container w-[350px] grid grid-cols-1 gap-2 list-none">
+                    {categories.map((category, index) => (
+                      <li
+                        key={index}
+                        onClick={() =>
+                          handleReloadPage(`/categories/${category}`)
+                        }
+                        className="p-2 border-b-[1px] hover:scale-105 hover:text-blue-500 transition-all"
+                      >
+                        <Link className="hover:underline hover:underline-offset-2">
+                          {category.charAt(0).toUpperCase() + category.slice(1)}
+                        </Link>
+                      </li>
+                    ))}
                   </div>
                 </div>
               </div>
