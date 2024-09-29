@@ -26,7 +26,7 @@ import {
   SearchPage,
   TermCondition,
   PrivacyPolicy,
-  categories_page,
+  categories_page as Categories_page,
 } from "./pages/index";
 
 import UseAccessToken from "./components/cookie/UseAccessToken";
@@ -64,7 +64,7 @@ function AppRoutes() {
           <Route path="/terms-and-conditions" element={<TermCondition />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="/categories/:category" element={<categories_page />} />
+          <Route path="/categories/:category" element={<Categories_page />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard_page />} />
           </Route>
@@ -88,6 +88,7 @@ function AppRoutes() {
           <Route path="/terms-and-conditions" element={<TermCondition />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/contact-us" element={<Contact_page />} />
+          <Route path="/categories/:category" element={<Categories_page />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard_page />} />
           </Route>

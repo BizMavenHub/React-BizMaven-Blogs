@@ -1,6 +1,8 @@
 import React from "react";
 import { Categories_Container } from "../../containers";
 
+import { Helmet } from "react-helmet";
+
 const categories_page = () => {
   return (
     <>
