@@ -21,6 +21,7 @@ import {
   listModules,
   blockQuoteModule,
 } from "../../utilities/js/contentHandleModule";
+import { handleReloadPage } from "../../utilities/js/handleReloadPage";
 
 // Styles
 import "../../styles/previewComponent.css";
