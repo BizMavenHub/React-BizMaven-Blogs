@@ -30,10 +30,13 @@ export const createPost = async (req, res, next) => {
   }
 };
 
-export const getPost = async (req, res, next) => {
+export const getMostViewedPosts = async (req, res, next) => {
   try {
-    const post = await Post.findById(req.params.postId);
-    res.status(200).json(post);
+    const posts = await Post.find().sort({ views: -1 }).limit(5); // Sort the highest views first
+    res.status(200).json({
+      success: true,
+      posts,
+    });
   } catch (error) {
     next(errorHandler(error));
   }
@@ -64,6 +67,15 @@ export const getPosts = async (req, res, next) => {
       .sort({ createdAt: sortDirection })
       .skip(startIndex)
       .limit(limit);
+
+    // Increase view by 1 for each post viewed
+    if (req.query.slug) {
+      await Post.findOneAndUpdate(
+        { slug: req.query.slug },
+        { $inc: { views: 1 } },
+        { new: true }
+      );
+    }
 
     const totalPosts = await Post.countDocuments();
 
@@ -121,15 +133,6 @@ export const updatePost = async (req, res, next) => {
       { new: true }
     );
     res.status(200).json(updatedPost);
-  } catch (error) {
-    next(errorHandler(error));
-  }
-};
-
-export const getAllPostsFromDB = async (req, res, next) => {
-  try {
-    const posts = await Post.find();
-    res.status(200).json(posts);
   } catch (error) {
     next(errorHandler(error));
   }
