@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 // Components
 import CategoryCard from "../../components/postCards/CategoryCard";
@@ -24,6 +24,18 @@ import {
 
 // Styles
 import "../../styles/previewComponent.css";
+
+const categories = [
+  "all",
+  "programming",
+  "web-development",
+  "css",
+  "html",
+  "javascript",
+  "react",
+  "python",
+  "java",
+];
 
 const PostContainer = () => {
   const { slug } = useParams();
@@ -300,20 +312,20 @@ const PostContainer = () => {
                       </h1>
                       <div className="category-lists xl:grid xl:grid-cols-1 xl:gap-2">
                         <ul>
-                          {/* {categories.map((category, index) => (
-                                <li
-                                  key={index}
-                                  onClick={() =>
-                                    handleReloadPage(`/categories/${category}`)
-                                  }
-                                  className="p-2 border-b-[1px] hover:scale-105 hover:text-blue-500 transition-all"
-                                >
-                                  <Link className="hover:underline hover:underline-offset-2">
-                                    {category.charAt(0).toUpperCase() +
-                                      category.slice(1)}
-                                  </Link>
-                                </li>
-                              ))} */}
+                          {categories.map((category, index) => (
+                            <li
+                              key={index}
+                              onClick={() =>
+                                handleReloadPage(`/categories/${category}`)
+                              }
+                              className="p-2 border-b-[1px] hover:scale-105 hover:text-blue-500 transition-all"
+                            >
+                              <Link className="hover:underline hover:underline-offset-2">
+                                {category.charAt(0).toUpperCase() +
+                                  category.slice(1)}
+                              </Link>
+                            </li>
+                          ))}
                         </ul>
                       </div>
                     </div>
