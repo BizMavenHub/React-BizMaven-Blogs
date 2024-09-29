@@ -29,11 +29,16 @@ import "../../styles/previewComponent.css";
 const PostContainer = () => {
   const { slug } = useParams();
 
+  // ------------- State ------------
+
   const [currentPost, setCurrentPost] = useState([]);
   const [mostViewedPost, setMostViewedPost] = useState([]);
+  const [relatedPost, setRelatedPost] = useState([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // ------------- Hooks ------------
 
   const postUrl = useMemo(() => {
     return `${
@@ -46,6 +51,14 @@ const PostContainer = () => {
       import.meta.env.VITE_API_BASE_URL
     }/api/post/get-most-viewed-posts`;
   }, []);
+
+  const getRelatedPost_Url = useMemo(() => {
+    return `${import.meta.env.VITE_API_BASE_URL}/api/post/get-post?category=${
+      currentPost[0]?.category
+    }`;
+  }, [currentPost]);
+
+  // ------------- Methods -------------
 
   const getCurrentPost = async () => {
     try {
@@ -98,14 +111,29 @@ const PostContainer = () => {
     }
   };
 
-  useEffect(() => {
-    getCurrentPost();
-    getMostViewedPosts();
-  }, []);
+  const getRelatedPosts = async () => {
+    try {
+      const res = await fetch(getRelatedPost_Url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
 
-  useEffect(() => {
-    handleHighlight();
-  }, [currentPost]);
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.message);
+        setLoading(false);
+        return;
+      }
+
+      setRelatedPost(data.posts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleHighlight = () => {
     const pre = document.querySelectorAll(".post-content .ql-syntax");
@@ -114,6 +142,18 @@ const PostContainer = () => {
       hljs.highlightBlock(block);
     });
   };
+
+  // ----------- Fetch Data -----------
+
+  useEffect(() => {
+    getCurrentPost();
+    getMostViewedPosts();
+  }, []);
+
+  useEffect(() => {
+    handleHighlight();
+    getRelatedPosts();
+  }, [currentPost]);
 
   return (
     <>
@@ -231,23 +271,21 @@ const PostContainer = () => {
                         Related Posts
                       </h1>
                       <div className="related-posts-container grid xl:grid-cols-1 md:grid-cols-3 gap-6">
-                        {/* {relatedPost
-                              .filter((p) => p._id !== post._id)
-                              .slice(0, 3)
-                              .map((relatedPost) => (
-                                <BoxCardPostComponent
-                                  key={relatedPost._id}
-                                  title={relatedPost.title}
-                                  createdDate={relatedPost.createdDate}
-                                  category={relatedPost.category}
-                                  image={relatedPost.image}
-                                  slug={relatedPost.slug}
-                                />
-                              ))}
-                            {relatedPost.filter((p) => p._id !== post._id)
-                              .length === 0 && (
-                              <div>No related posts found</div>
-                            )} */}
+                        {relatedPost
+                          .filter((p) => p._id !== post._id)
+                          .slice(0, 3)
+                          .map((relatedPost) => (
+                            <BoxCardPostComponent
+                              key={relatedPost._id}
+                              title={relatedPost.title}
+                              createdDate={relatedPost.createdDate}
+                              category={relatedPost.category}
+                              image={relatedPost.image}
+                              slug={relatedPost.slug}
+                            />
+                          ))}
+                        {relatedPost.filter((p) => p._id !== post._id)
+                          .length === 0 && <div>No related posts found</div>}
                       </div>
                     </div>
 
