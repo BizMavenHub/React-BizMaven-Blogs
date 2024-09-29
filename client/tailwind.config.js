@@ -4,56 +4,23 @@ export default {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
 
   theme: {
-    extend: {
-      typography: (theme) => ({
-        DEFAULT: {
-          css: {
-            color: theme("colors.gray.800"),
-            h1: {
-              fontSize: theme("2.5rem"),
-            },
-            h2: {
-              fontSize: theme("2rem"),
-            },
-            h3: {
-              fontSize: theme("1.2rem"),
-            },
-            h4: {
-              fontSize: theme("1.125rem"),
-            },
-            h5: {
-              fontSize: theme("1rem"),
-            },
-            h6: {
-              fontSize: theme("0.875rem"),
-            },
-            p: {
-              fontSize: theme("1rem"),
-            },
-            a: {
-              color: theme("colors.blue.600"),
+    extend: {},
 
-              "&:hover": {
-                color: theme("colors.blue.700"),
-              },
-            },
-            // Add more customizations here
-          },
-        },
-      }),
-    },
     screens: {
-      mobile: { min: "320px", max: "767px" },
-      // => @media (min-width: 320px and max-width: 639px) { ... }
+      sm: "320px",
+      // => @media (min-width: 640px) { ... }
 
-      tablet: { min: "768px", max: "1279px" },
-      // => @media (min-width: 640px and max-width: 1279px) { ... }
+      md: "768px",
+      // => @media (min-width: 768px) { ... }
 
-      desktop: { min: "1280px", max: "1919px" },
-      // => @media (min-width: 1280px and max-width: 1919px ) { ... }
+      lg: "1024px",
+      // => @media (min-width: 1024px) { ... }
 
-      largeDesktop: { min: "1919px" },
-      // => @media (min-width: 1920px) { ... }
+      xl: "1280px",
+      // => @media (min-width: 1280px) { ... }
+
+      "2xl": "1536px",
+      // => @media (min-width: 1536px) { ... }
     },
     fontFamily: {
       lato: ["Lato", "sans-serif"],
@@ -73,15 +40,6 @@ export default {
       notoSansKR: ["Noto Sans KR", "sans-serif"],
       notoSansSC: ["Noto Sans SC", "sans-serif"],
       notoSansTC: ["Noto Sans TC", "sans-serif"],
-    },
-    fontSize: {
-      h1: "48px",
-      h2: "36px",
-      h3: "24px",
-      h4: "18px",
-      h5: "16px",
-      h6: "14px",
-      p: "16px",
     },
   },
 
