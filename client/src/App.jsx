@@ -26,6 +26,7 @@ import {
   SearchPage,
   TermCondition,
   PrivacyPolicy,
+  categories_page,
 } from "./pages/index";
 
 import UseAccessToken from "./components/cookie/UseAccessToken";
@@ -63,6 +64,7 @@ function AppRoutes() {
           <Route path="/terms-and-conditions" element={<TermCondition />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/categories/:category" element={<categories_page />} />
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard_page />} />
           </Route>

@@ -13,6 +13,7 @@ import UpdatePost_page from "./update-post/UpdatePost_page";
 import Post_page from "./post/Post_page";
 import TermCondition from "./term_&_condition/TermCondition";
 import PrivacyPolicy from "./privacy_policy/PrivacyPolicy";
+import categories_page from "./categories/categories_page";
 
 import SearchPage from "./search/SearchPage";
 
@@ -33,4 +34,5 @@ export {
   SearchPage,
   TermCondition,
   PrivacyPolicy,
+  categories_page,
 };

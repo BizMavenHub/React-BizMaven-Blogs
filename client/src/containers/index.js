@@ -16,6 +16,7 @@ import DashOverviewContainer from "./dashboard/DashOverviewContainer";
 import DashUsersContainer from "./dashboard/DashUsersContainer";
 
 import SearchContainer from "./search/SearchContainer";
+import Categories_Container from "./categories/Categories";
 
 export {
   HomepageContainer,
@@ -33,4 +34,5 @@ export {
   DashOverviewContainer,
   DashUsersContainer,
   SearchContainer,
+  Categories_Container,
 };
