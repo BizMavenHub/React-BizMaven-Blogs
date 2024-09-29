@@ -39,7 +39,7 @@ const AdsComponent = () => {
     <ins
       ref={adRef}
       className="adsbygoogle"
-      style={{ display: "block", width: "300px", height: "540px" }}
+      style={{ display: "block", width: "350px", height: "350px" }}
       data-ad-client="ca-pub-1874919607682854"
       data-ad-slot="5848668290"
       data-ad-format="auto"
