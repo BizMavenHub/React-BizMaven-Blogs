@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import CategoryCard from "../../components/postCards/CategoryCard";
 import BoxCardPostComponent from "../../components/postCards/BoxCardPostComponent";
 import { CommentComponent } from "../../components";
-import { RecentBlogCard } from "../../components";
 import { AdsComponent } from "../../components";
 
 // Packages
@@ -222,16 +221,21 @@ const PostContainer = () => {
               {/* Context | Related Posts Container | Ad Container | Category Container */}
               <div className="flex xl:flex-row sm:flex-col gap-8">
                 {/* Context Container */}
-                <div
-                  className={`post-content xl:w-[75%] pt-6 ${headingModules} ${listModules} ${blockQuoteModule} prose-a:text-blue-500 prose-code:px-1 prose-code:rounded prose-code:bg-gray-200 prose-code:text-black prose-code:text-sm`}
-                  dangerouslySetInnerHTML={{ __html: post.content }}
-                ></div>
+                <div>
+                  <div
+                    className={`post-content xxl:w-[85%] xl:w-[90%] pt-6 ${headingModules} ${listModules} ${blockQuoteModule} prose-a:text-blue-500 prose-code:px-1 prose-code:rounded prose-code:bg-gray-200 prose-code:text-black prose-code:text-sm`}
+                    dangerouslySetInnerHTML={{ __html: post.content }}
+                  ></div>
+                  <div className="comment-container">
+                    <CommentComponent />
+                  </div>
+                </div>
 
                 {/* Related Posts Container | Ad Container | Category Container | Most Viewed Posts */}
                 <div className="related-most-viewed-posts-container xl:w-[25%]">
                   {/* Ad Container */}
                   <div className="ad-container xl:w-[350px] xl:aspect-square my-4 bg-gray-200 flex justify-center items-center">
-                    <p className="text-xl">SAMPLE AD 300x300</p>
+                    <AdsComponent />
                   </div>
 
                   {/* Most Viewed Posts */}
@@ -262,7 +266,7 @@ const PostContainer = () => {
 
                     {/* Ad Container */}
                     <div className="ad-container xl:w-[350px] xl:aspect-square my-12 bg-gray-200 flex justify-center items-center">
-                      <p className="text-xl">SAMPLE AD 300x300</p>
+                      <AdsComponent />
                     </div>
 
                     {/* Related Posts */}
