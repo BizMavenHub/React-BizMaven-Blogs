@@ -10,6 +10,7 @@ import { AdsComponent } from "../../components";
 
 // Packages
 import moment from "moment";
+import { Helmet } from "react-helmet";
 
 // Highlight.js
 import hljs from "highlight.js";
@@ -169,6 +170,32 @@ const PostContainer = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{currentPost[0]?.title}</title>
+        <meta name="description" content={currentPost[0]?.description} />
+
+        {/* Open Graph meta tags */}
+        <meta property="og:title" content={currentPost[0]?.title} />
+        <meta property="og:description" content={currentPost[0]?.description} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={"https://www.insightloop.blog" + slug}
+        />
+        <meta property="og:image" content={currentPost[0]?.image} />
+
+        {/* Twitter meta tags */}
+        <meta name="twitter:title" content={currentPost[0]?.title} />
+        <meta
+          name="twitter:description"
+          content={currentPost[0]?.description}
+        />
+        <meta name="twitter:image" content={currentPost[0]?.image} />
+        <meta
+          name="twitter:url"
+          content={"https://www.insightloop.blog" + slug}
+        />
+      </Helmet>
       {loading ? (
         <div className="loader-container h-screen flex justify-center items-center">
           <div class="text-center">

@@ -637,6 +637,15 @@ const HomepageContainer = () => {
     <>
       <Helmet>
         <title>Welcome to Insight Loop</title>
+        {/* <!-- % SEO Meta Tags --> */}
+        <meta
+          name="keywords"
+          content="Insight Loop, Insight Loop Blog, blogging, blog templates, blog post, blogger com website, blog site templates, blog, blogs, "
+        />
+        <meta
+          name="description"
+          content="Discover premium quality insights, top-notch discussions, and exceptional analysis on a variety of trending topics and essential themes."
+        />
       </Helmet>
       {mobile && <MobileView />}
       {tablet && <TabletView />}
