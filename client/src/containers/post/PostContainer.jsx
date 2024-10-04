@@ -10,7 +10,7 @@ import { AdsComponent } from "../../components";
 
 // Packages
 import moment from "moment";
-import { HelmetProvider, Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async";
 
 // Highlight.js
 import hljs from "highlight.js";
@@ -207,7 +207,7 @@ const PostContainer = () => {
       {currentPost.length > 0 &&
         metaTags(
           currentPost[0]?.title,
-          currentPost[0]?.description,
+          currentPost[0]?.content,
           currentPost[0]?.image,
           "article",
           slug
