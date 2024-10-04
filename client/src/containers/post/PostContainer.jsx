@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 
@@ -7,10 +7,10 @@ import CategoryCard from "../../components/postCards/CategoryCard";
 import BoxCardPostComponent from "../../components/postCards/BoxCardPostComponent";
 import { CommentComponent } from "../../components";
 import { AdsComponent } from "../../components";
+import MetaTag from "../../components/MetaTag";
 
 // Packages
 import moment from "moment";
-import { Helmet } from "react-helmet-async";
 
 // Highlight.js
 import hljs from "highlight.js";
@@ -71,40 +71,19 @@ const PostContainer = () => {
     }`;
   }, [currentPost]);
 
+  // ----------- Fetch Data -----------
+
+  useEffect(() => {
+    getCurrentPost();
+    getMostViewedPosts();
+  }, []);
+
+  useEffect(() => {
+    handleHighlight();
+    getRelatedPosts();
+  }, [currentPost]);
+
   // ------------- Methods -------------
-
-  const metaTags = (title, description, image, type, slug) => {
-    return (
-      <Helmet>
-        <title>{title + " | Insight Loop"}</title>
-        <meta name="description" content={description} />
-
-        <link rel="canonical" href={"https://www.insightloop.blog/" + slug} />
-
-        <meta name="robots" content="index, follow" />
-
-        {/* Open Graph Meta Tags */}
-        <meta property="og:type" content={type} />
-        <meta
-          property="og:url"
-          content={"https://www.insightloop.blog/" + slug}
-        />
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} />
-
-        {/* Twitter Meta Tags */}
-        <meta property="twitter:title" content={title} />
-        <meta
-          property="twitter:url"
-          content={"https://www.insightloop.blog/" + slug}
-        />
-        <meta property="twitter:card" content={type} />
-        <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={image} />
-      </Helmet>
-    );
-  };
 
   const getCurrentPost = async () => {
     try {
@@ -131,6 +110,8 @@ const PostContainer = () => {
       setLoading(false);
     } catch (error) {
       setError(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -190,29 +171,20 @@ const PostContainer = () => {
     });
   };
 
-  // ----------- Fetch Data -----------
-
-  useEffect(() => {
-    getCurrentPost();
-    getMostViewedPosts();
-  }, []);
-
-  useEffect(() => {
-    handleHighlight();
-    getRelatedPosts();
-  }, [currentPost]);
+  console.log(currentPost);
 
   return (
     <>
-      {currentPost.length > 0 &&
-        metaTags(
-          currentPost[0]?.title,
-          currentPost[0]?.content,
-          currentPost[0]?.image,
-          "article",
-          slug
-        )}
-      {loading ? (
+      {currentPost.length > 0 && (
+        <MetaTag
+          title={currentPost[0]?.title}
+          description={currentPost[0]?.content.slice(0, 150)}
+          image={currentPost[0]?.image}
+          type="article"
+          slug={currentPost[0]?.slug}
+        />
+      )}
+      {loading && currentPost.length === 0 ? (
         <div className="loader-container h-screen flex justify-center items-center">
           <div class="text-center">
             <div role="status">
