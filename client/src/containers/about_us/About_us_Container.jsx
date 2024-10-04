@@ -568,9 +568,9 @@ function About_us_Container() {
   return (
     <>
       <Helmet>
-        <title>About Us</title>
-        <Link rel="canonical" href="https://www.insightloop.blog/about-us" />
-        <Link
+        <title>About Us | Insight Loop</title>
+        <link rel="canonical" href="https://www.insightloop.blog/about-us" />
+        <link
           rel="favicon"
           href="/assets/insight_Loop_Logo-only_white-Bg-transparent.png"
         />
