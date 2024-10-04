@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 import { useMediaQuery } from "react-responsive";
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const DashOverviewContainer = () => {
   const mobile = useMediaQuery({

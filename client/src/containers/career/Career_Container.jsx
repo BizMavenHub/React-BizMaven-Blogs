@@ -1,7 +1,7 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 import {
   Picture_0_career,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CookiesProvider } from "react-cookie";
+import { HelmetProvider } from "react-helmet-async";
 
 import {
   NavbarComponent,
@@ -36,11 +37,13 @@ function App() {
   return (
     <Router>
       <CookiesProvider>
-        <div className="min-h-[100vh]">
-          <NavbarComponent />
-          <AppRoutes />
-          <SpeedInsights />
-        </div>
+        <HelmetProvider>
+          <div className="min-h-[100vh]">
+            <NavbarComponent />
+            <AppRoutes />
+            <SpeedInsights />
+          </div>
+        </HelmetProvider>
       </CookiesProvider>
     </Router>
   );

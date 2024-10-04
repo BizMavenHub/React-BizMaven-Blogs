@@ -12,7 +12,7 @@ import {
 
 import { Ad_Card } from "../../components";
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 function About_us_Container() {
   const mobile = useMediaQuery({

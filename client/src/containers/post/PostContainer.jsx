@@ -10,7 +10,7 @@ import { AdsComponent } from "../../components";
 
 // Packages
 import moment from "moment";
-import { Helmet } from "react-helmet";
+import { HelmetProvider, Helmet } from "react-helmet-async";
 
 // Highlight.js
 import hljs from "highlight.js";
@@ -73,6 +73,39 @@ const PostContainer = () => {
 
   // ------------- Methods -------------
 
+  const metaTags = (title, description, image, type, slug) => {
+    return (
+      <Helmet>
+        <title>{title + " | Insight Loop"}</title>
+        <meta name="description" content={description} />
+
+        <link rel="canonical" href={"https://www.insightloop.blog/" + slug} />
+
+        <meta name="robots" content="index, follow" />
+
+        {/* Open Graph Meta Tags */}
+        <meta property="og:type" content={type} />
+        <meta
+          property="og:url"
+          content={"https://www.insightloop.blog/" + slug}
+        />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} />
+
+        {/* Twitter Meta Tags */}
+        <meta property="twitter:title" content={title} />
+        <meta
+          property="twitter:url"
+          content={"https://www.insightloop.blog/" + slug}
+        />
+        <meta property="twitter:card" content={type} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={image} />
+      </Helmet>
+    );
+  };
+
   const getCurrentPost = async () => {
     try {
       setLoading(true);
@@ -94,6 +127,7 @@ const PostContainer = () => {
       }
 
       setCurrentPost(data.posts);
+
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -170,32 +204,14 @@ const PostContainer = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{currentPost[0]?.title}</title>
-        <meta name="description" content={currentPost[0]?.description} />
-
-        {/* Open Graph meta tags */}
-        <meta property="og:title" content={currentPost[0]?.title} />
-        <meta property="og:description" content={currentPost[0]?.description} />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content={"https://www.insightloop.blog" + slug}
-        />
-        <meta property="og:image" content={currentPost[0]?.image} />
-
-        {/* Twitter meta tags */}
-        <meta name="twitter:title" content={currentPost[0]?.title} />
-        <meta
-          name="twitter:description"
-          content={currentPost[0]?.description}
-        />
-        <meta name="twitter:image" content={currentPost[0]?.image} />
-        <meta
-          name="twitter:url"
-          content={"https://www.insightloop.blog" + slug}
-        />
-      </Helmet>
+      {currentPost.length > 0 &&
+        metaTags(
+          currentPost[0]?.title,
+          currentPost[0]?.description,
+          currentPost[0]?.image,
+          "article",
+          slug
+        )}
       {loading ? (
         <div className="loader-container h-screen flex justify-center items-center">
           <div class="text-center">

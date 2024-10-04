@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";

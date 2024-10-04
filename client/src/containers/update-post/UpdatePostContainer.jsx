@@ -4,7 +4,7 @@ import ReactQuill from "react-quill";
 
 import { PreviewComponent } from "../../components";
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 import {
   getStorage,

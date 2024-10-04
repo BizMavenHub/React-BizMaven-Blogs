@@ -14,7 +14,7 @@ import {
 
 import { BlogCard } from "../../components/index.js";
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const HomepageContainer = () => {
   // ---------------Media Queries-------------------

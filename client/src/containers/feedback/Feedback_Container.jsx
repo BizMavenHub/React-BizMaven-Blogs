@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const Feedback_Container = () => {
   const mobile = useMediaQuery({
