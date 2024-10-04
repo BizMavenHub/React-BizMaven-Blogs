@@ -106,7 +106,6 @@ const PostContainer = () => {
       }
 
       setCurrentPost(data.posts);
-
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -171,19 +170,8 @@ const PostContainer = () => {
     });
   };
 
-  console.log(currentPost);
-
   return (
     <>
-      {currentPost.length > 0 && (
-        <MetaTag
-          title={currentPost[0]?.title}
-          description={currentPost[0]?.content.slice(0, 150)}
-          image={currentPost[0]?.image}
-          type="article"
-          slug={currentPost[0]?.slug}
-        />
-      )}
       {loading && currentPost.length === 0 ? (
         <div className="loader-container h-screen flex justify-center items-center">
           <div class="text-center">
@@ -210,6 +198,13 @@ const PostContainer = () => {
         </div>
       ) : (
         <>
+          <MetaTag
+            title={currentPost[0].title}
+            description={"Read " + currentPost[0].title}
+            image={currentPost[0].image}
+            type={"article"}
+            slug={slug}
+          />
           <header>
             {currentPost.map((post) => (
               <div key={post._id} className="image-container relative">
