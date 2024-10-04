@@ -170,8 +170,19 @@ const PostContainer = () => {
     });
   };
 
+  console.log(currentPost);
+
   return (
     <>
+      <MetaTag
+        title={"Hello this is testing title"}
+        description={"Read "}
+        image={
+          "https://firebasestorage.googleapis.com/v0/b/insight-loop-blogs.appspot.com/o/1726718318230-Learning%20Rust.png?alt=media&token=9cc0c2a0-5dbd-49e0-83ad-c2908ee453b8"
+        }
+        type={"article"}
+        slug={slug}
+      />
       {loading && currentPost.length === 0 ? (
         <div className="loader-container h-screen flex justify-center items-center">
           <div class="text-center">
@@ -198,13 +209,6 @@ const PostContainer = () => {
         </div>
       ) : (
         <>
-          <MetaTag
-            title={currentPost[0].title}
-            description={"Read " + currentPost[0].title}
-            image={currentPost[0].image}
-            type={"article"}
-            slug={slug}
-          />
           <header>
             {currentPost.map((post) => (
               <div key={post._id} className="image-container relative">
