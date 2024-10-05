@@ -188,6 +188,10 @@ const PostContainer = () => {
         }
         type="article"
         slug={slug}
+        keywords={
+          metaData.keywords ||
+          "insight_loop, insight, loop, blogging, articles, top, notched, discussions, how to, website, blogger, web development, programming, programming language, javascript, react, css, html, java, python"
+        }
       />
       {loading && currentPost.length === 0 ? (
         <div className="loader-container h-screen flex justify-center items-center">
