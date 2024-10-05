@@ -45,6 +45,7 @@ const PostContainer = () => {
   // ------------- State ------------
 
   const [currentPost, setCurrentPost] = useState([]);
+  const [metaData, setMetaData] = useState({});
   const [mostViewedPost, setMostViewedPost] = useState([]);
   const [relatedPost, setRelatedPost] = useState([]);
 
@@ -105,6 +106,7 @@ const PostContainer = () => {
         return;
       }
 
+      setMetaData(data.posts[0]);
       setCurrentPost(data.posts);
       setLoading(false);
     } catch (error) {
@@ -170,17 +172,21 @@ const PostContainer = () => {
     });
   };
 
-  console.log(currentPost);
+  console.log(metaData);
 
   return (
     <>
       <MetaTag
-        title={"Hello this is testing title"}
-        description={"Read "}
+        title={metaData.title || "Insight Loop"}
+        description={`Exploring: ${
+          metaData.title ||
+          "Top-Notch Insights & Top-Notch Discussions articles "
+        } on Insight Loop`}
         image={
-          "https://firebasestorage.googleapis.com/v0/b/insight-loop-blogs.appspot.com/o/1726718318230-Learning%20Rust.png?alt=media&token=9cc0c2a0-5dbd-49e0-83ad-c2908ee453b8"
+          metaData.image ||
+          "https://img.freepik.com/free-vector/blogging-social-media-concept_23-2148642667.jpg?t=st=1721903984~exp=1721907584~hmac=4bb671b29d4949accabfa1f811036fa91e1e75bd479498745fb83f67ae940e4d&w=1380"
         }
-        type={"article"}
+        type="article"
         slug={slug}
       />
       {loading && currentPost.length === 0 ? (
@@ -209,146 +215,155 @@ const PostContainer = () => {
         </div>
       ) : (
         <>
-          <header>
+          <MetaTag
+            title={metaData.title}
+            description={"Exploring: " + metaData.title + " on Insight Loop"}
+            image={metaData.image}
+            type={"article"}
+            slug={slug}
+          />
+          <div className="post-container">
+            <header>
+              {currentPost.map((post) => (
+                <div key={post._id} className="image-container relative">
+                  <img
+                    src={post.image}
+                    alt="post's image"
+                    className="w-full h-[40vh] object-cover"
+                  />
+                </div>
+              ))}
+            </header>
             {currentPost.map((post) => (
-              <div key={post._id} className="image-container relative">
-                <img
-                  src={post.image}
-                  alt="post's image"
-                  className="w-full h-[40vh] object-cover"
-                />
-              </div>
-            ))}
-          </header>
-          {currentPost.map((post) => (
-            <main
-              key={post._id}
-              className="xl:w-[80%] md:w-[95%] m-auto p-6 pb-16"
-            >
-              {/* Title Container */}
-              <div className="title-container my-4">
-                <h1 className="xl:text-5xl xl:my-6 font-medium ">
-                  {post.title}
-                </h1>
-                <div className="createdDate-category-container xl:flex xl:items-center xl:gap-8">
-                  <div>
-                    <p className="text-gray-500">
-                      {moment(post.createdDate).format("MMM-DD-YYYY")}
-                    </p>
-                  </div>
-                  <div>
-                    <CategoryCard category={post.category} />
-                  </div>
-                  <div className="views-container">
-                    <p className="text-gray-500">Views: {post.views}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Context | Related Posts Container | Ad Container | Category Container */}
-              <div className="flex xl:flex-row sm:flex-col gap-8">
-                {/* Context Container */}
-                <div>
-                  <div
-                    className={`post-content xxl:w-[85%] xl:w-[90%] pt-6 ${headingModules} ${listModules} ${blockQuoteModule} prose-a:text-blue-500 prose-code:px-1 prose-code:rounded prose-code:bg-gray-200 prose-code:text-black prose-code:text-sm`}
-                    dangerouslySetInnerHTML={{ __html: post.content }}
-                  ></div>
-                  <div className="comment-container">
-                    <CommentComponent />
-                  </div>
-                </div>
-
-                {/* Related Posts Container | Ad Container | Category Container | Most Viewed Posts */}
-                <div className="related-most-viewed-posts-container xl:w-[25%]">
-                  {/* Ad Container */}
-                  <div className="ad-container xl:w-[350px] xl:aspect-square my-4 bg-gray-200 flex justify-center items-center">
-                    <AdsComponent />
-                  </div>
-
-                  {/* Most Viewed Posts */}
-                  <div>
-                    <h1 className="text-3xl tracking-wide font-medium my-6">
-                      Most Viewed Posts
-                    </h1>
-                    <div className="most-viewed-posts-container grid xl:grid-cols-1 md:grid-cols-2 gap-6 ">
-                      <>
-                        {!mostViewedPost ? (
-                          <div>No posts found</div>
-                        ) : (
-                          <>
-                            {mostViewedPost.map((viewedPost) => (
-                              <BoxCardPostComponent
-                                key={viewedPost._id}
-                                title={viewedPost.title}
-                                createdDate={viewedPost.createdDate}
-                                category={viewedPost.category}
-                                image={viewedPost.image}
-                                slug={viewedPost.slug}
-                              />
-                            ))}
-                          </>
-                        )}
-                      </>
+              <main
+                key={post._id}
+                className="xl:w-[80%] md:w-[95%] m-auto p-6 pb-16"
+              >
+                {/* Title Container */}
+                <div className="title-container my-4">
+                  <h1 className="xl:text-5xl xl:my-6 font-medium ">
+                    {post.title}
+                  </h1>
+                  <div className="createdDate-category-container xl:flex xl:items-center xl:gap-8">
+                    <div>
+                      <p className="text-gray-500">
+                        {moment(post.createdDate).format("MMM-DD-YYYY")}
+                      </p>
                     </div>
+                    <div>
+                      <CategoryCard category={post.category} />
+                    </div>
+                    <div className="views-container">
+                      <p className="text-gray-500">Views: {post.views}</p>
+                    </div>
+                  </div>
+                </div>
 
+                {/* Context | Related Posts Container | Ad Container | Category Container */}
+                <div className="flex xl:flex-row sm:flex-col gap-8">
+                  {/* Context Container */}
+                  <div>
+                    <div
+                      className={`post-content xxl:w-[85%] xl:w-[90%] pt-6 ${headingModules} ${listModules} ${blockQuoteModule} prose-a:text-blue-500 prose-code:px-1 prose-code:rounded prose-code:bg-gray-200 prose-code:text-black prose-code:text-sm`}
+                      dangerouslySetInnerHTML={{ __html: post.content }}
+                    ></div>
+                    <div className="comment-container">
+                      <CommentComponent />
+                    </div>
+                  </div>
+
+                  {/* Related Posts Container | Ad Container | Category Container | Most Viewed Posts */}
+                  <div className="related-most-viewed-posts-container xl:w-[25%]">
                     {/* Ad Container */}
-                    <div className="ad-container xl:w-[350px] xl:aspect-square my-12 bg-gray-200 flex justify-center items-center">
+                    <div className="ad-container xl:w-[350px] xl:aspect-square my-4 bg-gray-200 flex justify-center items-center">
                       <AdsComponent />
                     </div>
 
-                    {/* Related Posts */}
-                    <div className="related-posts-container xl:w-[350px]">
+                    {/* Most Viewed Posts */}
+                    <div>
                       <h1 className="text-3xl tracking-wide font-medium my-6">
-                        Related Posts
+                        Most Viewed Posts
                       </h1>
-                      <div className="related-posts-container grid xl:grid-cols-1 md:grid-cols-3 gap-6">
-                        {relatedPost
-                          .filter((p) => p._id !== post._id)
-                          .slice(0, 3)
-                          .map((relatedPost) => (
-                            <BoxCardPostComponent
-                              key={relatedPost._id}
-                              title={relatedPost.title}
-                              createdDate={relatedPost.createdDate}
-                              category={relatedPost.category}
-                              image={relatedPost.image}
-                              slug={relatedPost.slug}
-                            />
-                          ))}
-                        {relatedPost.filter((p) => p._id !== post._id)
-                          .length === 0 && <div>No related posts found</div>}
+                      <div className="most-viewed-posts-container grid xl:grid-cols-1 md:grid-cols-2 gap-6 ">
+                        <>
+                          {!mostViewedPost ? (
+                            <div>No posts found</div>
+                          ) : (
+                            <>
+                              {mostViewedPost.map((viewedPost) => (
+                                <BoxCardPostComponent
+                                  key={viewedPost._id}
+                                  title={viewedPost.title}
+                                  createdDate={viewedPost.createdDate}
+                                  category={viewedPost.category}
+                                  image={viewedPost.image}
+                                  slug={viewedPost.slug}
+                                />
+                              ))}
+                            </>
+                          )}
+                        </>
                       </div>
-                    </div>
 
-                    {/* Categories */}
-                    <div className="category-container xl:w-[350px]">
-                      <h1 className="text-3xl tracking-wide font-medium my-6">
-                        Categories
-                      </h1>
-                      <div className="category-lists xl:grid xl:grid-cols-1 xl:gap-2">
-                        <ul>
-                          {categories.map((category, index) => (
-                            <li
-                              key={index}
-                              onClick={() =>
-                                handleReloadPage(`/categories/${category}`)
-                              }
-                              className="p-2 border-b-[1px] hover:scale-105 hover:text-blue-500 transition-all"
-                            >
-                              <Link className="hover:underline hover:underline-offset-2">
-                                {category.charAt(0).toUpperCase() +
-                                  category.slice(1)}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
+                      {/* Ad Container */}
+                      <div className="ad-container xl:w-[350px] xl:aspect-square my-12 bg-gray-200 flex justify-center items-center">
+                        <AdsComponent />
+                      </div>
+
+                      {/* Related Posts */}
+                      <div className="related-posts-container xl:w-[350px]">
+                        <h1 className="text-3xl tracking-wide font-medium my-6">
+                          Related Posts
+                        </h1>
+                        <div className="related-posts-container grid xl:grid-cols-1 md:grid-cols-3 gap-6">
+                          {relatedPost
+                            .filter((p) => p._id !== post._id)
+                            .slice(0, 3)
+                            .map((relatedPost) => (
+                              <BoxCardPostComponent
+                                key={relatedPost._id}
+                                title={relatedPost.title}
+                                createdDate={relatedPost.createdDate}
+                                category={relatedPost.category}
+                                image={relatedPost.image}
+                                slug={relatedPost.slug}
+                              />
+                            ))}
+                          {relatedPost.filter((p) => p._id !== post._id)
+                            .length === 0 && <div>No related posts found</div>}
+                        </div>
+                      </div>
+
+                      {/* Categories */}
+                      <div className="category-container xl:w-[350px]">
+                        <h1 className="text-3xl tracking-wide font-medium my-6">
+                          Categories
+                        </h1>
+                        <div className="category-lists xl:grid xl:grid-cols-1 xl:gap-2">
+                          <ul>
+                            {categories.map((category, index) => (
+                              <li
+                                key={index}
+                                onClick={() =>
+                                  handleReloadPage(`/categories/${category}`)
+                                }
+                                className="p-2 border-b-[1px] hover:scale-105 hover:text-blue-500 transition-all"
+                              >
+                                <Link className="hover:underline hover:underline-offset-2">
+                                  {category.charAt(0).toUpperCase() +
+                                    category.slice(1)}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </main>
-          ))}
+              </main>
+            ))}
+          </div>
         </>
       )}
     </>
