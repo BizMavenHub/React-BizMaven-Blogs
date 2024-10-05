@@ -172,8 +172,6 @@ const PostContainer = () => {
     });
   };
 
-  console.log(metaData);
-
   return (
     <>
       <MetaTag
