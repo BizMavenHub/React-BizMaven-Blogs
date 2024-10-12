@@ -43,8 +43,6 @@ function Login_page() {
 
   const [dataForm, setDataForm] = useState({});
 
-  console.log(dataForm);
-
   const handleChange = (e) => {
     setDataForm({
       ...dataForm,
@@ -88,8 +86,6 @@ function Login_page() {
       if (data.message == "User not found") {
         return dispatch(loginFailure(data.message));
       }
-
-      console.log(res.ok);
 
       if (res.ok) {
         console.log("Login successful");
