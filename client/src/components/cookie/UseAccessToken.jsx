@@ -32,6 +32,7 @@ const UseAccessToken = () => {
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 1 month
         secure: true,
         sameSite: "none",
+        domain: ".insightloop.blog",
       });
       setHasAccessToken(true);
     }
