@@ -14,8 +14,6 @@ const UseAccessToken = () => {
 
   const cookies = Cookies.get();
 
-  console.log(cookies);
-
   useEffect(() => {
     const token = cookies.access_token;
     const Url = location.pathname;
