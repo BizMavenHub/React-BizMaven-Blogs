@@ -68,6 +68,7 @@ export async function loginWithEmail(req, res, next) {
 
     res
       .status(200)
+      .setHeader("Access-Control-Allow-Credentials", true)
       .cookie("access_token", token, {
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
         secure: true,
