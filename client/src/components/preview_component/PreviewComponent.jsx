@@ -30,7 +30,7 @@ const PreviewComponent = (prop) => {
 
   return (
     <div
-      className={`post-content ${headingModules} ${listModules} ${blockQuoteModule} p-4 overflow-y-scroll content h-[650px] m-auto bg-[#F6F5F5]  prose-a:text-blue-500 prose-code:px-1 prose-code:rounded prose-code:bg-gray-200 prose-code:text-black prose-code:text-sm`}
+      className={`post-content ${headingModules} ${listModules} ${blockQuoteModule} p-4 overflow-y-scroll content h-[650px] m-auto bg-[#F6F5F5]  prose-a:text-blue-500 prose-code:px-1 prose-code:rounded prose-code:bg-gray-200 prose-code:text-black prose-code:text-sm `}
       dangerouslySetInnerHTML={{ __html: prop.content }}
     ></div>
   );
