@@ -36,7 +36,7 @@ const UseAccessToken = () => {
       });
       setHasAccessToken(true);
     }
-  }, []);
+  }, [cookies]);
 
   return hasAccessToken;
 };

@@ -72,6 +72,7 @@ export async function loginWithEmail(req, res, next) {
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
         secure: true,
         sameSite: "none",
+        domain: "https://www.insightloop.blog",
       })
       .json({ message: "Login successfully", ...rest });
   } catch (error) {
