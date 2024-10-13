@@ -18,7 +18,11 @@ const BoxCardPostComponent = ({
     >
       <div className="box-card w-full block">
         <div className="image-container">
-          <img src={image} alt="post's image" className="" />
+          <img
+            src={image}
+            alt="post's image"
+            className="h-[250px] w-full object-contain"
+          />
         </div>
         <div className="pr-4">
           <div className="category-createdDate-container flex mt-4 gap-3">
