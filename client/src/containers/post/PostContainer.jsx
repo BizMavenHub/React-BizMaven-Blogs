@@ -264,29 +264,44 @@ const PostContainer = () => {
                 {/* Context | Related Posts Container | Ad Container | Category Container */}
                 <div className="flex xl:flex-row sm:flex-col gap-8">
                   {/* Context Container */}
-                  <div>
+                  <div className="context-container">
                     <div
                       className={`post-content xxl:w-[85%] xl:w-[90%] pt-6 ${headingModules} ${listModules} ${blockQuoteModule} prose-a:text-blue-500 prose-code:px-1 prose-code:rounded prose-code:bg-gray-200 prose-code:text-black prose-code:text-sm`}
                       dangerouslySetInnerHTML={{ __html: post.content }}
                     ></div>
-                    <div className="comment-container">
-                      <CommentComponent />
-                    </div>
-                  </div>
 
-                  {/* Related Posts Container | Ad Container | Category Container | Most Viewed Posts */}
-                  <div className="related-most-viewed-posts-container xl:w-[25%]">
-                    {/* Ad Container */}
-                    <div className="ad-container xl:w-[350px] xl:aspect-square my-4 bg-gray-200 flex justify-center items-center">
-                      <AdsComponent />
+                    <hr className="my-12 w-[50%] m-auto " />
+
+                    {/* Related Posts */}
+                    <div className="related-posts-container]">
+                      <h1 className="text-5xl sm:text-3xl text-gray-700 tracking-wide font-medium my-12">
+                        Related Posts
+                      </h1>
+                      <div className="related-posts-container grid xl:grid-cols-3 md:grid-cols-3 gap-6">
+                        {relatedPost
+                          .filter((p) => p._id !== post._id)
+                          .slice(0, 3)
+                          .map((relatedPost) => (
+                            <BoxCardPostComponent
+                              key={relatedPost._id}
+                              title={relatedPost.title}
+                              createdDate={relatedPost.createdDate}
+                              category={relatedPost.category}
+                              image={relatedPost.image}
+                              slug={relatedPost.slug}
+                            />
+                          ))}
+                        {relatedPost.filter((p) => p._id !== post._id)
+                          .length === 0 && <div>No related posts found</div>}
+                      </div>
                     </div>
 
                     {/* Most Viewed Posts */}
-                    <div>
-                      <h1 className="text-3xl tracking-wide font-medium my-6">
+                    <div className="most-viewed-posts">
+                      <h1 className="text-5xl sm:text-3xl text-gray-700 tracking-wide font-medium my-12">
                         Most Viewed Posts
                       </h1>
-                      <div className="most-viewed-posts-container grid xl:grid-cols-1 md:grid-cols-2 gap-6 ">
+                      <div className="most-viewed-posts-container grid xl:grid-cols-3 md:grid-cols-2 gap-6 ">
                         <>
                           {!mostViewedPost ? (
                             <div>No posts found</div>
@@ -306,59 +321,50 @@ const PostContainer = () => {
                           )}
                         </>
                       </div>
+                    </div>
 
+                    {/* Comments Container */}
+                    <div className="comment-container">
+                      <CommentComponent />
+                    </div>
+                  </div>
+
+                  {/*  Ads Container | Category Container */}
+                  <div className="related-most-viewed-posts-container xl:w-[350px] ">
+                    {/* Categories */}
+                    <div className="category-container xl:w-[350px]">
+                      <h1 className="text-3xl tracking-wide font-medium my-6">
+                        Categories
+                      </h1>
+                      <div className="category-lists xl:grid xl:grid-cols-1 xl:gap-2">
+                        <ul>
+                          {categories.map((category, index) => (
+                            <li
+                              key={index}
+                              onClick={() =>
+                                handleReloadPage(`/categories/${category}`)
+                              }
+                              className="p-2 border-b-[1px] hover:scale-105 hover:text-blue-500 transition-all"
+                            >
+                              <Link className="hover:underline hover:underline-offset-2">
+                                {category.charAt(0).toUpperCase() +
+                                  category.slice(1)}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div className="ads-container sticky top-8">
                       {/* Ad Container */}
                       <div className="ad-container xl:w-[350px] xl:aspect-square my-12 bg-gray-200 flex justify-center items-center">
                         <AdsComponent />
                       </div>
 
-                      {/* Related Posts */}
-                      <div className="related-posts-container xl:w-[350px]">
-                        <h1 className="text-3xl tracking-wide font-medium my-6">
-                          Related Posts
-                        </h1>
-                        <div className="related-posts-container grid xl:grid-cols-1 md:grid-cols-3 gap-6">
-                          {relatedPost
-                            .filter((p) => p._id !== post._id)
-                            .slice(0, 3)
-                            .map((relatedPost) => (
-                              <BoxCardPostComponent
-                                key={relatedPost._id}
-                                title={relatedPost.title}
-                                createdDate={relatedPost.createdDate}
-                                category={relatedPost.category}
-                                image={relatedPost.image}
-                                slug={relatedPost.slug}
-                              />
-                            ))}
-                          {relatedPost.filter((p) => p._id !== post._id)
-                            .length === 0 && <div>No related posts found</div>}
-                        </div>
-                      </div>
-
-                      {/* Categories */}
-                      <div className="category-container xl:w-[350px]">
-                        <h1 className="text-3xl tracking-wide font-medium my-6">
-                          Categories
-                        </h1>
-                        <div className="category-lists xl:grid xl:grid-cols-1 xl:gap-2">
-                          <ul>
-                            {categories.map((category, index) => (
-                              <li
-                                key={index}
-                                onClick={() =>
-                                  handleReloadPage(`/categories/${category}`)
-                                }
-                                className="p-2 border-b-[1px] hover:scale-105 hover:text-blue-500 transition-all"
-                              >
-                                <Link className="hover:underline hover:underline-offset-2">
-                                  {category.charAt(0).toUpperCase() +
-                                    category.slice(1)}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
+                      {/* Ad Container */}
+                      <div className="ad-container xl:w-[350px] xl:aspect-square my-12 bg-gray-200 flex justify-center items-center">
+                        <AdsComponent />
                       </div>
                     </div>
                   </div>
