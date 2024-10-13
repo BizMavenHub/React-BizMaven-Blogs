@@ -17,6 +17,7 @@ import CommentCard from "./cards/CommentCard";
 
 import Ad_Card from "./cards/Ad_Card";
 import AdsComponent from "./cards/AdsComponent";
+import AdsComponent_Horizontal from "./cards/AdsComponent_Horizontal";
 
 export {
   PreviewComponent,
@@ -32,4 +33,5 @@ export {
   OnlyIsAdminPrivateRoute,
   Ad_Card,
   AdsComponent,
+  AdsComponent_Horizontal,
 };
