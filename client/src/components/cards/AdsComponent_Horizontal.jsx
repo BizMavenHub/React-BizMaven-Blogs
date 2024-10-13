@@ -39,7 +39,7 @@ const AdsComponent_Horizontal = () => {
     <ins
       ref={adRef}
       className="adsbygoogle"
-      style="display:block"
+      style={{ display: "block", width: "100%", height: "180px" }}
       data-ad-client="ca-pub-1874919607682854"
       data-ad-slot="1065448541"
       data-ad-format="auto"

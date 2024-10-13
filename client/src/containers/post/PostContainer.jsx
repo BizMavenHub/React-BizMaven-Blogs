@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
+import { createRoot } from "react-dom/client";
 import { useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 
@@ -176,17 +177,28 @@ const PostContainer = () => {
   const getHeading_1 = () => {
     const h1 = document.querySelectorAll(".post-content h1");
 
-    const AdHTML = `
-    <div class="ads-container w-full h-[180px] bg-gray-200">
-      ${(<AdsComponent_Horizontal />)}
-    </div>
+    // insert element above h1
+    h1.forEach((element, index) => {
+      const uniqueId = `ads-placeholder-${index}`;
+
+      const AdHTML = `
+      <div class="ad-container h-[180px] w-full bg-gray-200" id="${uniqueId}">
+      </div>
     `;
 
-    // insert element above h2
-    h1.forEach((element) => {
       element.insertAdjacentHTML("beforebegin", AdHTML);
+
+      const adPlaceholder = document.querySelector(`#${uniqueId}`);
+
+      if (adPlaceholder) {
+        // Render the AdsComponent_Horizontal inside the placeholder using React's createRoot
+        const root = createRoot(adPlaceholder);
+        root.render(<AdsComponent_Horizontal />);
+      }
     });
   };
+
+  window.addEventListener("DOMContentLoaded", getHeading_1);
 
   return (
     <>
