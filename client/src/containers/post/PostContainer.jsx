@@ -178,7 +178,7 @@ const PostContainer = () => {
 
     const AdHTML = `
     <div class="ads-container w-full h-[180px] bg-gray-200">
-      <AdsComponent_Horizontal />
+      ${(<AdsComponent_Horizontal />)}
     </div>
     `;
 
