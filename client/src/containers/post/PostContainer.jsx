@@ -6,7 +6,7 @@ import { useParams, Link } from "react-router-dom";
 import CategoryCard from "../../components/postCards/CategoryCard";
 import BoxCardPostComponent from "../../components/postCards/BoxCardPostComponent";
 import { CommentComponent } from "../../components";
-import { AdsComponent } from "../../components";
+import { AdsComponent, AdsComponent_Horizontal } from "../../components";
 import MetaTag from "../../components/MetaTag";
 
 // Packages
@@ -82,6 +82,7 @@ const PostContainer = () => {
   useEffect(() => {
     handleHighlight();
     getRelatedPosts();
+    getHeading_1();
   }, [currentPost]);
 
   // ------------- Methods -------------
@@ -169,6 +170,21 @@ const PostContainer = () => {
 
     pre.forEach((block) => {
       hljs.highlightBlock(block);
+    });
+  };
+
+  const getHeading_1 = () => {
+    const h1 = document.querySelectorAll(".post-content h1");
+
+    const AdHTML = `
+    <div class="ads-container w-full h-[180px] bg-gray-200">
+      <AdsComponent_Horizontal />
+    </div>
+    `;
+
+    // insert element above h2
+    h1.forEach((element) => {
+      element.insertAdjacentHTML("beforebegin", AdHTML);
     });
   };
 
