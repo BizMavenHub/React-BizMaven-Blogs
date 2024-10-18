@@ -1,5 +1,5 @@
 const headingModules =
-  " prose-headings:my-3 prose-headings:font-heading_font prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-lg prose-p:text-base prose-p:mb-4 prose-p:font-paragraph_font prose-a:text-blue-500";
+  " prose-headings:my-3 prose-headings:font-heading_font prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-lg prose-p:text-base prose-p:mb-4 prose-p:font-paragraph_font prose-a:text-blue-500";
 
 const listModules =
   "prose-a:no-underline prose-ol:list-decimal prose-ul:list-disc prose-ul:ml-10 prose-ul:mb-4 prose-ol:ml-10 prose-ol:mb-4 prose-li:font-paragraph_font";
