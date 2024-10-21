@@ -200,18 +200,16 @@ const PostContainer = () => {
 
   window.addEventListener("DOMContentLoaded", getHeading_1);
 
+  if (!metaData) {
+    return null;
+  }
+
   return (
     <>
       <MetaTag
-        title={metaData.title || "Insight Loop"}
-        description={`Exploring: ${
-          metaData.title ||
-          "Top-Notch Insights & Top-Notch Discussions articles "
-        } on Insight Loop`}
-        image={
-          metaData.image ||
-          "https://img.freepik.com/free-vector/blogging-social-media-concept_23-2148642667.jpg?t=st=1721903984~exp=1721907584~hmac=4bb671b29d4949accabfa1f811036fa91e1e75bd479498745fb83f67ae940e4d&w=1380"
-        }
+        title={metaData.title}
+        description={`Exploring: ${metaData.title} on Insight Loop`}
+        image={metaData.image || "./PostImage.jpg"}
         type="article"
         slug={slug}
         keywords={
@@ -245,13 +243,6 @@ const PostContainer = () => {
         </div>
       ) : (
         <>
-          <MetaTag
-            title={metaData.title}
-            description={"Exploring: " + metaData.title + " on Insight Loop"}
-            image={metaData.image}
-            type={"article"}
-            slug={slug}
-          />
           <div className="post-container">
             <header>
               {currentPost.map((post) => (
