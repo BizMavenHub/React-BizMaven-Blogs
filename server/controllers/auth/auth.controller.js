@@ -73,7 +73,7 @@ export async function loginWithEmail(req, res, next) {
         expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30),
         secure: true,
         sameSite: "none",
-        domain: ".insightloop.blog",
+        domain: process.env.COOKIE_DOMAIN,
       })
       .json({ message: "Login successfully", ...rest });
   } catch (error) {
@@ -103,7 +103,7 @@ export async function loginWithGoogle(req, res, next) {
           expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
           secure: true,
           sameSite: "none",
-          domain: ".insightloop.blog",
+          domain: process.env.COOKIE_DOMAIN,
         })
         .json({ message: "Login successfully", ...rest });
     } else {
@@ -136,7 +136,7 @@ export async function loginWithGoogle(req, res, next) {
           expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24 * 30), // 30 days
           secure: true,
           sameSite: "none",
-          domain: ".insightloop.blog",
+          domain: process.env.COOKIE_DOMAIN,
         })
         .json({ message: "Login successfully", ...rest });
     }
